@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.favmovies"
+    namespace = "com.example.footmatch"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.example.favmovies"
+        applicationId = "com.example.footmatch"
         minSdk = 25
         targetSdk = 33
         versionCode = 1

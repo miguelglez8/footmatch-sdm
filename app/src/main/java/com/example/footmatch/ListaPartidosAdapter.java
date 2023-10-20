@@ -10,7 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.favmovies.R;
 import com.example.footmatch.modelo.Partido;
 import com.squareup.picasso.Picasso;
 
@@ -69,14 +68,10 @@ public class ListaPartidosAdapter extends RecyclerView.Adapter<ListaPartidosAdap
 
         public PartidoViewHolder(View itemView) {
             super(itemView);
-
-            titulo= (TextView)itemView.findViewById(R.id.tituloPartido);
         }
 
         // asignar valores a los componentes
         public void bindUser(final Partido partido, final OnItemClickListener listener) {
-            titulo.setText("Partido");
-
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
                     Log.i("Hola", "Hola");

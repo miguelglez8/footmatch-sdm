@@ -17,7 +17,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.favmovies.R;
 import com.example.footmatch.modelo.Partido;
 import com.example.footmatch.util.Conexion;
 
@@ -51,6 +50,7 @@ public class MainRecycler extends AppCompatActivity {
         //Rellenar lista de partidos
 
         //cargarPartidos();
+        listaPartidos = new ArrayList<Partido>();
 
         // Recuperamos referencia y configuramos recyclerView con la lista de partidos
         listaPartidosView = (RecyclerView)findViewById(R.id.recyclerView);

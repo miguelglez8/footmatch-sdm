@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-mergeDebugResources-34:\\layout\\linea_recycler_view_partido.xml",
+        "source": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\layout\\linea_recycler_view_partido.xml"
+    },
+    {
+        "merged": "com.example.footmatch.app-mergeDebugResources-34:/layout/activity_main_recycler.xml",
+        "source": "com.example.footmatch.app-main-37:/layout/activity_main_recycler.xml"
+    },
+    {
+        "merged": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-mergeDebugResources-34:\\layout\\activity_main_recycler.xml",
+        "source": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\layout\\activity_main_recycler.xml"
+    }
+]
