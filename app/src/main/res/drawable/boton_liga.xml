@@ -1,5 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="oval">
-    <stroke android:width="2dp"></stroke>
-    <size android:width="100dp" android:height="100dp"></size>
-</shape>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Forma ovalada con borde negro -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent" /> <!-- Fondo transparente -->
+            <stroke android:width="1.5dp" android:color="#000000" /> <!-- Borde negro de 2dp -->
+        </shape>
+    </item>
+</layer-list>

@@ -4,7 +4,7 @@ package com.example.footmatch.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -25,24 +25,24 @@ public final class ActivityMainRecyclerBinding implements ViewBinding {
   public final BottomNavigationView bottomNavigationView;
 
   @NonNull
-  public final Button ligaBundesliga;
+  public final ImageButton ligaBundesliga;
 
   @NonNull
-  public final Button ligaEASports;
+  public final ImageButton ligaEASports;
 
   @NonNull
-  public final Button ligaPremier;
+  public final ImageButton ligaPremier;
 
   @NonNull
-  public final Button ligaSerieA;
+  public final ImageButton ligaSerieA;
 
   @NonNull
   public final RecyclerView recyclerView;
 
   private ActivityMainRecyclerBinding(@NonNull ConstraintLayout rootView,
-      @NonNull BottomNavigationView bottomNavigationView, @NonNull Button ligaBundesliga,
-      @NonNull Button ligaEASports, @NonNull Button ligaPremier, @NonNull Button ligaSerieA,
-      @NonNull RecyclerView recyclerView) {
+      @NonNull BottomNavigationView bottomNavigationView, @NonNull ImageButton ligaBundesliga,
+      @NonNull ImageButton ligaEASports, @NonNull ImageButton ligaPremier,
+      @NonNull ImageButton ligaSerieA, @NonNull RecyclerView recyclerView) {
     this.rootView = rootView;
     this.bottomNavigationView = bottomNavigationView;
     this.ligaBundesliga = ligaBundesliga;
@@ -86,25 +86,25 @@ public final class ActivityMainRecyclerBinding implements ViewBinding {
       }
 
       id = R.id.ligaBundesliga;
-      Button ligaBundesliga = ViewBindings.findChildViewById(rootView, id);
+      ImageButton ligaBundesliga = ViewBindings.findChildViewById(rootView, id);
       if (ligaBundesliga == null) {
         break missingId;
       }
 
       id = R.id.ligaEASports;
-      Button ligaEASports = ViewBindings.findChildViewById(rootView, id);
+      ImageButton ligaEASports = ViewBindings.findChildViewById(rootView, id);
       if (ligaEASports == null) {
         break missingId;
       }
 
       id = R.id.ligaPremier;
-      Button ligaPremier = ViewBindings.findChildViewById(rootView, id);
+      ImageButton ligaPremier = ViewBindings.findChildViewById(rootView, id);
       if (ligaPremier == null) {
         break missingId;
       }
 
       id = R.id.ligaSerieA;
-      Button ligaSerieA = ViewBindings.findChildViewById(rootView, id);
+      ImageButton ligaSerieA = ViewBindings.findChildViewById(rootView, id);
       if (ligaSerieA == null) {
         break missingId;
       }

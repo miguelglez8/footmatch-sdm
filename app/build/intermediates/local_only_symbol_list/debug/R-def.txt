@@ -18,6 +18,7 @@ drawable liga_easports
 drawable liga_premier
 drawable liga_seriea
 drawable rounded_corners_navigation
+drawable white_background
 id bottomNavigationView
 id ligaBundesliga
 id ligaEASports

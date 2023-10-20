@@ -14,65 +14,65 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Button
+        <ImageButton
             android:id="@+id/ligaEASports"
             android:layout_width="65dp"
             android:layout_height="58dp"
-            android:background="@drawable/boton_liga"
-            android:icon="@drawable/liga_easports"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/liga_easports"
+            android:src="@drawable/boton_liga"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/recyclerView"
             app:layout_constraintHorizontal_bias="0.598"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.139"
-            tools:ignore="MissingConstraints"
-            android:layout_marginRight="8dp"/>
+            tools:ignore="MissingConstraints" />
 
-        <Button
+        <ImageButton
             android:id="@+id/ligaPremier"
             android:layout_width="65dp"
             android:layout_height="58dp"
-            android:background="@drawable/boton_liga"
-            android:icon="@drawable/liga_premier"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/liga_premier"
+            android:src="@drawable/boton_liga"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/recyclerView"
             app:layout_constraintHorizontal_bias="0.79"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.139"
-            tools:ignore="MissingConstraints"
-            android:layout_marginRight="8dp"/>
+            tools:ignore="MissingConstraints" />
 
-        <Button
+        <ImageButton
             android:id="@+id/ligaSerieA"
             android:layout_width="65dp"
             android:layout_height="58dp"
-            android:background="@drawable/boton_liga"
-            android:icon="@drawable/liga_seriea"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/liga_seriea"
+            android:src="@drawable/boton_liga"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/recyclerView"
             app:layout_constraintHorizontal_bias="0.412"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.139"
-            tools:ignore="MissingConstraints"
-            android:layout_marginRight="8dp"/>
+            tools:ignore="MissingConstraints" />
 
-        <Button
+        <ImageButton
             android:id="@+id/ligaBundesliga"
             android:layout_width="65dp"
             android:layout_height="58dp"
-            android:background="@drawable/boton_liga"
-            android:icon="@drawable/liga_bundesliga"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/liga_bundesliga"
+            android:src="@drawable/boton_liga"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/recyclerView"
             app:layout_constraintHorizontal_bias="0.22"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.139"
-            tools:ignore="MissingConstraints"
-            android:layout_marginRight="8dp"/>
+            tools:ignore="MissingConstraints" />
 
     </LinearLayout>
 

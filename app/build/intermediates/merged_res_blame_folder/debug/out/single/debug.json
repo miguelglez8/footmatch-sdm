@@ -4,6 +4,10 @@
         "source": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\mipmap-mdpi\\ic_launcher.webp"
     },
     {
+        "merged": "com.example.footmatch.app-merged_res-35:/layout_activity_main_recycler.xml.flat",
+        "source": "com.example.footmatch.app-main-37:/layout/activity_main_recycler.xml"
+    },
+    {
         "merged": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-35:\\drawable_liga_bundesliga.png.flat",
         "source": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\drawable\\liga_bundesliga.png"
     },
@@ -28,6 +32,10 @@
         "source": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\drawable\\boton_liga.xml"
     },
     {
+        "merged": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-35:\\drawable_white_background.xml.flat",
+        "source": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\drawable\\white_background.xml"
+    },
+    {
         "merged": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-35:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
         "source": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\mipmap-xxhdpi\\ic_launcher_round.webp"
     },
@@ -42,10 +50,6 @@
     {
         "merged": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-35:\\drawable_ic_launcher_foreground.xml.flat",
         "source": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\drawable\\ic_launcher_foreground.xml"
-    },
-    {
-        "merged": "com.example.footmatch.app-merged_res-35:/drawable_boton_liga.xml.flat",
-        "source": "com.example.footmatch.app-main-37:/drawable/boton_liga.xml"
     },
     {
         "merged": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-35:\\menu_menu.xml.flat",
