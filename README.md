@@ -1,2 +1,5 @@
-# footmatch-sdm
-Group project for the subject of Software for mobile devices (SDM) subject about a soccer application
+![Android Studio](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
+# FootMatch · Android App
+
+BeSoccer is a comprehensive soccer application designed to provide users with extensive information and coverage of the world of football. 
+This app offers a wide range of features and functionalities that cater to the needs of soccer enthusiasts, whether they are fans, players, or coaches.
