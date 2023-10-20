@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="listArray">
+        <item>Sin definir</item>
+        <item>Comedia</item>
+        <item>Terror</item>
+        <item>Aventura</item>
+
+    </string-array>
+
+
+</resources>

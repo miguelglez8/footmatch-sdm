@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">FavMovies</string>
+    <string name="OnCreate">onCreate: Me estoy creando</string>
+    <string name="OnStart">onStart: Estoy empezando</string>
+    <string name="OnStop">onStop: Estoy parada</string>
+    <string name="OnPause">onPause: Estoy en pausa</string>
+    <string name="OnResume">onResume: Estoy en resume</string>
+    <string name="OnRestart">onRestart: Estoy reiniciando</string>
+    <string name="OnDestroy">onDestroy: Estoy destruyendome</string>
+    <string name="prueba">Hola</string>
+    <string name="Title">Titulo</string>
+    <string name="FilmTitle">Titulo de la pelicula</string>
+    <string name="Argumento">Argumento</string>
+    <string name="Sinapsis">Sinapsis de la película</string>
+    <string name="Categoria">Categoria\n</string>
+    <string name="FechaPelicula">Fecha de la pelicula\n</string>
+    <string name="Guardar">Guardar</string>
+    <string name="Duracion">Duracion\n</string>
+
+    <string name="tituloActivityEntrada">Mis pelis favoritas </string>
+    <string name="titulo">Título </string>
+    <string name="contenido">Argumento</string>
+    <string name="categoria">Categoría</string>
+    <string name="hint_titulo_nota">Título de la película</string>
+    <string name="hint_contenido_nota">Sinopsis de la pelicula</string>
+    <string name="desc_cont_modificar">Modificar</string>
+    <string name="txt_guardar">Guardar</string>
+    <string name="msg_guardado">Pelicula guardada</string>
+    <string name="msg_crear_nueva_categoria">Se va a crear una nueva categoría</string>
+    <string name="msg_accion_cancelada">Acción cancelada</string>
+    <string name="msg_accion_ok">Acción realizada</string>
+    <string name="msg_modif_categoria">Se va a modificar la categoría seleccionada</string>
+    <string name="hint_duracion">Duracion</string>
+    <string name="hint_fecha">Fecha de la película</string>
+    <string name="TituloCreacionCategoria">Creación de nueva categoría</string>
+    <string name="NombreCategoría">Nombre de la Categoría</string>
+    <string name="DescripcionCategoria">Descripcion Categoría</string>
+    <string name="Cancel">Cancelar</string>
+    <string name="Ok">Ok</string>
+    <string name="creacion_categoria">Creación de nueva categoría</string>
+    <string name="modificacion_categoria">Modificación de categoría existente</string>
+    <string name="Compartir">Compartir</string>
+    <string name="comprueba_conexion">No se ha establecido la conexión. Por favor, conecta tu movil a Internet y vuelva a intentarlo.</string>
+    <string name="subject_compartir">Te comparto la siguiente peli:</string>
+
+    <string name="fechaestreno">26/08/2020</string>
+    <string name="titulopeli">Tenet</string>
+
+</resources>
