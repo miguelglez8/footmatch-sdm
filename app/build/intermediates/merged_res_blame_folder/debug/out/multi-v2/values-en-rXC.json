@@ -4,24 +4,7 @@
             "outputFile": "com.example.footmatch.app-mergeDebugResources-33:/values-en-rXC/values-en-rXC.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\migue\\.gradle\\caches\\transforms-3\\440057c2cf02a3f665a28f173b2095a0\\transformed\\preference-1.2.1\\res\\values-en-rXC\\values-en-rXC.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "105,276,465,642,894,1196,1378",
-                        "endColumns": "170,188,176,251,301,181,172",
-                        "endOffsets": "271,460,637,889,1191,1373,1546"
-                    },
-                    "to": {
-                        "startLines": "29,30,31,32,35,36,37",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "5528,5699,5888,6065,6707,7009,7191",
-                        "endColumns": "170,188,176,251,301,181,172",
-                        "endOffsets": "5694,5883,6060,6312,7004,7186,7359"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\migue\\.gradle\\caches\\transforms-3\\af575453595166fed38ef613cf3573b3\\transformed\\appcompat-1.6.1\\res\\values-en-rXC\\values-en-rXC.xml",
+                    "source": "C:\\Users\\marco\\.gradle\\caches\\transforms-3\\af575453595166fed38ef613cf3573b3\\transformed\\appcompat-1.6.1\\res\\values-en-rXC\\values-en-rXC.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -38,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\migue\\.gradle\\caches\\transforms-3\\28a7af075d5af218c19b63a2f54b1523\\transformed\\core-1.9.0\\res\\values-en-rXC\\values-en-rXC.xml",
+                    "source": "C:\\Users\\marco\\.gradle\\caches\\transforms-3\\28a7af075d5af218c19b63a2f54b1523\\transformed\\core-1.9.0\\res\\values-en-rXC\\values-en-rXC.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -52,6 +35,23 @@
                         "startOffsets": "6503",
                         "endColumns": "203",
                         "endOffsets": "6702"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\marco\\.gradle\\caches\\transforms-3\\440057c2cf02a3f665a28f173b2095a0\\transformed\\preference-1.2.1\\res\\values-en-rXC\\values-en-rXC.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "105,276,465,642,894,1196,1378",
+                        "endColumns": "170,188,176,251,301,181,172",
+                        "endOffsets": "271,460,637,889,1191,1373,1546"
+                    },
+                    "to": {
+                        "startLines": "29,30,31,32,35,36,37",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "5528,5699,5888,6065,6707,7009,7191",
+                        "endColumns": "170,188,176,251,301,181,172",
+                        "endOffsets": "5694,5883,6060,6312,7004,7186,7359"
                     }
                 }
             ]

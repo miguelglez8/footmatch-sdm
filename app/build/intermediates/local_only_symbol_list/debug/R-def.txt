@@ -20,6 +20,11 @@ drawable liga_seriea
 drawable rounded_corners_navigation
 drawable white_background
 id bottomNavigationView
+id equipoLocalImageView
+id equipoLocalNombreTextView
+id equipoVisitanteImageView
+id equipoVisitanteNombreTextView
+id fechaTextView
 id ligaBundesliga
 id ligaEASports
 id ligaPremier
@@ -29,7 +34,7 @@ id nav_home
 id nav_noticias
 id nav_notificaciones
 id recyclerView
-id tituloPartido
+id resultadoTextView
 layout activity_main_recycler
 layout linea_recycler_view_partido
 menu navigation_menu
@@ -37,6 +42,8 @@ mipmap ic_launcher
 mipmap ic_launcher_round
 string action_settings
 string app_name
+string escudo_equipo_local_image_description
+string escudo_equipo_visitante_image_description
 string large_text
 string partidos_jugados
 string title_activity_scrolling

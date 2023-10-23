@@ -30,6 +30,53 @@ public class ListaPartidosAdapter extends RecyclerView.Adapter<ListaPartidosAdap
         this.listener = listener;
     }
 
+    /*Clase interna que define los compoonentes de la vista*/
+
+    public static class PartidoViewHolder extends RecyclerView.ViewHolder{
+
+        private ImageView logoLocal;
+        private TextView nombreLocal;
+
+        private ImageView logoVisitante;
+        private TextView nombreVisitante;
+
+        private TextView resultado;
+
+        private TextView fecha;
+
+        public PartidoViewHolder(View itemView) {
+            super(itemView);
+            logoLocal = (ImageView) itemView.findViewById(R.id.equipoLocalImageView);
+            nombreLocal = (TextView) itemView.findViewById(R.id.equipoLocalNombreTextView);
+            logoVisitante = (ImageView) itemView.findViewById(R.id.equipoVisitanteImageView);
+            nombreVisitante = (TextView) itemView.findViewById(R.id.equipoVisitanteNombreTextView);
+            resultado = (TextView) itemView.findViewById(R.id.resultadoTextView);
+            fecha = (TextView) itemView.findViewById(R.id.fechaTextView);
+        }
+
+        // asignar valores a los componentes
+        public void bindUser(final Partido partido, final OnItemClickListener listener) {
+            // cargar imagen local
+            Picasso.get()
+                    .load(partido.getEquipoLocal().getUrlImagenEscudo()).into(logoLocal);
+            // cargar imagen visitante
+            Picasso.get()
+                    .load(partido.getEquipoVisitante().getUrlImagenEscudo()).into(logoVisitante);
+            // cargar nombre equipo local
+            nombreLocal.setText(partido.getLocalTeamName());
+            // cargar nombre equipo visitante
+            nombreVisitante.setText(partido.getAwayTeamName());
+            // cargar resultado
+            resultado.setText(partido.getResultado());
+            // cargar fecha partido
+            fecha.setText(partido.getFecha());
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View v) {
+                    // De momento no hacemos nada al pulsar sobre un partido
+                }
+            });
+        }
+    }
     /* Indicamos el layout a "inflar" para usar en la vista
      */
     @NonNull
@@ -60,25 +107,6 @@ public class ListaPartidosAdapter extends RecyclerView.Adapter<ListaPartidosAdap
         return listaPartidos.size();
     }
 
-    /*Clase interna que define los compoonentes de la vista*/
 
-    public static class PartidoViewHolder extends RecyclerView.ViewHolder{
-
-        private TextView titulo;
-
-        public PartidoViewHolder(View itemView) {
-            super(itemView);
-        }
-
-        // asignar valores a los componentes
-        public void bindUser(final Partido partido, final OnItemClickListener listener) {
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override public void onClick(View v) {
-                    Log.i("Hola", "Hola");
-                    listener.onItemClick(partido);
-                }
-            });
-        }
-    }
 
 }

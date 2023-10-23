@@ -4,6 +4,7 @@ package com.example.footmatch.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -20,12 +21,34 @@ public final class LineaRecyclerViewPartidoBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
-  public final TextView tituloPartido;
+  public final ImageView equipoLocalImageView;
+
+  @NonNull
+  public final TextView equipoLocalNombreTextView;
+
+  @NonNull
+  public final ImageView equipoVisitanteImageView;
+
+  @NonNull
+  public final TextView equipoVisitanteNombreTextView;
+
+  @NonNull
+  public final TextView fechaTextView;
+
+  @NonNull
+  public final TextView resultadoTextView;
 
   private LineaRecyclerViewPartidoBinding(@NonNull LinearLayout rootView,
-      @NonNull TextView tituloPartido) {
+      @NonNull ImageView equipoLocalImageView, @NonNull TextView equipoLocalNombreTextView,
+      @NonNull ImageView equipoVisitanteImageView, @NonNull TextView equipoVisitanteNombreTextView,
+      @NonNull TextView fechaTextView, @NonNull TextView resultadoTextView) {
     this.rootView = rootView;
-    this.tituloPartido = tituloPartido;
+    this.equipoLocalImageView = equipoLocalImageView;
+    this.equipoLocalNombreTextView = equipoLocalNombreTextView;
+    this.equipoVisitanteImageView = equipoVisitanteImageView;
+    this.equipoVisitanteNombreTextView = equipoVisitanteNombreTextView;
+    this.fechaTextView = fechaTextView;
+    this.resultadoTextView = resultadoTextView;
   }
 
   @Override
@@ -55,13 +78,45 @@ public final class LineaRecyclerViewPartidoBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.tituloPartido;
-      TextView tituloPartido = ViewBindings.findChildViewById(rootView, id);
-      if (tituloPartido == null) {
+      id = R.id.equipoLocalImageView;
+      ImageView equipoLocalImageView = ViewBindings.findChildViewById(rootView, id);
+      if (equipoLocalImageView == null) {
         break missingId;
       }
 
-      return new LineaRecyclerViewPartidoBinding((LinearLayout) rootView, tituloPartido);
+      id = R.id.equipoLocalNombreTextView;
+      TextView equipoLocalNombreTextView = ViewBindings.findChildViewById(rootView, id);
+      if (equipoLocalNombreTextView == null) {
+        break missingId;
+      }
+
+      id = R.id.equipoVisitanteImageView;
+      ImageView equipoVisitanteImageView = ViewBindings.findChildViewById(rootView, id);
+      if (equipoVisitanteImageView == null) {
+        break missingId;
+      }
+
+      id = R.id.equipoVisitanteNombreTextView;
+      TextView equipoVisitanteNombreTextView = ViewBindings.findChildViewById(rootView, id);
+      if (equipoVisitanteNombreTextView == null) {
+        break missingId;
+      }
+
+      id = R.id.fechaTextView;
+      TextView fechaTextView = ViewBindings.findChildViewById(rootView, id);
+      if (fechaTextView == null) {
+        break missingId;
+      }
+
+      id = R.id.resultadoTextView;
+      TextView resultadoTextView = ViewBindings.findChildViewById(rootView, id);
+      if (resultadoTextView == null) {
+        break missingId;
+      }
+
+      return new LineaRecyclerViewPartidoBinding((LinearLayout) rootView, equipoLocalImageView,
+          equipoLocalNombreTextView, equipoVisitanteImageView, equipoVisitanteNombreTextView,
+          fechaTextView, resultadoTextView);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

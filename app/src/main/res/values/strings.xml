@@ -93,4 +93,6 @@
     </string>
     <string name="action_settings">Settings</string>
     <string name="partidos_jugados">Partidos jugados</string>
+    <string name="escudo_equipo_local_image_description">Escudo equipo local</string>
+    <string name="escudo_equipo_visitante_image_description">escudo equipo visitante</string>
 </resources>

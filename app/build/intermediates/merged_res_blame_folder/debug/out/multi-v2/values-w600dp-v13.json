@@ -4,7 +4,7 @@
             "outputFile": "com.example.footmatch.app-mergeDebugResources-33:/values-w600dp-v13/values-w600dp-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\migue\\AndroidStudioProjects\\footmatch-sdm\\app\\src\\main\\res\\values-w600dp\\dimens.xml",
+                    "source": "C:\\Users\\marco\\Desktop\\WORKSPACE\\QUINTO\\SDM\\trabajoGrupo\\app\\src\\main\\res\\values-w600dp\\dimens.xml",
                     "from": {
                         "startLines": "1,2",
                         "startColumns": "4,4",

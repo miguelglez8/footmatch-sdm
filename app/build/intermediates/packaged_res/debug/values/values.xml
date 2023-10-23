@@ -10,6 +10,8 @@
     <dimen name="text_margin">16dp</dimen>
     <string name="action_settings">Settings</string>
     <string name="app_name">FootMatch</string>
+    <string name="escudo_equipo_local_image_description">Escudo equipo local</string>
+    <string name="escudo_equipo_visitante_image_description">escudo equipo visitante</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

@@ -3278,10 +3278,15 @@ id end
 id endToStart
 id enterAlways
 id enterAlwaysCollapsed
+id equipoLocalImageView
+id equipoLocalNombreTextView
+id equipoVisitanteImageView
+id equipoVisitanteNombreTextView
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
 id fade
+id fechaTextView
 id fill
 id fill_horizontal
 id fill_vertical
@@ -3458,6 +3463,7 @@ id ratio
 id rectangles
 id recyclerView
 id recycler_view
+id resultadoTextView
 id reverseSawtooth
 id right
 id rightToLeft
@@ -3579,7 +3585,6 @@ id time
 id title
 id titleDividerNoCustom
 id title_template
-id tituloPartido
 id toggle
 id top
 id topPanel
@@ -3875,6 +3880,8 @@ string clear_text_end_icon_content_description
 string copy
 string error_a11y_label
 string error_icon_content_description
+string escudo_equipo_local_image_description
+string escudo_equipo_visitante_image_description
 string expand_button_title
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
