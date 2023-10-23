@@ -35,6 +35,7 @@ id nav_noticias
 id nav_notificaciones
 id recyclerView
 id resultadoTextView
+layout activity_clasificacion
 layout activity_main_recycler
 layout linea_recycler_view_partido
 menu navigation_menu

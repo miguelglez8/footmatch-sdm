@@ -1,9 +1,9 @@
-#Mon Oct 23 15:27:05 CEST 2023
-base.0=C\:\\Users\\marco\\Desktop\\WORKSPACE\\QUINTO\\SDM\\trabajoGrupo\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
-base.1=C\:\\Users\\marco\\Desktop\\WORKSPACE\\QUINTO\\SDM\\trabajoGrupo\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
-base.2=C\:\\Users\\marco\\Desktop\\WORKSPACE\\QUINTO\\SDM\\trabajoGrupo\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\2\\classes.dex
-base.3=C\:\\Users\\marco\\Desktop\\WORKSPACE\\QUINTO\\SDM\\trabajoGrupo\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\5\\classes.dex
-base.4=C\:\\Users\\marco\\Desktop\\WORKSPACE\\QUINTO\\SDM\\trabajoGrupo\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\6\\classes.dex
+#Mon Oct 23 20:24:55 CEST 2023
+base.0=A\:\\Escritorio\\UNIVERSIDAD\\6_ano\\SDM\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.1=A\:\\Escritorio\\UNIVERSIDAD\\6_ano\\SDM\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.2=A\:\\Escritorio\\UNIVERSIDAD\\6_ano\\SDM\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\2\\classes.dex
+base.3=A\:\\Escritorio\\UNIVERSIDAD\\6_ano\\SDM\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\5\\classes.dex
+base.4=A\:\\Escritorio\\UNIVERSIDAD\\6_ano\\SDM\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\6\\classes.dex
 path.0=classes.dex
 path.1=0/classes.dex
 path.2=2/classes.dex

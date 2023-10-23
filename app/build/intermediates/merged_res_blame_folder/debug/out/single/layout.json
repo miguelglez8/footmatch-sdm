@@ -1,14 +1,14 @@
 [
     {
-        "merged": "com.example.footmatch.app-mergeDebugResources-34:/layout/linea_recycler_view_partido.xml",
-        "source": "com.example.footmatch.app-main-37:/layout/linea_recycler_view_partido.xml"
+        "merged": "C:\\Users\\richa\\.gradle\\daemon\\8.0\\com.example.footmatch.app-mergeDebugResources-3:\\layout\\linea_recycler_view_partido.xml",
+        "source": "C:\\Users\\richa\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-6:\\layout\\linea_recycler_view_partido.xml"
     },
     {
-        "merged": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-mergeDebugResources-34:\\layout\\linea_recycler_view_partido.xml",
-        "source": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\layout\\linea_recycler_view_partido.xml"
+        "merged": "com.example.footmatch.app-mergeDebugResources-3:/layout/activity_clasificacion.xml",
+        "source": "com.example.footmatch.app-main-6:/layout/activity_clasificacion.xml"
     },
     {
-        "merged": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-mergeDebugResources-34:\\layout\\activity_main_recycler.xml",
-        "source": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\layout\\activity_main_recycler.xml"
+        "merged": "C:\\Users\\richa\\.gradle\\daemon\\8.0\\com.example.footmatch.app-mergeDebugResources-3:\\layout\\activity_main_recycler.xml",
+        "source": "C:\\Users\\richa\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-6:\\layout\\activity_main_recycler.xml"
     }
 ]
