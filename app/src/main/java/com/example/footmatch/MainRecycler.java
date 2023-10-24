@@ -190,7 +190,7 @@ public class MainRecycler extends AppCompatActivity {
         BufferedReader bufferedReader = null;
 
         try {
-            file = getAssets().open("lista_partidos_url_utf8.csv");
+            file = getAssets().open("lista_clasificacion_url_utf8.csv");
             reader = new InputStreamReader(file);
             bufferedReader = new BufferedReader(reader);
 
