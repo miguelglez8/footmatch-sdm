@@ -1,9 +1,9 @@
-#Tue Oct 24 18:55:07 CEST 2023
-base.0=C\:\\Users\\marco\\Desktop\\WORKSPACE\\QUINTO\\SDM\\trabajoGrupo\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
-base.1=C\:\\Users\\marco\\Desktop\\WORKSPACE\\QUINTO\\SDM\\trabajoGrupo\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
-base.2=C\:\\Users\\marco\\Desktop\\WORKSPACE\\QUINTO\\SDM\\trabajoGrupo\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\2\\classes.dex
-base.3=C\:\\Users\\marco\\Desktop\\WORKSPACE\\QUINTO\\SDM\\trabajoGrupo\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\5\\classes.dex
-base.4=C\:\\Users\\marco\\Desktop\\WORKSPACE\\QUINTO\\SDM\\trabajoGrupo\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\6\\classes.dex
+#Tue Oct 24 23:26:25 CEST 2023
+base.0=C\:\\Users\\migue\\AndroidStudioProjects\\footmatch-sdm\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.1=C\:\\Users\\migue\\AndroidStudioProjects\\footmatch-sdm\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.2=C\:\\Users\\migue\\AndroidStudioProjects\\footmatch-sdm\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\2\\classes.dex
+base.3=C\:\\Users\\migue\\AndroidStudioProjects\\footmatch-sdm\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\5\\classes.dex
+base.4=C\:\\Users\\migue\\AndroidStudioProjects\\footmatch-sdm\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\6\\classes.dex
 path.0=classes.dex
 path.1=0/classes.dex
 path.2=2/classes.dex
