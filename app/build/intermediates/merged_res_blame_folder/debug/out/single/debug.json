@@ -1,122 +1,114 @@
 [
     {
-        "merged": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-35:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\mipmap-xhdpi\\ic_launcher_round.webp"
+        "merged": "com.example.footmatch.app-merged_res-35:/layout_activity_main_recycler.xml.flat",
+        "source": "com.example.footmatch.app-main-37:/layout/activity_main_recycler.xml"
     },
     {
-        "merged": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-35:\\drawable_white_background.xml.flat",
-        "source": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\drawable\\white_background.xml"
+        "merged": "com.example.footmatch.app-merged_res-35:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.footmatch.app-main-37:/mipmap-xxxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-35:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+        "merged": "com.example.footmatch.app-merged_res-35:/drawable_rounded_corners_navigation.xml.flat",
+        "source": "com.example.footmatch.app-main-37:/drawable/rounded_corners_navigation.xml"
     },
     {
-        "merged": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-35:\\mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\mipmap-mdpi\\ic_launcher_round.webp"
+        "merged": "com.example.footmatch.app-merged_res-35:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.footmatch.app-main-37:/mipmap-xhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-35:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\mipmap-xxhdpi\\ic_launcher_round.webp"
+        "merged": "com.example.footmatch.app-merged_res-35:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.footmatch.app-main-37:/mipmap-xxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-35:\\layout_linea_recycler_view_partido.xml.flat",
-        "source": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\layout\\linea_recycler_view_partido.xml"
+        "merged": "com.example.footmatch.app-merged_res-35:/drawable_cuenta_nav.png.flat",
+        "source": "com.example.footmatch.app-main-37:/drawable/cuenta_nav.png"
     },
     {
-        "merged": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-35:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\mipmap-anydpi-v26\\ic_launcher.xml"
+        "merged": "com.example.footmatch.app-merged_res-35:/drawable_inicio_nav.png.flat",
+        "source": "com.example.footmatch.app-main-37:/drawable/inicio_nav.png"
     },
     {
-        "merged": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-35:\\drawable_boton_liga.xml.flat",
-        "source": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\drawable\\boton_liga.xml"
+        "merged": "com.example.footmatch.app-merged_res-35:/drawable_boton_liga.xml.flat",
+        "source": "com.example.footmatch.app-main-37:/drawable/boton_liga.xml"
     },
     {
-        "merged": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-35:\\mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\mipmap-xhdpi\\ic_launcher.webp"
+        "merged": "com.example.footmatch.app-merged_res-35:/drawable_liga_easports.jpg.flat",
+        "source": "com.example.footmatch.app-main-37:/drawable/liga_easports.jpg"
     },
     {
-        "merged": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-35:\\drawable_liga_bundesliga.png.flat",
-        "source": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\drawable\\liga_bundesliga.png"
+        "merged": "com.example.footmatch.app-merged_res-35:/xml_data_extraction_rules.xml.flat",
+        "source": "com.example.footmatch.app-main-37:/xml/data_extraction_rules.xml"
     },
     {
-        "merged": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-35:\\mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\mipmap-mdpi\\ic_launcher.webp"
+        "merged": "com.example.footmatch.app-merged_res-35:/drawable_liga_seriea.png.flat",
+        "source": "com.example.footmatch.app-main-37:/drawable/liga_seriea.png"
     },
     {
-        "merged": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-35:\\menu_navigation_menu.xml.flat",
-        "source": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\menu\\navigation_menu.xml"
+        "merged": "com.example.footmatch.app-merged_res-35:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.example.footmatch.app-main-37:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.footmatch.app-merged_res-35:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.footmatch.app-main-37:/mipmap-hdpi/ic_launcher_round.webp"
     },
     {
         "merged": "com.example.footmatch.app-merged_res-35:/layout_linea_recycler_view_partido.xml.flat",
         "source": "com.example.footmatch.app-main-37:/layout/linea_recycler_view_partido.xml"
     },
     {
-        "merged": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-35:\\drawable_round_button_shape.xml.flat",
-        "source": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\drawable\\round_button_shape.xml"
+        "merged": "com.example.footmatch.app-merged_res-35:/xml_backup_rules.xml.flat",
+        "source": "com.example.footmatch.app-main-37:/xml/backup_rules.xml"
     },
     {
-        "merged": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-35:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\mipmap-xxxhdpi\\ic_launcher.webp"
+        "merged": "com.example.footmatch.app-merged_res-35:/drawable_liga_premier.png.flat",
+        "source": "com.example.footmatch.app-main-37:/drawable/liga_premier.png"
     },
     {
-        "merged": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-35:\\mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\mipmap-hdpi\\ic_launcher_round.webp"
+        "merged": "com.example.footmatch.app-merged_res-35:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.footmatch.app-main-37:/mipmap-mdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-35:\\drawable_liga_easports.jpg.flat",
-        "source": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\drawable\\liga_easports.jpg"
+        "merged": "com.example.footmatch.app-merged_res-35:/drawable_white_background.xml.flat",
+        "source": "com.example.footmatch.app-main-37:/drawable/white_background.xml"
     },
     {
-        "merged": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-35:\\drawable_inicio_nav.png.flat",
-        "source": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\drawable\\inicio_nav.png"
+        "merged": "com.example.footmatch.app-merged_res-35:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.footmatch.app-main-37:/mipmap-xxhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-35:\\drawable_ic_launcher_background.xml.flat",
-        "source": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\drawable\\ic_launcher_background.xml"
+        "merged": "com.example.footmatch.app-merged_res-35:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.example.footmatch.app-main-37:/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
-        "merged": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-35:\\xml_data_extraction_rules.xml.flat",
-        "source": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\xml\\data_extraction_rules.xml"
+        "merged": "com.example.footmatch.app-merged_res-35:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.footmatch.app-main-37:/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
-        "merged": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-35:\\drawable_liga_seriea.png.flat",
-        "source": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\drawable\\liga_seriea.png"
+        "merged": "com.example.footmatch.app-merged_res-35:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.footmatch.app-main-37:/mipmap-xxxhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-35:\\drawable_liga_premier.png.flat",
-        "source": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\drawable\\liga_premier.png"
+        "merged": "com.example.footmatch.app-merged_res-35:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.example.footmatch.app-main-37:/mipmap-xhdpi/ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-35:\\drawable_cuenta_nav.png.flat",
-        "source": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\drawable\\cuenta_nav.png"
+        "merged": "com.example.footmatch.app-merged_res-35:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.example.footmatch.app-main-37:/drawable/ic_launcher_background.xml"
     },
     {
-        "merged": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-35:\\mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\mipmap-xxhdpi\\ic_launcher.webp"
+        "merged": "com.example.footmatch.app-merged_res-35:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.example.footmatch.app-main-37:/drawable/ic_launcher_foreground.xml"
     },
     {
-        "merged": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-35:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+        "merged": "com.example.footmatch.app-merged_res-35:/menu_navigation_menu.xml.flat",
+        "source": "com.example.footmatch.app-main-37:/menu/navigation_menu.xml"
     },
     {
-        "merged": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-35:\\xml_backup_rules.xml.flat",
-        "source": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\xml\\backup_rules.xml"
+        "merged": "com.example.footmatch.app-merged_res-35:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.example.footmatch.app-main-37:/mipmap-mdpi/ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-35:\\drawable_ic_launcher_foreground.xml.flat",
-        "source": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\drawable\\ic_launcher_foreground.xml"
-    },
-    {
-        "merged": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-35:\\mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\mipmap-hdpi\\ic_launcher.webp"
-    },
-    {
-        "merged": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-35:\\drawable_rounded_corners_navigation.xml.flat",
-        "source": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\drawable\\rounded_corners_navigation.xml"
-    },
-    {
-        "merged": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-35:\\layout_activity_main_recycler.xml.flat",
-        "source": "C:\\Users\\marco\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\layout\\activity_main_recycler.xml"
+        "merged": "com.example.footmatch.app-merged_res-35:/drawable_liga_bundesliga.png.flat",
+        "source": "com.example.footmatch.app-main-37:/drawable/liga_bundesliga.png"
     }
 ]

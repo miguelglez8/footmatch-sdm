@@ -46,69 +46,68 @@
 29-->C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:14:9-54
 30        android:supportsRtl="true"
 30-->C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:15:9-35
-31        android:testOnly="true"
-32        android:theme="@style/AppTheme" >
-32-->C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:16:9-40
-33        <activity
-33-->C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:18:9-26:20
-34            android:name="com.example.footmatch.MainRecycler"
-34-->C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:19:13-62
-35            android:exported="true" >
-35-->C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:20:13-36
-36            <intent-filter>
-36-->C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:21:13-25:29
-37                <action android:name="android.intent.action.MAIN" />
-37-->C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:22:17-69
-37-->C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:22:25-66
-38
-39                <category android:name="android.intent.category.LAUNCHER" />
-39-->C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:24:17-77
-39-->C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:24:27-74
-40            </intent-filter>
-41        </activity>
-42
-43        <provider
-43-->[com.squareup.picasso:picasso:2.71828] C:\Users\marco\.gradle\caches\transforms-3\a57c75994ad63c5648e46f3550b955ab\transformed\picasso-2.71828\AndroidManifest.xml:8:9-11:40
-44            android:name="com.squareup.picasso.PicassoProvider"
-44-->[com.squareup.picasso:picasso:2.71828] C:\Users\marco\.gradle\caches\transforms-3\a57c75994ad63c5648e46f3550b955ab\transformed\picasso-2.71828\AndroidManifest.xml:9:13-64
-45            android:authorities="com.example.footmatch.com.squareup.picasso"
-45-->[com.squareup.picasso:picasso:2.71828] C:\Users\marco\.gradle\caches\transforms-3\a57c75994ad63c5648e46f3550b955ab\transformed\picasso-2.71828\AndroidManifest.xml:10:13-72
-46            android:exported="false" />
-46-->[com.squareup.picasso:picasso:2.71828] C:\Users\marco\.gradle\caches\transforms-3\a57c75994ad63c5648e46f3550b955ab\transformed\picasso-2.71828\AndroidManifest.xml:11:13-37
-47        <provider
-47-->[androidx.emoji2:emoji2:1.2.0] C:\Users\marco\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
-48            android:name="androidx.startup.InitializationProvider"
-48-->[androidx.emoji2:emoji2:1.2.0] C:\Users\marco\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
-49            android:authorities="com.example.footmatch.androidx-startup"
-49-->[androidx.emoji2:emoji2:1.2.0] C:\Users\marco\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
-50            android:exported="false" >
-50-->[androidx.emoji2:emoji2:1.2.0] C:\Users\marco\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
-51            <meta-data
-51-->[androidx.emoji2:emoji2:1.2.0] C:\Users\marco\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
-52                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-52-->[androidx.emoji2:emoji2:1.2.0] C:\Users\marco\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
-53                android:value="androidx.startup" />
-53-->[androidx.emoji2:emoji2:1.2.0] C:\Users\marco\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
-54            <meta-data
-54-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\marco\.gradle\caches\transforms-3\4eb4b953398cff91e70e367f7f0f5a04\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
-55                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-55-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\marco\.gradle\caches\transforms-3\4eb4b953398cff91e70e367f7f0f5a04\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
-56                android:value="androidx.startup" />
-56-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\marco\.gradle\caches\transforms-3\4eb4b953398cff91e70e367f7f0f5a04\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
-57        </provider>
-58
-59        <uses-library
-59-->[androidx.window:window:1.0.0] C:\Users\marco\.gradle\caches\transforms-3\2c7f8c69dcc114f4d646b70eba2a43b1\transformed\window-1.0.0\AndroidManifest.xml:25:9-27:40
-60            android:name="androidx.window.extensions"
-60-->[androidx.window:window:1.0.0] C:\Users\marco\.gradle\caches\transforms-3\2c7f8c69dcc114f4d646b70eba2a43b1\transformed\window-1.0.0\AndroidManifest.xml:26:13-54
-61            android:required="false" />
-61-->[androidx.window:window:1.0.0] C:\Users\marco\.gradle\caches\transforms-3\2c7f8c69dcc114f4d646b70eba2a43b1\transformed\window-1.0.0\AndroidManifest.xml:27:13-37
-62        <uses-library
-62-->[androidx.window:window:1.0.0] C:\Users\marco\.gradle\caches\transforms-3\2c7f8c69dcc114f4d646b70eba2a43b1\transformed\window-1.0.0\AndroidManifest.xml:28:9-30:40
-63            android:name="androidx.window.sidecar"
-63-->[androidx.window:window:1.0.0] C:\Users\marco\.gradle\caches\transforms-3\2c7f8c69dcc114f4d646b70eba2a43b1\transformed\window-1.0.0\AndroidManifest.xml:29:13-51
-64            android:required="false" />
-64-->[androidx.window:window:1.0.0] C:\Users\marco\.gradle\caches\transforms-3\2c7f8c69dcc114f4d646b70eba2a43b1\transformed\window-1.0.0\AndroidManifest.xml:30:13-37
-65    </application>
-66
-67</manifest>
+31        android:theme="@style/AppTheme" >
+31-->C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:16:9-40
+32        <activity
+32-->C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:18:9-26:20
+33            android:name="com.example.footmatch.MainRecycler"
+33-->C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:19:13-62
+34            android:exported="true" >
+34-->C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:20:13-36
+35            <intent-filter>
+35-->C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:21:13-25:29
+36                <action android:name="android.intent.action.MAIN" />
+36-->C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:22:17-69
+36-->C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:22:25-66
+37
+38                <category android:name="android.intent.category.LAUNCHER" />
+38-->C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:24:17-77
+38-->C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:24:27-74
+39            </intent-filter>
+40        </activity>
+41
+42        <provider
+42-->[com.squareup.picasso:picasso:2.71828] C:\Users\marco\.gradle\caches\transforms-3\a57c75994ad63c5648e46f3550b955ab\transformed\picasso-2.71828\AndroidManifest.xml:8:9-11:40
+43            android:name="com.squareup.picasso.PicassoProvider"
+43-->[com.squareup.picasso:picasso:2.71828] C:\Users\marco\.gradle\caches\transforms-3\a57c75994ad63c5648e46f3550b955ab\transformed\picasso-2.71828\AndroidManifest.xml:9:13-64
+44            android:authorities="com.example.footmatch.com.squareup.picasso"
+44-->[com.squareup.picasso:picasso:2.71828] C:\Users\marco\.gradle\caches\transforms-3\a57c75994ad63c5648e46f3550b955ab\transformed\picasso-2.71828\AndroidManifest.xml:10:13-72
+45            android:exported="false" />
+45-->[com.squareup.picasso:picasso:2.71828] C:\Users\marco\.gradle\caches\transforms-3\a57c75994ad63c5648e46f3550b955ab\transformed\picasso-2.71828\AndroidManifest.xml:11:13-37
+46        <provider
+46-->[androidx.emoji2:emoji2:1.2.0] C:\Users\marco\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+47            android:name="androidx.startup.InitializationProvider"
+47-->[androidx.emoji2:emoji2:1.2.0] C:\Users\marco\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
+48            android:authorities="com.example.footmatch.androidx-startup"
+48-->[androidx.emoji2:emoji2:1.2.0] C:\Users\marco\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
+49            android:exported="false" >
+49-->[androidx.emoji2:emoji2:1.2.0] C:\Users\marco\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
+50            <meta-data
+50-->[androidx.emoji2:emoji2:1.2.0] C:\Users\marco\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+51                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+51-->[androidx.emoji2:emoji2:1.2.0] C:\Users\marco\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
+52                android:value="androidx.startup" />
+52-->[androidx.emoji2:emoji2:1.2.0] C:\Users\marco\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+53            <meta-data
+53-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\marco\.gradle\caches\transforms-3\4eb4b953398cff91e70e367f7f0f5a04\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
+54                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+54-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\marco\.gradle\caches\transforms-3\4eb4b953398cff91e70e367f7f0f5a04\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
+55                android:value="androidx.startup" />
+55-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\marco\.gradle\caches\transforms-3\4eb4b953398cff91e70e367f7f0f5a04\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
+56        </provider>
+57
+58        <uses-library
+58-->[androidx.window:window:1.0.0] C:\Users\marco\.gradle\caches\transforms-3\2c7f8c69dcc114f4d646b70eba2a43b1\transformed\window-1.0.0\AndroidManifest.xml:25:9-27:40
+59            android:name="androidx.window.extensions"
+59-->[androidx.window:window:1.0.0] C:\Users\marco\.gradle\caches\transforms-3\2c7f8c69dcc114f4d646b70eba2a43b1\transformed\window-1.0.0\AndroidManifest.xml:26:13-54
+60            android:required="false" />
+60-->[androidx.window:window:1.0.0] C:\Users\marco\.gradle\caches\transforms-3\2c7f8c69dcc114f4d646b70eba2a43b1\transformed\window-1.0.0\AndroidManifest.xml:27:13-37
+61        <uses-library
+61-->[androidx.window:window:1.0.0] C:\Users\marco\.gradle\caches\transforms-3\2c7f8c69dcc114f4d646b70eba2a43b1\transformed\window-1.0.0\AndroidManifest.xml:28:9-30:40
+62            android:name="androidx.window.sidecar"
+62-->[androidx.window:window:1.0.0] C:\Users\marco\.gradle\caches\transforms-3\2c7f8c69dcc114f4d646b70eba2a43b1\transformed\window-1.0.0\AndroidManifest.xml:29:13-51
+63            android:required="false" />
+63-->[androidx.window:window:1.0.0] C:\Users\marco\.gradle\caches\transforms-3\2c7f8c69dcc114f4d646b70eba2a43b1\transformed\window-1.0.0\AndroidManifest.xml:30:13-37
+64    </application>
+65
+66</manifest>

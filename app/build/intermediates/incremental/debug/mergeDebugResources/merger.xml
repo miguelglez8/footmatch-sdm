@@ -11812,7 +11812,7 @@
         "On the layout level, design your app layout to minimize opportunities for interference. "
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
-    </string><string name="action_settings">Settings</string><string name="partidos_jugados">Partidos jugados</string><string name="escudo_equipo_visitante_image_description">escudo equipo visitante</string><string name="escudo_equipo_local_image_description">Escudo equipo local</string></file><file path="C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\res\values\themes.xml" qualifiers=""><style name="Base.Theme.FootMatch" parent="Theme.Material3.DayNight.NoActionBar">
+    </string><string name="action_settings">Settings</string><string name="partidos_jugados">Partidos jugados</string><string name="escudo_equipo_local_image_description">Escudo equipo local</string><string name="escudo_equipo_visitante_image_description">escudo equipo visitante</string></file><file path="C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\res\values\themes.xml" qualifiers=""><style name="Base.Theme.FootMatch" parent="Theme.Material3.DayNight.NoActionBar">
         
         
     </style><style name="Theme.FootMatch" parent="Base.Theme.FootMatch"/><style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
