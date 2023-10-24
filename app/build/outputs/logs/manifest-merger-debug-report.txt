@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:2:1-29:12
-INJECTED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:2:1-29:12
-INJECTED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:2:1-29:12
-INJECTED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:2:1-29:12
+ADDED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:2:1-32:12
 MERGED from [androidx.databinding:viewbinding:8.1.1] C:\Users\marco\.gradle\caches\transforms-3\af4688230c950b7e61247f9e88bd351f\transformed\viewbinding-8.1.1\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.material:material:1.9.0] C:\Users\marco\.gradle\caches\transforms-3\e5f321a248aa217236dda4759916dcd9\transformed\material-1.9.0\AndroidManifest.xml:17:1-26:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\marco\.gradle\caches\transforms-3\5acf9a84f6874f66961cd7fc314b86a2\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
@@ -75,8 +75,8 @@ ADDED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main
 	android:name
 		ADDED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:6:22-64
 application
-ADDED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:8:5-27:19
-INJECTED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:8:5-27:19
+ADDED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:8:5-30:19
+INJECTED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:8:5-30:19
 MERGED from [com.google.android.material:material:1.9.0] C:\Users\marco\.gradle\caches\transforms-3\e5f321a248aa217236dda4759916dcd9\transformed\material-1.9.0\AndroidManifest.xml:24:5-20
 MERGED from [com.google.android.material:material:1.9.0] C:\Users\marco\.gradle\caches\transforms-3\e5f321a248aa217236dda4759916dcd9\transformed\material-1.9.0\AndroidManifest.xml:24:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\marco\.gradle\caches\transforms-3\5acf9a84f6874f66961cd7fc314b86a2\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
@@ -117,22 +117,28 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\ma
 		ADDED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:16:9-40
 	android:dataExtractionRules
 		ADDED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:10:9-65
-activity#com.example.footmatch.MainRecycler
-ADDED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:18:9-26:20
+activity#com.example.footmatch.ClasificacionActivity
+ADDED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:18:9-20:40
 	android:exported
-		ADDED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:20:13-36
+		ADDED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:20:13-37
 	android:name
-		ADDED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:19:13-62
+		ADDED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:19:13-50
+activity#com.example.footmatch.MainRecycler
+ADDED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:21:9-29:20
+	android:exported
+		ADDED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:23:13-36
+	android:name
+		ADDED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:22:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:21:13-25:29
+ADDED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:24:13-28:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:22:17-69
+ADDED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:25:17-69
 	android:name
-		ADDED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:22:25-66
+		ADDED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:25:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:24:17-77
+ADDED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:27:17-77
 	android:name
-		ADDED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:24:27-74
+		ADDED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml:27:27-74
 uses-sdk
 INJECTED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\marco\Desktop\WORKSPACE\QUINTO\SDM\trabajoGrupo\app\src\main\AndroidManifest.xml

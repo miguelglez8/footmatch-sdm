@@ -46,7 +46,7 @@ public class ListaPartidosAdapter extends RecyclerView.Adapter<ListaPartidosAdap
 
         public PartidoViewHolder(View itemView) {
             super(itemView);
-            logoLocal = (ImageView) itemView.findViewById(R.id.equipoLocalImageView);
+            logoLocal = (ImageView) itemView.findViewById(R.id.imagenClasificacion);
             nombreLocal = (TextView) itemView.findViewById(R.id.equipoLocalNombreTextView);
             logoVisitante = (ImageView) itemView.findViewById(R.id.equipoVisitanteImageView);
             nombreVisitante = (TextView) itemView.findViewById(R.id.equipoVisitanteNombreTextView);

@@ -1,26 +1,19 @@
 package com.example.footmatch;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
-import android.app.ActivityOptions;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.ImageButton;
 
 import com.example.footmatch.modelo.Equipo;
+import com.example.footmatch.modelo.Liga;
 import com.example.footmatch.modelo.Partido;
-import com.example.footmatch.util.Conexion;
 
 
 import java.io.BufferedReader;
@@ -39,6 +32,7 @@ public class MainRecycler extends AppCompatActivity {
     public static final String PARTIDO_SELECCIONADO = "partido_seleccionado";
 
     public static final String PARTIDO_CREADO = "partido_creado";
+    public static final String LIGA_CREADA = "liga_creada";
 
     // identificador de activity
     private static final int GESTION_ACTIVITY = 1;
@@ -82,6 +76,38 @@ public class MainRecycler extends AppCompatActivity {
                     }
                 });
         listaPartidosView.setAdapter(lpAdapter);
+
+        /*
+        Añado a cada boton un onClick para llamar a la nueva activity con la clasificacion
+         */
+        ImageButton laLiga = (ImageButton)findViewById(R.id.ligaEASports) ;
+        laLiga.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                cargarClasificacion("LL");
+            }
+        });
+        ImageButton premier = (ImageButton)findViewById(R.id.ligaPremier) ;
+        premier.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                cargarClasificacion("LP");
+            }
+        });
+        ImageButton bundes = (ImageButton)findViewById(R.id.ligaBundesliga) ;
+        bundes.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                cargarClasificacion("LB");
+            }
+        });
+        ImageButton serieA = (ImageButton)findViewById(R.id.ligaSerieA) ;
+        serieA.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                cargarClasificacion("LS");
+            }
+        });
     }
 
     private void cargarPartidos() {
@@ -101,9 +127,9 @@ public class MainRecycler extends AppCompatActivity {
             while ((line = bufferedReader.readLine()) != null) {
                 String[] data = line.split(";");
 
-                if (data != null && data.length <= 7) {
+                if (data != null && data.length == 7) {
                     String fechaFormateada = formateaFecha(data[3]);
-                    partido = new Partido(new Equipo(data[0],data[5]),new Equipo(data[1],data[6]),
+                    partido = new Partido(new Equipo(data[0],data[5],0),new Equipo(data[1],data[6],0),
                             data[2],fechaFormateada,data[4]);
 
                     Log.d("cargarPartidos", partido.toString());
@@ -144,6 +170,94 @@ public class MainRecycler extends AppCompatActivity {
             System.err.println("Error al analizar la fecha.");
         }
         return result;
+    }
+
+    public List<Equipo> cargarEquiposParaClasificacion(String liga){
+        Equipo equipo;
+        List<Equipo> equiposLiga = new ArrayList<Equipo>();
+        InputStream file = null;
+        InputStreamReader reader = null;
+        BufferedReader bufferedReader = null;
+
+        try {
+            switch (liga){
+                case "LL": {
+                    file = getAssets().open("lista_clasificacion_laliga_url_utf8.csv");
+                    break;
+                }
+                case "LP": {
+                    file = getAssets().open("lista_clasificacion_premier_url_utf8.csv");
+                    break;
+                }
+                case "LB": {
+                    file = getAssets().open("lista_clasificacion_bundes_url_utf8.csv");
+                    break;
+                }
+                case "LS": {
+                    file = getAssets().open("lista_clasificacion_seriea_url_utf8.csv");
+                    break;
+                }
+
+            }
+            reader = new InputStreamReader(file);
+            bufferedReader = new BufferedReader(reader);
+
+            String line = null;
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] data = line.split(";");
+
+                if (data != null && data.length == 3) {
+                    equipo = new Equipo(data[0],data[1],Integer.parseInt(data[2]));
+                    equiposLiga.add(equipo);
+                }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (bufferedReader != null) {
+                try {
+                    bufferedReader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return equiposLiga;
+    }
+
+    public void cargarClasificacion(String liga){
+        int idLogo = R.drawable.liga_easports;
+        String nombreLiga = "Liga EASports";
+        switch (liga){
+            case "LL": {
+                idLogo = R.drawable.liga_easports;
+                nombreLiga = "Liga EASports";
+                break;
+            }
+            case "LP": {
+                idLogo = R.drawable.liga_premier;
+                nombreLiga = "Premier League";
+                break;
+            }
+            case "LB": {
+                idLogo = R.drawable.liga_bundesliga;
+                nombreLiga = "Bundesliga";
+                break;
+            }
+            case "LS": {
+                idLogo = R.drawable.liga_seriea;
+                nombreLiga = "Serie A";
+                break;
+            }
+
+
+        }
+
+        Liga ligaSeleccionada = new Liga(cargarEquiposParaClasificacion(liga), nombreLiga, idLogo);
+        Intent ligaIntent = new Intent(MainRecycler.this, ClasificacionActivity.class);
+        ligaIntent.putExtra(LIGA_CREADA, ligaSeleccionada);
+        startActivity(ligaIntent);
     }
 
 }
