@@ -4,20 +4,39 @@ package com.example.footmatch.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
+import androidx.viewbinding.ViewBindings;
 import com.example.footmatch.R;
 import java.lang.NullPointerException;
 import java.lang.Override;
+import java.lang.String;
 
 public final class ActivityClasificacionBinding implements ViewBinding {
   @NonNull
   private final ConstraintLayout rootView;
 
-  private ActivityClasificacionBinding(@NonNull ConstraintLayout rootView) {
+  @NonNull
+  public final ImageView logoLiga;
+
+  @NonNull
+  public final TextView nombreLiga;
+
+  @NonNull
+  public final RecyclerView recyclerClasificacion;
+
+  private ActivityClasificacionBinding(@NonNull ConstraintLayout rootView,
+      @NonNull ImageView logoLiga, @NonNull TextView nombreLiga,
+      @NonNull RecyclerView recyclerClasificacion) {
     this.rootView = rootView;
+    this.logoLiga = logoLiga;
+    this.nombreLiga = nombreLiga;
+    this.recyclerClasificacion = recyclerClasificacion;
   }
 
   @Override
@@ -43,10 +62,32 @@ public final class ActivityClasificacionBinding implements ViewBinding {
 
   @NonNull
   public static ActivityClasificacionBinding bind(@NonNull View rootView) {
-    if (rootView == null) {
-      throw new NullPointerException("rootView");
-    }
+    // The body of this method is generated in a way you would not otherwise write.
+    // This is done to optimize the compiled bytecode for size and performance.
+    int id;
+    missingId: {
+      id = R.id.logoLiga;
+      ImageView logoLiga = ViewBindings.findChildViewById(rootView, id);
+      if (logoLiga == null) {
+        break missingId;
+      }
 
-    return new ActivityClasificacionBinding((ConstraintLayout) rootView);
+      id = R.id.nombreLiga;
+      TextView nombreLiga = ViewBindings.findChildViewById(rootView, id);
+      if (nombreLiga == null) {
+        break missingId;
+      }
+
+      id = R.id.recyclerClasificacion;
+      RecyclerView recyclerClasificacion = ViewBindings.findChildViewById(rootView, id);
+      if (recyclerClasificacion == null) {
+        break missingId;
+      }
+
+      return new ActivityClasificacionBinding((ConstraintLayout) rootView, logoLiga, nombreLiga,
+          recyclerClasificacion);
+    }
+    String missingId = rootView.getResources().getResourceName(id);
+    throw new NullPointerException("Missing required view with ID: ".concat(missingId));
   }
 }

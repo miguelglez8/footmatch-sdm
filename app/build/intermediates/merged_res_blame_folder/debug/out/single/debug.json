@@ -1,11 +1,11 @@
 [
     {
-        "merged": "C:\\Users\\richa\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-4:\\drawable_boton_liga.xml.flat",
-        "source": "C:\\Users\\richa\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-6:\\drawable\\boton_liga.xml"
-    },
-    {
         "merged": "C:\\Users\\richa\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-4:\\layout_activity_main_recycler.xml.flat",
         "source": "C:\\Users\\richa\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-6:\\layout\\activity_main_recycler.xml"
+    },
+    {
+        "merged": "C:\\Users\\richa\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-4:\\drawable_boton_liga.xml.flat",
+        "source": "C:\\Users\\richa\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-6:\\drawable\\boton_liga.xml"
     },
     {
         "merged": "C:\\Users\\richa\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-4:\\drawable_cuenta_nav.png.flat",
@@ -44,6 +44,10 @@
         "source": "C:\\Users\\richa\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-6:\\drawable\\inicio_nav.png"
     },
     {
+        "merged": "C:\\Users\\richa\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-4:\\layout_activity_clasificacion.xml.flat",
+        "source": "C:\\Users\\richa\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-6:\\layout\\activity_clasificacion.xml"
+    },
+    {
         "merged": "C:\\Users\\richa\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-4:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
         "source": "C:\\Users\\richa\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-6:\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
@@ -56,6 +60,10 @@
         "source": "C:\\Users\\richa\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-6:\\mipmap-xxxhdpi\\ic_launcher.webp"
     },
     {
+        "merged": "com.example.footmatch.app-merged_res-4:/layout_linea_recycler_view_partido.xml.flat",
+        "source": "com.example.footmatch.app-main-6:/layout/linea_recycler_view_partido.xml"
+    },
+    {
         "merged": "C:\\Users\\richa\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-4:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
         "source": "C:\\Users\\richa\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-6:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
     },
@@ -66,6 +74,10 @@
     {
         "merged": "C:\\Users\\richa\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-4:\\xml_backup_rules.xml.flat",
         "source": "C:\\Users\\richa\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-6:\\xml\\backup_rules.xml"
+    },
+    {
+        "merged": "com.example.footmatch.app-merged_res-4:/layout_linear_clasification_equipo.xml.flat",
+        "source": "com.example.footmatch.app-main-6:/layout/linear_clasification_equipo.xml"
     },
     {
         "merged": "C:\\Users\\richa\\.gradle\\daemon\\8.0\\com.example.footmatch.app-merged_res-4:\\mipmap-xxhdpi_ic_launcher.webp.flat",

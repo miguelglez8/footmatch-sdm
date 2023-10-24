@@ -1,4 +1,4 @@
-#Mon Oct 23 20:24:55 CEST 2023
+#Tue Oct 24 10:14:50 CEST 2023
 base.0=A\:\\Escritorio\\UNIVERSIDAD\\6_ano\\SDM\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=A\:\\Escritorio\\UNIVERSIDAD\\6_ano\\SDM\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
 base.2=A\:\\Escritorio\\UNIVERSIDAD\\6_ano\\SDM\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\2\\classes.dex

@@ -19,4 +19,6 @@ public class Equipo {
     public String getUrlImagenEscudo() {
         return urlImagenEscudo;
     }
+
+    public int getPuntos(){return puntos; }
 }

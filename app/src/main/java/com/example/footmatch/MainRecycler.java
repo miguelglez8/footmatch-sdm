@@ -219,7 +219,7 @@ public class MainRecycler extends AppCompatActivity {
     }
 
     public void cargarClasificacion(){
-        Liga laLiga = new Liga(cargarEquiposParaClasificacion(), "ligaEaSports");
+        Liga laLiga = new Liga(cargarEquiposParaClasificacion(), "ligaEaSports", "@drawable/boton_liga");
         Intent ligaIntent = new Intent(MainRecycler.this, ClasificacionActivity.class);
         ligaIntent.putExtra(LIGA_CREADA, laLiga);
         startActivity(ligaIntent);

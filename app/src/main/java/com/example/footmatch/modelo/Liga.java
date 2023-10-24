@@ -13,9 +13,12 @@ public class Liga implements Parcelable {
 
     public String name;
 
-    public Liga(List<Equipo> equipos, String name){
+    public String urlLogoLiga;
+
+    public Liga(List<Equipo> equipos, String name, String urlLogoLiga){
         this.name = name;
         this.equipos = equipos;
+        this.urlLogoLiga = urlLogoLiga;
     }
 
     protected Liga(Parcel in) {
@@ -45,6 +48,8 @@ public class Liga implements Parcelable {
     public String getName() {
         return name;
     }
+
+    public String getUrlLogoLiga(){return urlLogoLiga;}
 
     public void setName(String name) {
         this.name = name;

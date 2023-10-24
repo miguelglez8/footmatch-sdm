@@ -3277,7 +3277,7 @@ int id end 0x7f0800b0
 int id endToStart 0x7f0800b1
 int id enterAlways 0x7f0800b2
 int id enterAlwaysCollapsed 0x7f0800b3
-int id equipoLocalImageView 0x7f0800b4
+int id equipoLiga 0x7f08020a
 int id equipoLocalNombreTextView 0x7f0800b5
 int id equipoVisitanteImageView 0x7f0800b6
 int id equipoVisitanteNombreTextView 0x7f0800b7
@@ -3323,6 +3323,7 @@ int id ifRoom 0x7f0800de
 int id ignore 0x7f0800df
 int id ignoreRequest 0x7f0800e0
 int id image 0x7f0800e1
+int id imagenClasificacion 0x7f08020b
 int id immediateStop 0x7f0800e2
 int id included 0x7f0800e3
 int id indeterminate 0x7f0800e4
@@ -3348,6 +3349,7 @@ int id linear 0x7f0800f7
 int id listMode 0x7f0800f8
 int id list_item 0x7f0800f9
 int id locale 0x7f0800fa
+int id logoLiga 0x7f08020c
 int id ltr 0x7f0800fb
 int id m3_side_sheet 0x7f0800fc
 int id marquee 0x7f0800fd
@@ -3425,6 +3427,7 @@ int id neverCompleteToEnd 0x7f080144
 int id neverCompleteToStart 0x7f080145
 int id noScroll 0x7f080146
 int id noState 0x7f080147
+int id nombreLiga 0x7f08020d
 int id none 0x7f080148
 int id normal 0x7f080149
 int id north 0x7f08014a
@@ -3457,9 +3460,11 @@ int id preferences_sliding_pane_layout 0x7f080164
 int id pressed 0x7f080165
 int id progress_circular 0x7f080166
 int id progress_horizontal 0x7f080167
+int id puntosEquipo 0x7f08020e
 int id radio 0x7f080168
 int id ratio 0x7f080169
 int id rectangles 0x7f08016a
+int id recyclerClasificacion 0x7f08020f
 int id recyclerView 0x7f08016b
 int id recycler_view 0x7f08016c
 int id resultadoTextView 0x7f08016d
@@ -3755,6 +3760,7 @@ int layout design_text_input_start_icon 0x7f0b002c
 int layout expand_button 0x7f0b002d
 int layout image_frame 0x7f0b002e
 int layout linea_recycler_view_partido 0x7f0b002f
+int layout linear_clasification_equipo 0x7f0b007e
 int layout m3_alert_dialog 0x7f0b0030
 int layout m3_alert_dialog_actions 0x7f0b0031
 int layout m3_alert_dialog_title 0x7f0b0032

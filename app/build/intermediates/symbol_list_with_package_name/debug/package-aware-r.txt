@@ -3278,7 +3278,7 @@ id end
 id endToStart
 id enterAlways
 id enterAlwaysCollapsed
-id equipoLocalImageView
+id equipoLiga
 id equipoLocalNombreTextView
 id equipoVisitanteImageView
 id equipoVisitanteNombreTextView
@@ -3324,6 +3324,7 @@ id ifRoom
 id ignore
 id ignoreRequest
 id image
+id imagenClasificacion
 id immediateStop
 id included
 id indeterminate
@@ -3349,6 +3350,7 @@ id linear
 id listMode
 id list_item
 id locale
+id logoLiga
 id ltr
 id m3_side_sheet
 id marquee
@@ -3426,6 +3428,7 @@ id neverCompleteToEnd
 id neverCompleteToStart
 id noScroll
 id noState
+id nombreLiga
 id none
 id normal
 id north
@@ -3458,9 +3461,11 @@ id preferences_sliding_pane_layout
 id pressed
 id progress_circular
 id progress_horizontal
+id puntosEquipo
 id radio
 id ratio
 id rectangles
+id recyclerClasificacion
 id recyclerView
 id recycler_view
 id resultadoTextView
@@ -3756,6 +3761,7 @@ layout design_text_input_start_icon
 layout expand_button
 layout image_frame
 layout linea_recycler_view_partido
+layout linear_clasification_equipo
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
 layout m3_alert_dialog_title
