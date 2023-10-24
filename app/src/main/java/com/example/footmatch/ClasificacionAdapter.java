@@ -19,19 +19,25 @@ import java.util.List;
 
 
 public class ClasificacionAdapter extends RecyclerView.Adapter<ClasificacionAdapter.ClasificacionViewHolder> {
-
-    public List<Equipo> equipos;
-    private final ClasificacionAdapter.OnItemClickListener listener;
-
-    //Se utilizará mas adelante para ir a la pantalla de equipos
     public interface OnItemClickListener {
-        void onItemClick(Partido item);
+        void onItemClick(Equipo item);
     }
+    public List<Equipo> equipos;
+    //Se utilizará mas adelante para ir a la pantalla de equipos
+    private final OnItemClickListener listener;
 
     public ClasificacionAdapter(List<Equipo> equipos, OnItemClickListener listener){
         this.equipos = equipos;
         this.listener = listener;
     }
+
+
+
+    @Override
+    public int getItemCount() {
+        return equipos.size();
+    }
+
 
     public static class ClasificacionViewHolder extends RecyclerView.ViewHolder{
 
@@ -41,16 +47,16 @@ public class ClasificacionAdapter extends RecyclerView.Adapter<ClasificacionAdap
 
         public ClasificacionViewHolder(View itemView) {
             super(itemView);
-            escudo = (ImageView)itemView.findViewById(R.id.imagenClasificacion);
+            escudo = (ImageView)itemView.findViewById(R.id.imagenEquipo);
             nombreEquipo = (TextView) itemView.findViewById(R.id.equipoLiga);
             puntosEquipo = (TextView) itemView.findViewById(R.id.puntosEquipo);
 
         }
 
         // asignar valores a los componentes
-        public void bindUser(final Equipo equipo, final ClasificacionAdapter.OnItemClickListener listener) {
+        public void bindUser(@NonNull final Equipo equipo, final OnItemClickListener listener) {
             nombreEquipo.setText(equipo.getNombre());
-            puntosEquipo.setText(equipo.getPuntos());
+            puntosEquipo.setText(String.valueOf(equipo.getPuntos()));
             Picasso.get()
                     .load(equipo.getUrlImagenEscudo()).into(escudo);
 
@@ -61,12 +67,16 @@ public class ClasificacionAdapter extends RecyclerView.Adapter<ClasificacionAdap
             });
         }
     }
+
+
+
+
     @NonNull
     @Override
     public ClasificacionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.linear_clasification_equipo, parent, false);
-        return new ClasificacionAdapter.ClasificacionViewHolder(itemView);
+        return new ClasificacionViewHolder(itemView);
     }
 
     @Override
@@ -75,8 +85,5 @@ public class ClasificacionAdapter extends RecyclerView.Adapter<ClasificacionAdap
         holder.bindUser(equipo, listener);
     }
 
-    @Override
-    public int getItemCount() {
-        return 0;
-    }
+
 }

@@ -9,13 +9,17 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.footmatch.modelo.Equipo;
 import com.example.footmatch.modelo.Liga;
 import com.example.footmatch.modelo.Partido;
 import com.squareup.picasso.Picasso;
 
+import java.util.List;
+
 public class ClasificacionActivity extends AppCompatActivity {
 
-    Liga liga ;
+    Liga liga;
+    List<Equipo> equipos;
     RecyclerView clasificacionView;
 
     @Override
@@ -30,8 +34,8 @@ public class ClasificacionActivity extends AppCompatActivity {
         TextView nombreLiga = (TextView)findViewById(R.id.nombreLiga);
 
         nombreLiga.setText(liga.getName());
-        Picasso.get()
-                .load(liga.getUrlLogoLiga()).into(logoLiga);
+        logoLiga.setImageResource(liga.getIdLogoLiga());
+        equipos = liga.getEquipos();
 
         clasificacionView = (RecyclerView)findViewById(R.id.recyclerClasificacion);
         clasificacionView.setHasFixedSize(true);
@@ -39,10 +43,10 @@ public class ClasificacionActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         clasificacionView.setLayoutManager(layoutManager);
 
-        ClasificacionAdapter lpAdapter = new ClasificacionAdapter(liga.getEquipos(),
+        ClasificacionAdapter lpAdapter = new ClasificacionAdapter(equipos,
                 new ClasificacionAdapter.OnItemClickListener() {
                     @Override
-                    public void onItemClick(Partido partido) {
+                    public void onItemClick(Equipo equipo) {
                         /*clickonItem(partido);*/
                     }
                 });

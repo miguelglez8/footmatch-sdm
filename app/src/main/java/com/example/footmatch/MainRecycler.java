@@ -1,29 +1,19 @@
 package com.example.footmatch;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
-import android.app.ActivityOptions;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.example.footmatch.modelo.Equipo;
 import com.example.footmatch.modelo.Liga;
 import com.example.footmatch.modelo.Partido;
-import com.example.footmatch.util.Conexion;
 
 
 import java.io.BufferedReader;
@@ -94,28 +84,28 @@ public class MainRecycler extends AppCompatActivity {
         laLiga.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                cargarClasificacion();
+                cargarClasificacion("LL");
             }
         });
         ImageButton premier = (ImageButton)findViewById(R.id.ligaPremier) ;
         premier.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                cargarClasificacion();
+                cargarClasificacion("LP");
             }
         });
         ImageButton bundes = (ImageButton)findViewById(R.id.ligaBundesliga) ;
         bundes.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                cargarClasificacion();
+                cargarClasificacion("LB");
             }
         });
         ImageButton serieA = (ImageButton)findViewById(R.id.ligaSerieA) ;
         serieA.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                cargarClasificacion();
+                cargarClasificacion("LS");
             }
         });
     }
@@ -137,7 +127,7 @@ public class MainRecycler extends AppCompatActivity {
             while ((line = bufferedReader.readLine()) != null) {
                 String[] data = line.split(";");
 
-                if (data != null && data.length <= 7) {
+                if (data != null && data.length == 7) {
                     String fechaFormateada = formateaFecha(data[3]);
                     partido = new Partido(new Equipo(data[0],data[5],0),new Equipo(data[1],data[6],0),
                             data[2],fechaFormateada,data[4]);
@@ -182,7 +172,7 @@ public class MainRecycler extends AppCompatActivity {
         return result;
     }
 
-    public List<Equipo> cargarEquiposParaClasificacion(){
+    public List<Equipo> cargarEquiposParaClasificacion(String liga){
         Equipo equipo;
         List<Equipo> equiposLiga = new ArrayList<Equipo>();
         InputStream file = null;
@@ -190,7 +180,25 @@ public class MainRecycler extends AppCompatActivity {
         BufferedReader bufferedReader = null;
 
         try {
-            file = getAssets().open("lista_clasificacion_url_utf8.csv");
+            switch (liga){
+                case "LL": {
+                    file = getAssets().open("lista_clasificacion_laliga_url_utf8.csv");
+                    break;
+                }
+                case "LP": {
+                    file = getAssets().open("lista_clasificacion_premier_url_utf8.csv");
+                    break;
+                }
+                case "LB": {
+                    file = getAssets().open("lista_clasificacion_bundes_url_utf8.csv");
+                    break;
+                }
+                case "LS": {
+                    file = getAssets().open("lista_clasificacion_seriea_url_utf8.csv");
+                    break;
+                }
+
+            }
             reader = new InputStreamReader(file);
             bufferedReader = new BufferedReader(reader);
 
@@ -198,8 +206,8 @@ public class MainRecycler extends AppCompatActivity {
             while ((line = bufferedReader.readLine()) != null) {
                 String[] data = line.split(";");
 
-                if (data != null && data.length <= 3) {
-                    equipo = new Equipo(data[0],data[1],Integer.valueOf(data[2]));
+                if (data != null && data.length == 3) {
+                    equipo = new Equipo(data[0],data[1],Integer.parseInt(data[2]));
                     equiposLiga.add(equipo);
                 }
             }
@@ -218,10 +226,37 @@ public class MainRecycler extends AppCompatActivity {
         return equiposLiga;
     }
 
-    public void cargarClasificacion(){
-        Liga laLiga = new Liga(cargarEquiposParaClasificacion(), "ligaEaSports", "@drawable/boton_liga");
+    public void cargarClasificacion(String liga){
+        int idLogo = R.drawable.liga_easports;
+        String nombreLiga = "Liga EASports";
+        switch (liga){
+            case "LL": {
+                idLogo = R.drawable.liga_easports;
+                nombreLiga = "Liga EASports";
+                break;
+            }
+            case "LP": {
+                idLogo = R.drawable.liga_premier;
+                nombreLiga = "Premier League";
+                break;
+            }
+            case "LB": {
+                idLogo = R.drawable.liga_bundesliga;
+                nombreLiga = "Bundesliga";
+                break;
+            }
+            case "LS": {
+                idLogo = R.drawable.liga_seriea;
+                nombreLiga = "Serie A";
+                break;
+            }
+
+
+        }
+
+        Liga ligaSeleccionada = new Liga(cargarEquiposParaClasificacion(liga), nombreLiga, idLogo);
         Intent ligaIntent = new Intent(MainRecycler.this, ClasificacionActivity.class);
-        ligaIntent.putExtra(LIGA_CREADA, laLiga);
+        ligaIntent.putExtra(LIGA_CREADA, ligaSeleccionada);
         startActivity(ligaIntent);
     }
 

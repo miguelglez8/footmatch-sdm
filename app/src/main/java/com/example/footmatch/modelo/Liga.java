@@ -13,16 +13,19 @@ public class Liga implements Parcelable {
 
     public String name;
 
-    public String urlLogoLiga;
+    public int idLogoLiga;
 
-    public Liga(List<Equipo> equipos, String name, String urlLogoLiga){
+    public Liga(List<Equipo> equipos, String name, int idLogoLiga){
         this.name = name;
         this.equipos = equipos;
-        this.urlLogoLiga = urlLogoLiga;
+        this.idLogoLiga = idLogoLiga;
     }
 
     protected Liga(Parcel in) {
         name = in.readString();
+        equipos = in.createTypedArrayList(Equipo.CREATOR);
+        idLogoLiga = in.readInt();
+
     }
 
     public static final Creator<Liga> CREATOR = new Creator<Liga>() {
@@ -49,7 +52,7 @@ public class Liga implements Parcelable {
         return name;
     }
 
-    public String getUrlLogoLiga(){return urlLogoLiga;}
+    public int getIdLogoLiga(){return idLogoLiga;}
 
     public void setName(String name) {
         this.name = name;
@@ -63,5 +66,8 @@ public class Liga implements Parcelable {
     @Override
     public void writeToParcel(@NonNull Parcel parcel, int i) {
         parcel.writeString(name);
+        parcel.writeTypedList(equipos);
+        parcel.writeInt(idLogoLiga);
+
     }
 }

@@ -1,10 +1,27 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.footmatch.app-mergeDebugResources-2:/values-lo/values-lo.xml",
+            "outputFile": "com.example.footmatch.app-mergeDebugResources-33:/values-lo/values-lo.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\richa\\.gradle\\caches\\transforms-3\\e5f321a248aa217236dda4759916dcd9\\transformed\\material-1.9.0\\res\\values-lo\\values-lo.xml",
+                    "source": "C:\\Users\\marco\\.gradle\\caches\\transforms-3\\440057c2cf02a3f665a28f173b2095a0\\transformed\\preference-1.2.1\\res\\values-lo\\values-lo.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "105,175,261,341,479,648,728",
+                        "endColumns": "69,85,79,137,168,79,77",
+                        "endOffsets": "170,256,336,474,643,723,801"
+                    },
+                    "to": {
+                        "startLines": "41,43,96,98,101,102,103",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "3698,3834,7876,8035,8356,8525,8605",
+                        "endColumns": "69,85,79,137,168,79,77",
+                        "endOffsets": "3763,3915,7951,8168,8520,8600,8678"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\marco\\.gradle\\caches\\transforms-3\\e5f321a248aa217236dda4759916dcd9\\transformed\\material-1.9.0\\res\\values-lo\\values-lo.xml",
                     "from": {
                         "startLines": "2,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -23,7 +40,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\richa\\.gradle\\caches\\transforms-3\\af575453595166fed38ef613cf3573b3\\transformed\\appcompat-1.6.1\\res\\values-lo\\values-lo.xml",
+                    "source": "C:\\Users\\marco\\.gradle\\caches\\transforms-3\\af575453595166fed38ef613cf3573b3\\transformed\\appcompat-1.6.1\\res\\values-lo\\values-lo.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -40,24 +57,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\richa\\.gradle\\caches\\transforms-3\\440057c2cf02a3f665a28f173b2095a0\\transformed\\preference-1.2.1\\res\\values-lo\\values-lo.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "105,175,261,341,479,648,728",
-                        "endColumns": "69,85,79,137,168,79,77",
-                        "endOffsets": "170,256,336,474,643,723,801"
-                    },
-                    "to": {
-                        "startLines": "41,43,96,98,101,102,103",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "3698,3834,7876,8035,8356,8525,8605",
-                        "endColumns": "69,85,79,137,168,79,77",
-                        "endOffsets": "3763,3915,7951,8168,8520,8600,8678"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\richa\\.gradle\\caches\\transforms-3\\28a7af075d5af218c19b63a2f54b1523\\transformed\\core-1.9.0\\res\\values-lo\\values-lo.xml",
+                    "source": "C:\\Users\\marco\\.gradle\\caches\\transforms-3\\28a7af075d5af218c19b63a2f54b1523\\transformed\\core-1.9.0\\res\\values-lo\\values-lo.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

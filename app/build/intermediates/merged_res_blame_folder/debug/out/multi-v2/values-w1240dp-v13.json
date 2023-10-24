@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.footmatch.app-mergeDebugResources-2:/values-w1240dp-v13/values-w1240dp-v13.xml",
+            "outputFile": "com.example.footmatch.app-mergeDebugResources-33:/values-w1240dp-v13/values-w1240dp-v13.xml",
             "map": [
                 {
-                    "source": "A:\\Escritorio\\UNIVERSIDAD\\6_ano\\SDM\\app\\src\\main\\res\\values-w1240dp\\dimens.xml",
+                    "source": "C:\\Users\\marco\\Desktop\\WORKSPACE\\QUINTO\\SDM\\trabajoGrupo\\app\\src\\main\\res\\values-w1240dp\\dimens.xml",
                     "from": {
                         "startLines": "1",
                         "startColumns": "4",

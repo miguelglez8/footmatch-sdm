@@ -26,6 +26,7 @@ id equipoVisitanteImageView
 id equipoVisitanteNombreTextView
 id fechaTextView
 id imagenClasificacion
+id imagenEquipo
 id ligaBundesliga
 id ligaEASports
 id ligaPremier
