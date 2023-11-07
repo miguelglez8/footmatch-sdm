@@ -14,6 +14,9 @@ import android.widget.ImageButton;
 import com.example.footmatch.modelo.Equipo;
 import com.example.footmatch.modelo.Liga;
 import com.example.footmatch.modelo.Partido;
+import com.example.footmatch.modelo.pojos.Match;
+import com.example.footmatch.util.api.ApiService;
+import com.example.footmatch.util.api.RetrofitClient;
 
 
 import java.io.BufferedReader;
@@ -25,6 +28,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainRecycler extends AppCompatActivity {
 
@@ -47,8 +54,33 @@ public class MainRecycler extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_recycler);
 
-        //Rellenar lista de partidos
 
+        final ApiService apiService = RetrofitClient.getApiService();
+
+        Call<Match> call = apiService.obtenerDatosPartido("330299");
+        call.enqueue(new Callback<Match>() {
+            @Override
+            public void onResponse(Call<Match> call, Response<Match> response) {
+                if (response.isSuccessful()) {
+                    //Match respuesta = response.body();
+                    Match salida = response.body();
+                    Log.d("api-bien", salida.toString());
+                    // Procesar los datos
+                } else {
+                    Log.d("fallo-api", "algun fallo al obtener respuesta de la api");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Match> call, Throwable t) {
+                // Manejar errores de la solicitud
+                Log.d("fallo-api", "Algun fallo al realizar la peticion a la api");
+            }
+        });
+
+
+
+        //Rellenar lista de partidos
         cargarPartidos();
 
 
