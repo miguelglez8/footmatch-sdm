@@ -14,7 +14,8 @@ import android.widget.ImageButton;
 import com.example.footmatch.modelo.Equipo;
 import com.example.footmatch.modelo.Liga;
 import com.example.footmatch.modelo.Partido;
-import com.example.footmatch.modelo.pojos.Match;
+import com.example.footmatch.modelo.pojos.MatchResponse;
+import com.example.footmatch.modelo.pojos.MatchesResponse;
 import com.example.footmatch.util.api.ApiService;
 import com.example.footmatch.util.api.RetrofitClient;
 
@@ -45,8 +46,8 @@ public class MainRecycler extends AppCompatActivity {
     private static final int GESTION_ACTIVITY = 1;
 
     // Modelo datos
-    List<Partido> listaPartidos;
-    Partido partido;
+    List<MatchResponse> matchList = new ArrayList<>();
+    MatchResponse match;
     RecyclerView listaPartidosView;
 
     @Override
@@ -57,31 +58,20 @@ public class MainRecycler extends AppCompatActivity {
 
         final ApiService apiService = RetrofitClient.getApiService();
 
-        Call<Match> call = apiService.obtenerDatosPartido("330299");
-        call.enqueue(new Callback<Match>() {
-            @Override
-            public void onResponse(Call<Match> call, Response<Match> response) {
-                if (response.isSuccessful()) {
-                    //Match respuesta = response.body();
-                    Match salida = response.body();
-                    Log.d("api-bien", salida.toString());
-                    // Procesar los datos
-                } else {
-                    Log.d("fallo-api", "algun fallo al obtener respuesta de la api");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Match> call, Throwable t) {
-                // Manejar errores de la solicitud
-                Log.d("fallo-api", "Algun fallo al realizar la peticion a la api");
-            }
-        });
-
-
+        // Pasamos la lista de partidos al RecyclerView con el ListaPartidosAdapter
+        // Instanciamos el adapter con los datos de la petición y lo asignamos a RecyclerView
+        // Generar el adaptador, le pasamos la lista de partidos
+        // y el manejador para el evento click sobre un elemento
+        ListaPartidosAdapter lpAdapter = new ListaPartidosAdapter(matchList,
+                new ListaPartidosAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(Partido partido) {
+                        /*clickonItem(partido);*/
+                    }
+                });
 
         //Rellenar lista de partidos
-        cargarPartidos();
+        cargarPartidos(apiService,lpAdapter);
 
 
         // Recuperamos referencia y configuramos recyclerView con la lista de partidos
@@ -96,17 +86,8 @@ public class MainRecycler extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         listaPartidosView.setLayoutManager(layoutManager);
 
-        // Pasamos la lista de partidos al RecyclerView con el ListaPartidosAdapter
-        // Instanciamos el adapter con los datos de la petición y lo asignamos a RecyclerView
-        // Generar el adaptador, le pasamos la lista de partidos
-        // y el manejador para el evento click sobre un elemento
-        ListaPartidosAdapter lpAdapter = new ListaPartidosAdapter(listaPartidos,
-                new ListaPartidosAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(Partido partido) {
-                        /*clickonItem(partido);*/
-                    }
-                });
+
+
         listaPartidosView.setAdapter(lpAdapter);
 
         /*
@@ -142,43 +123,34 @@ public class MainRecycler extends AppCompatActivity {
         });
     }
 
-    private void cargarPartidos() {
+    private void cargarPartidos(ApiService apiService, ListaPartidosAdapter lpAdapter) {
 
-        Partido partido;
-        listaPartidos = new ArrayList<Partido>();
-        InputStream file = null;
-        InputStreamReader reader = null;
-        BufferedReader bufferedReader = null;
+        Call<MatchesResponse> call = apiService.getMatchesBetweenDates("2023-11-09",
+                "2023-11-11");
+        call.enqueue(new Callback<MatchesResponse>() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onResponse(Call<MatchesResponse> call, Response<MatchesResponse> response) {
+                if (response.isSuccessful()) {
+                    //Match respuesta = response.body();
 
-        try {
-            file = getAssets().open("lista_partidos_url_utf8.csv");
-            reader = new InputStreamReader(file);
-            bufferedReader = new BufferedReader(reader);
+                    assert response.body() != null;
+                    List<MatchResponse> result = response.body().getMatches();
+                    matchList.addAll(result);
+                    lpAdapter.notifyDataSetChanged();
 
-            String line = null;
-            while ((line = bufferedReader.readLine()) != null) {
-                String[] data = line.split(";");
-
-                if (data != null && data.length == 7) {
-                    String fechaFormateada = formateaFecha(data[3]);
-                    partido = new Partido(new Equipo(data[0],data[5],0),new Equipo(data[1],data[6],0),
-                            data[2],fechaFormateada,data[4]);
-
-                    Log.d("cargarPartidos", partido.toString());
-                    listaPartidos.add(partido);
+                } else {
+                    Log.d("fallo-api", "algun fallo al obtener respuesta de la api");
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (bufferedReader != null) {
-                try {
-                    bufferedReader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+
+            @Override
+            public void onFailure(Call<MatchesResponse> call, Throwable t) {
+                // Manejar errores de la solicitud
+                Log.d("fallo-api", "Algun fallo al realizar la peticion a la api",t);
             }
-        }
+        });
+
 
     }
 

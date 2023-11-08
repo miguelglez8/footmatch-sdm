@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.footmatch.modelo.Partido;
+import com.example.footmatch.modelo.pojos.MatchResponse;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -22,11 +23,11 @@ public class ListaPartidosAdapter extends RecyclerView.Adapter<ListaPartidosAdap
         void onItemClick(Partido item);
     }
 
-    private List<Partido> listaPartidos;
+    private List<MatchResponse> matchList;
     private final OnItemClickListener listener;
 
-    public ListaPartidosAdapter(List<Partido> listaPartidos, OnItemClickListener listener) {
-        this.listaPartidos = listaPartidos;
+    public ListaPartidosAdapter(List<MatchResponse> matchList, OnItemClickListener listener) {
+        this.matchList = matchList;
         this.listener = listener;
     }
 
@@ -55,21 +56,22 @@ public class ListaPartidosAdapter extends RecyclerView.Adapter<ListaPartidosAdap
         }
 
         // asignar valores a los componentes
-        public void bindUser(final Partido partido, final OnItemClickListener listener) {
+        public void bindUser(final MatchResponse match, final OnItemClickListener listener) {
+
             // cargar imagen local
             Picasso.get()
-                    .load(partido.getEquipoLocal().getUrlImagenEscudo()).into(logoLocal);
+                    .load(match.getHomeTeam().getFlag()).into(logoLocal);
             // cargar imagen visitante
             Picasso.get()
-                    .load(partido.getEquipoVisitante().getUrlImagenEscudo()).into(logoVisitante);
+                    .load(match.getAwayTeam().getFlag()).into(logoVisitante);
             // cargar nombre equipo local
-            nombreLocal.setText(partido.getLocalTeamName());
+            nombreLocal.setText(match.getHomeTeam().getName());
             // cargar nombre equipo visitante
-            nombreVisitante.setText(partido.getAwayTeamName());
+            nombreVisitante.setText(match.getAwayTeam().getName());
             // cargar resultado
-            resultado.setText(partido.getResultado());
+            //resultado.setText(match.getScore().getFullTime());
             // cargar fecha partido
-            fecha.setText(partido.getFecha());
+            fecha.setText(match.getUtcDate());
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
                     // De momento no hacemos nada al pulsar sobre un partido
@@ -95,16 +97,16 @@ public class ListaPartidosAdapter extends RecyclerView.Adapter<ListaPartidosAdap
     @Override
     public void onBindViewHolder(@NonNull PartidoViewHolder holder, int position) {
         // Extrae de la lista el elemento indicado por posición
-        Partido partido= listaPartidos.get(position);
-        Log.i("Lista","Visualiza elemento: "+partido);
+        MatchResponse match= matchList.get(position);
+        Log.i("Lista","Visualiza elemento: "+match);
         // llama al método de nuestro holder para asignar valores a los componentes
         // además, pasamos el listener del evento onClick
-        holder.bindUser(partido, listener);
+        holder.bindUser(match, listener);
     }
 
     @Override
     public int getItemCount() {
-        return listaPartidos.size();
+        return matchList.size();
     }
 
 
