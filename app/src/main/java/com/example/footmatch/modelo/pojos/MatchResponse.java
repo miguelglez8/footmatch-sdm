@@ -165,8 +165,8 @@ public class MatchResponse {
     private String stage;
     private String group;
     private String lastUpdated;
-    private Area homeTeam;
-    private Area awayTeam;
+    private HomeTeam homeTeam;
+    private AwayTeam awayTeam;
     private Score score;
     private Season season;
 
@@ -262,19 +262,19 @@ public class MatchResponse {
         this.lastUpdated = lastUpdated;
     }
 
-    public Area getHomeTeam() {
+    public HomeTeam getHomeTeam() {
         return homeTeam;
     }
 
-    public void setHomeTeam(Area homeTeam) {
+    public void setHomeTeam(HomeTeam homeTeam) {
         this.homeTeam = homeTeam;
     }
 
-    public Area getAwayTeam() {
+    public AwayTeam getAwayTeam() {
         return awayTeam;
     }
 
-    public void setAwayTeam(Area awayTeam) {
+    public void setAwayTeam(AwayTeam awayTeam) {
         this.awayTeam = awayTeam;
     }
 
@@ -290,6 +290,104 @@ public class MatchResponse {
         this.season = season;
     }
 
+
+    public class HomeTeam {
+        private String id;
+        private String name;
+        private String shortName;
+        private String tla;
+        private String crest;
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getShortName() {
+            return shortName;
+        }
+
+        public void setShortName(String shortName) {
+            this.shortName = shortName;
+        }
+
+        public String getTla() {
+            return tla;
+        }
+
+        public void setTla(String tla) {
+            this.tla = tla;
+        }
+
+        public String getCrest() {
+            return crest;
+        }
+
+        public void setCrest(String crest) {
+            this.crest = crest;
+        }
+    }
+
+    public class AwayTeam {
+        private String id;
+        private String name;
+        private String shortName;
+        private String tla;
+        private String crest;
+
+        // Getters y setters
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getShortName() {
+            return shortName;
+        }
+
+        public void setShortName(String shortName) {
+            this.shortName = shortName;
+        }
+
+        public String getTla() {
+            return tla;
+        }
+
+        public void setTla(String tla) {
+            this.tla = tla;
+        }
+
+        public String getCrest() {
+            return crest;
+        }
+
+        public void setCrest(String crest) {
+            this.crest = crest;
+        }
+    }
     public class Score {
         private String winner;
         private String duration;

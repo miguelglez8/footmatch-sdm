@@ -41,7 +41,8 @@ public class ListaPartidosAdapter extends RecyclerView.Adapter<ListaPartidosAdap
         private ImageView logoVisitante;
         private TextView nombreVisitante;
 
-        private TextView resultado;
+        private TextView resultadoLocal;
+        private TextView resultadoVisitante;
 
         private TextView fecha;
 
@@ -51,7 +52,8 @@ public class ListaPartidosAdapter extends RecyclerView.Adapter<ListaPartidosAdap
             nombreLocal = (TextView) itemView.findViewById(R.id.equipoLocalNombreTextView);
             logoVisitante = (ImageView) itemView.findViewById(R.id.equipoVisitanteImageView);
             nombreVisitante = (TextView) itemView.findViewById(R.id.equipoVisitanteNombreTextView);
-            resultado = (TextView) itemView.findViewById(R.id.resultadoTextView);
+            resultadoLocal = (TextView) itemView.findViewById(R.id.localTextView);
+            resultadoVisitante = (TextView) itemView.findViewById(R.id.visitanteTextView);
             fecha = (TextView) itemView.findViewById(R.id.fechaTextView);
         }
 
@@ -60,24 +62,39 @@ public class ListaPartidosAdapter extends RecyclerView.Adapter<ListaPartidosAdap
 
             // cargar imagen local
             Picasso.get()
-                    .load(match.getHomeTeam().getFlag()).into(logoLocal);
+                    .load(match.getHomeTeam().getCrest()).into(logoLocal);
             // cargar imagen visitante
             Picasso.get()
-                    .load(match.getAwayTeam().getFlag()).into(logoVisitante);
+                    .load(match.getAwayTeam().getCrest()).into(logoVisitante);
             // cargar nombre equipo local
-            nombreLocal.setText(match.getHomeTeam().getName());
+            nombreLocal.setText(match.getHomeTeam().getShortName());
             // cargar nombre equipo visitante
-            nombreVisitante.setText(match.getAwayTeam().getName());
+            nombreVisitante.setText(match.getAwayTeam().getShortName());
             // cargar resultado
-            //resultado.setText(match.getScore().getFullTime());
+            if (match.getScore().getWinner() != null) {
+                resultadoLocal.setText(match.getScore().getFullTime().getHome());
+                resultadoVisitante.setText(match.getScore().getFullTime().getAway());
+            }else{
+                resultadoLocal.setText("");
+                resultadoVisitante.setText("");
+            }
+            //resultadoLocal.setText(match.getScore().getFullTime().getHome());
+            //resultadoVisitante.setText(match.getScore().getFullTime().getAway());
             // cargar fecha partido
-            fecha.setText(match.getUtcDate());
+            fecha.setText(formatDate(match.getUtcDate()));
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
                     // De momento no hacemos nada al pulsar sobre un partido
                 }
             });
         }
+    }
+
+    private static String formatDate(String utcDate){
+        String[] separated = utcDate.split("T");
+        String date = separated[0];
+        String hour = separated[1].substring(0,5);
+        return date+" "+hour;
     }
     /* Indicamos el layout a "inflar" para usar en la vista
      */
