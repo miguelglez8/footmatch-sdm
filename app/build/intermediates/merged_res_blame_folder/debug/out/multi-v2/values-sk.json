@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.footmatch.app-mergeDebugResources-33:/values-sk/values-sk.xml",
+            "outputFile": "com.example.footmatch.app-mergeDebugResources-38:/values-sk/values-sk.xml",
             "map": [
                 {
                     "source": "C:\\Users\\migue\\.gradle\\caches\\transforms-3\\af575453595166fed38ef613cf3573b3\\transformed\\appcompat-1.6.1\\res\\values-sk\\values-sk.xml",

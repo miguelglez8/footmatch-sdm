@@ -5,11 +5,46 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import java.util.List;
+
 public class Equipo implements Parcelable {
     private String nombre;
+    private List<Jugador> plantillaTitular;
+    private String formacion;
+
+    private Estadisticas estadisticas;
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public List<Jugador> getPlantilla() {
+        return plantillaTitular;
+    }
+
+    public void setPlantilla(List<Jugador> plantilla) {
+        this.plantillaTitular = plantilla;
+    }
+
+    public void setUrlImagenEscudo(String urlImagenEscudo) {
+        this.urlImagenEscudo = urlImagenEscudo;
+    }
+
+    public void setPuntos(int puntos) {
+        this.puntos = puntos;
+    }
+
+    public String getEntrenador() {
+        return entrenador;
+    }
+
+    public void setEntrenador(String entrenador) {
+        this.entrenador = entrenador;
+    }
 
     private String urlImagenEscudo;
     private int puntos;
+    private String entrenador;
 
     public Equipo(String nombre, String urlImagen, int puntos){
         this.nombre = nombre;

@@ -72,7 +72,7 @@ public class MainRecycler extends AppCompatActivity {
                 new ListaPartidosAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(Partido partido) {
-                        /*clickonItem(partido);*/
+                        cargarPartido(partido);
                     }
                 });
         listaPartidosView.setAdapter(lpAdapter);
@@ -109,7 +109,6 @@ public class MainRecycler extends AppCompatActivity {
             }
         });
     }
-
     private void cargarPartidos() {
 
         Partido partido;
@@ -258,6 +257,12 @@ public class MainRecycler extends AppCompatActivity {
         Intent ligaIntent = new Intent(MainRecycler.this, ClasificacionActivity.class);
         ligaIntent.putExtra(LIGA_CREADA, ligaSeleccionada);
         startActivity(ligaIntent);
+    }
+
+    private void cargarPartido(Partido partido) {
+        Intent partidoIntent = new Intent(MainRecycler.this, MostrarPartido.class);
+        partidoIntent.putExtra(PARTIDO_SELECCIONADO, partido);
+        startActivity(partidoIntent);
     }
 
 }
