@@ -2,32 +2,31 @@ package com.example.footmatch.modelo.pojos;
 
 import java.util.List;
 
+import lombok.Data;
+@Data
 public class MatchesResponse {
     private Filters filters;
     private ResultSet resultSet;
     private List<MatchResponse> matches;
 
-    public Filters getFilters() {
-        return filters;
+    @Data
+    public class ResultSet {
+        private int count;
+        private String competitions;
+        private String first;
+        private String last;
+        private int played;
+
     }
 
-    public void setFilters(Filters filters) {
-        this.filters = filters;
+    @Data
+    public class Filters {
+        private String dateFrom;
+        private String dateTo;
+        private String permission;
+
+
     }
 
-    public ResultSet getResultSet() {
-        return resultSet;
-    }
 
-    public void setResultSet(ResultSet resultSet) {
-        this.resultSet = resultSet;
-    }
-
-    public List<MatchResponse> getMatches() {
-        return matches;
-    }
-
-    public void setMatches(List<MatchResponse> matches) {
-        this.matches = matches;
-    }
 }

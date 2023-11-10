@@ -36,19 +36,28 @@ public final class LineaRecyclerViewPartidoBinding implements ViewBinding {
   public final ImageView imagenClasificacion;
 
   @NonNull
-  public final TextView resultadoTextView;
+  public final TextView localTextView;
+
+  @NonNull
+  public final TextView separadorResultadoTextView;
+
+  @NonNull
+  public final TextView visitanteTextView;
 
   private LineaRecyclerViewPartidoBinding(@NonNull LinearLayout rootView,
       @NonNull TextView equipoLocalNombreTextView, @NonNull ImageView equipoVisitanteImageView,
       @NonNull TextView equipoVisitanteNombreTextView, @NonNull TextView fechaTextView,
-      @NonNull ImageView imagenClasificacion, @NonNull TextView resultadoTextView) {
+      @NonNull ImageView imagenClasificacion, @NonNull TextView localTextView,
+      @NonNull TextView separadorResultadoTextView, @NonNull TextView visitanteTextView) {
     this.rootView = rootView;
     this.equipoLocalNombreTextView = equipoLocalNombreTextView;
     this.equipoVisitanteImageView = equipoVisitanteImageView;
     this.equipoVisitanteNombreTextView = equipoVisitanteNombreTextView;
     this.fechaTextView = fechaTextView;
     this.imagenClasificacion = imagenClasificacion;
-    this.resultadoTextView = resultadoTextView;
+    this.localTextView = localTextView;
+    this.separadorResultadoTextView = separadorResultadoTextView;
+    this.visitanteTextView = visitanteTextView;
   }
 
   @Override
@@ -108,15 +117,27 @@ public final class LineaRecyclerViewPartidoBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.resultadoTextView;
-      TextView resultadoTextView = ViewBindings.findChildViewById(rootView, id);
-      if (resultadoTextView == null) {
+      id = R.id.localTextView;
+      TextView localTextView = ViewBindings.findChildViewById(rootView, id);
+      if (localTextView == null) {
+        break missingId;
+      }
+
+      id = R.id.separadorResultadoTextView;
+      TextView separadorResultadoTextView = ViewBindings.findChildViewById(rootView, id);
+      if (separadorResultadoTextView == null) {
+        break missingId;
+      }
+
+      id = R.id.visitanteTextView;
+      TextView visitanteTextView = ViewBindings.findChildViewById(rootView, id);
+      if (visitanteTextView == null) {
         break missingId;
       }
 
       return new LineaRecyclerViewPartidoBinding((LinearLayout) rootView, equipoLocalNombreTextView,
           equipoVisitanteImageView, equipoVisitanteNombreTextView, fechaTextView,
-          imagenClasificacion, resultadoTextView);
+          imagenClasificacion, localTextView, separadorResultadoTextView, visitanteTextView);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
