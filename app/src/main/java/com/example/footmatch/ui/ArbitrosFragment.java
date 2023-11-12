@@ -9,27 +9,18 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.favmovies.ListaRepartoAdapter;
-import com.example.favmovies.R;
-import com.example.favmovies.datos.AppDatabase;
-import com.example.favmovies.modelo.Interprete;
-import com.example.favmovies.modelo.PeliculaConReparto;
 import com.example.footmatch.ListaArbitrosAdapter;
+import com.example.footmatch.R;
+import com.example.footmatch.modelo.Arbitro;
 
 import java.util.ArrayList;
-import java.util.List;
-
 
 //Vamos a heredar de la clase Fragment
 public class ArbitrosFragment extends Fragment {
 
     /* Las variables que utilizaremos */
-    private static final String ARBITROS="Árbitros";
-    private static final String TITULO_ARBITROS="Título_Árbitros";
-
-    private List<String> listaArbitros;
-    private List<String> listaTitulosArbitros;
-
+    private static final String ARBITROS="Arbitros";
+    private static ArrayList<Arbitro> lista;
 
     /*
 
@@ -37,12 +28,11 @@ public class ArbitrosFragment extends Fragment {
         Los datos están siendo enviados ANTES del onCreate.
         El Bundle permanece cuando se tiene que recrear.
      */
-    public static ArbitrosFragment newInstance(ArrayList<String> arbitros, ArrayList<String> titulosArbitros) {
+    public static ArbitrosFragment newInstance(ArrayList<Arbitro> lista) {
         ArbitrosFragment fragment = new ArbitrosFragment();
         Bundle args = new Bundle();
         //Esto no tiene mucha ciencia -> Clave, valor.
-        args.putStringArrayList(ARBITROS, arbitros);
-        args.putStringArrayList(TITULO_ARBITROS, titulosArbitros);
+        args.putParcelableArrayList(ARBITROS, lista);
         fragment.setArguments(args);
         return fragment;
     }
@@ -55,8 +45,7 @@ public class ArbitrosFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            listaArbitros = getArguments().getStringArrayList(ARBITROS);
-            listaTitulosArbitros = getArguments().getStringArrayList(TITULO_ARBITROS);
+            lista = getArguments().getParcelableArrayList(ARBITROS);
         }
     }
 
@@ -68,15 +57,14 @@ public class ArbitrosFragment extends Fragment {
 
         // Obten el RecyclerView del diseño del fragmento
         RecyclerView recyclerView = root.findViewById(R.id.reciclerViewArbitros);
-        recyclerView.setHasFixedSize(true);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
         // Crea una instancia del adaptador y pásale la lista de intérpretes y un listener si es necesario
-        ListaArbitrosAdapter adapter = new ListaArbitrosAdapter(listaArbitros, listaTitulosArbitros, new ListaArbitrosAdapter.OnItemClickListener() {
+        ListaArbitrosAdapter adapter = new ListaArbitrosAdapter(lista, new ListaArbitrosAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(String item) {
+            public void onItemClick(Arbitro item) {
                 // Maneja el clic en un elemento de la lista si es necesario
             }
         });

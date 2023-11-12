@@ -2,7 +2,9 @@ package com.example.footmatch;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -10,16 +12,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.footmatch.modelo.Arbitro;
 import com.example.footmatch.modelo.Partido;
 import com.example.footmatch.ui.AlineacionesFragment;
 import com.example.footmatch.ui.ArbitrosFragment;
 import com.example.footmatch.ui.EstadisticasFragment;
 import com.example.footmatch.ui.EventosFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 public class MostrarPartido extends AppCompatActivity {
     private Partido partido;
-    TextView textView;
+    TextView textView, textView2;
     ImageView imagenLiga, imagenEquipo1, imagenEquipo2;
     TextView nombreEquipo1, resultadoPartido, fechaPartido, nombreEquipo2, estadio;
     Button estadoPartido;
@@ -35,6 +41,7 @@ public class MostrarPartido extends AppCompatActivity {
 
         // Inicializar vistas
         textView = findViewById(R.id.liga_jornada);
+        textView2 = findViewById(R.id.minutoPartido);
         imagenLiga = findViewById(R.id.imagenLiga);
         imagenEquipo1 = findViewById(R.id.imagenEquipo1);
         nombreEquipo1 = findViewById(R.id.nombreEquipo1);
@@ -62,14 +69,14 @@ public class MostrarPartido extends AppCompatActivity {
             int itemId = item.getItemId();
 
             /* Según el caso, crearemos un Fragmento u otro */
-            if (itemId == R.id.navigation_estadisticas)
+            if (itemId == R.id.navigation_stats)
             {
                 /* Haciendo uso del FactoryMethod pasándole todos los parámetros necesarios */
 
                 /* Argumento solamente necesita.... El argumento de la película */
 
                 EstadisticasFragment estadisticasFragment=EstadisticasFragment.newInstance
-                        (partido.getEstadisticas());
+                        (partido.getEquipoLocal(), partido.getEquipoVisitante(), partido.getEstadisticasPartido());
 
                 /* ¿Qué estaremos haciendo aquí? */
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, estadisticasFragment).commit();
@@ -77,31 +84,38 @@ public class MostrarPartido extends AppCompatActivity {
                 return true;
             }
 
-            if (itemId == R.id.navigation_eventos)
+            if (itemId == R.id.navigation_events)
             {
-                EventosFragment eventosFragment=EventosFragment.newInstance
-                        (pelicula.getEventos());
+                if (partido.getEventos().size()>0) {
+                    EventosFragment eventosFragment=EventosFragment.newInstance
+                        (partido.getEventos());
 
-                /* ¿Qué estaremos haciendo aquí? */
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, eventosFragment).commit();
+                    /* ¿Qué estaremos haciendo aquí? */
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, eventosFragment).commit();
+                } else {
+                    // cargar no_disponible
+                }
+                return true;
+            }
+
+            if (itemId == R.id.navigation_referees)
+            {
+                if (partido.getArbitros().size()>0) {
+                    ArbitrosFragment arbitrosFragment = ArbitrosFragment.newInstance
+                            ((ArrayList<Arbitro>) partido.getArbitros());
+
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, arbitrosFragment).commit();
+                } else {
+                    // cargar no_disponible
+                }
 
                 return true;
             }
 
-            if (itemId == R.id.navigation_arbitros)
-            {
-                ArbitrosFragment arbitrosFragment= ArbitrosFragment.newInstance
-                        (partido.getArbitros());
-
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, arbitrosFragment).commit();
-
-                return true;
-            }
-
-            if (itemId == R.id.navigation_alineaciones)
+            if (itemId == R.id.navigation_alineations)
             {
                 AlineacionesFragment alineacionesFragment= AlineacionesFragment.newInstance
-                        (partido.getAlineaciones());
+                        (partido.getEquipoLocal(), partido.getEquipoVisitante());
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, alineacionesFragment).commit();
 
@@ -117,17 +131,33 @@ public class MostrarPartido extends AppCompatActivity {
     public void mostrarDatos(Partido partido) {
         if (partido != null) {
             // Actualizar componentes con valores del partido específico
-            textView.setText(partido.getNombreLiga());
+            textView.setText(partido.getNombreLiga() + " " + partido.getJornada());
+            textView2.setText(partido.getMinutoJuego());
 
             nombreEquipo1.setText(partido.getEquipoLocal().getNombre());
-            resultadoPartido.setText(partido.getResultado());
-            fechaPartido.setText(partido.getFecha());
+            if (partido.getEstadoPartido().equals("NO_EMPEZADO")) {
+                resultadoPartido.setText(partido.getHora());
+            } else {
+                resultadoPartido.setText(partido.getResultado());
+            }
 
+            fechaPartido.setText(partido.getFecha());
             nombreEquipo2.setText(partido.getEquipoVisitante().getNombre());
             estadio.setText(partido.getEstadio());
             estadoPartido.setText(partido.getEstado());
 
-            // cargar imgs equipos y liga
+            Picasso.get()
+                    .load(partido.getUrlLiga()).into(imagenLiga);
+            Picasso.get()
+                    .load(partido.getEquipoLocal().getUrlImagenEscudo()).into(imagenEquipo1);
+            Picasso.get()
+                    .load(partido.getEquipoVisitante().getUrlImagenEscudo()).into(imagenEquipo2);
+
+            EstadisticasFragment estadisticasFragment=EstadisticasFragment.newInstance
+                    (partido.getEquipoLocal(), partido.getEquipoVisitante(), partido.getEstadisticasPartido());
+
+            /* ¿Qué estaremos haciendo aquí? */
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, estadisticasFragment).commit();
         }
     }
 }

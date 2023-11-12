@@ -9,77 +9,89 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.favmovies.R;
-import com.example.footmatch.ListaArbitrosAdapter;
+import com.example.footmatch.ListaEventosAdapter;
+import com.example.footmatch.ListaJugadoresAdapter;
+import com.example.footmatch.R;
+import com.example.footmatch.modelo.Jugador;
+import com.example.footmatch.modelo.eventos.Evento;
 
-import java.util.ArrayList;
 import java.util.List;
 
-
-//Vamos a heredar de la clase Fragment
 public class EventosFragment extends Fragment {
 
-    /* Las variables que utilizaremos */
-    private static final String ARBITROS="Árbitros";
-    private static final String TITULO_ARBITROS="Título_Árbitros";
+    private static final String EVENTOS = "Eventos";
+    private List<Evento> listaEventos;
+    private RecyclerView recyclerViewGoles;
+    private RecyclerView recyclerViewTarjetas;
+    private RecyclerView recyclerViewOtros;
 
-    private List<String> listaArbitros;
-    private List<String> listaTitulosArbitros;
+    private ListaEventosAdapter adapterGoles;
+    private ListaEventosAdapter adapterTarjetas;
+    private ListaEventosAdapter adapterOtros;
 
+    public EventosFragment() {
+        // Constructor vacío requerido por Android
+    }
 
-    /*
-
-        Esto es un FactoryMethod.
-        Los datos están siendo enviados ANTES del onCreate.
-        El Bundle permanece cuando se tiene que recrear.
-     */
-    public static EventosFragment newInstance(ArrayList<String> arbitros, ArrayList<String> titulosArbitros) {
+    public static EventosFragment newInstance(List<Evento> listaEventos) {
         EventosFragment fragment = new EventosFragment();
         Bundle args = new Bundle();
-        //Esto no tiene mucha ciencia -> Clave, valor.
-        args.putStringArrayList(ARBITROS, arbitros);
-        args.putStringArrayList(TITULO_ARBITROS, titulosArbitros);
+        args.putParcelableArrayList(EVENTOS, new java.util.ArrayList<>(listaEventos));
         fragment.setArguments(args);
         return fragment;
     }
-
-    /*
-        Aquí están disponibles ya los datos necesarios.
-     */
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            listaArbitros = getArguments().getStringArrayList(ARBITROS);
-            listaTitulosArbitros = getArguments().getStringArrayList(TITULO_ARBITROS);
+            listaEventos = getArguments().getParcelableArrayList(EVENTOS);
         }
     }
 
-    /* Al crear la vista, cargamos los valores necesarios */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_arbitros, container, false);
+        View root = inflater.inflate(R.layout.fragment_eventos, container, false);
 
-        // Obten el RecyclerView del diseño del fragmento
-        RecyclerView recyclerView = root.findViewById(R.id.reciclerViewArbitros);
-        recyclerView.setHasFixedSize(true);
+        recyclerViewGoles = root.findViewById(R.id.recyclerViewGoles);
+        recyclerViewTarjetas = root.findViewById(R.id.recyclerViewTarjetas);
+        recyclerViewOtros = root.findViewById(R.id.recyclerViewOtros);
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(layoutManager);
-
-        // Crea una instancia del adaptador y pásale la lista de intérpretes y un listener si es necesario
-        ListaArbitrosAdapter adapter = new ListaArbitrosAdapter(listaArbitros, listaTitulosArbitros, new ListaArbitrosAdapter.OnItemClickListener() {
+        // Configura los RecyclerViews con los adaptadores
+        // Configura los RecyclerViews con los adaptadores
+        this.adapterGoles = new ListaEventosAdapter(listaEventos, new ListaEventosAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(String item) {
+            public void onItemClick(Evento item) {
                 // Maneja el clic en un elemento de la lista si es necesario
             }
         });
-
-        // Configura el adaptador en el RecyclerView
-        recyclerView.setAdapter(adapter);
+        setUpRecyclerView(recyclerViewGoles, adapterGoles);
+        // Configura los RecyclerViews con los adaptadores
+        this.adapterTarjetas = new ListaEventosAdapter(listaEventos, new ListaEventosAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Evento item) {
+                // Maneja el clic en un elemento de la lista si es necesario
+            }
+        });
+        setUpRecyclerView(recyclerViewTarjetas, adapterTarjetas);
+        // Configura los RecyclerViews con los adaptadores
+        this.adapterOtros = new ListaEventosAdapter(listaEventos, new ListaEventosAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Evento item) {
+                // Maneja el clic en un elemento de la lista si es necesario
+            }
+        });
+        setUpRecyclerView(recyclerViewOtros, adapterOtros);
 
         return root;
     }
+
+    private void setUpRecyclerView(RecyclerView recyclerView, ListaEventosAdapter adapter) {
+        // Configura el RecyclerView y su adaptador
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+    }
+
 }

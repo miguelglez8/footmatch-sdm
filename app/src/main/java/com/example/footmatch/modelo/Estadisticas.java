@@ -1,6 +1,11 @@
 package com.example.footmatch.modelo;
 
-public class Estadisticas {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+public class Estadisticas implements Parcelable {
     private int victorias;
     private int empates;
     private int derrotas;
@@ -11,6 +16,24 @@ public class Estadisticas {
         this.empates = empates;
         this.derrotas = derrotas;
     }
+
+    protected Estadisticas(Parcel in) {
+        victorias = in.readInt();
+        empates = in.readInt();
+        derrotas = in.readInt();
+    }
+
+    public static final Creator<Estadisticas> CREATOR = new Creator<Estadisticas>() {
+        @Override
+        public Estadisticas createFromParcel(Parcel in) {
+            return new Estadisticas(in);
+        }
+
+        @Override
+        public Estadisticas[] newArray(int size) {
+            return new Estadisticas[size];
+        }
+    };
 
     // Getter y Setter para victorias
     public int getVictorias() {
@@ -37,6 +60,18 @@ public class Estadisticas {
 
     public void setDerrotas(int derrotas) {
         this.derrotas = derrotas;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeInt(victorias);
+        parcel.writeInt(empates);
+        parcel.writeInt(derrotas);
     }
 }
 

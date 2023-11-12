@@ -1,27 +1,50 @@
 package com.example.footmatch.modelo;
 
-public class EstadisticasPartido {
-    private String estadistica;
-    private String valorEstadistica;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-    public EstadisticasPartido(String estadistica, String valorEstadistica) {
-        this.estadistica = estadistica;
-        this.valorEstadistica = valorEstadistica;
+import androidx.annotation.NonNull;
+
+import java.util.List;
+
+public class EstadisticasPartido implements Parcelable {
+    private List<String> estadisticas;
+
+    public EstadisticasPartido(List<String> estadisticas) {
+        this.estadisticas = estadisticas;
     }
 
-    public String getEstadistica() {
-        return estadistica;
+    protected EstadisticasPartido(Parcel in) {
+        estadisticas = in.createStringArrayList();
     }
 
-    public void setEstadistica(String estadistica) {
-        this.estadistica = estadistica;
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeStringList(estadisticas);
     }
 
-    public String getValorEstadistica() {
-        return valorEstadistica;
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
-    public void setValorEstadistica(String valorEstadistica) {
-        this.valorEstadistica = valorEstadistica;
+    public static final Creator<EstadisticasPartido> CREATOR = new Creator<EstadisticasPartido>() {
+        @Override
+        public EstadisticasPartido createFromParcel(Parcel in) {
+            return new EstadisticasPartido(in);
+        }
+
+        @Override
+        public EstadisticasPartido[] newArray(int size) {
+            return new EstadisticasPartido[size];
+        }
+    };
+
+    public List<String> getEstadisticas() {
+        return estadisticas;
+    }
+
+    public void setEstadisticas(List<String> estadisticas) {
+        this.estadisticas = estadisticas;
     }
 }

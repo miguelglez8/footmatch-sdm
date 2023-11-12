@@ -12,14 +12,68 @@ public class Equipo implements Parcelable {
     private List<Jugador> plantillaTitular;
     private String formacion;
 
+    public List<Jugador> getPlantillaTitular() {
+        return plantillaTitular;
+    }
+
+    public void setPlantillaTitular(List<Jugador> plantillaTitular) {
+        this.plantillaTitular = plantillaTitular;
+    }
+
+    public String getFormacion() {
+        return formacion;
+    }
+
+    public void setFormacion(String formacion) {
+        this.formacion = formacion;
+    }
+
+    public Estadisticas getEstadisticas() {
+        return estadisticas;
+    }
+
+    public void setEstadisticas(Estadisticas estadisticas) {
+        this.estadisticas = estadisticas;
+    }
+
     private Estadisticas estadisticas;
+
+    protected Equipo(Parcel in) {
+        nombre = in.readString();
+        formacion = in.readString();
+        urlImagenEscudo = in.readString();
+        puntos = in.readInt();
+        entrenador = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(nombre);
+        dest.writeString(formacion);
+        dest.writeString(urlImagenEscudo);
+        dest.writeInt(puntos);
+        dest.writeString(entrenador);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Equipo> CREATOR = new Creator<Equipo>() {
+        @Override
+        public Equipo createFromParcel(Parcel in) {
+            return new Equipo(in);
+        }
+
+        @Override
+        public Equipo[] newArray(int size) {
+            return new Equipo[size];
+        }
+    };
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public List<Jugador> getPlantilla() {
-        return plantillaTitular;
     }
 
     public void setPlantilla(List<Jugador> plantilla) {
@@ -52,24 +106,6 @@ public class Equipo implements Parcelable {
         this.puntos = puntos;
     }
 
-    protected Equipo(Parcel in) {
-        nombre = in.readString();
-        urlImagenEscudo = in.readString();
-        puntos = in.readInt();
-    }
-
-    public static final Creator<Equipo> CREATOR = new Creator<Equipo>() {
-        @Override
-        public Equipo createFromParcel(Parcel in) {
-            return new Equipo(in);
-        }
-
-        @Override
-        public Equipo[] newArray(int size) {
-            return new Equipo[size];
-        }
-    };
-
     public String getNombre() {
         return nombre;
     }
@@ -79,16 +115,4 @@ public class Equipo implements Parcelable {
     }
 
     public int getPuntos(){return puntos; }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(@NonNull Parcel parcel, int i) {
-        parcel.writeString(nombre);
-        parcel.writeString(urlImagenEscudo);
-        parcel.writeInt(puntos);
-    }
 }

@@ -1,5 +1,6 @@
 package com.example.footmatch;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,21 +9,48 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.footmatch.modelo.Arbitro;
+
 import java.util.List;
 
 public class ListaArbitrosAdapter extends RecyclerView.Adapter<ListaArbitrosAdapter.ArbitroViewHolder> {
+
+    // Interfaz para manejar el evento click sobre un elemento
     public interface OnItemClickListener {
-        void onItemClick(String item);
+        void onItemClick(Arbitro item);
     }
 
-    private List<String> listaArbitros;
-    private List<String> otraLista; // Nueva lista de cadenas
-    private OnItemClickListener listener;
+    private List<Arbitro> listaArbitros;
+    private final OnItemClickListener listener;
 
-    public ListaArbitrosAdapter(List<String> listaArbitros, List<String> otraLista, OnItemClickListener listener) {
+    public ListaArbitrosAdapter(List<Arbitro> listaArbitros, OnItemClickListener listener) {
         this.listaArbitros = listaArbitros;
-        this.otraLista = otraLista;
         this.listener = listener;
+    }
+
+    /* Indicamos el layout a "inflar" para usar en la vista
+     */
+    @NonNull
+    @Override
+    public ArbitroViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // Creamos la vista con el layout para un elemento
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_arbitros, parent, false);
+        return new ArbitroViewHolder(itemView);
+    }
+
+
+    /** Asocia el contenido a los componentes de la vista,
+     * concretamente con nuestro PeliculaViewHolder que recibimos como parámetro
+     */
+    @Override
+    public void onBindViewHolder(@NonNull ArbitroViewHolder holder, int position) {
+        // Extrae de la lista el elemento indicado por posición
+        Arbitro arbitro= listaArbitros.get(position);
+        Log.i("Lista","Visualiza elemento: "+arbitro);
+        // llama al método de nuestro holder para asignar valores a los componentes
+        // además, pasamos el listener del evento onClick
+        holder.bindUser(arbitro, listener);
     }
 
     @Override
@@ -30,41 +58,33 @@ public class ListaArbitrosAdapter extends RecyclerView.Adapter<ListaArbitrosAdap
         return listaArbitros.size();
     }
 
-    public static class ArbitroViewHolder extends RecyclerView.ViewHolder {
-        private TextView textViewNombreArbitro;
-        private TextView textViewOtroDato; // Nuevo TextView
+    /*Clase interna que define los compoonentes de la vista*/
+
+    public static class ArbitroViewHolder extends RecyclerView.ViewHolder{
+
+        private TextView funcion;
+        private TextView arbitro;
 
         public ArbitroViewHolder(View itemView) {
             super(itemView);
-            textViewNombreArbitro = itemView.findViewById(R.id.textNombreArbitro); // Asegúrate de que el ID sea el correcto.
-            textViewOtroDato = itemView.findViewById(R.id.otroTextView); // Asegúrate de que el ID sea el correcto.
+
+            funcion = (TextView)itemView.findViewById(R.id.tvFunction);
+            arbitro = (TextView)itemView.findViewById(R.id.tvArbitroName);
         }
 
-        public void bindArbitro(@NonNull final String nombreArbitro, final String otroDato, final OnItemClickListener listener) {
-            textViewNombreArbitro.setText(nombreArbitro);
-            textViewOtroDato.setText(otroDato);
+        // asignar valores a los componentes
+        public void bindUser(final Arbitro arbitro, final OnItemClickListener listener) {
+            this.funcion.setText(arbitro.getCargo());
+
+            this.arbitro.setText(arbitro.getNombre());
 
             itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    listener.onItemClick(nombreArbitro);
+                @Override public void onClick(View v) {
+                    Log.i("Hola", "Hola");
+                    listener.onItemClick(arbitro);
                 }
             });
         }
     }
 
-    @NonNull
-    @Override
-    public ArbitroViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_arbitro, parent, false); // Asegúrate de que el diseño tenga los TextViews con los IDs correctos.
-        return new ArbitroViewHolder(itemView);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull ArbitroViewHolder holder, int position) {
-        String nombreArbitro = listaArbitros.get(position);
-        String otroDato = otraLista.get(position); // Obtener el dato de la otra lista
-        holder.bindArbitro(nombreArbitro, otroDato, listener);
-    }
 }

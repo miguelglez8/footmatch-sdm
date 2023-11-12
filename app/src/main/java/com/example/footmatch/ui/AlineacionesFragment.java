@@ -4,82 +4,131 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.footmatch.ListaArbitrosAdapter;
+import com.example.footmatch.ListaJugadoresAdapter;
 import com.example.footmatch.R;
+import com.example.footmatch.modelo.Arbitro;
+import com.example.footmatch.modelo.Equipo;
+import com.example.footmatch.modelo.Jugador;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
-//Vamos a heredar de la clase Fragment
 public class AlineacionesFragment extends Fragment {
 
-    /* Las variables que utilizaremos */
-    private static final String ARBITROS="Árbitros";
-    private static final String TITULO_ARBITROS="Título_Árbitros";
+    private static final String JUGADORES_EQUIPO1 = "Equipo1";
+    private static final String JUGADORES_EQUIPO2 = "Equipo2";
 
-    private List<String> listaArbitros;
-    private List<String> listaTitulosArbitros;
+    private Equipo jugadoresEquipo1;
+    private Equipo jugadoresEquipo2;
 
+    private RecyclerView recyclerViewJugadoresEquipo1;
+    private RecyclerView recyclerViewJugadoresEquipo2;
+    private TextView nombreEquipo1;
+    private TextView nombreEquipo2;
+    private TextView entrenadorEquipo1;
+    private TextView entrenadorEquipo2;
+    private TextView formacionEquipo1;
+    private TextView formacionEquipo2;
+    private ImageView imagenEquipo1;
+    private ImageView imagenEquipo2;
+    private ListaJugadoresAdapter adapterEquipo1;
+    private ListaJugadoresAdapter adapterEquipo2;
 
-    /*
+    public AlineacionesFragment() {
+        // Constructor vacío requerido por Android
+    }
 
-        Esto es un FactoryMethod.
-        Los datos están siendo enviados ANTES del onCreate.
-        El Bundle permanece cuando se tiene que recrear.
-     */
-    public static AlineacionesFragment newInstance(ArrayList<String> arbitros, ArrayList<String> titulosArbitros) {
+    public static AlineacionesFragment newInstance(Equipo e1, Equipo e2) {
         AlineacionesFragment fragment = new AlineacionesFragment();
         Bundle args = new Bundle();
-        //Esto no tiene mucha ciencia -> Clave, valor.
-        args.putStringArrayList(ARBITROS, arbitros);
-        args.putStringArrayList(TITULO_ARBITROS, titulosArbitros);
+        args.putParcelable(JUGADORES_EQUIPO1, e1);
+        args.putParcelable(JUGADORES_EQUIPO2, e2);
         fragment.setArguments(args);
         return fragment;
     }
-
-    /*
-        Aquí están disponibles ya los datos necesarios.
-     */
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            listaArbitros = getArguments().getStringArrayList(ARBITROS);
-            listaTitulosArbitros = getArguments().getStringArrayList(TITULO_ARBITROS);
+            jugadoresEquipo1 = getArguments().getParcelable(JUGADORES_EQUIPO1);
+            jugadoresEquipo2 = getArguments().getParcelable(JUGADORES_EQUIPO2);
         }
     }
 
-    /* Al crear la vista, cargamos los valores necesarios */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_arbitros, container, false);
+        View root = inflater.inflate(R.layout.fragment_alineaciones, container, false);
 
-        // Obten el RecyclerView del diseño del fragmento
-        RecyclerView recyclerView = root.findViewById(R.id.reciclerViewArbitros);
-        recyclerView.setHasFixedSize(true);
+        recyclerViewJugadoresEquipo1 = root.findViewById(R.id.recyclerViewJugadoresEquipo1);
+        recyclerViewJugadoresEquipo2 = root.findViewById(R.id.recyclerViewJugadoresEquipo2);
+        nombreEquipo1 = root.findViewById(R.id.nombreEquipo1);
+        nombreEquipo2 = root.findViewById(R.id.nombreEquipo2);
+        entrenadorEquipo1 = root.findViewById(R.id.entrenadorEquipo1);
+        entrenadorEquipo2 = root.findViewById(R.id.entrenadorEquipo2);
+        formacionEquipo1 = root.findViewById(R.id.formacionEquipo1);
+        formacionEquipo2 = root.findViewById(R.id.formacionEquipo2);
+        imagenEquipo1 = root.findViewById(R.id.imagenEquipo1);
+        imagenEquipo2 = root.findViewById(R.id.imagenEquipo2);
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(layoutManager);
+        // Configura los RecyclerViews con los adaptadores
+        if (jugadoresEquipo1.getPlantillaTitular().size()>0) {
+            this.adapterEquipo1 = new ListaJugadoresAdapter(this.jugadoresEquipo1.getPlantillaTitular(), new ListaJugadoresAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(Jugador item) {
+                    // Maneja el clic en un elemento de la lista si es necesario
+                }
+            });
+            setUpRecyclerView(recyclerViewJugadoresEquipo1, adapterEquipo1);
+        } else {
+            // carga no_disponible
+        }
 
-        // Crea una instancia del adaptador y pásale la lista de intérpretes y un listener si es necesario
-        ListaArbitrosAdapter adapter = new ListaArbitrosAdapter(listaArbitros, listaTitulosArbitros, new ListaArbitrosAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(String item) {
-                // Maneja el clic en un elemento de la lista si es necesario
-            }
-        });
 
-        // Configura el adaptador en el RecyclerView
-        recyclerView.setAdapter(adapter);
+        if (jugadoresEquipo2.getPlantillaTitular().size()>0) {
+            this.adapterEquipo2 = new ListaJugadoresAdapter(this.jugadoresEquipo2.getPlantillaTitular(), new ListaJugadoresAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(Jugador item) {
+                    // Maneja el clic en un elemento de la lista si es necesario
+                }
+            });
+            setUpRecyclerView(recyclerViewJugadoresEquipo2, adapterEquipo2);
+        } else {
+            // carga no_disponible
+        }
+
+        cargarDatos();
 
         return root;
+    }
+
+    private void setUpRecyclerView(RecyclerView recyclerView, ListaJugadoresAdapter adapter) {
+        // Configura el RecyclerView y su adaptador
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+    }
+
+    private void cargarDatos() {
+        // Aquí deberías cargar los datos reales de tus equipos
+        nombreEquipo1.setText(jugadoresEquipo1.getNombre());
+        nombreEquipo2.setText(jugadoresEquipo2.getNombre());
+        entrenadorEquipo1.setText(jugadoresEquipo1.getEntrenador());
+        entrenadorEquipo2.setText(jugadoresEquipo2.getEntrenador());
+        formacionEquipo1.setText(jugadoresEquipo1.getFormacion());
+        formacionEquipo2.setText(jugadoresEquipo2.getFormacion());
+
+        Picasso.get().load(jugadoresEquipo1.getUrlImagenEscudo()).into(imagenEquipo1);
+        Picasso.get().load(jugadoresEquipo2.getUrlImagenEscudo()).into(imagenEquipo2);
     }
 }
