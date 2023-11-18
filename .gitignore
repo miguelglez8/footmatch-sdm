@@ -1,0 +1,40 @@
+# Archivos de configuración local
+./local.properties
+
+# Archivos generados automáticamente por el sistema de generación de firmas de Android
+./signingConfigs/
+./signing.properties
+
+# Directorio de caché de la biblioteca de dependencias
+./.cxx
+
+# Archivos de registro
+./*.log
+
+# Android Studio
+./*/build/
+./*/out
+./*.iml
+./.externalNativeBuild
+
+# Componentes de Android para instrumentación
+./app/*/test/
+./app/*/androidTest/
+
+# Varios archivos temporales
+./gradle-wrapper.jar
+./.gradle/
+./.idea/workspace.xml
+./.idea/libraries
+./.DS_Store
+./captures
+
+# Ejemplos y archivos de prueba
+./app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/example/app/BuildConfig.java
+./app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/example/app/R.java
+./app/build/intermediates/manifests/full/debug/AndroidManifest.xml
+./app/build/intermediates/manifests/full/debug/output-metadata.json
+
+# Plugins
+./.gradle
+./captures/
