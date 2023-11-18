@@ -15,6 +15,15 @@ public class Equipo implements Parcelable {
     private int puntos;
     private String entrenador;
 
+    public Equipo(String nombre, String urlImagenEscudo, int puntos) {
+        this.nombre = nombre;
+        this.plantillaTitular = plantillaTitular;
+        this.formacion = formacion;
+        this.urlImagenEscudo = urlImagenEscudo;
+        this.puntos = puntos;
+        this.entrenador = entrenador;
+    }
+
     protected Equipo(Parcel in) {
         nombre = in.readString();
         plantillaTitular = in.createTypedArrayList(Jugador.CREATOR);
