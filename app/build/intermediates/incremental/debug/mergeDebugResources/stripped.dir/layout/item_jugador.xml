@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- list_item_jugador.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <!-- Dorsal del Jugador -->
+    <TextView
+        android:id="@+id/textDorsal"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:text="10"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="#333" />
+
+    <!-- Nombre del Jugador y Posición -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginStart="16dp">
+
+        <!-- Nombre del Jugador -->
+        <TextView
+            android:id="@+id/textNombreJugador"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lionel_messi"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#000" />
+
+        <!-- Posición del Jugador -->
+        <TextView
+            android:id="@+id/textPosicion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/delantero"
+            android:textSize="16sp"
+            android:textColor="#666" />
+    </LinearLayout>
+</LinearLayout>

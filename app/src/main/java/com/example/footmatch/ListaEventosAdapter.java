@@ -17,6 +17,9 @@ import java.util.List;
 
 public class ListaEventosAdapter extends RecyclerView.Adapter<ListaEventosAdapter.EventoViewHolder> {
 
+    private static final int TIPO_LOCAL = 0;
+    private static final int TIPO_VISITANTE = 1;
+
     // Interfaz para manejar el evento click sobre un elemento
     public interface OnItemClickListener {
         void onItemClick(Evento item);
@@ -30,15 +33,33 @@ public class ListaEventosAdapter extends RecyclerView.Adapter<ListaEventosAdapte
         this.listener = listener;
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        // Devuelve el tipo de vista en función de si es local o no
+        if (listaEventos.get(position).isLocal()) {
+            return TIPO_LOCAL;
+        } else {
+            return TIPO_VISITANTE;
+        }
+    }
+
     /* Indicamos el layout a "inflar" para usar en la vista */
     @NonNull
     @Override
     public EventoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // Creamos la vista con el layout para un elemento
         // se debe de añadir la de local o la de visitante
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_evento_local, parent, false);
-        return new EventoViewHolder(itemView);
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        switch (viewType) {
+            case TIPO_LOCAL:
+                View tipoAView = inflater.inflate(R.layout.item_evento_local, parent, false);
+                return new EventoViewHolder(tipoAView);
+            case TIPO_VISITANTE:
+                View tipoBView = inflater.inflate(R.layout.item_evento_visitante, parent, false);
+                return new EventoViewHolder(tipoBView);
+            default:
+                return null;
+        }
     }
 
     /** Asocia el contenido a los componentes de la vista,

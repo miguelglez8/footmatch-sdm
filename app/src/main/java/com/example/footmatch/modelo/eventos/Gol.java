@@ -12,7 +12,6 @@ import com.example.footmatch.modelo.Jugador;
 public class Gol extends Evento implements Parcelable {
     private Jugador jugadorGol;
     private Jugador jugadorAsistencia;
-
     private String urlGol, urlAsistencia;
 
     protected Gol(Parcel in) {

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.footmatch.app-mergeDebugResources-38:/values-tr/values-tr.xml",
+            "outputFile": "com.example.footmatch.app-mergeDebugResources-33:/values-tr/values-tr.xml",
             "map": [
                 {
                     "source": "C:\\Users\\migue\\.gradle\\caches\\transforms-3\\e5f321a248aa217236dda4759916dcd9\\transformed\\material-1.9.0\\res\\values-tr\\values-tr.xml",

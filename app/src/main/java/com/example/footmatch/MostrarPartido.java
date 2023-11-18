@@ -1,6 +1,7 @@
 package com.example.footmatch;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -53,6 +54,14 @@ public class MostrarPartido extends AppCompatActivity {
         estadoPartido = findViewById(R.id.estadoPartido);
         estadoPartido.setEnabled(false);
 
+        if (partido.getEstadoPartido().equals("NO_EMPEZADO")) {
+            estadoPartido.setBackgroundColor(Color.parseColor("#CCCCCC"));
+        } else if (partido.getEstadoPartido().equals("EN_JUEGO")) {
+            estadoPartido.setBackgroundColor(Color.parseColor("#FFFF00"));
+        } else {
+            estadoPartido.setBackgroundColor(Color.parseColor("#555555"));
+        }
+
         // Cargar datos del partido en las vistas
         mostrarDatos(partido);
     }
@@ -76,7 +85,8 @@ public class MostrarPartido extends AppCompatActivity {
                 /* Argumento solamente necesita.... El argumento de la película */
 
                 EstadisticasFragment estadisticasFragment=EstadisticasFragment.newInstance
-                        (partido.getEquipoLocal(), partido.getEquipoVisitante(), partido.getEstadisticasPartido());
+                        (partido.getEquipoLocal(), partido.getEquipoVisitante(), partido.getEstadisticasPartidoE1(),
+                                partido.getEstadisticasPartidoE2(), partido.getEstadisticasE1(), partido.getEstadisticasE2());
 
                 /* ¿Qué estaremos haciendo aquí? */
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, estadisticasFragment).commit();
@@ -154,7 +164,8 @@ public class MostrarPartido extends AppCompatActivity {
                     .load(partido.getEquipoVisitante().getUrlImagenEscudo()).into(imagenEquipo2);
 
             EstadisticasFragment estadisticasFragment=EstadisticasFragment.newInstance
-                    (partido.getEquipoLocal(), partido.getEquipoVisitante(), partido.getEstadisticasPartido());
+                    (partido.getEquipoLocal(), partido.getEquipoVisitante(), partido.getEstadisticasPartidoE1(),
+                            partido.getEstadisticasPartidoE2(), partido.getEstadisticasE1(), partido.getEstadisticasE2());
 
             /* ¿Qué estaremos haciendo aquí? */
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, estadisticasFragment).commit();

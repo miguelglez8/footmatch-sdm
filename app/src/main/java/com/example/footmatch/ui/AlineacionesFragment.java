@@ -26,10 +26,8 @@ public class AlineacionesFragment extends Fragment {
 
     private static final String JUGADORES_EQUIPO1 = "Equipo1";
     private static final String JUGADORES_EQUIPO2 = "Equipo2";
-
     private Equipo jugadoresEquipo1;
     private Equipo jugadoresEquipo2;
-
     private RecyclerView recyclerViewJugadoresEquipo1;
     private RecyclerView recyclerViewJugadoresEquipo2;
     private TextView nombreEquipo1;

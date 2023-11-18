@@ -10,9 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.footmatch.ListaEventosAdapter;
-import com.example.footmatch.ListaJugadoresAdapter;
 import com.example.footmatch.R;
-import com.example.footmatch.modelo.Jugador;
 import com.example.footmatch.modelo.eventos.Evento;
 
 import java.util.List;
@@ -23,11 +21,11 @@ public class EventosFragment extends Fragment {
     private List<Evento> listaEventos;
     private RecyclerView recyclerViewGoles;
     private RecyclerView recyclerViewTarjetas;
-    private RecyclerView recyclerViewOtros;
+    private RecyclerView recyclerViewCambios;
 
     private ListaEventosAdapter adapterGoles;
     private ListaEventosAdapter adapterTarjetas;
-    private ListaEventosAdapter adapterOtros;
+    private ListaEventosAdapter adapterCambios;
 
     public EventosFragment() {
         // Constructor vacío requerido por Android
@@ -56,7 +54,7 @@ public class EventosFragment extends Fragment {
 
         recyclerViewGoles = root.findViewById(R.id.recyclerViewGoles);
         recyclerViewTarjetas = root.findViewById(R.id.recyclerViewTarjetas);
-        recyclerViewOtros = root.findViewById(R.id.recyclerViewOtros);
+        recyclerViewCambios = root.findViewById(R.id.recyclerViewOtros);
 
         // Configura los RecyclerViews con los adaptadores
         // Configura los RecyclerViews con los adaptadores
@@ -76,13 +74,13 @@ public class EventosFragment extends Fragment {
         });
         setUpRecyclerView(recyclerViewTarjetas, adapterTarjetas);
         // Configura los RecyclerViews con los adaptadores
-        this.adapterOtros = new ListaEventosAdapter(listaEventos, new ListaEventosAdapter.OnItemClickListener() {
+        this.adapterCambios = new ListaEventosAdapter(listaEventos, new ListaEventosAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Evento item) {
                 // Maneja el clic en un elemento de la lista si es necesario
             }
         });
-        setUpRecyclerView(recyclerViewOtros, adapterOtros);
+        setUpRecyclerView(recyclerViewCambios, adapterCambios);
 
         return root;
     }

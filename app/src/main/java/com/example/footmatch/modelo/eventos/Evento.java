@@ -12,4 +12,16 @@ public abstract class Evento implements Parcelable {
     }
     public abstract int getPrimerUrl();
     public abstract int getSegundoUrl();
+
+    public void setMinuto(int minuto) {
+        this.minuto = minuto;
+    }
+
+    public boolean isLocal() {
+        return local;
+    }
+
+    public void setLocal(boolean local) {
+        this.local = local;
+    }
 }

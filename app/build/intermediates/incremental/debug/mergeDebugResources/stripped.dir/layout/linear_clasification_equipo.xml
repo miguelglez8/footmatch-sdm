@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:baselineAligned="false">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imagenEquipo"
+            android:layout_marginTop="6dp"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/equipoLiga"
+            android:layout_width="124dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <TextView
+            android:id="@+id/puntosEquipo"
+            android:layout_width="42dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="122dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -3290,6 +3290,10 @@ id end
 id endToStart
 id enterAlways
 id enterAlwaysCollapsed
+id entrenadorEquipo1
+id entrenadorEquipo2
+id equipo1Layout
+id equipo2Layout
 id equipoLiga
 id equipoLocalNombreTextView
 id equipoVisitanteImageView
@@ -3315,6 +3319,8 @@ id fixed
 id flip
 id floating
 id forever
+id formacionEquipo1
+id formacionEquipo2
 id fragment_container
 id fragment_container_view_tag
 id frost
@@ -3371,6 +3377,7 @@ id liga_jornada
 id line1
 id line3
 id linear
+id linear_layout_estadisticas
 id listMode
 id list_item
 id locale
@@ -3450,7 +3457,6 @@ id navigation_bar_item_icon_view
 id navigation_bar_item_labels_group
 id navigation_bar_item_large_label_view
 id navigation_bar_item_small_label_view
-id navigation_clasification
 id navigation_events
 id navigation_header_container
 id navigation_referees
@@ -3512,6 +3518,8 @@ id rectangles
 id recyclerClasificacion
 id recyclerView
 id recyclerViewGoles
+id recyclerViewJugadoresEquipo1
+id recyclerViewJugadoresEquipo2
 id recyclerViewOtros
 id recyclerViewTarjetas
 id recycler_view
@@ -3625,8 +3633,11 @@ id team2
 id teams
 id text
 id text2
+id textDorsal
 id textEnd
 id textNoDisponible
+id textNombreJugador
+id textPosicion
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
@@ -3830,6 +3841,7 @@ layout image_frame
 layout item_arbitros
 layout item_evento_local
 layout item_evento_visitante
+layout item_jugador
 layout item_no_disponible
 layout linea_recycler_view_partido
 layout linear_clasification_equipo
@@ -3972,7 +3984,10 @@ string character_counter_pattern
 string clasification
 string clear_text_end_icon_content_description
 string copy
+string delantero
 string di_mar_a
+string entrenador_ancelotti
+string entrenador_xavi
 string equipos
 string error_a11y_label
 string error_icon_content_description
@@ -3986,6 +4001,7 @@ string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
 string fecha
 string finalizado
+string formaci_n_4_4_2
 string gol
 string goles
 string hide_bottom_view_on_scroll_behavior
@@ -3995,6 +4011,7 @@ string large_text
 string lesi_n
 string leyenda
 string liga_ea_sports_jornada_10
+string lionel_messi
 string m3_ref_typeface_brand_medium
 string m3_ref_typeface_brand_regular
 string m3_ref_typeface_plain_medium

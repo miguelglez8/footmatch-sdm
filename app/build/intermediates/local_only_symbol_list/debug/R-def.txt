@@ -32,6 +32,10 @@ id app_bar
 id bottomNavigationView
 id derrotas
 id empates
+id entrenadorEquipo1
+id entrenadorEquipo2
+id equipo1Layout
+id equipo2Layout
 id equipoLiga
 id equipoLocalNombreTextView
 id equipoVisitanteImageView
@@ -40,6 +44,8 @@ id estadio
 id estadoPartido
 id fechaPartido
 id fechaTextView
+id formacionEquipo1
+id formacionEquipo2
 id fragment_container
 id goles
 id icono1
@@ -54,6 +60,7 @@ id ligaEASports
 id ligaPremier
 id ligaSerieA
 id liga_jornada
+id linear_layout_estadisticas
 id logoLiga
 id minutoPartido
 id minuto_evento
@@ -63,7 +70,6 @@ id nav_noticias
 id nav_notificaciones
 id nav_view
 id navigation_alineations
-id navigation_clasification
 id navigation_events
 id navigation_referees
 id navigation_stats
@@ -84,6 +90,8 @@ id reciclerViewArbitros
 id recyclerClasificacion
 id recyclerView
 id recyclerViewGoles
+id recyclerViewJugadoresEquipo1
+id recyclerViewJugadoresEquipo2
 id recyclerViewOtros
 id recyclerViewTarjetas
 id resultadoPartido
@@ -93,7 +101,10 @@ id stats_match
 id team1
 id team2
 id teams
+id textDorsal
 id textNoDisponible
+id textNombreJugador
+id textPosicion
 id tiros
 id tvArbitroName
 id tvFunction
@@ -112,6 +123,7 @@ layout fragment_eventos
 layout item_arbitros
 layout item_evento_local
 layout item_evento_visitante
+layout item_jugador
 layout item_no_disponible
 layout linea_recycler_view_partido
 layout linear_clasification_equipo
@@ -136,7 +148,10 @@ string bota
 string camp_nou
 string carlos_fern_ndez_garc_a
 string clasification
+string delantero
 string di_mar_a
+string entrenador_ancelotti
+string entrenador_xavi
 string equipos
 string escudo_equipo_local_image_description
 string escudo_equipo_visitante_image_description
@@ -144,12 +159,14 @@ string estad_sticas_del_partido
 string events
 string fecha
 string finalizado
+string formaci_n_4_4_2
 string gol
 string goles
 string large_text
 string lesi_n
 string leyenda
 string liga_ea_sports_jornada_10
+string lionel_messi
 string madrid
 string mbapp
 string n_mero_de_derrotas

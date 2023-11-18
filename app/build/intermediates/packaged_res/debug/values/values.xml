@@ -25,7 +25,10 @@
     <string name="camp_nou">CAMP NOU</string>
     <string name="carlos_fern_ndez_garc_a">Carlos Fernández García</string>
     <string name="clasification">CLASIFICACIÓN</string>
+    <string name="delantero">Delantero</string>
     <string name="di_mar_a">Di María</string>
+    <string name="entrenador_ancelotti">Entrenador: Ancelotti</string>
+    <string name="entrenador_xavi">Entrenador: Xavi</string>
     <string name="equipos">EQUIPOS</string>
     <string name="escudo_equipo_local_image_description">Escudo equipo local</string>
     <string name="escudo_equipo_visitante_image_description">escudo equipo visitante</string>
@@ -33,6 +36,7 @@
     <string name="events">EVENTOS</string>
     <string name="fecha">09 NOV</string>
     <string name="finalizado">FINALIZADO</string>
+    <string name="formaci_n_4_4_2">Formación: 4-4-2</string>
     <string name="gol">Gol</string>
     <string name="goles">Goles</string>
     <string name="large_text">
@@ -127,6 +131,7 @@
     <string name="lesi_n">Lesión</string>
     <string name="leyenda">LEYENDA</string>
     <string name="liga_ea_sports_jornada_10">LIGA EASPORTS JORNADA 10</string>
+    <string name="lionel_messi">Lionel Messi</string>
     <string name="madrid">REAL MADRID</string>
     <string name="mbapp">Mbappé</string>
     <string name="n_mero_de_derrotas">Número de derrotas</string>

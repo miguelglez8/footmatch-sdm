@@ -12,6 +12,37 @@ import java.util.List;
 
 public class Partido implements Parcelable {
 
+    protected Partido(Parcel in) {
+        equipoLocal = in.readParcelable(Equipo.class.getClassLoader());
+        equipoVisitante = in.readParcelable(Equipo.class.getClassLoader());
+        resultado = in.readString();
+        fechaPartido = in.readString();
+        estadoPartido = in.readString();
+        liga = in.readString();
+        urlLiga = in.readString();
+        jornada = in.readString();
+        estadio = in.readString();
+        estadisticasPartidoE1 = in.readParcelable(EstadisticasPartido.class.getClassLoader());
+        estadisticasPartidoE2 = in.readParcelable(EstadisticasPartido.class.getClassLoader());
+        estadisticasE1 = in.readParcelable(Estadisticas.class.getClassLoader());
+        estadisticasE2 = in.readParcelable(Estadisticas.class.getClassLoader());
+        hora = in.readString();
+        minutoJuego = in.readString();
+        arbitros = in.createTypedArrayList(Arbitro.CREATOR);
+    }
+
+    public static final Creator<Partido> CREATOR = new Creator<Partido>() {
+        @Override
+        public Partido createFromParcel(Parcel in) {
+            return new Partido(in);
+        }
+
+        @Override
+        public Partido[] newArray(int size) {
+            return new Partido[size];
+        }
+    };
+
     public String getUrlLiga() {
         return urlLiga;
     }
@@ -53,59 +84,46 @@ public class Partido implements Parcelable {
     private String urlLiga;
     private String jornada;
     private String estadio;
-    private EstadisticasPartido estadisticasPartido;
+    private EstadisticasPartido estadisticasPartidoE1;
+    private EstadisticasPartido estadisticasPartidoE2;
+    private Estadisticas estadisticasE1;
+    private Estadisticas estadisticasE2;
+
+    public EstadisticasPartido getEstadisticasPartidoE1() {
+        return estadisticasPartidoE1;
+    }
+
+    public void setEstadisticasPartidoE1(EstadisticasPartido estadisticasPartidoE1) {
+        this.estadisticasPartidoE1 = estadisticasPartidoE1;
+    }
+
+    public EstadisticasPartido getEstadisticasPartidoE2() {
+        return estadisticasPartidoE2;
+    }
+
+    public void setEstadisticasPartidoE2(EstadisticasPartido estadisticasPartidoE2) {
+        this.estadisticasPartidoE2 = estadisticasPartidoE2;
+    }
+
+    public Estadisticas getEstadisticasE1() {
+        return estadisticasE1;
+    }
+
+    public void setEstadisticasE1(Estadisticas estadisticasE1) {
+        this.estadisticasE1 = estadisticasE1;
+    }
+
+    public Estadisticas getEstadisticasE2() {
+        return estadisticasE2;
+    }
+
+    public void setEstadisticasE2(Estadisticas estadisticasE2) {
+        this.estadisticasE2 = estadisticasE2;
+    }
     private String hora; // 18:45
     private String minutoJuego; // "" si no se jugó, "34'" si está en el 34 y "90'" si ya se jugó
     private List<Arbitro> arbitros;
     private List<Evento> eventos; // gol, cambio, lesión o tarjeta (tienen que ir en orden)
-
-    protected Partido(Parcel in) {
-        equipoLocal = in.readParcelable(Equipo.class.getClassLoader());
-        equipoVisitante = in.readParcelable(Equipo.class.getClassLoader());
-        resultado = in.readString();
-        fechaPartido = in.readString();
-        estadoPartido = in.readString();
-        liga = in.readString();
-        urlLiga = in.readString();
-        jornada = in.readString();
-        estadio = in.readString();
-        hora = in.readString();
-        minutoJuego = in.readString();
-        arbitros = in.createTypedArrayList(Arbitro.CREATOR);
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeParcelable(equipoLocal, flags);
-        dest.writeParcelable(equipoVisitante, flags);
-        dest.writeString(resultado);
-        dest.writeString(fechaPartido);
-        dest.writeString(estadoPartido);
-        dest.writeString(liga);
-        dest.writeString(urlLiga);
-        dest.writeString(jornada);
-        dest.writeString(estadio);
-        dest.writeString(hora);
-        dest.writeString(minutoJuego);
-        dest.writeTypedList(arbitros);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<Partido> CREATOR = new Creator<Partido>() {
-        @Override
-        public Partido createFromParcel(Parcel in) {
-            return new Partido(in);
-        }
-
-        @Override
-        public Partido[] newArray(int size) {
-            return new Partido[size];
-        }
-    };
 
     public void setEquipoLocal(Equipo equipoLocal) {
         this.equipoLocal = equipoLocal;
@@ -153,14 +171,6 @@ public class Partido implements Parcelable {
 
     public void setEstadio(String estadio) {
         this.estadio = estadio;
-    }
-
-    public EstadisticasPartido getEstadisticasPartido() {
-        return estadisticasPartido;
-    }
-
-    public void setEstadisticasPartido(EstadisticasPartido estadisticasPartido) {
-        this.estadisticasPartido = estadisticasPartido;
     }
 
     public String getHora() {
@@ -214,4 +224,28 @@ public class Partido implements Parcelable {
         return estadio;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeParcelable(equipoLocal, i);
+        parcel.writeParcelable(equipoVisitante, i);
+        parcel.writeString(resultado);
+        parcel.writeString(fechaPartido);
+        parcel.writeString(estadoPartido);
+        parcel.writeString(liga);
+        parcel.writeString(urlLiga);
+        parcel.writeString(jornada);
+        parcel.writeString(estadio);
+        parcel.writeParcelable(estadisticasPartidoE1, i);
+        parcel.writeParcelable(estadisticasPartidoE2, i);
+        parcel.writeParcelable(estadisticasE1, i);
+        parcel.writeParcelable(estadisticasE2, i);
+        parcel.writeString(hora);
+        parcel.writeString(minutoJuego);
+        parcel.writeTypedList(arbitros);
+    }
 }

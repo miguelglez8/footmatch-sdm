@@ -11,6 +11,30 @@ public class Equipo implements Parcelable {
     private String nombre;
     private List<Jugador> plantillaTitular;
     private String formacion;
+    private String urlImagenEscudo;
+    private int puntos;
+    private String entrenador;
+
+    protected Equipo(Parcel in) {
+        nombre = in.readString();
+        plantillaTitular = in.createTypedArrayList(Jugador.CREATOR);
+        formacion = in.readString();
+        urlImagenEscudo = in.readString();
+        puntos = in.readInt();
+        entrenador = in.readString();
+    }
+
+    public static final Creator<Equipo> CREATOR = new Creator<Equipo>() {
+        @Override
+        public Equipo createFromParcel(Parcel in) {
+            return new Equipo(in);
+        }
+
+        @Override
+        public Equipo[] newArray(int size) {
+            return new Equipo[size];
+        }
+    };
 
     public List<Jugador> getPlantillaTitular() {
         return plantillaTitular;
@@ -27,50 +51,6 @@ public class Equipo implements Parcelable {
     public void setFormacion(String formacion) {
         this.formacion = formacion;
     }
-
-    public Estadisticas getEstadisticas() {
-        return estadisticas;
-    }
-
-    public void setEstadisticas(Estadisticas estadisticas) {
-        this.estadisticas = estadisticas;
-    }
-
-    private Estadisticas estadisticas;
-
-    protected Equipo(Parcel in) {
-        nombre = in.readString();
-        formacion = in.readString();
-        urlImagenEscudo = in.readString();
-        puntos = in.readInt();
-        entrenador = in.readString();
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(nombre);
-        dest.writeString(formacion);
-        dest.writeString(urlImagenEscudo);
-        dest.writeInt(puntos);
-        dest.writeString(entrenador);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<Equipo> CREATOR = new Creator<Equipo>() {
-        @Override
-        public Equipo createFromParcel(Parcel in) {
-            return new Equipo(in);
-        }
-
-        @Override
-        public Equipo[] newArray(int size) {
-            return new Equipo[size];
-        }
-    };
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -96,16 +76,6 @@ public class Equipo implements Parcelable {
         this.entrenador = entrenador;
     }
 
-    private String urlImagenEscudo;
-    private int puntos;
-    private String entrenador;
-
-    public Equipo(String nombre, String urlImagen, int puntos){
-        this.nombre = nombre;
-        this.urlImagenEscudo = urlImagen;
-        this.puntos = puntos;
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -115,4 +85,19 @@ public class Equipo implements Parcelable {
     }
 
     public int getPuntos(){return puntos; }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeString(nombre);
+        parcel.writeTypedList(plantillaTitular);
+        parcel.writeString(formacion);
+        parcel.writeString(urlImagenEscudo);
+        parcel.writeInt(puntos);
+        parcel.writeString(entrenador);
+    }
 }
