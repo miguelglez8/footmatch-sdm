@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.footmatch.modelo.Equipo;
 import com.example.footmatch.modelo.Partido;
-import com.squareup.picasso.Picasso;
+
 
 import java.util.List;
 
@@ -57,8 +57,8 @@ public class ClasificacionAdapter extends RecyclerView.Adapter<ClasificacionAdap
         public void bindUser(@NonNull final Equipo equipo, final OnItemClickListener listener) {
             nombreEquipo.setText(equipo.getNombre());
             puntosEquipo.setText(String.valueOf(equipo.getPuntos()));
-            Picasso.get()
-                    .load(equipo.getUrlImagenEscudo()).into(escudo);
+            //Picasso.get()
+            //        .load(equipo.getUrlImagenEscudo()).into(escudo);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
