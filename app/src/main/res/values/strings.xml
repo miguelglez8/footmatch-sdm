@@ -95,4 +95,7 @@
     <string name="partidos_jugados">Partidos jugados</string>
     <string name="escudo_equipo_local_image_description">Escudo equipo local</string>
     <string name="escudo_equipo_visitante_image_description">escudo equipo visitante</string>
+    <string name="yesterdayMatches">Ayer</string>
+    <string name="todayMatches">Hoy</string>
+    <string name="allMatches">Todos</string>
 </resources>
