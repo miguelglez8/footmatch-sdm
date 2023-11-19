@@ -1,131 +1,116 @@
-package com.example.footmatch;
+package com.example.footmatch
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.annotation.SuppressLint
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import com.example.footmatch.ListaPartidosAdapter.PartidoViewHolder
+import com.example.footmatch.modelo.Partido
+import com.example.footmatch.modelo.pojos.Match
+import com.squareup.picasso.Picasso
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+class ListaPartidosAdapter(
+    private var matchList: List<Match> = emptyList(),
+    private val onItemSelected: (Match) -> Unit
+) : RecyclerView.Adapter<PartidoViewHolder>() {
 
-import com.example.footmatch.modelo.Partido;
-import com.example.footmatch.modelo.pojos.MatchResponse;
-import com.squareup.picasso.Picasso;
-
-import java.util.List;
-
-public class ListaPartidosAdapter extends RecyclerView.Adapter<ListaPartidosAdapter.PartidoViewHolder> {
-
-    // Interfaz para manejar el evento click sobre un elemento
-    public interface OnItemClickListener {
-        void onItemClick(Partido item);
-    }
-
-    private List<MatchResponse> matchList;
-    private final OnItemClickListener listener;
-
-    public ListaPartidosAdapter(List<MatchResponse> matchList, OnItemClickListener listener) {
-        this.matchList = matchList;
-        this.listener = listener;
-    }
 
     /*Clase interna que define los compoonentes de la vista*/
+    class PartidoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val logoLocal: ImageView
+        private val nombreLocal: TextView
+        private val logoVisitante: ImageView
+        private val nombreVisitante: TextView
+        private val resultadoLocal: TextView
+        private val resultadoVisitante: TextView
+        private val fecha: TextView
 
-    public static class PartidoViewHolder extends RecyclerView.ViewHolder{
-
-        private ImageView logoLocal;
-        private TextView nombreLocal;
-
-        private ImageView logoVisitante;
-        private TextView nombreVisitante;
-
-        private TextView resultadoLocal;
-        private TextView resultadoVisitante;
-
-        private TextView fecha;
-
-        public PartidoViewHolder(View itemView) {
-            super(itemView);
-            logoLocal = (ImageView) itemView.findViewById(R.id.imagenClasificacion);
-            nombreLocal = (TextView) itemView.findViewById(R.id.equipoLocalNombreTextView);
-            logoVisitante = (ImageView) itemView.findViewById(R.id.equipoVisitanteImageView);
-            nombreVisitante = (TextView) itemView.findViewById(R.id.equipoVisitanteNombreTextView);
-            resultadoLocal = (TextView) itemView.findViewById(R.id.localTextView);
-            resultadoVisitante = (TextView) itemView.findViewById(R.id.visitanteTextView);
-            fecha = (TextView) itemView.findViewById(R.id.fechaTextView);
+        init {
+            logoLocal = itemView.findViewById<View>(R.id.equipoLocalImageView) as ImageView
+            nombreLocal = itemView.findViewById<View>(R.id.equipoLocalNombreTextView) as TextView
+            logoVisitante = itemView.findViewById<View>(R.id.equipoVisitanteImageView) as ImageView
+            nombreVisitante =
+                itemView.findViewById<View>(R.id.equipoVisitanteNombreTextView) as TextView
+            resultadoLocal = itemView.findViewById<View>(R.id.localTextView) as TextView
+            resultadoVisitante = itemView.findViewById<View>(R.id.visitanteTextView) as TextView
+            fecha = itemView.findViewById<View>(R.id.fechaTextView) as TextView
         }
 
         // asignar valores a los componentes
-        public void bindUser(final MatchResponse match, final OnItemClickListener listener) {
+        fun bindUser(match: Match, listener: (Match) -> Unit) {
 
             // cargar imagen local
             Picasso.get()
-                    .load(match.getHomeTeam().getCrest()).into(logoLocal);
+                .load(match.homeTeam.crest).into(logoVisitante)
             // cargar imagen visitante
             Picasso.get()
-                    .load(match.getAwayTeam().getCrest()).into(logoVisitante);
+                .load(match.awayTeam.crest).into(logoVisitante)
             // cargar nombre equipo local
-            nombreLocal.setText(match.getHomeTeam().getShortName());
+            nombreLocal.text = match.homeTeam.shortName
             // cargar nombre equipo visitante
-            nombreVisitante.setText(match.getAwayTeam().getShortName());
+            nombreVisitante.text = match.awayTeam.shortName
             // cargar resultado
-            if (match.getScore().getWinner() != null) {
-                resultadoLocal.setText(match.getScore().getFullTime().getHome());
-                resultadoVisitante.setText(match.getScore().getFullTime().getAway());
-            }else{
-                resultadoLocal.setText("");
-                resultadoVisitante.setText("");
+            if (match.score.winner != null) {
+                resultadoLocal.text = match.score.fullTime.home.toString()
+                resultadoVisitante.text = match.score.fullTime.away.toString()
+            } else {
+                resultadoLocal.text = ""
+                resultadoVisitante.text = ""
             }
-            //resultadoLocal.setText(match.getScore().getFullTime().getHome());
-            //resultadoVisitante.setText(match.getScore().getFullTime().getAway());
             // cargar fecha partido
-            fecha.setText(formatDate(match.getUtcDate()));
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override public void onClick(View v) {
-                    // De momento no hacemos nada al pulsar sobre un partido
-                }
-            });
+            fecha.text = formatDate(match.utcDate)
+            itemView.setOnClickListener {
+                // De momento no hacemos nada al pulsar sobre un partido
+            }
         }
     }
-
-    private static String formatDate(String utcDate){
-        String[] separated = utcDate.split("T");
-        String date = separated[0];
-        String hour = separated[1].substring(0,5);
-        return date+" "+hour;
+   /*
+   * Notificamos un cambio en la lista de partidos
+    */
+   @SuppressLint("NotifyDataSetChanged")
+   fun update(listaPartidos:List<Match>){
+        this.matchList = listaPartidos
+       // Cambiamos la totalidad de la lista
+       notifyDataSetChanged()
     }
+
     /* Indicamos el layout a "inflar" para usar en la vista
      */
-    @NonNull
-    @Override
-    public PartidoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PartidoViewHolder {
         // Creamos la vista con el layout para un elemento
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.linea_recycler_view_partido, parent, false);
-        return new PartidoViewHolder(itemView);
+        val itemView = LayoutInflater.from(parent.context)
+            .inflate(R.layout.linea_recycler_view_partido, parent, false)
+        return PartidoViewHolder(itemView)
     }
-
 
     /** Asocia el contenido a los componentes de la vista,
      * concretamente con nuestro PartidoViewHolder que recibimos como parámetro
      */
-    @Override
-    public void onBindViewHolder(@NonNull PartidoViewHolder holder, int position) {
+    override fun onBindViewHolder(holder: PartidoViewHolder, position: Int) {
+        Log.d("onBindViewHolder", "Elemento en posicion $position se esta vinculando")
         // Extrae de la lista el elemento indicado por posición
-        MatchResponse match= matchList.get(position);
-        Log.i("Lista","Visualiza elemento: "+match);
+        val match = matchList[position]
+        Log.i("Lista", "Visualiza elemento: $match")
         // llama al método de nuestro holder para asignar valores a los componentes
         // además, pasamos el listener del evento onClick
-        holder.bindUser(match, listener);
+        holder.bindUser(match, onItemSelected)
     }
 
-    @Override
-    public int getItemCount() {
-        return matchList.size();
+    override fun getItemCount(): Int {
+        return matchList.size
     }
 
-
-
+    companion object {
+        private fun formatDate(utcDate: String): String {
+            val separated =
+                utcDate.split("T".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+            val date = separated[0]
+            val hour = separated[1].substring(0, 5)
+            return "$date $hour"
+        }
+    }
 }

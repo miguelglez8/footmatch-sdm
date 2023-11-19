@@ -1,267 +1,221 @@
-package com.example.footmatch;
+package com.example.footmatch
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.os.Build
+import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.ImageButton
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.footmatch.modelo.Equipo
+import com.example.footmatch.modelo.Liga
+import com.example.footmatch.modelo.pojos.Match
+import com.example.footmatch.util.api.RetrofitClient
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.io.BufferedReader
+import java.io.IOException
+import java.io.InputStream
+import java.io.InputStreamReader
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.ImageButton;
-
-import com.example.footmatch.modelo.Equipo;
-import com.example.footmatch.modelo.Liga;
-import com.example.footmatch.modelo.Partido;
-import com.example.footmatch.modelo.pojos.MatchResponse;
-import com.example.footmatch.modelo.pojos.MatchesResponse;
-import com.example.footmatch.util.api.ApiService;
-import com.example.footmatch.util.api.RetrofitClient;
-
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-public class MainRecycler extends AppCompatActivity {
-
-    // identificador de intent
-    public static final String PARTIDO_SELECCIONADO = "partido_seleccionado";
-
-    public static final String PARTIDO_CREADO = "partido_creado";
-    public static final String LIGA_CREADA = "liga_creada";
-
-    // identificador de activity
-    private static final int GESTION_ACTIVITY = 1;
-
+class MainRecycler : AppCompatActivity() {
     // Modelo datos
-    List<MatchResponse> matchList = new ArrayList<>();
-    MatchResponse match;
-    RecyclerView listaPartidosView;
+    var matchList: List<Match> = ArrayList()
+    var listaPartidosView: RecyclerView? = null
+    private lateinit var listaPartidosAdapter: ListaPartidosAdapter
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_recycler);
+    private fun mostrarPartido(match:Match){
 
+    }
 
-        final ApiService apiService = RetrofitClient.getApiService();
+    // Listener para la barra de navegacion de fechas
+    private val mOnNavigationItemSelectedListener =
+        BottomNavigationView.OnNavigationItemSelectedListener { item ->
+            val itemId = item.itemId
+            // Segun el caso realizaremos una u otra llamada a la API
+            if (itemId == R.id.navigation_yesterday) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    val yesterday = LocalDate.now().minusDays(1)
+                    val dateFrom = yesterday.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+                    val today = LocalDate.now()
+                    val dateTo = today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+                    cargarPartidos(dateFrom, dateTo)
+                } else {
+                    throw IllegalStateException("Error al obtener la fecha de ayer por version API")
+                }
+                return@OnNavigationItemSelectedListener true
+            } else if (itemId == R.id.navigation_today) {
+                //cargarPartidos(apiService,lpAdapter);
+                return@OnNavigationItemSelectedListener true
+            } else if (itemId == R.id.navigation_all) {
+                //cargarPartidos(apiService,lpAdapter);
+                return@OnNavigationItemSelectedListener true
+            }
+            throw IllegalStateException("Unexpected value: " + item.itemId)
+        }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main_recycler)
+
 
         // Pasamos la lista de partidos al RecyclerView con el ListaPartidosAdapter
         // Instanciamos el adapter con los datos de la petición y lo asignamos a RecyclerView
         // Generar el adaptador, le pasamos la lista de partidos
         // y el manejador para el evento click sobre un elemento
-        ListaPartidosAdapter lpAdapter = new ListaPartidosAdapter(matchList,
-                new ListaPartidosAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(Partido partido) {
-                        /*clickonItem(partido);*/
-                    }
-                });
-
-        //Rellenar lista de partidos
-        cargarPartidos(apiService,lpAdapter);
+        listaPartidosAdapter = ListaPartidosAdapter {mostrarPartido(it)}
 
 
         // Recuperamos referencia y configuramos recyclerView con la lista de partidos
-        listaPartidosView = (RecyclerView)findViewById(R.id.recyclerView);
-        listaPartidosView.setHasFixedSize(true);
+        listaPartidosView = findViewById<View>(R.id.recyclerViewPartidos) as RecyclerView
+        listaPartidosView!!.setHasFixedSize(true)
 
         /* Un RecyclerView necesita un Layout Manager para manejar el posicionamiento de los
            elementos en cada línea. Se podría definir un LayoutManager propio extendendiendo la clase
            RecyclerView.LayoutManager. Sin embargo, en la mayoría de los casos, simplemente se usa
            una de las subclases LayoutManager predefinidas: LinearLayoutManager, GridLayoutManager,
            StaggeredGridLayoutManager*/
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        listaPartidosView.setLayoutManager(layoutManager);
+        val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(
+            applicationContext
+        )
+        listaPartidosView!!.layoutManager = layoutManager
+        listaPartidosView!!.adapter = listaPartidosAdapter
+
+        // Recuperamos la barra de navegacion de fechas
+        val dateSelection = findViewById<View>(R.id.nav_view_matches_dates) as BottomNavigationView
+        // Le establecemos el listener
+        dateSelection.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
 
 
-        listaPartidosView.setAdapter(lpAdapter);
 
         /*
         Añado a cada boton un onClick para llamar a la nueva activity con la clasificacion
          */
-        ImageButton laLiga = (ImageButton)findViewById(R.id.ligaEASports) ;
-        laLiga.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                cargarClasificacion("LL");
-            }
-        });
-        ImageButton premier = (ImageButton)findViewById(R.id.ligaPremier) ;
-        premier.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                cargarClasificacion("LP");
-            }
-        });
-        ImageButton bundes = (ImageButton)findViewById(R.id.ligaBundesliga) ;
-        bundes.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                cargarClasificacion("LB");
-            }
-        });
-        ImageButton serieA = (ImageButton)findViewById(R.id.ligaSerieA) ;
-        serieA.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                cargarClasificacion("LS");
-            }
-        });
+        val laLiga = findViewById<View>(R.id.ligaEASports) as ImageButton
+        laLiga.setOnClickListener { cargarClasificacion("LL") }
+        val premier = findViewById<View>(R.id.ligaPremier) as ImageButton
+        premier.setOnClickListener { cargarClasificacion("LP") }
+        val bundes = findViewById<View>(R.id.ligaBundesliga) as ImageButton
+        bundes.setOnClickListener { cargarClasificacion("LB") }
+        val serieA = findViewById<View>(R.id.ligaSerieA) as ImageButton
+        serieA.setOnClickListener { cargarClasificacion("LS") }
     }
 
-    private void cargarPartidos(ApiService apiService, ListaPartidosAdapter lpAdapter) {
 
-        Call<MatchesResponse> call = apiService.getMatchesBetweenDates("2023-11-09",
-                "2023-11-11");
-        call.enqueue(new Callback<MatchesResponse>() {
-            @SuppressLint("NotifyDataSetChanged")
-            @Override
-            public void onResponse(Call<MatchesResponse> call, Response<MatchesResponse> response) {
-                if (response.isSuccessful()) {
-                    //Match respuesta = response.body();
-
-                    assert response.body() != null;
-                    List<MatchResponse> result = response.body().getMatches();
-                    matchList.addAll(result);
-                    lpAdapter.notifyDataSetChanged();
-
-                } else {
-                    Log.d("fallo-api", "algun fallo al obtener respuesta de la api");
-                }
+    private fun cargarPartidos(dateFrom: String, dateTo: String) {
+        // Llamada a la API empleando corrutinas de kotlin
+        val apiService = RetrofitClient.makeClient()
+        lifecycleScope.launch(Dispatchers.IO){
+           val newMatchList = apiService.getMatchesBetweenDates(dateFrom, dateTo).matches
+            Log.d("Carga partidos", "primero cargamos partidos")
+            // Cambiamos al hilo principal para actualizar los datos
+            withContext(Dispatchers.Main)
+            {
+                // Actualizamos la lista de partidos
+                matchList = newMatchList.toMutableList()
+                Log.d("Actualizamos partidos", "despues actualizamos partidos " + matchList.size)
+                // Notificamos al adapter
+                listaPartidosAdapter.update(matchList)
             }
-
-            @Override
-            public void onFailure(Call<MatchesResponse> call, Throwable t) {
-                // Manejar errores de la solicitud
-                Log.d("fallo-api", "Algun fallo al realizar la peticion a la api",t);
-            }
-        });
-
-
-    }
-
-    private String formateaFecha(String date) {
-        String fechaEnFormatoString = "2023-10-22T20:30:00Z";
-        String result = "";
-        try {
-            @SuppressLint("SimpleDateFormat") SimpleDateFormat formatoEntrada = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-            Date fecha = formatoEntrada.parse(fechaEnFormatoString);
-
-            @SuppressLint("SimpleDateFormat") SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
-            @SuppressLint("SimpleDateFormat") SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm");
-
-            assert fecha != null;
-            String fechaFormateada = formatoFecha.format(fecha);
-            String horaFormateada = formatoHora.format(fecha);
-
-            result = fechaFormateada + " " + horaFormateada;
-
-        } catch (ParseException e) {
-            System.err.println("Error al analizar la fecha.");
         }
-        return result;
+
     }
 
-    public List<Equipo> cargarEquiposParaClasificacion(String liga){
-        Equipo equipo;
-        List<Equipo> equiposLiga = new ArrayList<Equipo>();
-        InputStream file = null;
-        InputStreamReader reader = null;
-        BufferedReader bufferedReader = null;
-
+    fun cargarEquiposParaClasificacion(liga: String?): List<Equipo> {
+        var equipo: Equipo
+        val equiposLiga: MutableList<Equipo> = ArrayList()
+        var file: InputStream? = null
+        var reader: InputStreamReader? = null
+        var bufferedReader: BufferedReader? = null
         try {
-            switch (liga){
-                case "LL": {
-                    file = getAssets().open("lista_clasificacion_laliga_url_utf8.csv");
-                    break;
-                }
-                case "LP": {
-                    file = getAssets().open("lista_clasificacion_premier_url_utf8.csv");
-                    break;
-                }
-                case "LB": {
-                    file = getAssets().open("lista_clasificacion_bundes_url_utf8.csv");
-                    break;
-                }
-                case "LS": {
-                    file = getAssets().open("lista_clasificacion_seriea_url_utf8.csv");
-                    break;
+            when (liga) {
+                "LL" -> {
+                    file = assets.open("lista_clasificacion_laliga_url_utf8.csv")
                 }
 
-            }
-            reader = new InputStreamReader(file);
-            bufferedReader = new BufferedReader(reader);
+                "LP" -> {
+                    file = assets.open("lista_clasificacion_premier_url_utf8.csv")
+                }
 
-            String line = null;
-            while ((line = bufferedReader.readLine()) != null) {
-                String[] data = line.split(";");
+                "LB" -> {
+                    file = assets.open("lista_clasificacion_bundes_url_utf8.csv")
+                }
 
-                if (data != null && data.length == 3) {
-                    equipo = new Equipo(data[0],data[1],Integer.parseInt(data[2]));
-                    equiposLiga.add(equipo);
+                "LS" -> {
+                    file = assets.open("lista_clasificacion_seriea_url_utf8.csv")
                 }
             }
-
-        } catch (IOException e) {
-            e.printStackTrace();
+            reader = InputStreamReader(file)
+            bufferedReader = BufferedReader(reader)
+            var line: String? = null
+            while (bufferedReader.readLine().also { line = it } != null) {
+                val data = line!!.split(";".toRegex()).dropLastWhile { it.isEmpty() }
+                    .toTypedArray()
+                if (data != null && data.size == 3) {
+                    equipo = Equipo(data[0], data[1], data[2].toInt())
+                    equiposLiga.add(equipo)
+                }
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
         } finally {
             if (bufferedReader != null) {
                 try {
-                    bufferedReader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    bufferedReader.close()
+                } catch (e: IOException) {
+                    e.printStackTrace()
                 }
             }
         }
-        return equiposLiga;
+        return equiposLiga
     }
 
-    public void cargarClasificacion(String liga){
-        int idLogo = R.drawable.liga_easports;
-        String nombreLiga = "Liga EASports";
-        switch (liga){
-            case "LL": {
-                idLogo = R.drawable.liga_easports;
-                nombreLiga = "Liga EASports";
-                break;
-            }
-            case "LP": {
-                idLogo = R.drawable.liga_premier;
-                nombreLiga = "Premier League";
-                break;
-            }
-            case "LB": {
-                idLogo = R.drawable.liga_bundesliga;
-                nombreLiga = "Bundesliga";
-                break;
-            }
-            case "LS": {
-                idLogo = R.drawable.liga_seriea;
-                nombreLiga = "Serie A";
-                break;
+    fun cargarClasificacion(liga: String?) {
+        var idLogo = R.drawable.liga_easports
+        var nombreLiga = "Liga EASports"
+        when (liga) {
+            "LL" -> {
+                idLogo = R.drawable.liga_easports
+                nombreLiga = "Liga EASports"
             }
 
+            "LP" -> {
+                idLogo = R.drawable.liga_premier
+                nombreLiga = "Premier League"
+            }
 
+            "LB" -> {
+                idLogo = R.drawable.liga_bundesliga
+                nombreLiga = "Bundesliga"
+            }
+
+            "LS" -> {
+                idLogo = R.drawable.liga_seriea
+                nombreLiga = "Serie A"
+            }
         }
-
-        Liga ligaSeleccionada = new Liga(cargarEquiposParaClasificacion(liga), nombreLiga, idLogo);
-        Intent ligaIntent = new Intent(MainRecycler.this, ClasificacionActivity.class);
-        ligaIntent.putExtra(LIGA_CREADA, ligaSeleccionada);
-        startActivity(ligaIntent);
+        val ligaSeleccionada = Liga(cargarEquiposParaClasificacion(liga), nombreLiga, idLogo)
+        val ligaIntent = Intent(this@MainRecycler, ClasificacionActivity::class.java)
+        ligaIntent.putExtra(LIGA_CREADA, ligaSeleccionada)
+        startActivity(ligaIntent)
     }
 
+    companion object {
+        // identificador de intent
+        const val PARTIDO_SELECCIONADO = "partido_seleccionado"
+        const val PARTIDO_CREADO = "partido_creado"
+        const val LIGA_CREADA = "liga_creada"
+
+        // identificador de activity
+        private const val GESTION_ACTIVITY = 1
+    }
 }
