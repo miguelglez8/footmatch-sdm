@@ -7,16 +7,22 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 
 import com.example.footmatch.R;
-import com.example.footmatch.modelo.Jugador;
 
 public class Cambio extends Evento implements Parcelable {
-    private Jugador jugadorSale;
-    private Jugador jugadorEntra;
+    private String jugadorSale;
+    private String jugadorEntra;
     private String urlCambio;
 
+    public Cambio(String jugadorSale, String jugadorEntra, int minute, boolean local) {
+        super.minuto = minute;
+        super.local = local;
+        this.jugadorSale = jugadorSale;
+        this.jugadorEntra = jugadorEntra;
+    }
+
     protected Cambio(Parcel in) {
-        jugadorSale = in.readParcelable(Jugador.class.getClassLoader());
-        jugadorEntra = in.readParcelable(Jugador.class.getClassLoader());
+        jugadorSale = in.readString();
+        jugadorEntra = in.readString();
         urlCambio = in.readString();
         super.minuto = in.readInt();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -38,12 +44,12 @@ public class Cambio extends Evento implements Parcelable {
 
     @Override
     public String getPrimerFactor() {
-        return jugadorEntra.getNombre();
+        return jugadorEntra;
     }
 
     @Override
     public String getSegundoFactor() {
-        return jugadorSale.getNombre();
+        return jugadorSale;
     }
 
     @Override
@@ -63,8 +69,8 @@ public class Cambio extends Evento implements Parcelable {
 
     @Override
     public void writeToParcel(@NonNull Parcel parcel, int i) {
-        parcel.writeParcelable(jugadorSale, i);
-        parcel.writeParcelable(jugadorEntra, i);
+        parcel.writeString(jugadorSale);
+        parcel.writeString(jugadorEntra);
         parcel.writeString(urlCambio);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             parcel.writeInt(super.local ? 1 : 0);

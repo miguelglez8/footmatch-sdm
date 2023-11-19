@@ -7,14 +7,17 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 
 import com.example.footmatch.R;
-import com.example.footmatch.modelo.Jugador;
 
 public class Penalti extends Evento implements Parcelable {
-    private Jugador jugadorPenalti;
+    private String jugadorPenalti;
     private String urlPenalti;
-
+    public Penalti(String jugadorPenalti, int minute, boolean local) {
+        super.minuto = minute;
+        super.local = local;
+        this.jugadorPenalti = jugadorPenalti;
+    }
     protected Penalti(Parcel in) {
-        jugadorPenalti = in.readParcelable(Jugador.class.getClassLoader());
+        jugadorPenalti = in.readString();
         urlPenalti = in.readString();
         super.minuto = in.readInt();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -36,7 +39,7 @@ public class Penalti extends Evento implements Parcelable {
 
     @Override
     public String getPrimerFactor() {
-        return jugadorPenalti.getNombre();
+        return jugadorPenalti;
     }
 
     @Override
@@ -61,7 +64,7 @@ public class Penalti extends Evento implements Parcelable {
 
     @Override
     public void writeToParcel(@NonNull Parcel parcel, int i) {
-        parcel.writeParcelable(jugadorPenalti, i);
+        parcel.writeString(jugadorPenalti);
         parcel.writeString(urlPenalti);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             parcel.writeInt(super.local ? 1 : 0);

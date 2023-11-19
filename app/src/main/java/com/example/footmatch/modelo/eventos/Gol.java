@@ -7,16 +7,22 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 
 import com.example.footmatch.R;
-import com.example.footmatch.modelo.Jugador;
 
 public class Gol extends Evento implements Parcelable {
-    private Jugador jugadorGol;
-    private Jugador jugadorAsistencia;
+    private String jugadorGol;
+    private String jugadorAsistencia;
     private String urlGol, urlAsistencia;
 
+    public Gol(String jugadorGol, String jugadorAsistencia, int minute, boolean local) {
+        super.minuto = minute;
+        super.local = local;
+        this.jugadorGol = jugadorGol;
+        this.jugadorAsistencia = jugadorAsistencia;
+    }
+
     protected Gol(Parcel in) {
-        jugadorGol = in.readParcelable(Jugador.class.getClassLoader());
-        jugadorAsistencia = in.readParcelable(Jugador.class.getClassLoader());
+        jugadorGol = in.readString();
+        jugadorAsistencia = in.readString();
         urlGol = in.readString();
         urlAsistencia = in.readString();
         super.minuto = in.readInt();
@@ -39,12 +45,12 @@ public class Gol extends Evento implements Parcelable {
 
     @Override
     public String getPrimerFactor() {
-        return jugadorGol.getNombre();
+        return jugadorGol;
     }
 
     @Override
     public String getSegundoFactor() {
-        return jugadorAsistencia.getNombre();
+        return jugadorAsistencia;
     }
 
     @Override
@@ -64,8 +70,8 @@ public class Gol extends Evento implements Parcelable {
 
     @Override
     public void writeToParcel(@NonNull Parcel parcel, int i) {
-        parcel.writeParcelable(jugadorGol, i);
-        parcel.writeParcelable(jugadorAsistencia, i);
+        parcel.writeString(jugadorGol);
+        parcel.writeString(jugadorAsistencia);
         parcel.writeString(urlGol);
         parcel.writeString(urlAsistencia);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {

@@ -7,15 +7,20 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 
 import com.example.footmatch.R;
-import com.example.footmatch.modelo.Jugador;
 
 public class Tarjeta extends Evento implements Parcelable {
-    private Jugador jugadorTarjeta;
+    private String jugadorTarjeta;
     private String urlTarjeta;
     private Color color;
+    public Tarjeta(String jugadorTarjeta, int minute, boolean local, Color color) {
+        super.minuto = minute;
+        super.local = local;
+        this.jugadorTarjeta = jugadorTarjeta;
+        this.color = color;
+    }
 
     protected Tarjeta(Parcel in) {
-        jugadorTarjeta = in.readParcelable(Jugador.class.getClassLoader());
+        jugadorTarjeta = in.readString();
         urlTarjeta = in.readString();
         super.minuto = in.readInt();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -37,7 +42,7 @@ public class Tarjeta extends Evento implements Parcelable {
 
     @Override
     public String getPrimerFactor() {
-        return jugadorTarjeta.getNombre();
+        return jugadorTarjeta;
     }
 
     @Override
@@ -62,7 +67,7 @@ public class Tarjeta extends Evento implements Parcelable {
 
     @Override
     public void writeToParcel(@NonNull Parcel parcel, int i) {
-        parcel.writeParcelable(jugadorTarjeta, i);
+        parcel.writeString(jugadorTarjeta);
         parcel.writeString(urlTarjeta);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             parcel.writeInt(super.local ? 1 : 0);

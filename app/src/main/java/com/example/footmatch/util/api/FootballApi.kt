@@ -1,19 +1,26 @@
 package com.example.footmatch.util.api
 
+import com.example.footmatch.modelo.pojos.Match
+import com.example.footmatch.modelo.pojos.MatchToShow
 import com.example.footmatch.modelo.pojos.MatchesBetweenDatesResult
+import com.example.footmatch.modelo.pojos.Stats
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface FootballApi {
     @GET("matches/")
     suspend fun getMatchesBetweenDates(@Query("dateFrom") dateFrom: String,
                                        @Query("dateTo") dateTo: String): MatchesBetweenDatesResult
-
+    @GET("matches/{matchId}")
+    suspend fun getMatch(@Path("matchId") matchId: Int): MatchToShow
+    @GET("matches/{matchId}/head2head?limit=50")
+    suspend fun getMatchStats(@Path("matchId") matchId: Int): Stats
 
 }
 

@@ -5,32 +5,21 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
-import java.util.List;
-
 public class Equipo implements Parcelable {
     private String nombre;
-    private List<Jugador> plantillaTitular;
-    private String formacion;
-    private String urlImagenEscudo;
+    private String url;
     private int puntos;
-    private String entrenador;
 
-    public Equipo(String nombre, String urlImagenEscudo, int puntos) {
+    public Equipo(String nombre, String url, int puntos) {
         this.nombre = nombre;
-        this.plantillaTitular = plantillaTitular;
-        this.formacion = formacion;
-        this.urlImagenEscudo = urlImagenEscudo;
+        this.url = url;
         this.puntos = puntos;
-        this.entrenador = entrenador;
     }
 
     protected Equipo(Parcel in) {
         nombre = in.readString();
-        plantillaTitular = in.createTypedArrayList(Jugador.CREATOR);
-        formacion = in.readString();
-        urlImagenEscudo = in.readString();
+        url = in.readString();
         puntos = in.readInt();
-        entrenador = in.readString();
     }
 
     public static final Creator<Equipo> CREATOR = new Creator<Equipo>() {
@@ -45,55 +34,29 @@ public class Equipo implements Parcelable {
         }
     };
 
-    public List<Jugador> getPlantillaTitular() {
-        return plantillaTitular;
-    }
-
-    public void setPlantillaTitular(List<Jugador> plantillaTitular) {
-        this.plantillaTitular = plantillaTitular;
-    }
-
-    public String getFormacion() {
-        return formacion;
-    }
-
-    public void setFormacion(String formacion) {
-        this.formacion = formacion;
+    public String getNombre() {
+        return nombre;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public void setPlantilla(List<Jugador> plantilla) {
-        this.plantillaTitular = plantilla;
+    public String getUrl() {
+        return url;
     }
 
-    public void setUrlImagenEscudo(String urlImagenEscudo) {
-        this.urlImagenEscudo = urlImagenEscudo;
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public int getPuntos() {
+        return puntos;
     }
 
     public void setPuntos(int puntos) {
         this.puntos = puntos;
     }
-
-    public String getEntrenador() {
-        return entrenador;
-    }
-
-    public void setEntrenador(String entrenador) {
-        this.entrenador = entrenador;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getUrlImagenEscudo() {
-        return urlImagenEscudo;
-    }
-
-    public int getPuntos(){return puntos; }
 
     @Override
     public int describeContents() {
@@ -103,10 +66,7 @@ public class Equipo implements Parcelable {
     @Override
     public void writeToParcel(@NonNull Parcel parcel, int i) {
         parcel.writeString(nombre);
-        parcel.writeTypedList(plantillaTitular);
-        parcel.writeString(formacion);
-        parcel.writeString(urlImagenEscudo);
+        parcel.writeString(url);
         parcel.writeInt(puntos);
-        parcel.writeString(entrenador);
     }
 }

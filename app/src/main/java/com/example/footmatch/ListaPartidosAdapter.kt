@@ -9,7 +9,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.footmatch.ListaPartidosAdapter.PartidoViewHolder
-import com.example.footmatch.modelo.Partido
 import com.example.footmatch.modelo.pojos.Match
 import com.squareup.picasso.Picasso
 

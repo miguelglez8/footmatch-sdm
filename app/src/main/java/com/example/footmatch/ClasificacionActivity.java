@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.example.footmatch.modelo.Equipo;
 import com.example.footmatch.modelo.Liga;
-import com.example.footmatch.modelo.Partido;
 
 
 import java.util.List;

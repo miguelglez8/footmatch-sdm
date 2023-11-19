@@ -1971,6 +1971,7 @@
     <string name="abc_toolbar_collapse_description">Collapse</string>
     <string name="action_settings">Settings</string>
     <string name="alineations">ALINEACIONES</string>
+    <string name="allMatches">Todos</string>
     <string name="androidx_startup" translatable="false">androidx.startup</string>
     <string name="app_name">FootMatch</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
@@ -2241,7 +2242,7 @@
         \"<ns2:g example="Version 1.1" id="summary">%1$s</ns2:g>\" copied to clipboard.
     </string>
     <string name="premier_league_jornada_10">PREMIER LEAGUE JORNADA 10</string>
-    <string name="racha_de_los_ltimos_partidos">RACHA DE LOS ÚLTIMOS PARTIDOS</string>
+    <string name="racha_de_los_ltimos_partidos">ÚLTIMOS 50 ENFRENTAMIENTOS</string>
     <string name="referees">ÁRBITROS</string>
     <string name="resultado">1-2</string>
     <string name="saques_de_banda">Saques de Banda</string>
@@ -2270,9 +2271,11 @@
     <string name="titulo_otros">OTROS</string>
     <string name="titulo_partido">Partido</string>
     <string name="titulo_tarjetas">TARJETAS</string>
+    <string name="todayMatches">Hoy</string>
     <string name="v7_preference_off">OFF</string>
     <string name="v7_preference_on">ON</string>
     <string name="var">VAR</string>
+    <string name="yesterdayMatches">Ayer</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>
     <style name="Animation.AppCompat.Dialog" parent="Base.Animation.AppCompat.Dialog"/>
