@@ -1,62 +1,70 @@
 [
     {
-        "merged": "com.example.footmatch.app-mergeDebugResources-34:/layout/fragment_alineaciones.xml",
-        "source": "com.example.footmatch.app-main-37:/layout/fragment_alineaciones.xml"
+        "merged": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-mergeDebugResources-34:\\layout\\fragment_alineaciones.xml",
+        "source": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\layout\\fragment_alineaciones.xml"
+    },
+    {
+        "merged": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-mergeDebugResources-34:\\layout\\activity_show_match.xml",
+        "source": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\layout\\activity_show_match.xml"
+    },
+    {
+        "merged": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-mergeDebugResources-34:\\layout\\linea_recycler_view_partido.xml",
+        "source": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\layout\\linea_recycler_view_partido.xml"
+    },
+    {
+        "merged": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-mergeDebugResources-34:\\layout\\item_evento_visitante.xml",
+        "source": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\layout\\item_evento_visitante.xml"
     },
     {
         "merged": "com.example.footmatch.app-mergeDebugResources-34:/layout/fragment_estadisticas.xml",
         "source": "com.example.footmatch.app-main-37:/layout/fragment_estadisticas.xml"
     },
     {
-        "merged": "com.example.footmatch.app-mergeDebugResources-34:/layout/item_no_disponible.xml",
-        "source": "com.example.footmatch.app-main-37:/layout/item_no_disponible.xml"
+        "merged": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-mergeDebugResources-34:\\layout\\item_no_disponible.xml",
+        "source": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\layout\\item_no_disponible.xml"
     },
     {
-        "merged": "com.example.footmatch.app-mergeDebugResources-34:/layout/item_evento_visitante.xml",
-        "source": "com.example.footmatch.app-main-37:/layout/item_evento_visitante.xml"
+        "merged": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-mergeDebugResources-34:\\layout\\fragment_estadisticas.xml",
+        "source": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\layout\\fragment_estadisticas.xml"
     },
     {
-        "merged": "com.example.footmatch.app-mergeDebugResources-34:/layout/activity_main_recycler.xml",
-        "source": "com.example.footmatch.app-main-37:/layout/activity_main_recycler.xml"
+        "merged": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-mergeDebugResources-34:\\layout\\item_arbitros.xml",
+        "source": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\layout\\item_arbitros.xml"
+    },
+    {
+        "merged": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-mergeDebugResources-34:\\layout\\content_scrollingbotonera.xml",
+        "source": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\layout\\content_scrollingbotonera.xml"
+    },
+    {
+        "merged": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-mergeDebugResources-34:\\layout\\fragment_arbitros.xml",
+        "source": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\layout\\fragment_arbitros.xml"
     },
     {
         "merged": "com.example.footmatch.app-mergeDebugResources-34:/layout/fragment_eventos.xml",
         "source": "com.example.footmatch.app-main-37:/layout/fragment_eventos.xml"
     },
     {
-        "merged": "com.example.footmatch.app-mergeDebugResources-34:/layout/content_scrollingbotonera.xml",
-        "source": "com.example.footmatch.app-main-37:/layout/content_scrollingbotonera.xml"
+        "merged": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-mergeDebugResources-34:\\layout\\activity_main_recycler.xml",
+        "source": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\layout\\activity_main_recycler.xml"
     },
     {
-        "merged": "com.example.footmatch.app-mergeDebugResources-34:/layout/activity_show_match.xml",
-        "source": "com.example.footmatch.app-main-37:/layout/activity_show_match.xml"
+        "merged": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-mergeDebugResources-34:\\layout\\item_evento_local.xml",
+        "source": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\layout\\item_evento_local.xml"
     },
     {
-        "merged": "com.example.footmatch.app-mergeDebugResources-34:/layout/item_arbitros.xml",
-        "source": "com.example.footmatch.app-main-37:/layout/item_arbitros.xml"
+        "merged": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-mergeDebugResources-34:\\layout\\item_jugador.xml",
+        "source": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\layout\\item_jugador.xml"
     },
     {
-        "merged": "com.example.footmatch.app-mergeDebugResources-34:/layout/linea_recycler_view_partido.xml",
-        "source": "com.example.footmatch.app-main-37:/layout/linea_recycler_view_partido.xml"
+        "merged": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-mergeDebugResources-34:\\layout\\fragment_eventos.xml",
+        "source": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\layout\\fragment_eventos.xml"
     },
     {
-        "merged": "com.example.footmatch.app-mergeDebugResources-34:/layout/activity_clasificacion.xml",
-        "source": "com.example.footmatch.app-main-37:/layout/activity_clasificacion.xml"
+        "merged": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-mergeDebugResources-34:\\layout\\activity_clasificacion.xml",
+        "source": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\layout\\activity_clasificacion.xml"
     },
     {
-        "merged": "com.example.footmatch.app-mergeDebugResources-34:/layout/linear_clasification_equipo.xml",
-        "source": "com.example.footmatch.app-main-37:/layout/linear_clasification_equipo.xml"
-    },
-    {
-        "merged": "com.example.footmatch.app-mergeDebugResources-34:/layout/fragment_arbitros.xml",
-        "source": "com.example.footmatch.app-main-37:/layout/fragment_arbitros.xml"
-    },
-    {
-        "merged": "com.example.footmatch.app-mergeDebugResources-34:/layout/item_jugador.xml",
-        "source": "com.example.footmatch.app-main-37:/layout/item_jugador.xml"
-    },
-    {
-        "merged": "com.example.footmatch.app-mergeDebugResources-34:/layout/item_evento_local.xml",
-        "source": "com.example.footmatch.app-main-37:/layout/item_evento_local.xml"
+        "merged": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-mergeDebugResources-34:\\layout\\linear_clasification_equipo.xml",
+        "source": "C:\\Users\\migue\\.gradle\\daemon\\8.0\\com.example.footmatch.app-main-37:\\layout\\linear_clasification_equipo.xml"
     }
 ]

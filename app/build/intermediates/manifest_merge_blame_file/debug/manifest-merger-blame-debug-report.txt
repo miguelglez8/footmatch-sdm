@@ -27,7 +27,7 @@
 18-->[androidx.core:core:1.9.0] C:\Users\migue\.gradle\caches\transforms-3\28a7af075d5af218c19b63a2f54b1523\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
 19
 20    <application
-20-->C:\Users\migue\AndroidStudioProjects\footmatch-sdm\app\src\main\AndroidManifest.xml:8:5-30:19
+20-->C:\Users\migue\AndroidStudioProjects\footmatch-sdm\app\src\main\AndroidManifest.xml:8:5-33:19
 21        android:allowBackup="true"
 21-->C:\Users\migue\AndroidStudioProjects\footmatch-sdm\app\src\main\AndroidManifest.xml:9:9-35
 22        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -72,49 +72,55 @@
 42-->C:\Users\migue\AndroidStudioProjects\footmatch-sdm\app\src\main\AndroidManifest.xml:27:27-74
 43            </intent-filter>
 44        </activity>
-45
-46        <provider
-46-->[com.squareup.picasso:picasso:2.71828] C:\Users\migue\.gradle\caches\transforms-3\a57c75994ad63c5648e46f3550b955ab\transformed\picasso-2.71828\AndroidManifest.xml:8:9-11:40
-47            android:name="com.squareup.picasso.PicassoProvider"
-47-->[com.squareup.picasso:picasso:2.71828] C:\Users\migue\.gradle\caches\transforms-3\a57c75994ad63c5648e46f3550b955ab\transformed\picasso-2.71828\AndroidManifest.xml:9:13-64
-48            android:authorities="com.example.footmatch.com.squareup.picasso"
-48-->[com.squareup.picasso:picasso:2.71828] C:\Users\migue\.gradle\caches\transforms-3\a57c75994ad63c5648e46f3550b955ab\transformed\picasso-2.71828\AndroidManifest.xml:10:13-72
-49            android:exported="false" />
-49-->[com.squareup.picasso:picasso:2.71828] C:\Users\migue\.gradle\caches\transforms-3\a57c75994ad63c5648e46f3550b955ab\transformed\picasso-2.71828\AndroidManifest.xml:11:13-37
-50        <provider
-50-->[androidx.emoji2:emoji2:1.2.0] C:\Users\migue\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
-51            android:name="androidx.startup.InitializationProvider"
-51-->[androidx.emoji2:emoji2:1.2.0] C:\Users\migue\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
-52            android:authorities="com.example.footmatch.androidx-startup"
-52-->[androidx.emoji2:emoji2:1.2.0] C:\Users\migue\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
-53            android:exported="false" >
-53-->[androidx.emoji2:emoji2:1.2.0] C:\Users\migue\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
-54            <meta-data
-54-->[androidx.emoji2:emoji2:1.2.0] C:\Users\migue\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
-55                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-55-->[androidx.emoji2:emoji2:1.2.0] C:\Users\migue\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
-56                android:value="androidx.startup" />
-56-->[androidx.emoji2:emoji2:1.2.0] C:\Users\migue\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+45        <activity
+45-->C:\Users\migue\AndroidStudioProjects\footmatch-sdm\app\src\main\AndroidManifest.xml:30:9-32:40
+46            android:name="com.example.footmatch.MostrarPartido"
+46-->C:\Users\migue\AndroidStudioProjects\footmatch-sdm\app\src\main\AndroidManifest.xml:31:13-43
+47            android:exported="false" />
+47-->C:\Users\migue\AndroidStudioProjects\footmatch-sdm\app\src\main\AndroidManifest.xml:32:13-37
+48
+49        <provider
+49-->[com.squareup.picasso:picasso:2.71828] C:\Users\migue\.gradle\caches\transforms-3\a57c75994ad63c5648e46f3550b955ab\transformed\picasso-2.71828\AndroidManifest.xml:8:9-11:40
+50            android:name="com.squareup.picasso.PicassoProvider"
+50-->[com.squareup.picasso:picasso:2.71828] C:\Users\migue\.gradle\caches\transforms-3\a57c75994ad63c5648e46f3550b955ab\transformed\picasso-2.71828\AndroidManifest.xml:9:13-64
+51            android:authorities="com.example.footmatch.com.squareup.picasso"
+51-->[com.squareup.picasso:picasso:2.71828] C:\Users\migue\.gradle\caches\transforms-3\a57c75994ad63c5648e46f3550b955ab\transformed\picasso-2.71828\AndroidManifest.xml:10:13-72
+52            android:exported="false" />
+52-->[com.squareup.picasso:picasso:2.71828] C:\Users\migue\.gradle\caches\transforms-3\a57c75994ad63c5648e46f3550b955ab\transformed\picasso-2.71828\AndroidManifest.xml:11:13-37
+53        <provider
+53-->[androidx.emoji2:emoji2:1.2.0] C:\Users\migue\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+54            android:name="androidx.startup.InitializationProvider"
+54-->[androidx.emoji2:emoji2:1.2.0] C:\Users\migue\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
+55            android:authorities="com.example.footmatch.androidx-startup"
+55-->[androidx.emoji2:emoji2:1.2.0] C:\Users\migue\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
+56            android:exported="false" >
+56-->[androidx.emoji2:emoji2:1.2.0] C:\Users\migue\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
 57            <meta-data
-57-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\migue\.gradle\caches\transforms-3\4eb4b953398cff91e70e367f7f0f5a04\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
-58                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-58-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\migue\.gradle\caches\transforms-3\4eb4b953398cff91e70e367f7f0f5a04\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
+57-->[androidx.emoji2:emoji2:1.2.0] C:\Users\migue\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+58                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+58-->[androidx.emoji2:emoji2:1.2.0] C:\Users\migue\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
 59                android:value="androidx.startup" />
-59-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\migue\.gradle\caches\transforms-3\4eb4b953398cff91e70e367f7f0f5a04\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
-60        </provider>
-61
-62        <uses-library
-62-->[androidx.window:window:1.0.0] C:\Users\migue\.gradle\caches\transforms-3\2c7f8c69dcc114f4d646b70eba2a43b1\transformed\window-1.0.0\AndroidManifest.xml:25:9-27:40
-63            android:name="androidx.window.extensions"
-63-->[androidx.window:window:1.0.0] C:\Users\migue\.gradle\caches\transforms-3\2c7f8c69dcc114f4d646b70eba2a43b1\transformed\window-1.0.0\AndroidManifest.xml:26:13-54
-64            android:required="false" />
-64-->[androidx.window:window:1.0.0] C:\Users\migue\.gradle\caches\transforms-3\2c7f8c69dcc114f4d646b70eba2a43b1\transformed\window-1.0.0\AndroidManifest.xml:27:13-37
+59-->[androidx.emoji2:emoji2:1.2.0] C:\Users\migue\.gradle\caches\transforms-3\9ec162b5cb5dad7a953e18733a42dbca\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+60            <meta-data
+60-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\migue\.gradle\caches\transforms-3\4eb4b953398cff91e70e367f7f0f5a04\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
+61                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+61-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\migue\.gradle\caches\transforms-3\4eb4b953398cff91e70e367f7f0f5a04\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
+62                android:value="androidx.startup" />
+62-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\migue\.gradle\caches\transforms-3\4eb4b953398cff91e70e367f7f0f5a04\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
+63        </provider>
+64
 65        <uses-library
-65-->[androidx.window:window:1.0.0] C:\Users\migue\.gradle\caches\transforms-3\2c7f8c69dcc114f4d646b70eba2a43b1\transformed\window-1.0.0\AndroidManifest.xml:28:9-30:40
-66            android:name="androidx.window.sidecar"
-66-->[androidx.window:window:1.0.0] C:\Users\migue\.gradle\caches\transforms-3\2c7f8c69dcc114f4d646b70eba2a43b1\transformed\window-1.0.0\AndroidManifest.xml:29:13-51
+65-->[androidx.window:window:1.0.0] C:\Users\migue\.gradle\caches\transforms-3\2c7f8c69dcc114f4d646b70eba2a43b1\transformed\window-1.0.0\AndroidManifest.xml:25:9-27:40
+66            android:name="androidx.window.extensions"
+66-->[androidx.window:window:1.0.0] C:\Users\migue\.gradle\caches\transforms-3\2c7f8c69dcc114f4d646b70eba2a43b1\transformed\window-1.0.0\AndroidManifest.xml:26:13-54
 67            android:required="false" />
-67-->[androidx.window:window:1.0.0] C:\Users\migue\.gradle\caches\transforms-3\2c7f8c69dcc114f4d646b70eba2a43b1\transformed\window-1.0.0\AndroidManifest.xml:30:13-37
-68    </application>
-69
-70</manifest>
+67-->[androidx.window:window:1.0.0] C:\Users\migue\.gradle\caches\transforms-3\2c7f8c69dcc114f4d646b70eba2a43b1\transformed\window-1.0.0\AndroidManifest.xml:27:13-37
+68        <uses-library
+68-->[androidx.window:window:1.0.0] C:\Users\migue\.gradle\caches\transforms-3\2c7f8c69dcc114f4d646b70eba2a43b1\transformed\window-1.0.0\AndroidManifest.xml:28:9-30:40
+69            android:name="androidx.window.sidecar"
+69-->[androidx.window:window:1.0.0] C:\Users\migue\.gradle\caches\transforms-3\2c7f8c69dcc114f4d646b70eba2a43b1\transformed\window-1.0.0\AndroidManifest.xml:29:13-51
+70            android:required="false" />
+70-->[androidx.window:window:1.0.0] C:\Users\migue\.gradle\caches\transforms-3\2c7f8c69dcc114f4d646b70eba2a43b1\transformed\window-1.0.0\AndroidManifest.xml:30:13-37
+71    </application>
+72
+73</manifest>

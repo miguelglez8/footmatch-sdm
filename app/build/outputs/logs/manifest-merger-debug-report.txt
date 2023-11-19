@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\migue\AndroidStudioProjects\footmatch-sdm\app\src\main\AndroidManifest.xml:2:1-32:12
-INJECTED from C:\Users\migue\AndroidStudioProjects\footmatch-sdm\app\src\main\AndroidManifest.xml:2:1-32:12
-INJECTED from C:\Users\migue\AndroidStudioProjects\footmatch-sdm\app\src\main\AndroidManifest.xml:2:1-32:12
-INJECTED from C:\Users\migue\AndroidStudioProjects\footmatch-sdm\app\src\main\AndroidManifest.xml:2:1-32:12
+ADDED from C:\Users\migue\AndroidStudioProjects\footmatch-sdm\app\src\main\AndroidManifest.xml:2:1-35:12
+INJECTED from C:\Users\migue\AndroidStudioProjects\footmatch-sdm\app\src\main\AndroidManifest.xml:2:1-35:12
+INJECTED from C:\Users\migue\AndroidStudioProjects\footmatch-sdm\app\src\main\AndroidManifest.xml:2:1-35:12
+INJECTED from C:\Users\migue\AndroidStudioProjects\footmatch-sdm\app\src\main\AndroidManifest.xml:2:1-35:12
 MERGED from [androidx.databinding:viewbinding:8.1.1] C:\Users\migue\.gradle\caches\transforms-3\af4688230c950b7e61247f9e88bd351f\transformed\viewbinding-8.1.1\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.material:material:1.9.0] C:\Users\migue\.gradle\caches\transforms-3\e5f321a248aa217236dda4759916dcd9\transformed\material-1.9.0\AndroidManifest.xml:17:1-26:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\migue\.gradle\caches\transforms-3\5acf9a84f6874f66961cd7fc314b86a2\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
@@ -75,8 +75,8 @@ ADDED from C:\Users\migue\AndroidStudioProjects\footmatch-sdm\app\src\main\Andro
 	android:name
 		ADDED from C:\Users\migue\AndroidStudioProjects\footmatch-sdm\app\src\main\AndroidManifest.xml:6:22-64
 application
-ADDED from C:\Users\migue\AndroidStudioProjects\footmatch-sdm\app\src\main\AndroidManifest.xml:8:5-30:19
-INJECTED from C:\Users\migue\AndroidStudioProjects\footmatch-sdm\app\src\main\AndroidManifest.xml:8:5-30:19
+ADDED from C:\Users\migue\AndroidStudioProjects\footmatch-sdm\app\src\main\AndroidManifest.xml:8:5-33:19
+INJECTED from C:\Users\migue\AndroidStudioProjects\footmatch-sdm\app\src\main\AndroidManifest.xml:8:5-33:19
 MERGED from [com.google.android.material:material:1.9.0] C:\Users\migue\.gradle\caches\transforms-3\e5f321a248aa217236dda4759916dcd9\transformed\material-1.9.0\AndroidManifest.xml:24:5-20
 MERGED from [com.google.android.material:material:1.9.0] C:\Users\migue\.gradle\caches\transforms-3\e5f321a248aa217236dda4759916dcd9\transformed\material-1.9.0\AndroidManifest.xml:24:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\migue\.gradle\caches\transforms-3\5acf9a84f6874f66961cd7fc314b86a2\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
@@ -139,6 +139,12 @@ category#android.intent.category.LAUNCHER
 ADDED from C:\Users\migue\AndroidStudioProjects\footmatch-sdm\app\src\main\AndroidManifest.xml:27:17-77
 	android:name
 		ADDED from C:\Users\migue\AndroidStudioProjects\footmatch-sdm\app\src\main\AndroidManifest.xml:27:27-74
+activity#com.example.footmatch.MostrarPartido
+ADDED from C:\Users\migue\AndroidStudioProjects\footmatch-sdm\app\src\main\AndroidManifest.xml:30:9-32:40
+	android:exported
+		ADDED from C:\Users\migue\AndroidStudioProjects\footmatch-sdm\app\src\main\AndroidManifest.xml:32:13-37
+	android:name
+		ADDED from C:\Users\migue\AndroidStudioProjects\footmatch-sdm\app\src\main\AndroidManifest.xml:31:13-43
 uses-sdk
 INJECTED from C:\Users\migue\AndroidStudioProjects\footmatch-sdm\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\migue\AndroidStudioProjects\footmatch-sdm\app\src\main\AndroidManifest.xml

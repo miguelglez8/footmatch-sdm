@@ -22,8 +22,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewGoles"
             android:layout_width="match_parent"
-            android:layout_height="73dp">
-        </androidx.recyclerview.widget.RecyclerView>
+            android:layout_height="83dp"></androidx.recyclerview.widget.RecyclerView>
         <!-- Otros atributos del RecyclerView según tus necesidades -->
         />
 
@@ -32,7 +31,7 @@
     <!-- Elemento 2: Titulo Otros y RecyclerView de eventos -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="120dp"
         android:orientation="vertical">
 
         <!-- Título -->
@@ -48,8 +47,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewTarjetas"
             android:layout_width="match_parent"
-            android:layout_height="73dp">
-        </androidx.recyclerview.widget.RecyclerView>
+            android:layout_height="85dp"></androidx.recyclerview.widget.RecyclerView>
         <!-- Otros atributos del RecyclerView según tus necesidades -->
         />
 
@@ -67,15 +65,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="16dp"
-            android:text="@string/titulo_otros"
+            android:text="@string/cambios"
             android:textSize="18sp"
             android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewOtros"
             android:layout_width="match_parent"
-            android:layout_height="66dp">
-        </androidx.recyclerview.widget.RecyclerView>
+            android:layout_height="85dp"></androidx.recyclerview.widget.RecyclerView>
         <!-- Otros atributos del RecyclerView según tus necesidades -->
         />
 
@@ -190,25 +187,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="@string/sustituci_n" />
-        </LinearLayout>
-
-        <!-- Par de elementos: Foto - Texto (Tarjeta Roja) -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/lesion" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="@string/lesi_n" />
         </LinearLayout>
 
         <!-- Par de elementos: Foto - Texto (Tarjeta Roja) -->

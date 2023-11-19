@@ -1,174 +1,149 @@
-package com.example.footmatch;
+package com.example.footmatch
 
-import android.content.Intent;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.graphics.Color
+import android.os.Bundle
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import com.example.footmatch.modelo.Arbitro
+import com.example.footmatch.modelo.Partido
+import com.example.footmatch.ui.AlineacionesFragment
+import com.example.footmatch.ui.ArbitrosFragment
+import com.example.footmatch.ui.EstadisticasFragment
+import com.example.footmatch.ui.EventosFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.squareup.picasso.Picasso
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.footmatch.modelo.Arbitro;
-import com.example.footmatch.modelo.Partido;
-import com.example.footmatch.ui.AlineacionesFragment;
-import com.example.footmatch.ui.ArbitrosFragment;
-import com.example.footmatch.ui.EstadisticasFragment;
-import com.example.footmatch.ui.EventosFragment;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
-
-public class MostrarPartido extends AppCompatActivity {
-    private Partido partido;
-    TextView textView, textView2;
-    ImageView imagenLiga, imagenEquipo1, imagenEquipo2;
-    TextView nombreEquipo1, resultadoPartido, fechaPartido, nombreEquipo2, estadio;
-    Button estadoPartido;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_match);
+class MostrarPartido : AppCompatActivity() {
+    private var partido: Partido? = null
+    var textView: TextView? = null
+    var textView2: TextView? = null
+    var imagenLiga: ImageView? = null
+    var imagenEquipo1: ImageView? = null
+    var imagenEquipo2: ImageView? = null
+    var nombreEquipo1: TextView? = null
+    var resultadoPartido: TextView? = null
+    var fechaPartido: TextView? = null
+    var nombreEquipo2: TextView? = null
+    var estadio: TextView? = null
+    var estadoPartido: Button? = null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_show_match)
 
         // Obtener datos del intent
-        Intent intentMatch = getIntent();
-        partido = intentMatch.getParcelableExtra(MainRecycler.PARTIDO_SELECCIONADO);
+        val intentMatch = intent
+        partido = intentMatch.getParcelableExtra(MainRecycler.PARTIDO_SELECCIONADO)
 
         // Inicializar vistas
-        textView = findViewById(R.id.liga_jornada);
-        textView2 = findViewById(R.id.minutoPartido);
-        imagenLiga = findViewById(R.id.imagenLiga);
-        imagenEquipo1 = findViewById(R.id.imagenEquipo1);
-        nombreEquipo1 = findViewById(R.id.nombreEquipo1);
-        resultadoPartido = findViewById(R.id.resultadoPartido);
-        fechaPartido = findViewById(R.id.fechaPartido);
-        imagenEquipo2 = findViewById(R.id.imagenEquipo2);
-        nombreEquipo2 = findViewById(R.id.nombreEquipo2);
-        estadio = findViewById(R.id.estadio);
-        estadoPartido = findViewById(R.id.estadoPartido);
-        estadoPartido.setEnabled(false);
-
-        if (partido.getEstadoPartido().equals("NO_EMPEZADO")) {
-            estadoPartido.setBackgroundColor(Color.parseColor("#CCCCCC"));
-        } else if (partido.getEstadoPartido().equals("EN_JUEGO")) {
-            estadoPartido.setBackgroundColor(Color.parseColor("#FFFF00"));
-        } else {
-            estadoPartido.setBackgroundColor(Color.parseColor("#555555"));
+        textView = findViewById(R.id.liga_jornada)
+        textView2 = findViewById(R.id.minutoPartido)
+        imagenLiga = findViewById(R.id.imagenLiga)
+        imagenEquipo1 = findViewById(R.id.imagenEquipo1)
+        nombreEquipo1 = findViewById(R.id.nombreEquipo1)
+        resultadoPartido = findViewById(R.id.resultadoPartido)
+        fechaPartido = findViewById(R.id.fechaPartido)
+        imagenEquipo2 = findViewById(R.id.imagenEquipo2)
+        nombreEquipo2 = findViewById(R.id.nombreEquipo2)
+        estadio = findViewById(R.id.estadio)
+        estadoPartido = findViewById(R.id.estadoPartido)
+        val estado = estadoPartido // Almacenar el valor en una variable local
+        if (estado != null) {
+            estado.isEnabled = false
         }
-
+        when (partido?.estadoPartido) {
+            "NO_EMPEZADO" -> estado?.setBackgroundColor(Color.parseColor("#CCCCCC"))
+            "EN_JUEGO" -> estado?.setBackgroundColor(Color.parseColor("#FFFF00"))
+            else -> estado?.setBackgroundColor(Color.parseColor("#555555"))
+        }
+        
         // Cargar datos del partido en las vistas
-        mostrarDatos(partido);
+        mostrarDatos(partido)
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+    private val mOnNavigationItemSelectedListener =
+        BottomNavigationView.OnNavigationItemSelectedListener { item ->
 
-        /* Cuando se selecciona uno de los botones / ítems*/
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            if (partido == null)
-                return false;
+            /* Cuando se selecciona uno de los botones / ítems*/
+            if (partido == null) return@OnNavigationItemSelectedListener false
+            val itemId = item.itemId
 
-            int itemId = item.getItemId();
+            /* Según el caso, crearemos un Fragmento u otro */if (itemId == R.id.navigation_stats) {
+            /* Haciendo uso del FactoryMethod pasándole todos los parámetros necesarios */
 
-            /* Según el caso, crearemos un Fragmento u otro */
-            if (itemId == R.id.navigation_stats)
-            {
-                /* Haciendo uso del FactoryMethod pasándole todos los parámetros necesarios */
+            /* Argumento solamente necesita.... El argumento de la película */
+            val estadisticasFragment = EstadisticasFragment.newInstance(
+                partido!!.equipoLocal, partido!!.equipoVisitante, partido!!.estadisticasPartidoE1,
+                partido!!.estadisticasPartidoE2, partido!!.estadisticasE1, partido!!.estadisticasE2
+            )
 
-                /* Argumento solamente necesita.... El argumento de la película */
+            /* ¿Qué estaremos haciendo aquí? */supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, estadisticasFragment).commit()
+            return@OnNavigationItemSelectedListener true
+        }
+            if (itemId == R.id.navigation_events) {
+                if (partido!!.eventos.size > 0) {
+                    val eventosFragment = EventosFragment.newInstance(partido!!.eventos)
 
-                EstadisticasFragment estadisticasFragment=EstadisticasFragment.newInstance
-                        (partido.getEquipoLocal(), partido.getEquipoVisitante(), partido.getEstadisticasPartidoE1(),
-                                partido.getEstadisticasPartidoE2(), partido.getEstadisticasE1(), partido.getEstadisticasE2());
-
-                /* ¿Qué estaremos haciendo aquí? */
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, estadisticasFragment).commit();
-
-                return true;
-            }
-
-            if (itemId == R.id.navigation_events)
-            {
-                if (partido.getEventos().size()>0) {
-                    EventosFragment eventosFragment=EventosFragment.newInstance
-                        (partido.getEventos());
-
-                    /* ¿Qué estaremos haciendo aquí? */
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, eventosFragment).commit();
+                    /* ¿Qué estaremos haciendo aquí? */supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, eventosFragment).commit()
                 } else {
                     // cargar no_disponible
                 }
-                return true;
+                return@OnNavigationItemSelectedListener true
             }
-
-            if (itemId == R.id.navigation_referees)
-            {
-                if (partido.getArbitros().size()>0) {
-                    ArbitrosFragment arbitrosFragment = ArbitrosFragment.newInstance
-                            ((ArrayList<Arbitro>) partido.getArbitros());
-
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, arbitrosFragment).commit();
+            if (itemId == R.id.navigation_referees) {
+                if (partido!!.arbitros.size > 0) {
+                    val arbitrosFragment =
+                        ArbitrosFragment.newInstance(partido!!.arbitros as ArrayList<Arbitro?>)
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, arbitrosFragment).commit()
                 } else {
                     // cargar no_disponible
                 }
-
-                return true;
+                return@OnNavigationItemSelectedListener true
             }
-
-            if (itemId == R.id.navigation_alineations)
-            {
-                AlineacionesFragment alineacionesFragment= AlineacionesFragment.newInstance
-                        (partido.getEquipoLocal(), partido.getEquipoVisitante());
-
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, alineacionesFragment).commit();
-
-                return true;
+            if (itemId == R.id.navigation_alineations) {
+                val alineacionesFragment = AlineacionesFragment.newInstance(
+                    partido!!.equipoLocal, partido!!.equipoVisitante
+                )
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, alineacionesFragment).commit()
+                return@OnNavigationItemSelectedListener true
             }
-
-            //Si no es nula y no entra... Algo falla.
-            throw new IllegalStateException("Unexpected value: " + item.getItemId());
-        };
-    };
+            throw IllegalStateException("Unexpected value: " + item.itemId)
+        }
 
     // Cargar los datos del partido en las vistas
-    public void mostrarDatos(Partido partido) {
+    private fun mostrarDatos(partido: Partido?) {
         if (partido != null) {
             // Actualizar componentes con valores del partido específico
-            textView.setText(partido.getNombreLiga() + " " + partido.getJornada());
-            textView2.setText(partido.getMinutoJuego());
-
-            nombreEquipo1.setText(partido.getEquipoLocal().getNombre());
-            if (partido.getEstadoPartido().equals("NO_EMPEZADO")) {
-                resultadoPartido.setText(partido.getHora());
+            textView!!.text = partido.nombreLiga + " " + partido.jornada
+            textView2!!.text = partido.minutoJuego
+            nombreEquipo1!!.text = partido.equipoLocal.nombre
+            if (partido.estadoPartido == "NO_EMPEZADO") {
+                resultadoPartido!!.text = partido.hora
             } else {
-                resultadoPartido.setText(partido.getResultado());
+                resultadoPartido!!.text = partido.resultado
             }
-
-            fechaPartido.setText(partido.getFecha());
-            nombreEquipo2.setText(partido.getEquipoVisitante().getNombre());
-            estadio.setText(partido.getEstadio());
-            estadoPartido.setText(partido.getEstado());
-
+            fechaPartido!!.text = partido.fecha
+            nombreEquipo2!!.text = partido.equipoVisitante.nombre
+            estadio!!.text = partido.estadio
+            estadoPartido!!.text = partido.estado
             Picasso.get()
-                    .load(partido.getUrlLiga()).into(imagenLiga);
+                .load(partido.urlLiga).into(imagenLiga)
             Picasso.get()
-                    .load(partido.getEquipoLocal().getUrlImagenEscudo()).into(imagenEquipo1);
+                .load(partido.equipoLocal.urlImagenEscudo).into(imagenEquipo1)
             Picasso.get()
-                    .load(partido.getEquipoVisitante().getUrlImagenEscudo()).into(imagenEquipo2);
+                .load(partido.equipoVisitante.urlImagenEscudo).into(imagenEquipo2)
+            val estadisticasFragment = EstadisticasFragment.newInstance(
+                partido.equipoLocal, partido.equipoVisitante, partido.estadisticasPartidoE1,
+                partido.estadisticasPartidoE2, partido.estadisticasE1, partido.estadisticasE2
+            )
 
-            EstadisticasFragment estadisticasFragment=EstadisticasFragment.newInstance
-                    (partido.getEquipoLocal(), partido.getEquipoVisitante(), partido.getEstadisticasPartidoE1(),
-                            partido.getEstadisticasPartidoE2(), partido.getEstadisticasE1(), partido.getEstadisticasE2());
-
-            /* ¿Qué estaremos haciendo aquí? */
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, estadisticasFragment).commit();
+            /* ¿Qué estaremos haciendo aquí? */supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, estadisticasFragment).commit()
         }
     }
 }

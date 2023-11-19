@@ -20,13 +20,46 @@ public final class FragmentEstadisticasBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
+  public final TextView ballPossession1;
+
+  @NonNull
+  public final TextView ballPossession2;
+
+  @NonNull
+  public final TextView ballPossessionLabel;
+
+  @NonNull
+  public final TextView corners1;
+
+  @NonNull
+  public final TextView corners2;
+
+  @NonNull
+  public final TextView cornersLabel;
+
+  @NonNull
   public final TextView derrotas;
 
   @NonNull
   public final TextView empates;
 
   @NonNull
-  public final TextView goles;
+  public final TextView fouls1;
+
+  @NonNull
+  public final TextView fouls2;
+
+  @NonNull
+  public final TextView foulsLabel;
+
+  @NonNull
+  public final TextView goalKicks1;
+
+  @NonNull
+  public final TextView goalKicks2;
+
+  @NonNull
+  public final TextView goalKicksLabel;
 
   @NonNull
   public final LinearLayout linearLayoutEstadisticas;
@@ -50,10 +83,52 @@ public final class FragmentEstadisticasBinding implements ViewBinding {
   public final TextView nvictorias2;
 
   @NonNull
-  public final TextView posesion;
+  public final TextView offsides1;
+
+  @NonNull
+  public final TextView offsides2;
+
+  @NonNull
+  public final TextView offsidesLabel;
 
   @NonNull
   public final TextView racha;
+
+  @NonNull
+  public final TextView redCards1;
+
+  @NonNull
+  public final TextView redCards2;
+
+  @NonNull
+  public final TextView redCardsLabel;
+
+  @NonNull
+  public final TextView saves1;
+
+  @NonNull
+  public final TextView saves2;
+
+  @NonNull
+  public final TextView savesLabel;
+
+  @NonNull
+  public final TextView shots1;
+
+  @NonNull
+  public final TextView shots2;
+
+  @NonNull
+  public final TextView shotsLabel;
+
+  @NonNull
+  public final TextView shotsOnGoal1;
+
+  @NonNull
+  public final TextView shotsOnGoal2;
+
+  @NonNull
+  public final TextView shotsOnGoalLabel;
 
   @NonNull
   public final TextView statsMatch;
@@ -68,33 +143,60 @@ public final class FragmentEstadisticasBinding implements ViewBinding {
   public final TextView teams;
 
   @NonNull
-  public final TextView tiros;
+  public final TextView throwIns1;
 
   @NonNull
-  public final TextView valorGoles;
+  public final TextView throwIns2;
 
   @NonNull
-  public final TextView valorPosesion;
-
-  @NonNull
-  public final TextView valorTiros;
+  public final TextView throwInsLabel;
 
   @NonNull
   public final TextView victorias;
 
-  private FragmentEstadisticasBinding(@NonNull LinearLayout rootView, @NonNull TextView derrotas,
-      @NonNull TextView empates, @NonNull TextView goles,
+  @NonNull
+  public final TextView yellowCards1;
+
+  @NonNull
+  public final TextView yellowCards2;
+
+  @NonNull
+  public final TextView yellowCardsLabel;
+
+  private FragmentEstadisticasBinding(@NonNull LinearLayout rootView,
+      @NonNull TextView ballPossession1, @NonNull TextView ballPossession2,
+      @NonNull TextView ballPossessionLabel, @NonNull TextView corners1, @NonNull TextView corners2,
+      @NonNull TextView cornersLabel, @NonNull TextView derrotas, @NonNull TextView empates,
+      @NonNull TextView fouls1, @NonNull TextView fouls2, @NonNull TextView foulsLabel,
+      @NonNull TextView goalKicks1, @NonNull TextView goalKicks2, @NonNull TextView goalKicksLabel,
       @NonNull LinearLayout linearLayoutEstadisticas, @NonNull TextView nderrotas1,
       @NonNull TextView nderrotas2, @NonNull TextView nempates1, @NonNull TextView nempates2,
-      @NonNull TextView nvictorias1, @NonNull TextView nvictorias2, @NonNull TextView posesion,
-      @NonNull TextView racha, @NonNull TextView statsMatch, @NonNull TextView team1,
-      @NonNull TextView team2, @NonNull TextView teams, @NonNull TextView tiros,
-      @NonNull TextView valorGoles, @NonNull TextView valorPosesion, @NonNull TextView valorTiros,
-      @NonNull TextView victorias) {
+      @NonNull TextView nvictorias1, @NonNull TextView nvictorias2, @NonNull TextView offsides1,
+      @NonNull TextView offsides2, @NonNull TextView offsidesLabel, @NonNull TextView racha,
+      @NonNull TextView redCards1, @NonNull TextView redCards2, @NonNull TextView redCardsLabel,
+      @NonNull TextView saves1, @NonNull TextView saves2, @NonNull TextView savesLabel,
+      @NonNull TextView shots1, @NonNull TextView shots2, @NonNull TextView shotsLabel,
+      @NonNull TextView shotsOnGoal1, @NonNull TextView shotsOnGoal2,
+      @NonNull TextView shotsOnGoalLabel, @NonNull TextView statsMatch, @NonNull TextView team1,
+      @NonNull TextView team2, @NonNull TextView teams, @NonNull TextView throwIns1,
+      @NonNull TextView throwIns2, @NonNull TextView throwInsLabel, @NonNull TextView victorias,
+      @NonNull TextView yellowCards1, @NonNull TextView yellowCards2,
+      @NonNull TextView yellowCardsLabel) {
     this.rootView = rootView;
+    this.ballPossession1 = ballPossession1;
+    this.ballPossession2 = ballPossession2;
+    this.ballPossessionLabel = ballPossessionLabel;
+    this.corners1 = corners1;
+    this.corners2 = corners2;
+    this.cornersLabel = cornersLabel;
     this.derrotas = derrotas;
     this.empates = empates;
-    this.goles = goles;
+    this.fouls1 = fouls1;
+    this.fouls2 = fouls2;
+    this.foulsLabel = foulsLabel;
+    this.goalKicks1 = goalKicks1;
+    this.goalKicks2 = goalKicks2;
+    this.goalKicksLabel = goalKicksLabel;
     this.linearLayoutEstadisticas = linearLayoutEstadisticas;
     this.nderrotas1 = nderrotas1;
     this.nderrotas2 = nderrotas2;
@@ -102,17 +204,33 @@ public final class FragmentEstadisticasBinding implements ViewBinding {
     this.nempates2 = nempates2;
     this.nvictorias1 = nvictorias1;
     this.nvictorias2 = nvictorias2;
-    this.posesion = posesion;
+    this.offsides1 = offsides1;
+    this.offsides2 = offsides2;
+    this.offsidesLabel = offsidesLabel;
     this.racha = racha;
+    this.redCards1 = redCards1;
+    this.redCards2 = redCards2;
+    this.redCardsLabel = redCardsLabel;
+    this.saves1 = saves1;
+    this.saves2 = saves2;
+    this.savesLabel = savesLabel;
+    this.shots1 = shots1;
+    this.shots2 = shots2;
+    this.shotsLabel = shotsLabel;
+    this.shotsOnGoal1 = shotsOnGoal1;
+    this.shotsOnGoal2 = shotsOnGoal2;
+    this.shotsOnGoalLabel = shotsOnGoalLabel;
     this.statsMatch = statsMatch;
     this.team1 = team1;
     this.team2 = team2;
     this.teams = teams;
-    this.tiros = tiros;
-    this.valorGoles = valorGoles;
-    this.valorPosesion = valorPosesion;
-    this.valorTiros = valorTiros;
+    this.throwIns1 = throwIns1;
+    this.throwIns2 = throwIns2;
+    this.throwInsLabel = throwInsLabel;
     this.victorias = victorias;
+    this.yellowCards1 = yellowCards1;
+    this.yellowCards2 = yellowCards2;
+    this.yellowCardsLabel = yellowCardsLabel;
   }
 
   @Override
@@ -142,6 +260,42 @@ public final class FragmentEstadisticasBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.ballPossession1;
+      TextView ballPossession1 = ViewBindings.findChildViewById(rootView, id);
+      if (ballPossession1 == null) {
+        break missingId;
+      }
+
+      id = R.id.ballPossession2;
+      TextView ballPossession2 = ViewBindings.findChildViewById(rootView, id);
+      if (ballPossession2 == null) {
+        break missingId;
+      }
+
+      id = R.id.ballPossessionLabel;
+      TextView ballPossessionLabel = ViewBindings.findChildViewById(rootView, id);
+      if (ballPossessionLabel == null) {
+        break missingId;
+      }
+
+      id = R.id.corners1;
+      TextView corners1 = ViewBindings.findChildViewById(rootView, id);
+      if (corners1 == null) {
+        break missingId;
+      }
+
+      id = R.id.corners2;
+      TextView corners2 = ViewBindings.findChildViewById(rootView, id);
+      if (corners2 == null) {
+        break missingId;
+      }
+
+      id = R.id.cornersLabel;
+      TextView cornersLabel = ViewBindings.findChildViewById(rootView, id);
+      if (cornersLabel == null) {
+        break missingId;
+      }
+
       id = R.id.derrotas;
       TextView derrotas = ViewBindings.findChildViewById(rootView, id);
       if (derrotas == null) {
@@ -154,9 +308,39 @@ public final class FragmentEstadisticasBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.goles;
-      TextView goles = ViewBindings.findChildViewById(rootView, id);
-      if (goles == null) {
+      id = R.id.fouls1;
+      TextView fouls1 = ViewBindings.findChildViewById(rootView, id);
+      if (fouls1 == null) {
+        break missingId;
+      }
+
+      id = R.id.fouls2;
+      TextView fouls2 = ViewBindings.findChildViewById(rootView, id);
+      if (fouls2 == null) {
+        break missingId;
+      }
+
+      id = R.id.foulsLabel;
+      TextView foulsLabel = ViewBindings.findChildViewById(rootView, id);
+      if (foulsLabel == null) {
+        break missingId;
+      }
+
+      id = R.id.goalKicks1;
+      TextView goalKicks1 = ViewBindings.findChildViewById(rootView, id);
+      if (goalKicks1 == null) {
+        break missingId;
+      }
+
+      id = R.id.goalKicks2;
+      TextView goalKicks2 = ViewBindings.findChildViewById(rootView, id);
+      if (goalKicks2 == null) {
+        break missingId;
+      }
+
+      id = R.id.goalKicksLabel;
+      TextView goalKicksLabel = ViewBindings.findChildViewById(rootView, id);
+      if (goalKicksLabel == null) {
         break missingId;
       }
 
@@ -202,15 +386,99 @@ public final class FragmentEstadisticasBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.posesion;
-      TextView posesion = ViewBindings.findChildViewById(rootView, id);
-      if (posesion == null) {
+      id = R.id.offsides1;
+      TextView offsides1 = ViewBindings.findChildViewById(rootView, id);
+      if (offsides1 == null) {
+        break missingId;
+      }
+
+      id = R.id.offsides2;
+      TextView offsides2 = ViewBindings.findChildViewById(rootView, id);
+      if (offsides2 == null) {
+        break missingId;
+      }
+
+      id = R.id.offsidesLabel;
+      TextView offsidesLabel = ViewBindings.findChildViewById(rootView, id);
+      if (offsidesLabel == null) {
         break missingId;
       }
 
       id = R.id.racha;
       TextView racha = ViewBindings.findChildViewById(rootView, id);
       if (racha == null) {
+        break missingId;
+      }
+
+      id = R.id.redCards1;
+      TextView redCards1 = ViewBindings.findChildViewById(rootView, id);
+      if (redCards1 == null) {
+        break missingId;
+      }
+
+      id = R.id.redCards2;
+      TextView redCards2 = ViewBindings.findChildViewById(rootView, id);
+      if (redCards2 == null) {
+        break missingId;
+      }
+
+      id = R.id.redCardsLabel;
+      TextView redCardsLabel = ViewBindings.findChildViewById(rootView, id);
+      if (redCardsLabel == null) {
+        break missingId;
+      }
+
+      id = R.id.saves1;
+      TextView saves1 = ViewBindings.findChildViewById(rootView, id);
+      if (saves1 == null) {
+        break missingId;
+      }
+
+      id = R.id.saves2;
+      TextView saves2 = ViewBindings.findChildViewById(rootView, id);
+      if (saves2 == null) {
+        break missingId;
+      }
+
+      id = R.id.savesLabel;
+      TextView savesLabel = ViewBindings.findChildViewById(rootView, id);
+      if (savesLabel == null) {
+        break missingId;
+      }
+
+      id = R.id.shots1;
+      TextView shots1 = ViewBindings.findChildViewById(rootView, id);
+      if (shots1 == null) {
+        break missingId;
+      }
+
+      id = R.id.shots2;
+      TextView shots2 = ViewBindings.findChildViewById(rootView, id);
+      if (shots2 == null) {
+        break missingId;
+      }
+
+      id = R.id.shotsLabel;
+      TextView shotsLabel = ViewBindings.findChildViewById(rootView, id);
+      if (shotsLabel == null) {
+        break missingId;
+      }
+
+      id = R.id.shotsOnGoal1;
+      TextView shotsOnGoal1 = ViewBindings.findChildViewById(rootView, id);
+      if (shotsOnGoal1 == null) {
+        break missingId;
+      }
+
+      id = R.id.shotsOnGoal2;
+      TextView shotsOnGoal2 = ViewBindings.findChildViewById(rootView, id);
+      if (shotsOnGoal2 == null) {
+        break missingId;
+      }
+
+      id = R.id.shotsOnGoalLabel;
+      TextView shotsOnGoalLabel = ViewBindings.findChildViewById(rootView, id);
+      if (shotsOnGoalLabel == null) {
         break missingId;
       }
 
@@ -238,27 +506,21 @@ public final class FragmentEstadisticasBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.tiros;
-      TextView tiros = ViewBindings.findChildViewById(rootView, id);
-      if (tiros == null) {
+      id = R.id.throwIns1;
+      TextView throwIns1 = ViewBindings.findChildViewById(rootView, id);
+      if (throwIns1 == null) {
         break missingId;
       }
 
-      id = R.id.valorGoles;
-      TextView valorGoles = ViewBindings.findChildViewById(rootView, id);
-      if (valorGoles == null) {
+      id = R.id.throwIns2;
+      TextView throwIns2 = ViewBindings.findChildViewById(rootView, id);
+      if (throwIns2 == null) {
         break missingId;
       }
 
-      id = R.id.valorPosesion;
-      TextView valorPosesion = ViewBindings.findChildViewById(rootView, id);
-      if (valorPosesion == null) {
-        break missingId;
-      }
-
-      id = R.id.valorTiros;
-      TextView valorTiros = ViewBindings.findChildViewById(rootView, id);
-      if (valorTiros == null) {
+      id = R.id.throwInsLabel;
+      TextView throwInsLabel = ViewBindings.findChildViewById(rootView, id);
+      if (throwInsLabel == null) {
         break missingId;
       }
 
@@ -268,10 +530,32 @@ public final class FragmentEstadisticasBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentEstadisticasBinding((LinearLayout) rootView, derrotas, empates, goles,
+      id = R.id.yellowCards1;
+      TextView yellowCards1 = ViewBindings.findChildViewById(rootView, id);
+      if (yellowCards1 == null) {
+        break missingId;
+      }
+
+      id = R.id.yellowCards2;
+      TextView yellowCards2 = ViewBindings.findChildViewById(rootView, id);
+      if (yellowCards2 == null) {
+        break missingId;
+      }
+
+      id = R.id.yellowCardsLabel;
+      TextView yellowCardsLabel = ViewBindings.findChildViewById(rootView, id);
+      if (yellowCardsLabel == null) {
+        break missingId;
+      }
+
+      return new FragmentEstadisticasBinding((LinearLayout) rootView, ballPossession1,
+          ballPossession2, ballPossessionLabel, corners1, corners2, cornersLabel, derrotas, empates,
+          fouls1, fouls2, foulsLabel, goalKicks1, goalKicks2, goalKicksLabel,
           linearLayoutEstadisticas, nderrotas1, nderrotas2, nempates1, nempates2, nvictorias1,
-          nvictorias2, posesion, racha, statsMatch, team1, team2, teams, tiros, valorGoles,
-          valorPosesion, valorTiros, victorias);
+          nvictorias2, offsides1, offsides2, offsidesLabel, racha, redCards1, redCards2,
+          redCardsLabel, saves1, saves2, savesLabel, shots1, shots2, shotsLabel, shotsOnGoal1,
+          shotsOnGoal2, shotsOnGoalLabel, statsMatch, team1, team2, teams, throwIns1, throwIns2,
+          throwInsLabel, victorias, yellowCards1, yellowCards2, yellowCardsLabel);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
