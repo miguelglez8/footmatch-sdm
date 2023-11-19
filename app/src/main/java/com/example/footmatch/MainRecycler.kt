@@ -130,82 +130,40 @@ class MainRecycler : AppCompatActivity() {
 
     }
 
-    fun cargarEquiposParaClasificacion(liga: String?): List<Equipo> {
-        var equipo: Equipo
-        val equiposLiga: MutableList<Equipo> = ArrayList()
-        var file: InputStream? = null
-        var reader: InputStreamReader? = null
-        var bufferedReader: BufferedReader? = null
-        try {
-            when (liga) {
-                "LL" -> {
-                    file = assets.open("lista_clasificacion_laliga_url_utf8.csv")
-                }
 
-                "LP" -> {
-                    file = assets.open("lista_clasificacion_premier_url_utf8.csv")
-                }
-
-                "LB" -> {
-                    file = assets.open("lista_clasificacion_bundes_url_utf8.csv")
-                }
-
-                "LS" -> {
-                    file = assets.open("lista_clasificacion_seriea_url_utf8.csv")
-                }
-            }
-            reader = InputStreamReader(file)
-            bufferedReader = BufferedReader(reader)
-            var line: String? = null
-            while (bufferedReader.readLine().also { line = it } != null) {
-                val data = line!!.split(";".toRegex()).dropLastWhile { it.isEmpty() }
-                    .toTypedArray()
-                if (data != null && data.size == 3) {
-                    equipo = Equipo(data[0], data[1], data[2].toInt())
-                    equiposLiga.add(equipo)
-                }
-            }
-        } catch (e: IOException) {
-            e.printStackTrace()
-        } finally {
-            if (bufferedReader != null) {
-                try {
-                    bufferedReader.close()
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                }
-            }
-        }
-        return equiposLiga
-    }
 
     fun cargarClasificacion(liga: String?) {
         var idLogo = R.drawable.liga_easports
         var nombreLiga = "Liga EASports"
+        var code = ""
         when (liga) {
             "LL" -> {
                 idLogo = R.drawable.liga_easports
                 nombreLiga = "Liga EASports"
+                code = "PD"
             }
 
             "LP" -> {
                 idLogo = R.drawable.liga_premier
                 nombreLiga = "Premier League"
+                code = "PL"
             }
 
             "LB" -> {
                 idLogo = R.drawable.liga_bundesliga
                 nombreLiga = "Bundesliga"
+                code = "BL1"
             }
 
             "LS" -> {
                 idLogo = R.drawable.liga_seriea
                 nombreLiga = "Serie A"
+                code = "SA"
             }
         }
-        val ligaSeleccionada = Liga(cargarEquiposParaClasificacion(liga), nombreLiga, idLogo)
+
         val ligaIntent = Intent(this@MainRecycler, ClasificacionActivity::class.java)
-        ligaIntent.putExtra(LIGA_CREADA, ligaSeleccionada)
+        ligaIntent.putExtra(LIGA_CREADA, code)
         startActivity(ligaIntent)
     }
 
