@@ -15,18 +15,55 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
+        <TextView
+            android:id="@+id/posClasificacion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
         <ImageView
             android:id="@+id/imagenEquipo"
             android:layout_marginTop="6dp"
             android:layout_width="37dp"
             android:layout_height="37dp"
+            android:layout_marginLeft="15dp"
             android:src="@mipmap/ic_launcher" />
 
         <TextView
             android:id="@+id/equipoLiga"
             android:layout_width="124dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="12dp"
+            android:layout_weight="0.5"
+            android:layout_marginBottom="12dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <TextView
+            android:id="@+id/golesFavor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:layout_weight="0.5"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <TextView
+            android:id="@+id/golesContra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <TextView
+            android:id="@+id/diferenciaGoles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -35,7 +72,6 @@
             android:id="@+id/puntosEquipo"
             android:layout_width="42dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="122dp"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />

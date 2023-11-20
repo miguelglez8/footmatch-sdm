@@ -20,24 +20,37 @@ class ClasificacionAdapter(var equipos: StandingsResult, //Se utilizará mas ade
     }
 
     override fun getItemCount(): Int {
-        return equipos.standings.size
+        return equipos.standings[0].table.size
     }
 
     class ClasificacionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
         private val escudo: ImageView
         private val nombreEquipo: TextView
         private val puntosEquipo: TextView
+        private val posicion: TextView
+        private val golesAFavor: TextView
+        private val golesEnContra: TextView
+        private val diferenciaGoles: TextView
 
         init {
             escudo = itemView.findViewById<View>(R.id.imagenEquipo) as ImageView
             nombreEquipo = itemView.findViewById<View>(R.id.equipoLiga) as TextView
             puntosEquipo = itemView.findViewById<View>(R.id.puntosEquipo) as TextView
+            posicion = itemView.findViewById<View>(R.id.posClasificacion) as TextView
+            golesAFavor = itemView.findViewById<View>(R.id.golesFavor) as TextView
+            golesEnContra = itemView.findViewById<View>(R.id.golesContra) as TextView
+            diferenciaGoles = itemView.findViewById<View>(R.id.diferenciaGoles) as TextView
         }
 
         // asignar valores a los componentes
         fun bindUser(equipo: Table, listener: () -> Unit) {
-            nombreEquipo.text = equipo.team.name
+            nombreEquipo.text = equipo.team.shortName
             puntosEquipo.text = equipo.points.toString()
+            posicion.text = equipo.position.toString()
+            golesAFavor.text = equipo.goalsFor.toString()
+            golesEnContra.text = equipo.goalsAgainst.toString()
+            diferenciaGoles.text= equipo.goalDifference.toString()
             Picasso.get()
                    .load(equipo.team.crest).into(escudo)
             itemView.setOnClickListener {
@@ -53,7 +66,7 @@ class ClasificacionAdapter(var equipos: StandingsResult, //Se utilizará mas ade
     }
 
     override fun onBindViewHolder(holder: ClasificacionViewHolder, position: Int) {
-        val equipo: Table = equipos.standings.get(0).table.get(position)
+        val equipo: Table = equipos.standings[0].table[position]
         holder.bindUser(equipo, listener)
     }
 }
