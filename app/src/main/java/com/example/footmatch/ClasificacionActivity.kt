@@ -1,5 +1,6 @@
 package com.example.footmatch
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -57,10 +58,22 @@ class ClasificacionActivity : AppCompatActivity() {
                     .load(clasificacion!!.competition.emblem).into(logoLiga)
                 // Notificamos al adapter
                 lpAdapter = ClasificacionAdapter(clasificacion!!) {
-                    /*clickonItem(partido);*/
+                   mostrarEquipo(it)
                 }
                 clasificacionView!!.adapter = lpAdapter
             }
         }
+    }
+
+    private fun mostrarEquipo(id:String){
+        val intent = Intent(this,PlantillaActivity::class.java)
+        intent.putExtra(EQUIPO_SELECCIONADO,id)
+        startActivity(intent)
+    }
+
+    companion object {
+        // identificador de intent
+        const val EQUIPO_SELECCIONADO = "equipo_seleccionado"
+
     }
 }
