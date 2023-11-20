@@ -40,7 +40,7 @@ class MainRecycler : AppCompatActivity() {
             // Segun el caso realizaremos una u otra llamada a la API
             if (itemId == R.id.navigation_yesterday) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    val yesterday = LocalDate.now().minusDays(1)
+                    val yesterday = LocalDate.now().minusDays(8)
                     val dateFrom = yesterday.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
                     val today = LocalDate.now()
                     val dateTo = today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))

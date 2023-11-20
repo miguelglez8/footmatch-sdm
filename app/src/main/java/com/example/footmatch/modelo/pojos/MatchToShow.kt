@@ -1,12 +1,19 @@
 package com.example.footmatch.modelo.pojos
 
 
+import android.support.annotation.Nullable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import org.jetbrains.annotations.NotNull
 import java.io.Serializable
 
+//@Entity(tableName = "match")
 data class MatchToShow(
     @SerializedName("area")
     val area: Area,
+    @SerializedName("aggregates")
+    var aggregates: Aggregates,
     @SerializedName("attendance")
     val attendance: Int,
     @SerializedName("awayTeam")
@@ -22,6 +29,8 @@ data class MatchToShow(
     @SerializedName("homeTeam")
     val homeTeam: HomeTeamX,
     @SerializedName("id")
+    //@PrimaryKey
+    //@NotNull
     val id: Int,
     @SerializedName("injuryTime")
     val injuryTime: Int,

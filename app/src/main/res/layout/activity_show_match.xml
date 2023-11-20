@@ -42,7 +42,7 @@
             android:id="@+id/nombreEquipo1"
             android:layout_width="wrap_content"
             android:layout_height="22dp"
-            android:layout_marginStart="90dp"
+            android:layout_marginStart="98dp"
             android:layout_marginTop="0dp"
             android:text="@string/barcelona" />
 
@@ -58,7 +58,7 @@
             android:id="@+id/fechaPartido"
             android:layout_width="wrap_content"
             android:layout_height="22dp"
-            android:layout_marginStart="190dp"
+            android:layout_marginStart="176dp"
             android:layout_marginTop="-5dp"
             android:text="@string/fecha" />
 
@@ -66,7 +66,7 @@
             android:id="@+id/imagenEquipo2"
             android:layout_width="53dp"
             android:layout_height="29dp"
-            android:layout_marginStart="270dp"
+            android:layout_marginStart="275dp"
             android:layout_marginTop="-51dp"
             android:src="@drawable/logo_madrid" />
 
@@ -74,7 +74,7 @@
             android:id="@+id/nombreEquipo2"
             android:layout_width="wrap_content"
             android:layout_height="22dp"
-            android:layout_marginStart="255dp"
+            android:layout_marginStart="279dp"
             android:layout_marginTop="0dp"
             android:text="@string/madrid" />
 
@@ -82,7 +82,7 @@
             android:id="@+id/estadio"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
-            android:layout_marginStart="178dp"
+            android:layout_marginStart="135dp"
             android:layout_marginTop="5dp"
             android:text="@string/camp_nou" />
 

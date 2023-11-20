@@ -74,16 +74,16 @@ class EstadisticasFragment : Fragment() {
         team2.text = equipo2!!.shortName
 
         if (stats!!.homeTeam != null && stats!!.awayTeam != null) {
-            nvictorias1.setText(stats!!.homeTeam.wins)
-            nvictorias2.setText(stats!!.awayTeam.wins)
-            nempates1.setText(stats!!.homeTeam.draws)
-            nempates2.setText(stats!!.awayTeam.draws)
-            nderrotas1.setText(stats!!.homeTeam.losses)
-            nderrotas2.setText(stats!!.awayTeam.losses)
+            nvictorias1.setText(stats!!.homeTeam.wins.toString())
+            nvictorias2.setText(stats!!.awayTeam.wins.toString())
+            nempates1.setText(stats!!.homeTeam.draws.toString())
+            nempates2.setText(stats!!.awayTeam.draws.toString())
+            nderrotas1.setText(stats!!.homeTeam.losses.toString())
+            nderrotas2.setText(stats!!.awayTeam.losses.toString())
         }
 
-        if (equipo1!!.statistics != null && equipo2!!.statistics != null) {
-            corners1.text = equipo1!!.statistics.cornerKicks.toString()
+        if (equipo1!!.statistics == null && equipo2!!.statistics == null) {
+            /*corners1.text = equipo1!!.statistics.cornerKicks.toString()
             corners2.text = equipo2!!.statistics.cornerKicks.toString()
             goalKicks1.text = equipo1!!.statistics.goalKicks.toString()
             goalKicks2.text = equipo2!!.statistics.goalKicks.toString()
@@ -104,7 +104,7 @@ class EstadisticasFragment : Fragment() {
             yellowCards1.text = equipo1!!.statistics.yellowCards.toString()
             yellowCards2.text = equipo2!!.statistics.yellowCards.toString()
             redCards1.text = equipo1!!.statistics.redCards.toString()
-            redCards2.text = equipo2!!.statistics.redCards.toString()
+            redCards2.text = equipo2!!.statistics.redCards.toString()*/
         } else {
             val linearLayoutEstadisticas =
                 root.findViewById<LinearLayout>(R.id.linear_layout_estadisticas)

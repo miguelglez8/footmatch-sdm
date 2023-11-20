@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,7 +18,7 @@ import java.lang.String;
 
 public final class FragmentEstadisticasBinding implements ViewBinding {
   @NonNull
-  private final LinearLayout rootView;
+  private final ScrollView rootView;
 
   @NonNull
   public final TextView ballPossession1;
@@ -163,7 +164,7 @@ public final class FragmentEstadisticasBinding implements ViewBinding {
   @NonNull
   public final TextView yellowCardsLabel;
 
-  private FragmentEstadisticasBinding(@NonNull LinearLayout rootView,
+  private FragmentEstadisticasBinding(@NonNull ScrollView rootView,
       @NonNull TextView ballPossession1, @NonNull TextView ballPossession2,
       @NonNull TextView ballPossessionLabel, @NonNull TextView corners1, @NonNull TextView corners2,
       @NonNull TextView cornersLabel, @NonNull TextView derrotas, @NonNull TextView empates,
@@ -235,7 +236,7 @@ public final class FragmentEstadisticasBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public LinearLayout getRoot() {
+  public ScrollView getRoot() {
     return rootView;
   }
 
@@ -548,7 +549,7 @@ public final class FragmentEstadisticasBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentEstadisticasBinding((LinearLayout) rootView, ballPossession1,
+      return new FragmentEstadisticasBinding((ScrollView) rootView, ballPossession1,
           ballPossession2, ballPossessionLabel, corners1, corners2, cornersLabel, derrotas, empates,
           fouls1, fouls2, foulsLabel, goalKicks1, goalKicks2, goalKicksLabel,
           linearLayoutEstadisticas, nderrotas1, nderrotas2, nempates1, nempates2, nvictorias1,

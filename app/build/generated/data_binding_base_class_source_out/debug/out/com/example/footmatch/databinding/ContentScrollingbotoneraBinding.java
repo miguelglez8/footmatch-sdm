@@ -21,14 +21,19 @@ public final class ContentScrollingbotoneraBinding implements ViewBinding {
   private final NestedScrollView rootView;
 
   @NonNull
+  public final NestedScrollView font;
+
+  @NonNull
   public final FrameLayout fragmentContainer;
 
   @NonNull
   public final BottomNavigationView navView;
 
   private ContentScrollingbotoneraBinding(@NonNull NestedScrollView rootView,
-      @NonNull FrameLayout fragmentContainer, @NonNull BottomNavigationView navView) {
+      @NonNull NestedScrollView font, @NonNull FrameLayout fragmentContainer,
+      @NonNull BottomNavigationView navView) {
     this.rootView = rootView;
+    this.font = font;
     this.fragmentContainer = fragmentContainer;
     this.navView = navView;
   }
@@ -60,6 +65,8 @@ public final class ContentScrollingbotoneraBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      NestedScrollView font = (NestedScrollView) rootView;
+
       id = R.id.fragment_container;
       FrameLayout fragmentContainer = ViewBindings.findChildViewById(rootView, id);
       if (fragmentContainer == null) {
@@ -72,8 +79,8 @@ public final class ContentScrollingbotoneraBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ContentScrollingbotoneraBinding((NestedScrollView) rootView, fragmentContainer,
-          navView);
+      return new ContentScrollingbotoneraBinding((NestedScrollView) rootView, font,
+          fragmentContainer, navView);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

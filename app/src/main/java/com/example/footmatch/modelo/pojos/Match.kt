@@ -2,6 +2,7 @@ package com.example.footmatch.modelo.pojos
 
 
 import android.os.Parcelable
+import androidx.annotation.Nullable
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 

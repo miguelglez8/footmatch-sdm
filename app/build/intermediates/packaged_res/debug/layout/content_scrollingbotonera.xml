@@ -1,24 +1,36 @@
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent" app:layout_behavior="@string/appbar_scrolling_view_behavior" tools:context=".MostrarPartido" tools:showIn="@layout/activity_show_match">
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/font"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MostrarPartido"
+    tools:showIn="@layout/activity_show_match">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_margin="@dimen/text_margin">
+        android:layout_margin="@dimen/text_margin"
+        android:orientation="vertical">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/nav_view"
-            android:layout_width="wrap_content"
+            android:layout_width="390dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="0dp"
             android:layout_marginStart="0dp"
-            android:background="?android:attr/windowBackground"
+            android:layout_marginEnd="0dp"
+            android:background="@color/colorAccent"
+            app:backgroundTint="@color/white"
+            app:itemIconTint="@color/colorPrimary"
+            app:itemTextColor="@color/colorPrimary"
+            app:labelVisibilityMode="labeled"
             app:menu="@menu/bottom_nav_menu" />
 
         <FrameLayout
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
+            android:layout_height="match_parent" />
 
         <!--<TextView android:id="@+id/textView" android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="8dp" android:text="@string/categoria" android:textSize="18sp"/>
         <TextView android:id="@+id/categoria" android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="8sp" android:text="@string/tenet_categoria" android:textSize="18sp"/>
@@ -33,5 +45,6 @@
         <ImageView android:id="@+id/caratula" android:layout_width="150dp" android:layout_height="225dp" android:contentDescription="@string/desc_caratula" android:padding="8sp" app:srcCompat="@drawable/tenet_principal"/>
         <TextView android:id="@+id/textView4" android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="8dp" android:text="@string/contenido" android:textSize="18sp"/>
         <TextView android:id="@+id/argumento" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="@dimen/text_margin" android:text="@string/tenet_argumento" android:textSize="18sp"/>
-    --></LinearLayout>
+    -->
+    </LinearLayout>
 </androidx.core.widget.NestedScrollView>

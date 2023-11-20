@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_margin="16dp"
     android:background="#ffffff"
     android:padding="8dp"
     android:layout_marginTop="16dp"
     android:layout_marginBottom="16dp"
     android:layout_marginStart="16dp"
-    android:layout_marginEnd="16dp">
+    android:layout_marginEnd="16dp"
+    android:layout_margin="@dimen/text_margin">
 
-    <!-- Título -->
+<!-- Título -->
     <TextView
         android:id="@+id/racha"
         android:layout_width="wrap_content"
@@ -106,399 +110,407 @@
         </TableRow>
 
     </TableLayout>
-
-    <LinearLayout
-        android:id="@+id/linear_layout_estadisticas"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
-
-        <!-- Estadísticas de Fútbol -->
-        <TextView
-            android:id="@+id/stats_match"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/estad_sticas_del_partido"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <!-- Corner Kicks -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp">
+            android:layout_height="wrap_content">
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                    <LinearLayout
+                    android:id="@+id/linear_layout_estadisticas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-            <TextView
-                android:id="@+id/corners1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="1" />
+                    <!-- Estadísticas de Fútbol -->
+                    <TextView
+                        android:id="@+id/stats_match"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/estad_sticas_del_partido"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <!-- Corner Kicks -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="16dp">
+
+                        <TextView
+                            android:id="@+id/corners1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="1" />
 
 
-            <TextView
-                android:id="@+id/cornersLabel"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/corners"
-                android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/cornersLabel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/corners"
+                            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/corners2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="1" />
+                        <TextView
+                            android:id="@+id/corners2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="1" />
 
+                    </LinearLayout>
+
+
+                    <!-- Goal Kicks -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="16dp">
+
+                        <TextView
+                            android:id="@+id/goalKicks1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="9" />
+
+                        <TextView
+                            android:id="@+id/goalKicksLabel"
+                            android:layout_width="5dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/saques_de_puerta"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/goalKicks2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="9" />
+
+                    </LinearLayout>
+
+                    <!-- Offsides -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="16dp">
+
+                        <TextView
+                            android:id="@+id/offsides1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="7" />
+
+                        <TextView
+                            android:id="@+id/offsidesLabel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/fuera_de_juego"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/offsides2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="7" />
+
+                    </LinearLayout>
+
+                    <!-- Fouls -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="16dp">
+
+                        <TextView
+                            android:id="@+id/fouls1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="12" />
+
+                        <TextView
+                            android:id="@+id/foulsLabel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/faltas_cometidas"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/fouls2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="12" />
+
+                    </LinearLayout>
+
+                    <!-- Ball Possession -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="16dp">
+
+                        <TextView
+                            android:id="@+id/ballPossession1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="51%" />
+
+                        <TextView
+                            android:id="@+id/ballPossessionLabel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/posesi_n_de_bal_n"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/ballPossession2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="49%" />
+
+                    </LinearLayout>
+
+                    <!-- Saves -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="16dp">
+
+                        <TextView
+                            android:id="@+id/saves1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="1" />
+
+                        <TextView
+                            android:id="@+id/savesLabel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/atajadas"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/saves2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="1" />
+
+                    </LinearLayout>
+
+                    <!-- Throw Ins -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="16dp">
+
+                        <TextView
+                            android:id="@+id/throwIns1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="22" />
+
+                        <TextView
+                            android:id="@+id/throwInsLabel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/saques_de_banda"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/throwIns2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="22" />
+
+                    </LinearLayout>
+
+                    <!-- Shots -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="16dp">
+
+                        <TextView
+                            android:id="@+id/shots1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="8" />
+
+                        <TextView
+                            android:id="@+id/shotsLabel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/tiros"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/shots2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="8" />
+
+                    </LinearLayout>
+
+                    <!-- Shots on Goal -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="16dp">
+
+                        <TextView
+                            android:id="@+id/shotsOnGoal1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="7" />
+
+                        <TextView
+                            android:id="@+id/shotsOnGoalLabel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/tiros_al_arco"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/shotsOnGoal2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="7" />
+
+                    </LinearLayout>
+
+                    <!-- Yellow Cards -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="16dp">
+
+                        <TextView
+                            android:id="@+id/yellowCards1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="4" />
+
+                        <TextView
+                            android:id="@+id/yellowCardsLabel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/tarjetas_amarillas"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/yellowCards2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="4" />
+
+                    </LinearLayout>
+
+                    <!-- Red Cards -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="16dp">
+
+                        <TextView
+                            android:id="@+id/redCards1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="4" />
+
+                        <TextView
+                            android:id="@+id/redCardsLabel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/tarjetas_rojas"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/redCards2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="4" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </ScrollView>
         </LinearLayout>
-
-
-        <!-- Goal Kicks -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp">
-
-            <TextView
-                android:id="@+id/goalKicks1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="9" />
-
-            <TextView
-                android:id="@+id/goalKicksLabel"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/saques_de_puerta"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/goalKicks2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="9" />
-
-        </LinearLayout>
-
-        <!-- Offsides -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp">
-
-            <TextView
-                android:id="@+id/offsides1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="7" />
-
-            <TextView
-                android:id="@+id/offsidesLabel"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/fuera_de_juego"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/offsides2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="7" />
-
-        </LinearLayout>
-
-        <!-- Fouls -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp">
-
-            <TextView
-                android:id="@+id/fouls1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="12" />
-
-            <TextView
-                android:id="@+id/foulsLabel"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/faltas_cometidas"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/fouls2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="12" />
-
-        </LinearLayout>
-
-        <!-- Ball Possession -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp">
-
-            <TextView
-                android:id="@+id/ballPossession1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="51%" />
-
-            <TextView
-                android:id="@+id/ballPossessionLabel"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/posesi_n_de_bal_n"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/ballPossession2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="49%" />
-
-        </LinearLayout>
-
-        <!-- Saves -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp">
-
-            <TextView
-                android:id="@+id/saves1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="1" />
-
-            <TextView
-                android:id="@+id/savesLabel"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/atajadas"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/saves2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="1" />
-
-        </LinearLayout>
-
-        <!-- Throw Ins -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp">
-
-            <TextView
-                android:id="@+id/throwIns1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="22" />
-
-            <TextView
-                android:id="@+id/throwInsLabel"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/saques_de_banda"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/throwIns2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="22" />
-
-        </LinearLayout>
-
-        <!-- Shots -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp">
-
-            <TextView
-                android:id="@+id/shots1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="8" />
-
-            <TextView
-                android:id="@+id/shotsLabel"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/tiros"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/shots2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="8" />
-
-        </LinearLayout>
-
-        <!-- Shots on Goal -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp">
-
-            <TextView
-                android:id="@+id/shotsOnGoal1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="7" />
-
-            <TextView
-                android:id="@+id/shotsOnGoalLabel"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/tiros_al_arco"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/shotsOnGoal2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="7" />
-
-        </LinearLayout>
-
-        <!-- Yellow Cards -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp">
-
-            <TextView
-                android:id="@+id/yellowCards1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="4" />
-
-            <TextView
-                android:id="@+id/yellowCardsLabel"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/tarjetas_amarillas"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/yellowCards2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="4" />
-
-        </LinearLayout>
-
-        <!-- Red Cards -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp">
-
-            <TextView
-                android:id="@+id/redCards1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="4" />
-
-            <TextView
-                android:id="@+id/redCardsLabel"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/tarjetas_rojas"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/redCards2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="4" />
-
-        </LinearLayout>
-
-    </LinearLayout>
 </LinearLayout>
+</ScrollView>

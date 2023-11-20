@@ -23,9 +23,9 @@ import com.example.footmatch.util.api.RetrofitClient
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import kotlinx.coroutines.async
 
 class MostrarPartido : AppCompatActivity() {
     private var partido: MatchToShow? = null
@@ -44,6 +44,7 @@ class MostrarPartido : AppCompatActivity() {
     var nombreEquipo2: TextView? = null
     var estadio: TextView? = null
     var estadoPartido: Button? = null
+    //var database: MatchDB? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_show_match)
@@ -56,7 +57,7 @@ class MostrarPartido : AppCompatActivity() {
         this.fecha = buscadorId!!.utcDate.split("T")
         this.id = buscadorId!!.id
 
-        this.partido = searchMatch(this.id!!)
+        //database = MatchDB.getDB(applicationContext)
 
         // Inicializar vistas
         textView = findViewById(R.id.liga_jornada)
@@ -83,23 +84,32 @@ class MostrarPartido : AppCompatActivity() {
         }
         
         // Cargar datos del partido en las vistas
-        mostrarDatos(partido)
+        searchMatch(this.id!!)
     }
 
-    private fun searchMatch(id: Int): MatchToShow? {
+    private fun searchMatch(id: Int) {
         // Llamada a la API empleando corrutinas de Kotlin
         val apiService = RetrofitClient.makeClient()
         // Iniciar ambas llamadas a la API de manera simultánea
         Log.d("Busca el partido", "Inicio de la búsqueda del partido por ID: $id")
-        var tarea: MatchToShow? = null
         lifecycleScope.launch (Dispatchers.IO) {
-            val matchSearchDeferred = async(Dispatchers.IO) { apiService.getMatch(id) }
-            tarea = matchSearchDeferred.await()
-            Log.d("Busca el partido", "Búsqueda del partido por ID exitosa")
-            // Guardamos el partido
-            return@launch
+            val  tarea1= async(Dispatchers.IO){ partido = apiService.getMatch(id)}
+            val  tarea2= async(Dispatchers.IO){ stats = apiService.getMatchStats(id).aggregates }
+            tarea1.await()
+            tarea2.await()
+
+            partido?.aggregates = stats!!
+
+            /*if (database!!.matchDAO().getMatchById(partido!!.id) != null) {
+                partido = database!!.matchDAO().getMatchById(partido!!.id) as MatchToShow
+            } else {
+                database?.matchDAO()?.add(partido!!)
+            }*/
+
+            withContext(Dispatchers.Main) {
+                mostrarDatos(partido, stats)
+            }
         }
-        return tarea
     }
 
     private val mOnNavigationItemSelectedListener =
@@ -123,7 +133,8 @@ class MostrarPartido : AppCompatActivity() {
             }
             if (itemId == R.id.navigation_events) {
                 if (partido!!.status.equals("LIVE") || partido!!.status.equals("PAUSED")
-                    || partido!!.status.equals("IN_PLAY")) {
+                    || partido!!.status.equals("IN_PLAY") || partido!!.status.equals("FINISHED")
+                    || partido!!.status.equals("PAUSED")) {
                     val eventosFragment = EventosFragment.newInstance(partido!!.goals,
                         partido!!.penalties, partido!!.bookings, partido!!.substitutions,
                         partido!!.homeTeam.name)
@@ -174,33 +185,65 @@ class MostrarPartido : AppCompatActivity() {
         }
 
     // Cargar los datos del partido en las vistas
-    private fun mostrarDatos(partido: MatchToShow?) {
+    private fun mostrarDatos(partido: MatchToShow?, stats: Aggregates?) {
         if (partido != null) {
             // Actualizar componentes con valores del partido específico
-            textView!!.text = partido.competition.name + ". JORNADA " + partido.season.currentMatchday
-            textView2!!.text = partido.minute.toString()
+            textView!!.text = partido.competition.name + ". Jornada Nº " + partido.season.currentMatchday
+            if (partido.status.equals("FINISHED"))
+                textView2!!.text = "90'"
+            else
+                textView2!!.text = partido.minute.toString() + "'"
             nombreEquipo1!!.text = partido.homeTeam.shortName
-            if (partido.status.equals("FINISHED")) {
+            if (partido.status.equals("FINISHED") || partido.status.equals("LIVE")) {
                 resultadoPartido!!.text = partido.score.fullTime.home.toString() + "-" + partido.score.fullTime.away.toString()
             } else {
                 resultadoPartido!!.text = fecha?.get(1)?.substring(0, fecha?.get(1)!!.length - 4) ?: ""
             }
             fechaPartido!!.text = fecha?.get(0) ?: ""
             nombreEquipo2!!.text = partido.awayTeam.shortName
-            estadio!!.text = partido.venue
+            estadio!!.text = "Estadio: " + partido.venue
             estadoPartido!!.text = partido.status
-            Picasso.get()
-                .load(partido.competition.emblem).into(imagenLiga)
-            Picasso.get()
-                .load(partido.homeTeam.crest).into(imagenEquipo1)
-            Picasso.get()
-                .load(partido.awayTeam.crest).into(imagenEquipo2)
-            val estadisticasFragment = EstadisticasFragment.newInstance(
-                partido.homeTeam, partido.awayTeam, stats
-            )
+            if (partido.competition.emblem.isEmpty()) {
+                Picasso.get()
+                    .load(R.drawable.liga_defecto).into(imagenLiga)
+            } else {
+                Picasso.get()
+                    .load(partido.competition.emblem).into(imagenLiga)
+            }
+            if (partido.homeTeam.crest.isEmpty()) {
+                Picasso.get()
+                    .load(R.drawable.escudo_por_defecto).into(imagenEquipo1)
+            } else {
+                Picasso.get()
+                    .load(partido.homeTeam.crest).into(imagenEquipo1)
+            }
+            if (partido.awayTeam.crest.isEmpty()) {
+                Picasso.get()
+                    .load(R.drawable.escudo_por_defecto).into(imagenEquipo2)
+            } else {
+                Picasso.get()
+                    .load(partido.awayTeam.crest).into(imagenEquipo2)
+            }
 
-            /* ¿Qué estaremos haciendo aquí? */supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, estadisticasFragment).commit()
+            if (partido!!.status.equals("LIVE") || partido!!.status.equals("PAUSED")
+                || partido!!.status.equals("IN_PLAY") || partido!!.status.equals("FINISHED")) {
+                val eventosFragment = EventosFragment.newInstance(partido!!.goals,
+                    partido!!.penalties, partido!!.bookings, partido!!.substitutions,
+                    partido!!.homeTeam.name)
+
+                /* ¿Qué estaremos haciendo aquí? */supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, eventosFragment).commit()
+            } else {
+                // Inflar el layout y agregarlo al contenedor
+                val inflater = LayoutInflater.from(this)
+                val miLayout = inflater.inflate(R.layout.item_no_disponible, null) as RelativeLayout
+
+                // Obtener el contenedor por su ID
+                val contenedor = findViewById<FrameLayout>(R.id.fragment_container)
+
+                // Agregar el layout inflado al contenedor
+                contenedor.addView(miLayout)
+            }
         }
     }
 }

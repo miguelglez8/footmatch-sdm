@@ -60,7 +60,7 @@ class AlineacionesFragment : Fragment() {
         imagenEquipo2 = root.findViewById(R.id.imagenEquipo2)
 
         // Configura los RecyclerViews con los adaptadores
-        if (jugadoresEquipo1!!.lineup.isNotEmpty()) {
+        if (jugadoresEquipo1!!.lineup != null && jugadoresEquipo1!!.lineup.isNotEmpty()) {
             adapterEquipo1 = ListaJugadoresAdapter(
                 jugadoresEquipo1!!.lineup,
                 object : ListaJugadoresAdapter.OnItemClickListener {
@@ -69,18 +69,8 @@ class AlineacionesFragment : Fragment() {
                     }
                 })
             setUpRecyclerView(recyclerViewJugadoresEquipo1, adapterEquipo1!!)
-        } else {
-            // Inflar el layout y agregarlo al contenedor
-            val inflater = LayoutInflater.from(requireContext())
-            val miLayout = inflater.inflate(R.layout.item_no_disponible, null) as RelativeLayout
-
-            // Obtener el contenedor por su ID desde la vista root del fragmento
-            val contenedor = root.findViewById<FrameLayout>(R.id.fragment_container)
-
-            // Agregar el layout inflado al contenedor
-            contenedor.addView(miLayout)
         }
-        if (jugadoresEquipo2!!.lineup.isNotEmpty()) {
+        if (jugadoresEquipo2!!.lineup != null && jugadoresEquipo2!!.lineup.isNotEmpty()) {
             adapterEquipo2 = ListaJugadoresAdapter(
                 jugadoresEquipo2!!.lineup,
                 object : ListaJugadoresAdapter.OnItemClickListener {
@@ -89,16 +79,6 @@ class AlineacionesFragment : Fragment() {
                     }
                 })
             setUpRecyclerView(recyclerViewJugadoresEquipo2, adapterEquipo2!!)
-        } else {
-            // Inflar el layout y agregarlo al contenedor
-            val inflater = LayoutInflater.from(requireContext())
-            val miLayout = inflater.inflate(R.layout.item_no_disponible, null) as RelativeLayout
-
-            // Obtener el contenedor por su ID desde la vista root del fragmento
-            val contenedor = root.findViewById<FrameLayout>(R.id.fragment_container)
-
-            // Agregar el layout inflado al contenedor
-            contenedor.addView(miLayout)
         }
         cargarDatos()
         return root
@@ -115,12 +95,36 @@ class AlineacionesFragment : Fragment() {
         // Aquí deberías cargar los datos reales de tus equipos
         nombreEquipo1!!.text = jugadoresEquipo1!!.name
         nombreEquipo2!!.text = jugadoresEquipo2!!.name
-        entrenadorEquipo1!!.text = jugadoresEquipo1!!.coach.name
-        entrenadorEquipo2!!.text = jugadoresEquipo2!!.coach.name
-        formacionEquipo1!!.text = jugadoresEquipo1!!.formation
-        formacionEquipo2!!.text = jugadoresEquipo2!!.formation
-        Picasso.get().load(jugadoresEquipo1!!.crest).into(imagenEquipo1)
-        Picasso.get().load(jugadoresEquipo2!!.crest).into(imagenEquipo2)
+        if (jugadoresEquipo1!!.coach==null)
+            entrenadorEquipo1!!.text = "Entrenador: No disponible"
+        else
+            entrenadorEquipo1!!.text = jugadoresEquipo1!!.coach!!.name
+
+        if (jugadoresEquipo2!!.coach==null)
+            entrenadorEquipo2!!.text = "Entrenador: No disponible"
+        else
+            entrenadorEquipo2!!.text = jugadoresEquipo2!!.coach!!.name
+
+        if (jugadoresEquipo1!!.coach==null)
+            formacionEquipo1!!.text = "Formación: No disponible"
+        else
+            formacionEquipo1!!.text = jugadoresEquipo1!!.formation
+
+        if (jugadoresEquipo2!!.coach==null)
+            formacionEquipo2!!.text = "Formación: No disponible"
+        else
+            formacionEquipo2!!.text = jugadoresEquipo2!!.formation
+
+        if (jugadoresEquipo1!!.crest.isEmpty()) {
+            Picasso.get().load(R.drawable.escudo_por_defecto).into(imagenEquipo1)
+        } else {
+            Picasso.get().load(jugadoresEquipo1!!.crest).into(imagenEquipo1)
+        }
+        if (jugadoresEquipo2!!.crest.isEmpty()) {
+            Picasso.get().load(R.drawable.escudo_por_defecto).into(imagenEquipo2)
+        } else {
+            Picasso.get().load(jugadoresEquipo2!!.crest).into(imagenEquipo2)
+        }
     }
 
     companion object {

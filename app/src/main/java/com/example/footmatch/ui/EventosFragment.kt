@@ -58,7 +58,7 @@ class EventosFragment : Fragment() {
         // Recorrer la lista de substitutions y agregar elementos a la lista de Evento
         for (elem in goals!!) {
             var evento:Evento
-            if (elem.type.toString().equals("REGULAR")) {
+            if (elem.type.equals("REGULAR")) {
                 evento = Gol(elem.scorer.name, elem.assist.name, elem.minute, elem.team.equals(local))
             } else {
                 evento = Penalti(elem.scorer.name, elem.minute, elem.team.equals(local))
@@ -77,7 +77,7 @@ class EventosFragment : Fragment() {
         // Recorrer la lista de substitutions y agregar elementos a la lista de Evento
         for (elem in bookings!!) {
             val evento = Tarjeta(elem.player.name, elem.minute, elem.team.equals(local),
-                if (elem.card.toString().equals("YELLOW")) Color.AMARILLA else Color.ROJA
+                if (elem.card.equals("YELLOW")) Color.AMARILLA else Color.ROJA
             )
             tarjetas.add(evento)
         }

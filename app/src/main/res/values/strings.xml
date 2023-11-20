@@ -94,7 +94,7 @@
     <string name="stats">ESTADÍSTICAS</string>
     <string name="events">EVENTOS</string>
     <string name="referees">ÁRBITROS</string>
-    <string name="alineations">ALINEACIONES</string>
+    <string name="alineations">ALINEACIÓN</string>
     <string name="clasification">CLASIFICACIÓN</string>
     <string name="premier_league_jornada_10">PREMIER LEAGUE JORNADA 10</string>
     <string name="barcelona">BARCELONA</string>
@@ -102,9 +102,9 @@
     <string name="madrid">REAL MADRID</string>
     <string name="finalizado">FINALIZADO</string>
     <string name="resultado">1-2</string>
-    <string name="fecha">09 NOV</string>
+    <string name="fecha">2023-12-10</string>
     <string name="liga_ea_sports_jornada_10">LIGA EASPORTS JORNADA 10</string>
-    <string name="camp_nou">CAMP NOU</string>
+    <string name="camp_nou">Estadio: CAMP NOU</string>
     <string name="n_mero_de_victorias">Número de victorias</string>
     <string name="n_mero_de_derrotas">Número de derrotas</string>
     <string name="n_mero_de_empates">Número de empates</string>
@@ -127,7 +127,7 @@
     <string name="tiros_a_gol">Tiros a Gol</string>
     <string name="posesi_n">Posesión</string>
     <string name="equipos">EQUIPOS</string>
-    <string name="racha_de_los_ltimos_partidos">ÚLTIMOS 50 ENFRENTAMIENTOS</string>
+    <string name="racha_de_los_ltimos_partidos">ÚLTIMOS ENFRENTAMIENTOS</string>
     <string name="titulo_goles">GOLES</string>
     <string name="titulo_tarjetas">TARJETAS</string>
     <string name="titulo_otros">OTROS</string>
@@ -146,8 +146,8 @@
     <string name="saques_de_banda">Saques de Banda</string>
     <string name="tiros">Tiros</string>
     <string name="tiros_al_arco">Tiros a Puerta</string>
-    <string name="tarjetas_amarillas">Tarjetas Amarillas</string>
-    <string name="tarjetas_rojas">Tarjetas Rojas</string>
+    <string name="tarjetas_amarillas">Amarillas</string>
+    <string name="tarjetas_rojas">Rojas</string>
     <string name="cambios">SUSTITUCIONES</string>
     <string name="_90">90\'</string>
     <string name="_6">6\'</string>

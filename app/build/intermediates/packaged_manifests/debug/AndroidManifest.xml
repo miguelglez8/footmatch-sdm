@@ -51,6 +51,11 @@
             android:authorities="com.example.footmatch.com.squareup.picasso"
             android:exported="false" />
 
+        <service
+            android:name="androidx.room.MultiInstanceInvalidationService"
+            android:directBootAware="true"
+            android:exported="false" />
+
         <uses-library
             android:name="androidx.window.extensions"
             android:required="false" />
