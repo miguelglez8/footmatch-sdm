@@ -225,25 +225,12 @@ class MostrarPartido : AppCompatActivity() {
                     .load(partido.awayTeam.crest).into(imagenEquipo2)
             }
 
-            if (partido!!.status.equals("LIVE") || partido!!.status.equals("PAUSED")
-                || partido!!.status.equals("IN_PLAY") || partido!!.status.equals("FINISHED")) {
-                val eventosFragment = EventosFragment.newInstance(partido!!.goals,
-                    partido!!.penalties, partido!!.bookings, partido!!.substitutions,
-                    partido!!.homeTeam.name)
+            val estadisticasFragment = EstadisticasFragment.newInstance(
+                partido!!.homeTeam, partido!!.awayTeam, stats
+            )
 
-                /* ¿Qué estaremos haciendo aquí? */supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, eventosFragment).commit()
-            } else {
-                // Inflar el layout y agregarlo al contenedor
-                val inflater = LayoutInflater.from(this)
-                val miLayout = inflater.inflate(R.layout.item_no_disponible, null) as RelativeLayout
-
-                // Obtener el contenedor por su ID
-                val contenedor = findViewById<FrameLayout>(R.id.fragment_container)
-
-                // Agregar el layout inflado al contenedor
-                contenedor.addView(miLayout)
-            }
+            /* ¿Qué estaremos haciendo aquí? */supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, estadisticasFragment).commit()
         }
     }
 }
