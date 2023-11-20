@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.footmatch.modelo.BuscadorId
 import com.example.footmatch.modelo.Equipo
 import com.example.footmatch.modelo.Liga
 import com.example.footmatch.modelo.pojos.Match
@@ -31,37 +32,6 @@ class MainRecycler : AppCompatActivity() {
     var matchList: List<Match> = ArrayList()
     var listaPartidosView: RecyclerView? = null
     private lateinit var listaPartidosAdapter: ListaPartidosAdapter
-
-    private fun mostrarPartido(match: Match) {
-        // Llamada a la API empleando corrutinas de Kotlin
-        val apiService = RetrofitClient.makeClient()
-        System.out.println("A")
-
-        lifecycleScope.launch(Dispatchers.IO) {
-            // Iniciar ambas llamadas a la API de manera simultánea
-            val matchSearchDeferred = async { apiService.getMatch(match.id) }
-            val otraLlamadaDeferred = async { apiService.getMatchStats(match.id) }
-            System.out.println("AA")
-
-            Log.d("Busca el partido", "buscamos el partido por la id")
-
-            // Esperar a que ambas llamadas se completen
-            val matchSearch = matchSearchDeferred.await()
-            val matchStats = otraLlamadaDeferred.await()
-            System.out.println("AAA")
-
-            // Cambiamos al hilo principal para actualizar los datos
-            withContext(Dispatchers.Main) {
-                val partidoIntent = Intent(this@MainRecycler, MostrarPartido::class.java)
-                partidoIntent.putExtra(PARTIDO_SELECCIONADO, matchSearch)
-                partidoIntent.putExtra(DATE, match.utcDate)
-                partidoIntent.putExtra(STATS, matchStats.aggregates)
-                startActivity(partidoIntent)
-                System.out.println("AAAA")
-            }
-        }
-    }
-
 
     // Listener para la barra de navegacion de fechas
     private val mOnNavigationItemSelectedListener =
@@ -93,13 +63,11 @@ class MainRecycler : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_recycler)
 
-
         // Pasamos la lista de partidos al RecyclerView con el ListaPartidosAdapter
         // Instanciamos el adapter con los datos de la petición y lo asignamos a RecyclerView
         // Generar el adaptador, le pasamos la lista de partidos
         // y el manejador para el evento click sobre un elemento
-        listaPartidosAdapter = ListaPartidosAdapter {mostrarPartido(it)}
-
+        listaPartidosAdapter = ListaPartidosAdapter {}
 
         // Recuperamos referencia y configuramos recyclerView con la lista de partidos
         listaPartidosView = findViewById<View>(R.id.recyclerViewPartidos) as RecyclerView
@@ -120,9 +88,6 @@ class MainRecycler : AppCompatActivity() {
         val dateSelection = findViewById<View>(R.id.nav_view_matches_dates) as BottomNavigationView
         // Le establecemos el listener
         dateSelection.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-
-
-
 
         /*
         Añado a cada boton un onClick para llamar a la nueva activity con la clasificacion
@@ -239,12 +204,6 @@ class MainRecycler : AppCompatActivity() {
     companion object {
         // identificador de intent
         const val PARTIDO_SELECCIONADO = "partido_seleccionado"
-        const val DATE = "fecha_partido"
-        const val PARTIDO_CREADO = "partido_creado"
         const val LIGA_CREADA = "liga_creada"
-        const val STATS = "stats_partido"
-
-        // identificador de activity
-        private const val GESTION_ACTIVITY = 1
     }
 }

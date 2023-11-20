@@ -19,6 +19,9 @@
             android:name=".ClasificacionActivity"
             android:exported="false" />
         <activity
+            android:name=".MostrarPartido"
+            android:exported="false" />
+        <activity
             android:name=".MainRecycler"
             android:exported="true">
             <intent-filter>
@@ -27,9 +30,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MostrarPartido"
-            android:exported="false" />
     </application>
 
 </manifest>

@@ -2,6 +2,7 @@ package com.example.footmatch
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.FrameLayout
@@ -9,6 +10,8 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import com.example.footmatch.modelo.BuscadorId
 import com.example.footmatch.modelo.pojos.Aggregates
 import com.example.footmatch.modelo.pojos.MatchToShow
 import com.example.footmatch.modelo.pojos.Referee
@@ -16,13 +19,20 @@ import com.example.footmatch.ui.AlineacionesFragment
 import com.example.footmatch.ui.ArbitrosFragment
 import com.example.footmatch.ui.EstadisticasFragment
 import com.example.footmatch.ui.EventosFragment
+import com.example.footmatch.util.api.RetrofitClient
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import kotlinx.coroutines.async
 
 class MostrarPartido : AppCompatActivity() {
     private var partido: MatchToShow? = null
-    private var fecha: Array<String>? = null
     private var stats: Aggregates? = null
+    private var buscadorId: BuscadorId? = null
+    private var id: Int? = null
+    private var fecha: List<String>? = null
     var textView: TextView? = null
     var textView2: TextView? = null
     var imagenLiga: ImageView? = null
@@ -40,9 +50,14 @@ class MostrarPartido : AppCompatActivity() {
 
         // Obtener datos del intent
         val intentMatch = intent
-        partido = intentMatch.getSerializableExtra(MainRecycler.PARTIDO_SELECCIONADO) as MatchToShow
-        fecha = intentMatch.getSerializableExtra(MainRecycler.DATE) as Array<String>
-        stats = intentMatch.getSerializableExtra(MainRecycler.STATS) as Aggregates
+
+        buscadorId = intentMatch.getParcelableExtra(MainRecycler.PARTIDO_SELECCIONADO)
+
+        this.fecha = buscadorId!!.utcDate.split("T")
+        this.id = buscadorId!!.id
+
+        this.partido = searchMatch(this.id!!)
+
         // Inicializar vistas
         textView = findViewById(R.id.liga_jornada)
         textView2 = findViewById(R.id.minutoPartido)
@@ -69,6 +84,22 @@ class MostrarPartido : AppCompatActivity() {
         
         // Cargar datos del partido en las vistas
         mostrarDatos(partido)
+    }
+
+    private fun searchMatch(id: Int): MatchToShow? {
+        // Llamada a la API empleando corrutinas de Kotlin
+        val apiService = RetrofitClient.makeClient()
+        // Iniciar ambas llamadas a la API de manera simultánea
+        Log.d("Busca el partido", "Inicio de la búsqueda del partido por ID: $id")
+        var tarea: MatchToShow? = null
+        lifecycleScope.launch (Dispatchers.IO) {
+            val matchSearchDeferred = async(Dispatchers.IO) { apiService.getMatch(id) }
+            tarea = matchSearchDeferred.await()
+            Log.d("Busca el partido", "Búsqueda del partido por ID exitosa")
+            // Guardamos el partido
+            return@launch
+        }
+        return tarea
     }
 
     private val mOnNavigationItemSelectedListener =

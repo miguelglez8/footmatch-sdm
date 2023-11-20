@@ -1,6 +1,8 @@
 package com.example.footmatch
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.footmatch.ListaPartidosAdapter.PartidoViewHolder
+import com.example.footmatch.modelo.BuscadorId
 import com.example.footmatch.modelo.pojos.Match
 import com.squareup.picasso.Picasso
 
@@ -63,10 +66,24 @@ class ListaPartidosAdapter(
             // cargar fecha partido
             fecha.text = formatDate(match.utcDate)
             itemView.setOnClickListener {
-                // De momento no hacemos nada al pulsar sobre un partido
+                mostrarPartido(match)
             }
         }
+        private fun mostrarPartido(match:Match) {
+            // Verificar que el contexto sea el esperado
+            val contexto: Context = itemView.context
+
+            // Crear el intent para iniciar la actividad MostrarPartido
+            val partidoIntent = Intent(contexto, MostrarPartido::class.java)
+
+            // Pasar los datos necesarios a través de Intent
+            partidoIntent.putExtra(MainRecycler.PARTIDO_SELECCIONADO, BuscadorId(match.id, match.utcDate))
+
+            // Iniciar la actividad
+            contexto.startActivity(partidoIntent)
+        }
     }
+
    /*
    * Notificamos un cambio en la lista de partidos
     */
