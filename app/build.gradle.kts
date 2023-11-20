@@ -53,7 +53,9 @@ dependencies {
     // Corrutinas
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
 
-
+    // coil
+    implementation("io.coil-kt:coil:1.2.0")
+    implementation("io.coil-kt:coil-svg:1.2.0")
 
 
     testImplementation("junit:junit:4.13.2")

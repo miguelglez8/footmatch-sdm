@@ -98,4 +98,5 @@
     <string name="yesterdayMatches">Ayer</string>
     <string name="todayMatches">Hoy</string>
     <string name="allMatches">Todos</string>
+    <string name="teamDefaultLogo">https://cdn-icons-png.flaticon.com/128/8373/8373460.png</string>
 </resources>

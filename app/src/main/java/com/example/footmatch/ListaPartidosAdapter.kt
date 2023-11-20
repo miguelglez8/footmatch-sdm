@@ -1,6 +1,7 @@
 package com.example.footmatch
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -8,15 +9,21 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+
+
 import com.example.footmatch.ListaPartidosAdapter.PartidoViewHolder
 import com.example.footmatch.modelo.Partido
 import com.example.footmatch.modelo.pojos.Match
 import com.squareup.picasso.Picasso
+// Importamos la clase SvgLoader
+import com.example.footmatch.util.images.SvgLoader.Companion.loadUrl
 
 class ListaPartidosAdapter(
     private var matchList: List<Match> = emptyList(),
     private val onItemSelected: (Match) -> Unit
 ) : RecyclerView.Adapter<PartidoViewHolder>() {
+
 
 
     /*Clase interna que define los compoonentes de la vista*/
@@ -42,13 +49,34 @@ class ListaPartidosAdapter(
 
         // asignar valores a los componentes
         fun bindUser(match: Match, listener: (Match) -> Unit) {
+            // Si no encontramos el escudo del equipo local, ponemos uno por defecto
+            if (match.homeTeam.crest == null) {
+                // cargar imagen local por defecto
+                logoLocal.load(R.string.teamDefaultLogo.toString())
+            }else{
+                // Comprobamos si se trata de un png o svg
+                val isSvg = match.homeTeam.crest.endsWith("svg",ignoreCase = true)
+                // Si es svg procedemos a cargarlo con coil
+                if (isSvg){
+                   logoLocal.loadUrl(match.homeTeam.crest)
+                }else{
+                    // cargamos la imagen png con coil
+                   logoLocal.load(match.homeTeam.crest)
+                }
+            }
+            if (match.awayTeam.crest == null) {
+                // cargar imagen visitante por defecto
+                logoVisitante.load(R.string.teamDefaultLogo.toString())
+            }else{
+                val isSvg = match.awayTeam.crest.endsWith("svg",ignoreCase = true)
+                if (isSvg){
+                    logoVisitante.loadUrl(match.awayTeam.crest)
+                }else{
+                    logoVisitante.load(match.awayTeam.crest)
+                }
+            }
 
-            // cargar imagen local
-            Picasso.get()
-                .load(match.homeTeam.crest).into(logoVisitante)
-            // cargar imagen visitante
-            Picasso.get()
-                .load(match.awayTeam.crest).into(logoVisitante)
+
             // cargar nombre equipo local
             nombreLocal.text = match.homeTeam.shortName
             // cargar nombre equipo visitante
