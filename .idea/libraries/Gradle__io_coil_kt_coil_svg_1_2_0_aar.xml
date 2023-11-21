@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: io.coil-kt:coil-svg:1.2.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/bc7cbc2a86467b1bd94401cc6b37d2fd/transformed/coil-svg-1.2.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/bc7cbc2a86467b1bd94401cc6b37d2fd/transformed/coil-svg-1.2.0/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.coil-kt/coil-svg/1.2.0/da1b75c41898f8e11e489d6005257b8dd4ddaa28/coil-svg-1.2.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.coil-kt/coil-svg/1.2.0/6e7a7ef40c5be7f0926e289f2cd564aeb7efce2d/coil-svg-1.2.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

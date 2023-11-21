@@ -14,6 +14,8 @@ import retrofit2.http.Query
 
 interface FootballApi {
     @GET("matches/")
+    suspend fun getAllMatches(): MatchesBetweenDatesResult
+    @GET("matches/")
     suspend fun getMatchesBetweenDates(@Query("dateFrom") dateFrom: String,
                                        @Query("dateTo") dateTo: String): MatchesBetweenDatesResult
     @GET("competitions/{code}/standings")
