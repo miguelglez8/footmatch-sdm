@@ -1,5 +1,6 @@
 package com.example.footmatch
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -10,14 +11,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.footmatch.modelo.BuscadorId
 import com.example.footmatch.modelo.Equipo
 import com.example.footmatch.modelo.Liga
 import com.example.footmatch.modelo.pojos.Match
 import com.example.footmatch.util.api.RetrofitClient
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.BufferedReader
@@ -33,6 +32,10 @@ class MainRecycler : AppCompatActivity() {
     var listaPartidosView: RecyclerView? = null
     private lateinit var listaPartidosAdapter: ListaPartidosAdapter
 
+    private fun mostrarPartido(match:Match){
+
+    }
+
     // Listener para la barra de navegacion de fechas
     private val mOnNavigationItemSelectedListener =
         BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -40,7 +43,7 @@ class MainRecycler : AppCompatActivity() {
             // Segun el caso realizaremos una u otra llamada a la API
             if (itemId == R.id.navigation_yesterday) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    val yesterday = LocalDate.now().minusDays(8)
+                    val yesterday = LocalDate.now().minusDays(1)
                     val dateFrom = yesterday.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
                     val today = LocalDate.now()
                     val dateTo = today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
@@ -50,10 +53,27 @@ class MainRecycler : AppCompatActivity() {
                 }
                 return@OnNavigationItemSelectedListener true
             } else if (itemId == R.id.navigation_today) {
-                //cargarPartidos(apiService,lpAdapter);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    val today = LocalDate.now()
+                    val dateFrom = today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+                    val tomorrow = LocalDate.now().plusDays(1)
+                    val dateTo = tomorrow.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+                    cargarPartidos(dateFrom, dateTo)
+                } else {
+                    throw IllegalStateException("Error al obtener la fecha de ayer por version API")
+                }
                 return@OnNavigationItemSelectedListener true
             } else if (itemId == R.id.navigation_all) {
-                //cargarPartidos(apiService,lpAdapter);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    val today = LocalDate.now()
+                    val dateFrom = today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+                    // la fecha de fin seran 10 dias mas que es lo que admite la API
+                    val endPeriod = LocalDate.now().plusDays(10)
+                    val dateTo = endPeriod.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+                    cargarPartidos(dateFrom, dateTo)
+                } else {
+                    throw IllegalStateException("Error al obtener la fecha de ayer por version API")
+                }
                 return@OnNavigationItemSelectedListener true
             }
             throw IllegalStateException("Unexpected value: " + item.itemId)
@@ -63,11 +83,13 @@ class MainRecycler : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_recycler)
 
+
         // Pasamos la lista de partidos al RecyclerView con el ListaPartidosAdapter
         // Instanciamos el adapter con los datos de la petición y lo asignamos a RecyclerView
         // Generar el adaptador, le pasamos la lista de partidos
         // y el manejador para el evento click sobre un elemento
-        listaPartidosAdapter = ListaPartidosAdapter {}
+        listaPartidosAdapter = ListaPartidosAdapter {mostrarPartido(it)}
+
 
         // Recuperamos referencia y configuramos recyclerView con la lista de partidos
         listaPartidosView = findViewById<View>(R.id.recyclerViewPartidos) as RecyclerView
@@ -88,6 +110,10 @@ class MainRecycler : AppCompatActivity() {
         val dateSelection = findViewById<View>(R.id.nav_view_matches_dates) as BottomNavigationView
         // Le establecemos el listener
         dateSelection.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        // Seleccionamos la opcion de hoy por defecto
+        dateSelection.selectedItemId = R.id.navigation_today
+
+
 
         /*
         Añado a cada boton un onClick para llamar a la nueva activity con la clasificacion
@@ -103,6 +129,9 @@ class MainRecycler : AppCompatActivity() {
     }
 
 
+    /*
+    Carga todos los partidos entre las dos fechas que se le pasan por parametro
+     */
     private fun cargarPartidos(dateFrom: String, dateTo: String) {
         // Llamada a la API empleando corrutinas de kotlin
         val apiService = RetrofitClient.makeClient()
@@ -121,6 +150,8 @@ class MainRecycler : AppCompatActivity() {
         }
 
     }
+
+
 
     fun cargarEquiposParaClasificacion(liga: String?): List<Equipo> {
         var equipo: Equipo
@@ -204,6 +235,10 @@ class MainRecycler : AppCompatActivity() {
     companion object {
         // identificador de intent
         const val PARTIDO_SELECCIONADO = "partido_seleccionado"
+        const val PARTIDO_CREADO = "partido_creado"
         const val LIGA_CREADA = "liga_creada"
+
+        // identificador de activity
+        private const val GESTION_ACTIVITY = 1
     }
 }
