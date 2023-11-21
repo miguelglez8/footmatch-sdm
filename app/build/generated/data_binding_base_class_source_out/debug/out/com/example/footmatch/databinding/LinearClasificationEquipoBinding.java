@@ -21,20 +21,37 @@ public final class LinearClasificationEquipoBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
+  public final TextView diferenciaGoles;
+
+  @NonNull
   public final TextView equipoLiga;
+
+  @NonNull
+  public final TextView golesContra;
+
+  @NonNull
+  public final TextView golesFavor;
 
   @NonNull
   public final ImageView imagenEquipo;
 
   @NonNull
+  public final TextView posClasificacion;
+
+  @NonNull
   public final TextView puntosEquipo;
 
   private LinearClasificationEquipoBinding(@NonNull LinearLayout rootView,
-      @NonNull TextView equipoLiga, @NonNull ImageView imagenEquipo,
-      @NonNull TextView puntosEquipo) {
+      @NonNull TextView diferenciaGoles, @NonNull TextView equipoLiga,
+      @NonNull TextView golesContra, @NonNull TextView golesFavor, @NonNull ImageView imagenEquipo,
+      @NonNull TextView posClasificacion, @NonNull TextView puntosEquipo) {
     this.rootView = rootView;
+    this.diferenciaGoles = diferenciaGoles;
     this.equipoLiga = equipoLiga;
+    this.golesContra = golesContra;
+    this.golesFavor = golesFavor;
     this.imagenEquipo = imagenEquipo;
+    this.posClasificacion = posClasificacion;
     this.puntosEquipo = puntosEquipo;
   }
 
@@ -65,9 +82,27 @@ public final class LinearClasificationEquipoBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.diferenciaGoles;
+      TextView diferenciaGoles = ViewBindings.findChildViewById(rootView, id);
+      if (diferenciaGoles == null) {
+        break missingId;
+      }
+
       id = R.id.equipoLiga;
       TextView equipoLiga = ViewBindings.findChildViewById(rootView, id);
       if (equipoLiga == null) {
+        break missingId;
+      }
+
+      id = R.id.golesContra;
+      TextView golesContra = ViewBindings.findChildViewById(rootView, id);
+      if (golesContra == null) {
+        break missingId;
+      }
+
+      id = R.id.golesFavor;
+      TextView golesFavor = ViewBindings.findChildViewById(rootView, id);
+      if (golesFavor == null) {
         break missingId;
       }
 
@@ -77,14 +112,20 @@ public final class LinearClasificationEquipoBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.posClasificacion;
+      TextView posClasificacion = ViewBindings.findChildViewById(rootView, id);
+      if (posClasificacion == null) {
+        break missingId;
+      }
+
       id = R.id.puntosEquipo;
       TextView puntosEquipo = ViewBindings.findChildViewById(rootView, id);
       if (puntosEquipo == null) {
         break missingId;
       }
 
-      return new LinearClasificationEquipoBinding((LinearLayout) rootView, equipoLiga, imagenEquipo,
-          puntosEquipo);
+      return new LinearClasificationEquipoBinding((LinearLayout) rootView, diferenciaGoles,
+          equipoLiga, golesContra, golesFavor, imagenEquipo, posClasificacion, puntosEquipo);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
