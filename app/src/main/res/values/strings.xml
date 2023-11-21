@@ -118,7 +118,7 @@
     <string name="asistencia">Asistencia</string>
     <string name="gol">Gol</string>
     <string name="var">VAR</string>
-    <string name="carlos_fern_ndez_garc_a">Carlos Fernández García</string>
+    <string name="carlos_fern_ndez_garc_a">Carlos Fernández García (Español)</string>
     <string name="mbapp">Mbappé</string>
     <string name="di_mar_a">Di María</string>
     <string name="penalti">Penalti</string>
@@ -159,4 +159,11 @@
     <string name="todayMatches">Hoy</string>
     <string name="allMatches">Todos</string>
     <string name="teamDefaultLogo">https://cdn-icons-png.flaticon.com/128/8373/8373460.png</string>
+    <string name="english">English</string>
+    <string name="plantilla1">Plantilla del Barcelona</string>
+    <string name="plantilla2">Plantilla del Real Madrid</string>
+    <string name="plantillas">PLANTILLAS</string>
+    <string name="trainer1">Entrenador: Xavi</string>
+    <string name="trainer2">Entrenador: Ancelotti</string>
+    <string name="argentina">Argentina</string>
 </resources>

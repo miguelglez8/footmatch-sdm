@@ -11,5 +11,6 @@ data class Lineup(
     @SerializedName("position")
     val position: String,
     @SerializedName("shirtNumber")
-    val shirtNumber: Int
+    val shirtNumber: Int,
+    val nationality: String
 )

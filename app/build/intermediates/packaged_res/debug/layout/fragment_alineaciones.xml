@@ -31,26 +31,29 @@
             android:layout_height="100dp"
             android:src="@drawable/logo_barcelona" />
 
-        <!-- Entrenador del Equipo 1 -->
         <TextView
-            android:id="@+id/entrenadorEquipo1"
+            android:id="@+id/trainer1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/entrenador_xavi" />
+            android:text="@string/trainer1"
+            android:textSize="13dp"
+            android:textColor="#000" />
 
         <!-- Formación del Equipo 1 -->
         <TextView
-            android:id="@+id/formacionEquipo1"
+            android:id="@+id/platilla1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/formaci_n_4_4_2" />
+            android:text="@string/plantilla1"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#000" />
 
         <!-- Lista de Jugadores del Equipo 1 -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewJugadoresEquipo1"
             android:layout_width="match_parent"
-            android:layout_height="158dp">
-        </androidx.recyclerview.widget.RecyclerView>
+            android:layout_height="179dp"></androidx.recyclerview.widget.RecyclerView>
         <!-- Otros atributos del RecyclerView según tus necesidades -->
         />
 
@@ -85,19 +88,22 @@
             android:layout_height="100dp"
             android:src="@drawable/logo_madrid" />
 
-        <!-- Entrenador del Equipo 2 -->
         <TextView
-            android:id="@+id/entrenadorEquipo2"
+            android:id="@+id/trainer2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/entrenador_ancelotti" />
+            android:text="@string/trainer2"
+            android:textSize="13dp"
+            android:textColor="#000" />
 
-        <!-- Formación del Equipo 2 -->
         <TextView
-            android:id="@+id/formacionEquipo2"
+            android:id="@+id/platilla2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/formaci_n_4_4_2" />
+            android:text="@string/plantilla2"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#000" />
 
         <!-- Lista de Jugadores del Equipo 2 -->
         <androidx.recyclerview.widget.RecyclerView

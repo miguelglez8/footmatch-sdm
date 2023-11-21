@@ -8,14 +8,15 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.footmatch.ListaJugadoresAdapter.JugadorViewHolder
 import com.example.footmatch.modelo.pojos.Lineup
+import com.example.footmatch.modelo.pojos.Squad
 
 class ListaJugadoresAdapter(
-    private val listaJugadores: List<Lineup>,
+    private val listaJugadores: List<Squad>,
     private val listener: OnItemClickListener
 ) : RecyclerView.Adapter<JugadorViewHolder>() {
     // Interfaz para manejar el evento click sobre un elemento
     interface OnItemClickListener {
-        fun onItemClick(item: Lineup?)
+        fun onItemClick(item: Squad?)
     }
 
     /* Indicamos el layout a "inflar" para usar en la vista
@@ -45,24 +46,24 @@ class ListaJugadoresAdapter(
 
     /*Clase interna que define los compoonentes de la vista*/
     class JugadorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val dorsal: TextView
+        private val pais: TextView
         private val jugador: TextView
         private val posicion: TextView
 
         init {
-            dorsal = itemView.findViewById<View>(R.id.textDorsal) as TextView
-            posicion = itemView.findViewById<View>(R.id.textPosicion) as TextView
-            jugador = itemView.findViewById<View>(R.id.textNombreJugador) as TextView
+            pais = itemView.findViewById<View>(R.id.pais) as TextView
+            posicion = itemView.findViewById<View>(R.id.posicionJugador) as TextView
+            jugador = itemView.findViewById<View>(R.id.nombreJugador) as TextView
         }
 
         // asignar valores a los componentes
-        fun bindUser(jugador: Lineup, listener: OnItemClickListener?) {
+        fun bindUser(jugador: Squad, listener: OnItemClickListener?) {
             // cargar nombre equipo local
-            dorsal.text = jugador.shirtNumber.toString()
+            pais.text = jugador.nationality
             // cargar nombre equipo visitante
             posicion.text = jugador.position
             // cargar resultado
-            this.jugador.text = jugador.name
+            this.jugador.text = jugador.name + " (" + jugador.dateOfBirth + ")"
             itemView.setOnClickListener {
                 // De momento no hacemos nada al pulsar sobre un partido
             }

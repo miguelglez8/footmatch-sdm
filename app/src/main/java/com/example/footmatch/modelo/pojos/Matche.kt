@@ -9,7 +9,7 @@ data class Matche(
     @SerializedName("attendance")
     val attendance: Int,
     @SerializedName("awayTeam")
-    val awayTeam: AwayTeamXXX,
+    val awayTeam: AwayTeamX,
     @SerializedName("bookings")
     val bookings: List<Any>,
     @SerializedName("competition")
@@ -19,7 +19,7 @@ data class Matche(
     @SerializedName("group")
     val group: String,
     @SerializedName("homeTeam")
-    val homeTeam: HomeTeamXXX,
+    val homeTeam: HomeTeamX,
     @SerializedName("id")
     val id: Int,
     @SerializedName("injuryTime")

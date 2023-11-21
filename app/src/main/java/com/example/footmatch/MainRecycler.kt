@@ -56,7 +56,7 @@ class MainRecycler : AppCompatActivity() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     val today = LocalDate.now()
                     val dateFrom = today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-                    val tomorrow = LocalDate.now().plusDays(1)
+                    val tomorrow = LocalDate.now().plusDays(7)
                     val dateTo = tomorrow.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
                     cargarPartidos(dateFrom, dateTo)
                 } else {

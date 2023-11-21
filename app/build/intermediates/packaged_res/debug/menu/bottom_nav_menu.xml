@@ -8,12 +8,8 @@
         android:title="@string/stats" />
 
     <item
-        android:id="@+id/navigation_events"
-        android:title="@string/events"/>
-
-    <item
         android:id="@+id/navigation_alineations"
-        android:title="@string/alineations"/>
+        android:title="@string/plantillas"/>
 
     <item
         android:id="@+id/navigation_referees"

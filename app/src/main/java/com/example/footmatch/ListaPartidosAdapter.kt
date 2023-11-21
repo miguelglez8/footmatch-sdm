@@ -122,7 +122,8 @@ class ListaPartidosAdapter(
             val partidoIntent = Intent(contexto, MostrarPartido::class.java)
 
             // Pasar los datos necesarios a través de Intent
-            partidoIntent.putExtra(MainRecycler.PARTIDO_SELECCIONADO, BuscadorId(match.id, match.utcDate))
+            partidoIntent.putExtra(MainRecycler.PARTIDO_SELECCIONADO, BuscadorId(match.id, match.utcDate,
+                match.homeTeam.id, match.awayTeam.id))
 
             // Iniciar la actividad
             contexto.startActivity(partidoIntent)

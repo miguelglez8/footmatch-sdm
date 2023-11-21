@@ -26,5 +26,6 @@ data class AwayTeamX(
     @SerializedName("statistics")
     val statistics: Statistics,
     @SerializedName("tla")
-    val tla: String
+    val tla: String,
+    var trainer: String
 ) : Serializable

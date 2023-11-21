@@ -18,7 +18,7 @@ data class HomeTeamX(
     @SerializedName("leagueRank")
     val leagueRank: Any,
     @SerializedName("lineup")
-    val lineup: List<Lineup> = mutableListOf(),
+    val lineup: List<Lineup>,
     @SerializedName("name")
     val name: String,
     @SerializedName("shortName")
@@ -26,5 +26,6 @@ data class HomeTeamX(
     @SerializedName("statistics")
     val statistics: Statistics,
     @SerializedName("tla")
-    val tla: String
+    val tla: String,
+    var trainer: String
 ) : Serializable

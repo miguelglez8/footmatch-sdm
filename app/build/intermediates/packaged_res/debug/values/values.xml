@@ -14,6 +14,7 @@
     <string name="alineations">ALINEACIÓN</string>
     <string name="allMatches">Todos</string>
     <string name="app_name">FootMatch</string>
+    <string name="argentina">Argentina</string>
     <string name="asistencia">Asistencia</string>
     <string name="atajadas">Paradas</string>
     <string name="barcelona">BARCELONA</string>
@@ -21,11 +22,12 @@
     <string name="bota">Bota</string>
     <string name="cambios">SUSTITUCIONES</string>
     <string name="camp_nou">Estadio: CAMP NOU</string>
-    <string name="carlos_fern_ndez_garc_a">Carlos Fernández García</string>
+    <string name="carlos_fern_ndez_garc_a">Carlos Fernández García (Español)</string>
     <string name="clasification">CLASIFICACIÓN</string>
     <string name="corners">Corners</string>
     <string name="delantero">Delantero</string>
     <string name="di_mar_a">Di María</string>
+    <string name="english">English</string>
     <string name="entrenador_ancelotti">Entrenador: Ancelotti</string>
     <string name="entrenador_xavi">Entrenador: Xavi</string>
     <string name="equipos">EQUIPOS</string>
@@ -142,6 +144,9 @@
     <string name="no_disponible">NO DISPONIBLE</string>
     <string name="partidos_jugados">Partidos jugados</string>
     <string name="penalti">Penalti</string>
+    <string name="plantilla1">Plantilla del Barcelona</string>
+    <string name="plantilla2">Plantilla del Real Madrid</string>
+    <string name="plantillas">PLANTILLAS</string>
     <string name="posesi_n">Posesión</string>
     <string name="posesi_n_de_bal_n">Posesión</string>
     <string name="premier_league_jornada_10">PREMIER LEAGUE JORNADA 10</string>
@@ -166,6 +171,8 @@
     <string name="titulo_partido">Partido</string>
     <string name="titulo_tarjetas">TARJETAS</string>
     <string name="todayMatches">Hoy</string>
+    <string name="trainer1">Entrenador: Xavi</string>
+    <string name="trainer2">Entrenador: Ancelotti</string>
     <string name="var">VAR</string>
     <string name="yesterdayMatches">Ayer</string>
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">

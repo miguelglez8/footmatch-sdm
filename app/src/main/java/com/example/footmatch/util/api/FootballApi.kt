@@ -1,9 +1,13 @@
 package com.example.footmatch.util.api
 
+import com.example.footmatch.modelo.pojos.AwayTeamX
+import com.example.footmatch.modelo.pojos.HomeTeamX
 import com.example.footmatch.modelo.pojos.Match
 import com.example.footmatch.modelo.pojos.MatchToShow
 import com.example.footmatch.modelo.pojos.MatchesBetweenDatesResult
 import com.example.footmatch.modelo.pojos.Stats
+import com.example.footmatch.modelo.pojos.Team
+import com.example.footmatch.modelo.pojos.TeamX
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
@@ -23,8 +27,8 @@ interface FootballApi {
     suspend fun getMatch(@Path("matchId") matchId: Int): MatchToShow
     @GET("matches/{matchId}/head2head?limit=50")
     suspend fun getMatchStats(@Path("matchId") matchId: Int): Stats
-
-
+    @GET("teams/{teamId}")
+    suspend fun getTeam(@Path("teamId") matchId: Int): TeamX
 
 }
 

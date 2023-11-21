@@ -56,7 +56,7 @@ class ListaArbitrosAdapter(
         // asignar valores a los componentes
         fun bindUser(arbitro: Referee, listener: OnItemClickListener) {
             this.funcion.text = arbitro.type
-            this.arbitro.text = arbitro.name
+            this.arbitro.text = arbitro.name + " (" + arbitro.nationality + ")"
             itemView.setOnClickListener {
                 Log.i("Hola", "Hola")
                 listener.onItemClick(arbitro)

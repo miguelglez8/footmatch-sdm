@@ -16,14 +16,13 @@ import com.example.footmatch.modelo.BuscadorId
 import com.example.footmatch.modelo.pojos.Aggregates
 import com.example.footmatch.modelo.pojos.MatchToShow
 import com.example.footmatch.modelo.pojos.Referee
+import com.example.footmatch.modelo.pojos.TeamX
 import com.example.footmatch.ui.AlineacionesFragment
 import com.example.footmatch.ui.ArbitrosFragment
 import com.example.footmatch.ui.EstadisticasFragment
-import com.example.footmatch.ui.EventosFragment
 import com.example.footmatch.util.api.RetrofitClient
 import com.example.footmatch.util.images.SvgLoader.Companion.loadUrl
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.squareup.picasso.Picasso
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -32,8 +31,12 @@ import kotlinx.coroutines.withContext
 class MostrarPartido : AppCompatActivity() {
     private var partido: MatchToShow? = null
     private var stats: Aggregates? = null
+    private var local: TeamX? = null
+    private var away: TeamX? = null
     private var buscadorId: BuscadorId? = null
     private var id: Int? = null
+    private var localId: Int? = null
+    private var awayId: Int? = null
     private var fecha: List<String>? = null
     var textView: TextView? = null
     var textView2: TextView? = null
@@ -58,6 +61,8 @@ class MostrarPartido : AppCompatActivity() {
 
         this.fecha = buscadorId!!.utcDate.split("T")
         this.id = buscadorId!!.id
+        this.localId = buscadorId!!.localId
+        this.awayId = buscadorId!!.awayId
 
         //database = MatchDB.getDB(applicationContext)
 
@@ -86,10 +91,17 @@ class MostrarPartido : AppCompatActivity() {
         lifecycleScope.launch (Dispatchers.IO) {
             val  tarea1= async(Dispatchers.IO){ partido = apiService.getMatch(id)}
             val  tarea2= async(Dispatchers.IO){ stats = apiService.getMatchStats(id).aggregates }
+            val  tarea3= async(Dispatchers.IO){ local = apiService.getTeam(localId!!) }
+            val  tarea4= async(Dispatchers.IO){ away = apiService.getTeam(awayId!!) }
+
             tarea1.await()
             tarea2.await()
+            tarea3.await()
+            tarea4.await()
 
             partido?.aggregates = stats!!
+            partido?.homeTeam?.trainer = local?.coach!!.name
+            partido?.awayTeam?.trainer = away?.coach!!.name
 
             /*if (database!!.matchDAO().getMatchById(partido!!.id) != null) {
                 partido = database!!.matchDAO().getMatchById(partido!!.id) as MatchToShow
@@ -98,84 +110,67 @@ class MostrarPartido : AppCompatActivity() {
             }*/
 
             withContext(Dispatchers.Main) {
-                mostrarDatos(partido, stats)
+                mostrarDatos(partido, stats, local!!, away!!)
+
+                val mOnNavigationItemSelectedListener =
+                    BottomNavigationView.OnNavigationItemSelectedListener { item ->
+
+                        /* Cuando se selecciona uno de los botones / ítems*/
+                        if (partido == null) return@OnNavigationItemSelectedListener false
+                        val itemId = item.itemId
+
+                        /* Según el caso, crearemos un Fragmento u otro */
+                        if (itemId == R.id.navigation_stats) {
+                            /* Haciendo uso del FactoryMethod pasándole todos los parámetros necesarios */
+                            /* Argumento solamente necesita.... El argumento de la película */
+                            val estadisticasFragment = EstadisticasFragment.newInstance(
+                                partido!!.homeTeam, partido!!.awayTeam, stats
+                            )
+
+                            /* ¿Qué estaremos haciendo aquí? */supportFragmentManager.beginTransaction()
+                                .replace(R.id.fragment_container, estadisticasFragment).commit()
+                            return@OnNavigationItemSelectedListener true
+                        }
+                        if (itemId == R.id.navigation_alineations) {
+                            val alineacionesFragment = AlineacionesFragment.newInstance(
+                                local!!, away!!, partido!!
+                            )
+                            supportFragmentManager.beginTransaction()
+                                .replace(R.id.fragment_container, alineacionesFragment).commit()
+                            return@OnNavigationItemSelectedListener true
+                        }
+                        if (itemId == R.id.navigation_referees) {
+                            if (partido!!.referees.isNotEmpty()) {
+                                val arbitrosFragment =
+                                    ArbitrosFragment.newInstance(partido!!.referees as ArrayList<Referee?>)
+                                supportFragmentManager.beginTransaction()
+                                    .replace(R.id.fragment_container, arbitrosFragment).commit()
+                            } else {
+                                // Inflar el layout y agregarlo al contenedor
+                                val inflater = LayoutInflater.from(applicationContext)
+                                val miLayout = inflater.inflate(R.layout.item_no_disponible, null) as RelativeLayout
+
+                                // Obtener el contenedor por su ID
+                                val contenedor = findViewById<FrameLayout>(R.id.fragment_container)
+
+                                // Agregar el layout inflado al contenedor
+                                contenedor.addView(miLayout)
+                            }
+                            return@OnNavigationItemSelectedListener true
+                        }
+                        throw IllegalStateException("Unexpected value: " + item.itemId)
+                    }
             }
         }
     }
 
-    private val mOnNavigationItemSelectedListener =
-        BottomNavigationView.OnNavigationItemSelectedListener { item ->
-
-            /* Cuando se selecciona uno de los botones / ítems*/
-            if (partido == null) return@OnNavigationItemSelectedListener false
-            val itemId = item.itemId
-
-            /* Según el caso, crearemos un Fragmento u otro */
-            if (itemId == R.id.navigation_stats) {
-                /* Haciendo uso del FactoryMethod pasándole todos los parámetros necesarios */
-                /* Argumento solamente necesita.... El argumento de la película */
-                val estadisticasFragment = EstadisticasFragment.newInstance(
-                    partido!!.homeTeam, partido!!.awayTeam, stats
-                )
-
-                /* ¿Qué estaremos haciendo aquí? */supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, estadisticasFragment).commit()
-                return@OnNavigationItemSelectedListener true
-            }
-            if (itemId == R.id.navigation_events) {
-                if (partido!!.status.equals("LIVE") || partido!!.status.equals("PAUSED")
-                    || partido!!.status.equals("IN_PLAY") || partido!!.status.equals("FINISHED")) {
-                    val eventosFragment = EventosFragment.newInstance(partido!!.goals,
-                        partido!!.penalties, partido!!.bookings, partido!!.substitutions,
-                        partido!!.homeTeam.name)
-
-                    /* ¿Qué estaremos haciendo aquí? */supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, eventosFragment).commit()
-                } else {
-                    // Inflar el layout y agregarlo al contenedor
-                    val inflater = LayoutInflater.from(this)
-                    val miLayout = inflater.inflate(R.layout.item_no_disponible, null) as RelativeLayout
-
-                    // Obtener el contenedor por su ID
-                    val contenedor = findViewById<FrameLayout>(R.id.fragment_container)
-
-                    // Agregar el layout inflado al contenedor
-                    contenedor.addView(miLayout)
-                }
-                return@OnNavigationItemSelectedListener true
-            }
-            if (itemId == R.id.navigation_referees) {
-                if (partido!!.referees.isNotEmpty()) {
-                    val arbitrosFragment =
-                        ArbitrosFragment.newInstance(partido!!.referees as ArrayList<Referee?>)
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, arbitrosFragment).commit()
-                } else {
-                    // Inflar el layout y agregarlo al contenedor
-                    val inflater = LayoutInflater.from(this)
-                    val miLayout = inflater.inflate(R.layout.item_no_disponible, null) as RelativeLayout
-
-                    // Obtener el contenedor por su ID
-                    val contenedor = findViewById<FrameLayout>(R.id.fragment_container)
-
-                    // Agregar el layout inflado al contenedor
-                    contenedor.addView(miLayout)
-                }
-                return@OnNavigationItemSelectedListener true
-            }
-            if (itemId == R.id.navigation_alineations) {
-                val alineacionesFragment = AlineacionesFragment.newInstance(
-                    partido!!.homeTeam, partido!!.awayTeam
-                )
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, alineacionesFragment).commit()
-                return@OnNavigationItemSelectedListener true
-            }
-            throw IllegalStateException("Unexpected value: " + item.itemId)
-        }
-
     // Cargar los datos del partido en las vistas
-    private fun mostrarDatos(partido: MatchToShow?, stats: Aggregates?) {
+    private fun mostrarDatos(
+        partido: MatchToShow?,
+        stats: Aggregates?,
+        local: TeamX,
+        away: TeamX
+    ) {
         if (partido != null) {
             if (partido?.status == "FINISHED") estadoPartido?.text="FINALIZADO" else if (partido?.status == "TIMED") estadoPartido?.text="PROGRAMADO" else  estadoPartido?.text="EN JUEGO"
             estadoPartido!!.setBackgroundColor(Color.parseColor("#006400"))

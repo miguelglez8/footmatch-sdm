@@ -20,6 +20,6 @@
         android:layout_height="wrap_content"
         android:text="@string/carlos_fern_ndez_garc_a"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="16dp"/>
+        android:layout_marginStart="10dp"/>
 
 </RelativeLayout>

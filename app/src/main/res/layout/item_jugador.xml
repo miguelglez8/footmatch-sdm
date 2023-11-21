@@ -8,14 +8,14 @@
 
     <!-- Dorsal del Jugador -->
     <TextView
-        android:id="@+id/textDorsal"
-        android:layout_width="30dp"
-        android:layout_height="wrap_content"
-        android:text="10"
-        android:textSize="18sp"
-        android:textStyle="bold"
+        android:id="@+id/nombreJugador"
+        android:layout_width="wrap_content"
+        android:layout_height="42dp"
         android:gravity="center"
-        android:textColor="#333" />
+        android:text="Lionel Messi (2022-12-10)"
+        android:textColor="#333"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <!-- Nombre del Jugador y Posición -->
     <LinearLayout
@@ -27,20 +27,21 @@
 
         <!-- Nombre del Jugador -->
         <TextView
-            android:id="@+id/textNombreJugador"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/lionel_messi"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="#000" />
-
-        <!-- Posición del Jugador -->
-        <TextView
-            android:id="@+id/textPosicion"
+            android:id="@+id/posicionJugador"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/delantero"
+            android:textColor="#333"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            />
+
+        <!-- Posición del Jugador -->
+        <TextView
+            android:id="@+id/pais"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/argentina"
             android:textSize="16sp"
             android:textColor="#666" />
     </LinearLayout>
