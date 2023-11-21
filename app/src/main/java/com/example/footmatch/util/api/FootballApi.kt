@@ -2,6 +2,7 @@ package com.example.footmatch.util.api
 
 import com.example.footmatch.modelo.pojos.MatchesBetweenDatesResult
 import com.example.footmatch.modelo.pojos.clasificacion.StandingsResult
+import com.example.footmatch.modelo.pojos.plantilla.SquadResult
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
@@ -19,6 +20,11 @@ interface FootballApi {
     suspend fun getStandingsFromLeague(
             @Path("code") code:String
     ):StandingsResult
+
+    @GET("teams/{id}")
+    suspend fun getSquadFromId(
+        @Path("id") id:String
+    ):SquadResult
 }
 
 object RetrofitClient {

@@ -20,7 +20,7 @@ class ClasificacionActivity : AppCompatActivity() {
     var liga: String? = null
     var clasificacion: StandingsResult? = null
     var clasificacionView: RecyclerView? = null
-    var lpAdapter : ClasificacionAdapter? = null
+    var cAdapter : ClasificacionAdapter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_clasificacion)
@@ -29,7 +29,7 @@ class ClasificacionActivity : AppCompatActivity() {
 
         liga = clasificacionIntent.getStringExtra(MainRecycler.LIGA_CREADA)
 
-        //Hago una llamada a la API, con el codigo de la liga para recuperar los datos
+
 
         clasificacionView = findViewById<View>(R.id.recyclerClasificacion) as RecyclerView
 
@@ -38,7 +38,7 @@ class ClasificacionActivity : AppCompatActivity() {
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(applicationContext)
 
         clasificacionView!!.layoutManager = layoutManager
-
+    //Hago una llamada a la API, con el codigo de la liga para recuperar los datos
         cargarClasificacion()
 
 
@@ -57,10 +57,10 @@ class ClasificacionActivity : AppCompatActivity() {
                 Picasso.get()
                     .load(clasificacion!!.competition.emblem).into(logoLiga)
                 // Notificamos al adapter
-                lpAdapter = ClasificacionAdapter(clasificacion!!) {
+                cAdapter = ClasificacionAdapter(clasificacion!!) {
                    mostrarEquipo(it)
                 }
-                clasificacionView!!.adapter = lpAdapter
+                clasificacionView!!.adapter = cAdapter
             }
         }
     }
