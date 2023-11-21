@@ -6,10 +6,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.footmatch.ClasificacionAdapter.ClasificacionViewHolder
 import com.example.footmatch.modelo.Equipo
 import com.example.footmatch.modelo.pojos.clasificacion.StandingsResult
 import com.example.footmatch.modelo.pojos.clasificacion.Table
+import com.example.footmatch.util.images.SvgLoader.Companion.loadUrl
 import com.squareup.picasso.Picasso
 
 class ClasificacionAdapter(
@@ -49,8 +51,19 @@ class ClasificacionAdapter(
             golesAFavor.text = equipo.goalsFor.toString()
             golesEnContra.text = equipo.goalsAgainst.toString()
             diferenciaGoles.text= equipo.goalDifference.toString()
-            Picasso.get()
-                   .load(equipo.team.crest).into(escudo)
+
+            if (equipo.team.crest == null) {
+                // cargar imagen visitante por defecto
+                escudo.load(R.string.teamDefaultLogo.toString())
+            }else{
+                val isSvg = equipo.team.crest.endsWith("svg",ignoreCase = true)
+                if (isSvg){
+                    escudo.loadUrl(equipo.team.crest)
+                }else{
+                    escudo.load(equipo.team.crest)
+                }
+            }
+
             itemView.setOnClickListener {
                 onItemSelected(equipo.team.id.toString())
             }

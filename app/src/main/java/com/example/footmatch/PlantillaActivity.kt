@@ -8,9 +8,11 @@ import android.widget.TextView
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.footmatch.R
 import com.example.footmatch.modelo.pojos.plantilla.SquadResult
 import com.example.footmatch.util.api.RetrofitClient
+import com.example.footmatch.util.images.SvgLoader.Companion.loadUrl
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -47,8 +49,18 @@ class PlantillaActivity : AppCompatActivity() {
                 val nombreEquipo = findViewById<View>(R.id.nombreEquipo) as TextView
                 val fundadoEn = findViewById<View>(R.id.dataFundado) as TextView
                 val escudoEquipo = findViewById<View>(R.id.escudoEquipo) as ImageView
-                Picasso.get()
-                    .load(plantilla!!.crest).into(escudoEquipo)
+                if (plantilla!!.crest == null) {
+                    // cargar imagen visitante por defecto
+                    escudoEquipo.load(R.string.teamDefaultLogo.toString())
+                }else{
+                    val isSvg = plantilla!!.crest.endsWith("svg",ignoreCase = true)
+                    if (isSvg){
+                        escudoEquipo.loadUrl(plantilla!!.crest)
+                    }else{
+                        escudoEquipo.load(plantilla!!.crest)
+                    }
+                }
+
                 nombreEquipo.text = plantilla!!.shortName
                 fundadoEn.text = plantilla!!.founded.toString()
 
