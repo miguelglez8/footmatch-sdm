@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- list_item_jugador.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <!-- Dorsal del Jugador -->
+    <TextView
+        android:id="@+id/nombreJugador"
+        android:layout_width="wrap_content"
+        android:layout_height="42dp"
+        android:gravity="center"
+        android:text="1. Lionel Messi (2022-12-10)"
+        android:textColor="#333"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <!-- Nombre del Jugador y Posición -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginStart="16dp">
+
+        <!-- Nombre del Jugador -->
+        <TextView
+            android:id="@+id/posicionJugador"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/delantero"
+            android:textColor="#333"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            />
+
+        <!-- Posición del Jugador -->
+        <TextView
+            android:id="@+id/pais"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/argentina"
+            android:textSize="16sp"
+            android:textColor="#666" />
+    </LinearLayout>
+</LinearLayout>

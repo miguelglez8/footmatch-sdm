@@ -154,6 +154,55 @@ class MainRecycler : AppCompatActivity() {
 
 
 
+    fun cargarEquiposParaClasificacion(liga: String?): List<Equipo> {
+        var equipo: Equipo
+        val equiposLiga: MutableList<Equipo> = ArrayList()
+        var file: InputStream? = null
+        var reader: InputStreamReader? = null
+        var bufferedReader: BufferedReader? = null
+        try {
+            when (liga) {
+                "LL" -> {
+                    file = assets.open("lista_clasificacion_laliga_url_utf8.csv")
+                }
+
+                "LP" -> {
+                    file = assets.open("lista_clasificacion_premier_url_utf8.csv")
+                }
+
+                "LB" -> {
+                    file = assets.open("lista_clasificacion_bundes_url_utf8.csv")
+                }
+
+                "LS" -> {
+                    file = assets.open("lista_clasificacion_seriea_url_utf8.csv")
+                }
+            }
+            reader = InputStreamReader(file)
+            bufferedReader = BufferedReader(reader)
+            var line: String? = null
+            while (bufferedReader.readLine().also { line = it } != null) {
+                val data = line!!.split(";".toRegex()).dropLastWhile { it.isEmpty() }
+                    .toTypedArray()
+                if (data != null && data.size == 3) {
+                    equipo = Equipo(data[0], data[1], data[2].toInt())
+                    equiposLiga.add(equipo)
+                }
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
+        } finally {
+            if (bufferedReader != null) {
+                try {
+                    bufferedReader.close()
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+            }
+        }
+        return equiposLiga
+    }
+
     fun cargarClasificacion(liga: String?) {
         var idLogo = R.drawable.liga_easports
         var nombreLiga = "Liga EASports"
