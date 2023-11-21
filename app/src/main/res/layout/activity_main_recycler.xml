@@ -93,18 +93,18 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewPartidos"
-        android:layout_width="406dp"
-        android:layout_height="382dp"
-        app:layout_constraintBottom_toBottomOf="@+id/bottomNavigationView"
+        android:layout_width="0dp"
+        android:layout_height="500dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nav_view_matches_dates"
         tools:ignore="MissingConstraints" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="0dp"
-        android:layout_height="90dp"
+        android:layout_height="60dp"
         android:background="@drawable/rounded_corners_navigation"
         app:itemActiveIndicatorStyle="@style/Theme.Material3.DynamicColors.DayNight"
         app:itemIconSize="70dp"

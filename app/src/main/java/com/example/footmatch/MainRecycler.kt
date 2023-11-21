@@ -53,10 +53,27 @@ class MainRecycler : AppCompatActivity() {
                 }
                 return@OnNavigationItemSelectedListener true
             } else if (itemId == R.id.navigation_today) {
-                //cargarPartidos(apiService,lpAdapter);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    val today = LocalDate.now()
+                    val dateFrom = today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+                    val tomorrow = LocalDate.now().plusDays(1)
+                    val dateTo = tomorrow.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+                    cargarPartidos(dateFrom, dateTo)
+                } else {
+                    throw IllegalStateException("Error al obtener la fecha de ayer por version API")
+                }
                 return@OnNavigationItemSelectedListener true
             } else if (itemId == R.id.navigation_all) {
-                //cargarPartidos(apiService,lpAdapter);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    val today = LocalDate.now()
+                    val dateFrom = today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+                    // la fecha de fin seran 10 dias mas que es lo que admite la API
+                    val endPeriod = LocalDate.now().plusDays(10)
+                    val dateTo = endPeriod.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+                    cargarPartidos(dateFrom, dateTo)
+                } else {
+                    throw IllegalStateException("Error al obtener la fecha de ayer por version API")
+                }
                 return@OnNavigationItemSelectedListener true
             }
             throw IllegalStateException("Unexpected value: " + item.itemId)
@@ -93,7 +110,8 @@ class MainRecycler : AppCompatActivity() {
         val dateSelection = findViewById<View>(R.id.nav_view_matches_dates) as BottomNavigationView
         // Le establecemos el listener
         dateSelection.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-
+        // Seleccionamos la opcion de hoy por defecto
+        dateSelection.selectedItemId = R.id.navigation_today
 
 
 
@@ -111,6 +129,9 @@ class MainRecycler : AppCompatActivity() {
     }
 
 
+    /*
+    Carga todos los partidos entre las dos fechas que se le pasan por parametro
+     */
     private fun cargarPartidos(dateFrom: String, dateTo: String) {
         // Llamada a la API empleando corrutinas de kotlin
         val apiService = RetrofitClient.makeClient()
@@ -129,6 +150,8 @@ class MainRecycler : AppCompatActivity() {
         }
 
     }
+
+
 
     fun cargarEquiposParaClasificacion(liga: String?): List<Equipo> {
         var equipo: Equipo
