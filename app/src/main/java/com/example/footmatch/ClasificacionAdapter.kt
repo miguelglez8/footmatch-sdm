@@ -12,12 +12,10 @@ import com.example.footmatch.modelo.pojos.clasificacion.StandingsResult
 import com.example.footmatch.modelo.pojos.clasificacion.Table
 import com.squareup.picasso.Picasso
 
-class ClasificacionAdapter(var equipos: StandingsResult, //Se utilizará mas adelante para ir a la pantalla de equipos
-                           private val listener: () -> Unit) : RecyclerView.Adapter<ClasificacionViewHolder>() {
-    fun update(clasificacion: StandingsResult) {}
-    interface OnItemClickListener {
-        fun onItemClick(item: Equipo?)
-    }
+class ClasificacionAdapter(
+    var equipos: StandingsResult, //Se utilizará mas adelante para ir a la pantalla de equipos
+    val onItemSelected: (String) -> Unit
+) : RecyclerView.Adapter<ClasificacionViewHolder>() {
 
     override fun getItemCount(): Int {
         return equipos.standings[0].table.size
@@ -44,7 +42,7 @@ class ClasificacionAdapter(var equipos: StandingsResult, //Se utilizará mas ade
         }
 
         // asignar valores a los componentes
-        fun bindUser(equipo: Table, listener: () -> Unit) {
+        fun bindUser(equipo: Table, onItemSelected: (String) -> Unit) {
             nombreEquipo.text = equipo.team.shortName
             puntosEquipo.text = equipo.points.toString()
             posicion.text = equipo.position.toString()
@@ -54,7 +52,7 @@ class ClasificacionAdapter(var equipos: StandingsResult, //Se utilizará mas ade
             Picasso.get()
                    .load(equipo.team.crest).into(escudo)
             itemView.setOnClickListener {
-                // Metodo para accerder a la plantilla desde clasificacion
+                onItemSelected(equipo.team.id.toString())
             }
         }
     }
@@ -67,6 +65,8 @@ class ClasificacionAdapter(var equipos: StandingsResult, //Se utilizará mas ade
 
     override fun onBindViewHolder(holder: ClasificacionViewHolder, position: Int) {
         val equipo: Table = equipos.standings[0].table[position]
-        holder.bindUser(equipo, listener)
+        holder.bindUser(equipo, onItemSelected)
     }
+
+
 }
