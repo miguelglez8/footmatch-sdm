@@ -1,12 +1,15 @@
 package com.example.footmatch.util.api
 
 import com.example.footmatch.modelo.pojos.MatchesBetweenDatesResult
+import com.example.footmatch.modelo.pojos.clasificacion.StandingsResult
+import com.example.footmatch.modelo.pojos.plantilla.SquadResult
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface FootballApi {
@@ -15,10 +18,15 @@ interface FootballApi {
     @GET("matches/")
     suspend fun getMatchesBetweenDates(@Query("dateFrom") dateFrom: String,
                                        @Query("dateTo") dateTo: String): MatchesBetweenDatesResult
+    @GET("competitions/{code}/standings")
+    suspend fun getStandingsFromLeague(
+            @Path("code") code:String
+    ):StandingsResult
 
-
-
-
+    @GET("teams/{id}")
+    suspend fun getSquadFromId(
+        @Path("id") id:String
+    ):SquadResult
 }
 
 object RetrofitClient {

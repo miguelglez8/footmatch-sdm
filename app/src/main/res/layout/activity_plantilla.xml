@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PlantillaActivity">
+
+    <TextView
+        android:id="@+id/nombreEquipo"
+        android:layout_width="138dp"
+        android:layout_height="33dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.168"
+        app:layout_constraintStart_toEndOf="@+id/escudoEquipo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.04"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+
+    <TextView
+        android:id="@+id/infoFundado"
+        android:layout_width="100dp"
+        android:layout_height="31dp"
+        android:text="Fundado en:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.016"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/escudoEquipo"
+        app:layout_constraintVertical_bias="0.032"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+    <TextView
+        android:id="@+id/dataFundado"
+        android:layout_width="100dp"
+        android:layout_height="31dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.242"
+        app:layout_constraintStart_toEndOf="@+id/infoFundado"
+        app:layout_constraintTop_toBottomOf="@+id/escudoEquipo"
+        app:layout_constraintVertical_bias="0.03"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+    <ImageView
+        android:id="@+id/escudoEquipo"
+        android:layout_width="114dp"
+        android:layout_height="103dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.016"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.025"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="4dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dataFundado"
+        app:layout_constraintVertical_bias="0.047" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="4dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dataFundado"
+        app:layout_constraintVertical_bias="0.351" />
+
+    <TextView
+        android:id="@+id/infoEntrenador"
+        android:layout_width="123dp"
+        android:layout_height="30dp"
+        android:text="Entrenador"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.015"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintVertical_bias="0.017" />
+
+    <TextView
+        android:id="@+id/infoPlantilla"
+        android:layout_width="123dp"
+        android:layout_height="30dp"
+        android:text="Plantilla"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.017"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2"
+        app:layout_constraintVertical_bias="0.02" />
+
+    <TextView
+        android:id="@+id/infoNombreEntrenador"
+        android:layout_width="109dp"
+        android:layout_height="24dp"
+        android:text="Nombre"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.015"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/infoEntrenador"
+        app:layout_constraintVertical_bias="0.025" />
+
+    <TextView
+        android:id="@+id/infoNacionalidadEntrenador"
+        android:layout_width="109dp"
+        android:layout_height="25dp"
+        android:text="Nacionalidad:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.015"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/infoNombreEntrenador"
+        app:layout_constraintVertical_bias="0.034" />
+
+    <TextView
+        android:id="@+id/infoNacimientoEntrenador"
+        android:layout_width="109dp"
+        android:layout_height="25dp"
+        android:text="Nacimiento:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.013"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/infoNacionalidadEntrenador"
+        app:layout_constraintVertical_bias="0.035" />
+
+    <TextView
+        android:id="@+id/dataEntrenador"
+        android:layout_width="248dp"
+        android:layout_height="26dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.285"
+        app:layout_constraintStart_toEndOf="@+id/infoNombreEntrenador"
+        app:layout_constraintTop_toBottomOf="@+id/infoEntrenador"
+        app:layout_constraintVertical_bias="0.025" />
+
+    <TextView
+        android:id="@+id/dataNacionalidadEntrenador"
+        android:layout_width="248dp"
+        android:layout_height="26dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.285"
+        app:layout_constraintStart_toEndOf="@+id/infoNacionalidadEntrenador"
+        app:layout_constraintTop_toBottomOf="@+id/dataEntrenador"
+        app:layout_constraintVertical_bias="0.029" />
+
+    <TextView
+        android:id="@+id/dataNacimientoEntrenador"
+        android:layout_width="246dp"
+        android:layout_height="26dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.264"
+        app:layout_constraintStart_toEndOf="@+id/infoNacimientoEntrenador"
+        app:layout_constraintTop_toBottomOf="@+id/dataNacionalidadEntrenador"
+        app:layout_constraintVertical_bias="0.03" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerPlantilla"
+        android:layout_width="418dp"
+        android:layout_height="299dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/infoPlantilla" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
