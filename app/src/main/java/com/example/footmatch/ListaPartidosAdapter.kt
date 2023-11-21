@@ -18,6 +18,9 @@ import com.example.footmatch.modelo.pojos.Match
 import com.squareup.picasso.Picasso
 // Importamos la clase SvgLoader
 import com.example.footmatch.util.images.SvgLoader.Companion.loadUrl
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class ListaPartidosAdapter(
     private var matchList: List<Match> = emptyList(),
@@ -35,6 +38,7 @@ class ListaPartidosAdapter(
         private val resultadoLocal: TextView
         private val resultadoVisitante: TextView
         private val fecha: TextView
+        private val estado:TextView
 
         init {
             logoLocal = itemView.findViewById<View>(R.id.equipoLocalImageView) as ImageView
@@ -45,6 +49,7 @@ class ListaPartidosAdapter(
             resultadoLocal = itemView.findViewById<View>(R.id.localTextView) as TextView
             resultadoVisitante = itemView.findViewById<View>(R.id.visitanteTextView) as TextView
             fecha = itemView.findViewById<View>(R.id.fechaTextView) as TextView
+            estado = itemView.findViewById<View>(R.id.estadoTextView) as TextView
         }
 
         // asignar valores a los componentes
@@ -91,6 +96,21 @@ class ListaPartidosAdapter(
             }
             // cargar fecha partido
             fecha.text = formatDate(match.utcDate)
+
+            // cargar estado del partido
+            // si el estado es IN_PLAY, el partido está en juego
+            // si el estado es FINISHED, el partido ha finalizado
+            // en cualquier otro caso el partido está programado
+            when (match.status){
+                "IN_PLAY" -> estado.text = "EN JUEGO"
+                "FINISHED" -> estado.text = "FINALIZADO"
+                else -> estado.text = "PROGRAMADO"
+
+            }
+
+
+
+
             itemView.setOnClickListener {
                 // De momento no hacemos nada al pulsar sobre un partido
             }
@@ -133,12 +153,21 @@ class ListaPartidosAdapter(
     }
 
     companion object {
-        private fun formatDate(utcDate: String): String {
-            val separated =
-                utcDate.split("T".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-            val date = separated[0]
-            val hour = separated[1].substring(0, 5)
-            return "$date $hour"
+        private fun formatDate(utcDate: String): String? {
+            // Formato de entrada: "yyyy-MM-ddTHH:mm:ss"
+            val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
+
+            // Formato de salida: "dd-MM-yyyy HH:mm"
+            val outputFormat = SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault())
+
+            try {
+                val date = inputFormat.parse(utcDate)
+                return date?.let { outputFormat.format(it) }
+            } catch (e: ParseException) {
+                e.printStackTrace()
+                // Manejar la excepción según tus necesidades
+                return "Formato de fecha no válido"
+            }
         }
     }
 }
