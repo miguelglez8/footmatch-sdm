@@ -7,19 +7,18 @@ import androidx.annotation.NonNull;
 
 public class Equipo implements Parcelable {
     private String nombre;
-
-    private String urlImagenEscudo;
+    private String url;
     private int puntos;
 
-    public Equipo(String nombre, String urlImagen, int puntos){
+    public Equipo(String nombre, String url, int puntos) {
         this.nombre = nombre;
-        this.urlImagenEscudo = urlImagen;
+        this.url = url;
         this.puntos = puntos;
     }
 
     protected Equipo(Parcel in) {
         nombre = in.readString();
-        urlImagenEscudo = in.readString();
+        url = in.readString();
         puntos = in.readInt();
     }
 
@@ -39,11 +38,25 @@ public class Equipo implements Parcelable {
         return nombre;
     }
 
-    public String getUrlImagenEscudo() {
-        return urlImagenEscudo;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public int getPuntos(){return puntos; }
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public int getPuntos() {
+        return puntos;
+    }
+
+    public void setPuntos(int puntos) {
+        this.puntos = puntos;
+    }
 
     @Override
     public int describeContents() {
@@ -53,7 +66,7 @@ public class Equipo implements Parcelable {
     @Override
     public void writeToParcel(@NonNull Parcel parcel, int i) {
         parcel.writeString(nombre);
-        parcel.writeString(urlImagenEscudo);
+        parcel.writeString(url);
         parcel.writeInt(puntos);
     }
 }

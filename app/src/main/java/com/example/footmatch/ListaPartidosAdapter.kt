@@ -2,6 +2,7 @@ package com.example.footmatch
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +14,7 @@ import coil.load
 
 
 import com.example.footmatch.ListaPartidosAdapter.PartidoViewHolder
-import com.example.footmatch.modelo.Partido
+import com.example.footmatch.modelo.BuscadorId
 import com.example.footmatch.modelo.pojos.Match
 import com.squareup.picasso.Picasso
 // Importamos la clase SvgLoader
@@ -108,12 +109,24 @@ class ListaPartidosAdapter(
 
             }
 
-
-
-
             itemView.setOnClickListener {
-                // De momento no hacemos nada al pulsar sobre un partido
+                mostrarPartido(match)
             }
+
+        }
+        private fun mostrarPartido(match:Match) {
+            // Verificar que el contexto sea el esperado
+            val contexto: Context = itemView.context
+
+            // Crear el intent para iniciar la actividad MostrarPartido
+            val partidoIntent = Intent(contexto, MostrarPartido::class.java)
+
+            // Pasar los datos necesarios a través de Intent
+            partidoIntent.putExtra(MainRecycler.PARTIDO_SELECCIONADO, BuscadorId(match.id, match.utcDate,
+                match.homeTeam.id, match.awayTeam.id))
+
+            // Iniciar la actividad
+            contexto.startActivity(partidoIntent)
         }
     }
    /*

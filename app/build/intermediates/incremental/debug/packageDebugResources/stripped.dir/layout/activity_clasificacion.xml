@@ -10,13 +10,14 @@
         android:id="@+id/nombreLiga"
         android:layout_width="259dp"
         android:layout_height="77dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.103"
+        app:layout_constraintHorizontal_bias="0.019"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintVertical_bias="0.004" />
 
     <ImageView
         android:id="@+id/logoLiga"
@@ -24,22 +25,100 @@
         android:layout_height="76dp"
         app:layout_constraintBottom_toTopOf="@+id/recyclerClasificacion"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.606"
+        app:layout_constraintHorizontal_bias="0.602"
         app:layout_constraintStart_toEndOf="@+id/nombreLiga"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.796"
+        app:layout_constraintVertical_bias="0.05"
         tools:srcCompat="@tools:sample/avatars" />
 
     <androidx.recyclerview.widget.RecyclerView
 
         android:id="@+id/recyclerClasificacion"
-        android:layout_width="405dp"
-        android:layout_height="571dp"
+        android:layout_width="409dp"
+        android:layout_height="486dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.115" />
+
+    <TextView
+        android:id="@+id/posInfo"
+        android:layout_width="46dp"
+        android:layout_height="32dp"
+        android:text="Pos"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.008"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nombreLiga"
-        app:layout_constraintVertical_bias="0.969" />
+        app:layout_constraintVertical_bias="0.02" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="114dp"
+        android:layout_height="32dp"
+        android:text="Equipo"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.094"
+        app:layout_constraintStart_toEndOf="@+id/posInfo"
+        app:layout_constraintTop_toBottomOf="@+id/nombreLiga"
+        app:layout_constraintVertical_bias="0.02" />
+
+    <TextView
+        android:id="@+id/golesAFavorInfo"
+        android:layout_width="42dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="12dp"
+        android:text="GF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.136"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/nombreLiga"
+        app:layout_constraintVertical_bias="0.001" />
+
+    <TextView
+        android:id="@+id/golesAContraInfo"
+        android:layout_width="42dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="12dp"
+        android:text="GC"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.061"
+        app:layout_constraintStart_toEndOf="@+id/golesAFavorInfo"
+        app:layout_constraintTop_toBottomOf="@+id/nombreLiga"
+        app:layout_constraintVertical_bias="0.001" />
+
+    <TextView
+        android:id="@+id/diferenciaGolesInfo"
+        android:layout_width="42dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="12dp"
+        android:text="DG"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.169"
+        app:layout_constraintStart_toEndOf="@+id/golesAContraInfo"
+        app:layout_constraintTop_toBottomOf="@+id/nombreLiga"
+        app:layout_constraintVertical_bias="0.001" />
+
+    <TextView
+        android:id="@+id/PuntosInfo"
+        android:layout_width="42dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="12dp"
+        android:text="PTS"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.953"
+        app:layout_constraintStart_toEndOf="@+id/golesAContraInfo"
+        app:layout_constraintTop_toBottomOf="@+id/nombreLiga"
+        app:layout_constraintVertical_bias="0.001" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

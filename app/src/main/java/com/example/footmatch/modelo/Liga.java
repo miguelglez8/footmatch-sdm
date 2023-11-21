@@ -25,7 +25,6 @@ public class Liga implements Parcelable {
         name = in.readString();
         equipos = in.createTypedArrayList(Equipo.CREATOR);
         idLogoLiga = in.readInt();
-
     }
 
     public static final Creator<Liga> CREATOR = new Creator<Liga>() {
