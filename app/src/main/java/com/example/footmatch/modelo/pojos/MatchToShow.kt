@@ -4,7 +4,6 @@ import com.google.gson.annotations.SerializedName
 import org.jetbrains.annotations.NotNull
 import java.io.Serializable
 
-//@Entity(tableName = "match")
 data class MatchToShow(
     @SerializedName("area")
     val area: Area,

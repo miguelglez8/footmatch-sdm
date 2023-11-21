@@ -20,20 +20,20 @@ public final class ItemJugadorBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
-  public final TextView textDorsal;
+  public final TextView nombreJugador;
 
   @NonNull
-  public final TextView textNombreJugador;
+  public final TextView pais;
 
   @NonNull
-  public final TextView textPosicion;
+  public final TextView posicionJugador;
 
-  private ItemJugadorBinding(@NonNull LinearLayout rootView, @NonNull TextView textDorsal,
-      @NonNull TextView textNombreJugador, @NonNull TextView textPosicion) {
+  private ItemJugadorBinding(@NonNull LinearLayout rootView, @NonNull TextView nombreJugador,
+      @NonNull TextView pais, @NonNull TextView posicionJugador) {
     this.rootView = rootView;
-    this.textDorsal = textDorsal;
-    this.textNombreJugador = textNombreJugador;
-    this.textPosicion = textPosicion;
+    this.nombreJugador = nombreJugador;
+    this.pais = pais;
+    this.posicionJugador = posicionJugador;
   }
 
   @Override
@@ -63,26 +63,25 @@ public final class ItemJugadorBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.textDorsal;
-      TextView textDorsal = ViewBindings.findChildViewById(rootView, id);
-      if (textDorsal == null) {
+      id = R.id.nombreJugador;
+      TextView nombreJugador = ViewBindings.findChildViewById(rootView, id);
+      if (nombreJugador == null) {
         break missingId;
       }
 
-      id = R.id.textNombreJugador;
-      TextView textNombreJugador = ViewBindings.findChildViewById(rootView, id);
-      if (textNombreJugador == null) {
+      id = R.id.pais;
+      TextView pais = ViewBindings.findChildViewById(rootView, id);
+      if (pais == null) {
         break missingId;
       }
 
-      id = R.id.textPosicion;
-      TextView textPosicion = ViewBindings.findChildViewById(rootView, id);
-      if (textPosicion == null) {
+      id = R.id.posicionJugador;
+      TextView posicionJugador = ViewBindings.findChildViewById(rootView, id);
+      if (posicionJugador == null) {
         break missingId;
       }
 
-      return new ItemJugadorBinding((LinearLayout) rootView, textDorsal, textNombreJugador,
-          textPosicion);
+      return new ItemJugadorBinding((LinearLayout) rootView, nombreJugador, pais, posicionJugador);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

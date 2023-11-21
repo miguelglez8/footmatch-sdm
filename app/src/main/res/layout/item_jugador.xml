@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="42dp"
         android:gravity="center"
-        android:text="Lionel Messi (2022-12-10)"
+        android:text="1. Lionel Messi (2022-12-10)"
         android:textColor="#333"
         android:textSize="18sp"
         android:textStyle="bold" />

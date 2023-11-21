@@ -103,66 +103,60 @@ class MostrarPartido : AppCompatActivity() {
             partido?.homeTeam?.trainer = local?.coach!!.name
             partido?.awayTeam?.trainer = away?.coach!!.name
 
-            /*if (database!!.matchDAO().getMatchById(partido!!.id) != null) {
-                partido = database!!.matchDAO().getMatchById(partido!!.id) as MatchToShow
-            } else {
-                database?.matchDAO()?.add(partido!!)
-            }*/
-
             withContext(Dispatchers.Main) {
                 mostrarDatos(partido, stats, local!!, away!!)
-
-                val mOnNavigationItemSelectedListener =
-                    BottomNavigationView.OnNavigationItemSelectedListener { item ->
-
-                        /* Cuando se selecciona uno de los botones / ítems*/
-                        if (partido == null) return@OnNavigationItemSelectedListener false
-                        val itemId = item.itemId
-
-                        /* Según el caso, crearemos un Fragmento u otro */
-                        if (itemId == R.id.navigation_stats) {
-                            /* Haciendo uso del FactoryMethod pasándole todos los parámetros necesarios */
-                            /* Argumento solamente necesita.... El argumento de la película */
-                            val estadisticasFragment = EstadisticasFragment.newInstance(
-                                partido!!.homeTeam, partido!!.awayTeam, stats
-                            )
-
-                            /* ¿Qué estaremos haciendo aquí? */supportFragmentManager.beginTransaction()
-                                .replace(R.id.fragment_container, estadisticasFragment).commit()
-                            return@OnNavigationItemSelectedListener true
-                        }
-                        if (itemId == R.id.navigation_alineations) {
-                            val alineacionesFragment = AlineacionesFragment.newInstance(
-                                local!!, away!!, partido!!
-                            )
-                            supportFragmentManager.beginTransaction()
-                                .replace(R.id.fragment_container, alineacionesFragment).commit()
-                            return@OnNavigationItemSelectedListener true
-                        }
-                        if (itemId == R.id.navigation_referees) {
-                            if (partido!!.referees.isNotEmpty()) {
-                                val arbitrosFragment =
-                                    ArbitrosFragment.newInstance(partido!!.referees as ArrayList<Referee?>)
-                                supportFragmentManager.beginTransaction()
-                                    .replace(R.id.fragment_container, arbitrosFragment).commit()
-                            } else {
-                                // Inflar el layout y agregarlo al contenedor
-                                val inflater = LayoutInflater.from(applicationContext)
-                                val miLayout = inflater.inflate(R.layout.item_no_disponible, null) as RelativeLayout
-
-                                // Obtener el contenedor por su ID
-                                val contenedor = findViewById<FrameLayout>(R.id.fragment_container)
-
-                                // Agregar el layout inflado al contenedor
-                                contenedor.addView(miLayout)
-                            }
-                            return@OnNavigationItemSelectedListener true
-                        }
-                        throw IllegalStateException("Unexpected value: " + item.itemId)
-                    }
             }
         }
     }
+
+    private val mOnNavigationItemSelectedListener =
+        BottomNavigationView.OnNavigationItemSelectedListener { item ->
+
+            /* Cuando se selecciona uno de los botones / ítems*/
+            if (partido == null) return@OnNavigationItemSelectedListener false
+            val itemId = item.itemId
+
+            /* Según el caso, crearemos un Fragmento u otro */
+            if (itemId == R.id.navigation_stats) {
+                /* Haciendo uso del FactoryMethod pasándole todos los parámetros necesarios */
+                /* Argumento solamente necesita.... El argumento de la película */
+                val estadisticasFragment = EstadisticasFragment.newInstance(
+                    partido!!.homeTeam, partido!!.awayTeam, stats
+                )
+
+                /* ¿Qué estaremos haciendo aquí? */supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, estadisticasFragment).commit()
+                return@OnNavigationItemSelectedListener true
+            }
+            if (itemId == R.id.navigation_alineations) {
+                val alineacionesFragment = AlineacionesFragment.newInstance(
+                    local!!, away!!, partido!!
+                )
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, alineacionesFragment).commit()
+                return@OnNavigationItemSelectedListener true
+            }
+            if (itemId == R.id.navigation_referees) {
+                if (partido!!.referees.isNotEmpty()) {
+                    val arbitrosFragment =
+                        ArbitrosFragment.newInstance(partido!!.referees as ArrayList<Referee?>)
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, arbitrosFragment).commit()
+                } else {
+                    // Inflar el layout y agregarlo al contenedor
+                    val inflater = LayoutInflater.from(applicationContext)
+                    val miLayout = inflater.inflate(R.layout.item_no_disponible, null) as RelativeLayout
+
+                    // Obtener el contenedor por su ID
+                    val contenedor = findViewById<FrameLayout>(R.id.fragment_container)
+
+                    // Agregar el layout inflado al contenedor
+                    contenedor.addView(miLayout)
+                }
+                return@OnNavigationItemSelectedListener true
+            }
+            throw IllegalStateException("Unexpected value: " + item.itemId)
+        }
 
     // Cargar los datos del partido en las vistas
     private fun mostrarDatos(

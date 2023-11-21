@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.footmatch.ListaJugadoresAdapter.JugadorViewHolder
-import com.example.footmatch.modelo.pojos.Lineup
 import com.example.footmatch.modelo.pojos.Squad
 
 class ListaJugadoresAdapter(
@@ -37,7 +36,7 @@ class ListaJugadoresAdapter(
         Log.i("Lista", "Visualiza elemento: $jugador")
         // llama al método de nuestro holder para asignar valores a los componentes
         // además, pasamos el listener del evento onClick
-        holder.bindUser(jugador, listener)
+        holder.bindUser(jugador, position, listener)
     }
 
     override fun getItemCount(): Int {
@@ -57,13 +56,14 @@ class ListaJugadoresAdapter(
         }
 
         // asignar valores a los componentes
-        fun bindUser(jugador: Squad, listener: OnItemClickListener?) {
+        fun bindUser(jugador: Squad, position: Int, listener: OnItemClickListener?) {
             // cargar nombre equipo local
             pais.text = jugador.nationality
             // cargar nombre equipo visitante
             posicion.text = jugador.position
             // cargar resultado
-            this.jugador.text = jugador.name + " (" + jugador.dateOfBirth + ")"
+            val pos = position + 1
+            this.jugador.text = pos.toString() + ". " + jugador.name + " (" + jugador.dateOfBirth + ")"
             itemView.setOnClickListener {
                 // De momento no hacemos nada al pulsar sobre un partido
             }

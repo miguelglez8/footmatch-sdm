@@ -150,8 +150,6 @@ class MainRecycler : AppCompatActivity() {
 
     }
 
-
-
     fun cargarEquiposParaClasificacion(liga: String?): List<Equipo> {
         var equipo: Equipo
         val equiposLiga: MutableList<Equipo> = ArrayList()
