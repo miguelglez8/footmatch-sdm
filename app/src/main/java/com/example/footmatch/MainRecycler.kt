@@ -83,7 +83,6 @@ class MainRecycler : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_recycler)
 
-
         // Pasamos la lista de partidos al RecyclerView con el ListaPartidosAdapter
         // Instanciamos el adapter con los datos de la petición y lo asignamos a RecyclerView
         // Generar el adaptador, le pasamos la lista de partidos

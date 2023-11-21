@@ -11,6 +11,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import coil.load
 import com.example.footmatch.modelo.BuscadorId
 import com.example.footmatch.modelo.pojos.Aggregates
 import com.example.footmatch.modelo.pojos.MatchToShow
@@ -20,6 +21,7 @@ import com.example.footmatch.ui.ArbitrosFragment
 import com.example.footmatch.ui.EstadisticasFragment
 import com.example.footmatch.ui.EventosFragment
 import com.example.footmatch.util.api.RetrofitClient
+import com.example.footmatch.util.images.SvgLoader.Companion.loadUrl
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.Dispatchers
@@ -71,18 +73,7 @@ class MostrarPartido : AppCompatActivity() {
         nombreEquipo2 = findViewById(R.id.nombreEquipo2)
         estadio = findViewById(R.id.estadio)
         estadoPartido = findViewById(R.id.estadoPartido)
-        val estado = estadoPartido // Almacenar el valor en una variable local
-        if (estado != null) {
-            estado.isEnabled = false
-        }
-        when (partido?.status) {
-            "FINISHED" -> estado?.setBackgroundColor(Color.parseColor("#555555"))
-            "LIVE" -> estado?.setBackgroundColor(Color.parseColor("#FFFF00"))
-            "IN_PLAY" -> estado?.setBackgroundColor(Color.parseColor("#FFFF00"))
-            "PAUSED" -> estado?.setBackgroundColor(Color.parseColor("#FFFF00"))
-             else -> estado?.setBackgroundColor(Color.parseColor("#333333"))
-        }
-        
+
         // Cargar datos del partido en las vistas
         searchMatch(this.id!!)
     }
@@ -133,8 +124,7 @@ class MostrarPartido : AppCompatActivity() {
             }
             if (itemId == R.id.navigation_events) {
                 if (partido!!.status.equals("LIVE") || partido!!.status.equals("PAUSED")
-                    || partido!!.status.equals("IN_PLAY") || partido!!.status.equals("FINISHED")
-                    || partido!!.status.equals("PAUSED")) {
+                    || partido!!.status.equals("IN_PLAY") || partido!!.status.equals("FINISHED")) {
                     val eventosFragment = EventosFragment.newInstance(partido!!.goals,
                         partido!!.penalties, partido!!.bookings, partido!!.substitutions,
                         partido!!.homeTeam.name)
@@ -187,7 +177,8 @@ class MostrarPartido : AppCompatActivity() {
     // Cargar los datos del partido en las vistas
     private fun mostrarDatos(partido: MatchToShow?, stats: Aggregates?) {
         if (partido != null) {
-            // Actualizar componentes con valores del partido específico
+            if (partido?.status == "FINISHED") estadoPartido?.text="FINALIZADO" else if (partido?.status == "TIMED") estadoPartido?.text="PROGRAMADO" else  estadoPartido?.text="EN JUEGO"
+            estadoPartido!!.setBackgroundColor(Color.parseColor("#006400"))
             textView!!.text = partido.competition.name + ". Jornada Nº " + partido.season.currentMatchday
             if (partido.status.equals("FINISHED"))
                 textView2!!.text = "90'"
@@ -195,34 +186,58 @@ class MostrarPartido : AppCompatActivity() {
                 textView2!!.text = partido.minute.toString() + "'"
             nombreEquipo1!!.text = partido.homeTeam.shortName
             if (partido.status.equals("FINISHED") || partido.status.equals("LIVE")) {
-                resultadoPartido!!.text = partido.score.fullTime.home.toString() + "-" + partido.score.fullTime.away.toString()
+                resultadoPartido!!.text = partido.score.fullTime.home.toString() + " - " + partido.score.fullTime.away.toString()
             } else {
                 resultadoPartido!!.text = fecha?.get(1)?.substring(0, fecha?.get(1)!!.length - 4) ?: ""
             }
             fechaPartido!!.text = fecha?.get(0) ?: ""
             nombreEquipo2!!.text = partido.awayTeam.shortName
-            estadio!!.text = "Estadio: " + partido.venue
-            estadoPartido!!.text = partido.status
-            if (partido.competition.emblem.isEmpty()) {
-                Picasso.get()
-                    .load(R.drawable.liga_defecto).into(imagenLiga)
+            if (partido.venue == null)
+                estadio!!.text = "Estadio: No disponible"
+            else
+                estadio!!.text = "Estadio: " + partido.venue
+
+            if (partido.competition.emblem == null) {
+                // cargar imagen local por defecto
+                imagenLiga?.load(R.drawable.escudo_por_defecto)
             } else {
-                Picasso.get()
-                    .load(partido.competition.emblem).into(imagenLiga)
+                // Comprobamos si se trata de un png o svg
+                val isSvg = partido.competition.emblem.endsWith("svg",ignoreCase = true)
+                // Si es svg procedemos a cargarlo con coil
+                if (isSvg){
+                    imagenLiga?.loadUrl(partido.competition.emblem)
+                }else{
+                    // cargamos la imagen png con coil
+                    imagenLiga?.load(partido.competition.emblem)
+                }
             }
-            if (partido.homeTeam.crest.isEmpty()) {
-                Picasso.get()
-                    .load(R.drawable.escudo_por_defecto).into(imagenEquipo1)
+            if (partido.homeTeam.crest == null) {
+                // cargar imagen local por defecto
+                imagenEquipo1?.load(R.string.teamDefaultLogo.toString())
             } else {
-                Picasso.get()
-                    .load(partido.homeTeam.crest).into(imagenEquipo1)
+                // Comprobamos si se trata de un png o svg
+                val isSvg = partido.homeTeam.crest.endsWith("svg",ignoreCase = true)
+                // Si es svg procedemos a cargarlo con coil
+                if (isSvg){
+                    imagenEquipo1?.loadUrl(partido.homeTeam.crest)
+                }else{
+                    // cargamos la imagen png con coil
+                    imagenEquipo1?.load(partido.homeTeam.crest)
+                }
             }
-            if (partido.awayTeam.crest.isEmpty()) {
-                Picasso.get()
-                    .load(R.drawable.escudo_por_defecto).into(imagenEquipo2)
+            if (partido.awayTeam.crest == null) {
+                // cargar imagen local por defecto
+                imagenEquipo2?.load(R.string.teamDefaultLogo.toString())
             } else {
-                Picasso.get()
-                    .load(partido.awayTeam.crest).into(imagenEquipo2)
+                // Comprobamos si se trata de un png o svg
+                val isSvg = partido.awayTeam.crest.endsWith("svg",ignoreCase = true)
+                // Si es svg procedemos a cargarlo con coil
+                if (isSvg){
+                    imagenEquipo2?.loadUrl(partido.awayTeam.crest)
+                }else{
+                    // cargamos la imagen png con coil
+                    imagenEquipo2?.load(partido.awayTeam.crest)
+                }
             }
 
             val estadisticasFragment = EstadisticasFragment.newInstance(

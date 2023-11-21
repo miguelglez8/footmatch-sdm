@@ -147,7 +147,7 @@
     <string name="premier_league_jornada_10">PREMIER LEAGUE JORNADA 10</string>
     <string name="racha_de_los_ltimos_partidos">ÚLTIMOS ENFRENTAMIENTOS</string>
     <string name="referees">ÁRBITROS</string>
-    <string name="resultado">1-2</string>
+    <string name="resultado">1 - 2</string>
     <string name="saques_de_banda">Saques de Banda</string>
     <string name="saques_de_puerta">Saques de Puerta</string>
     <string name="stats">ESTADÍSTICAS</string>
@@ -156,6 +156,7 @@
     <string name="tarjeta_roja">Tarjeta Roja</string>
     <string name="tarjetas_amarillas">Amarillas</string>
     <string name="tarjetas_rojas">Rojas</string>
+    <string name="teamDefaultLogo">https://cdn-icons-png.flaticon.com/128/8373/8373460.png</string>
     <string name="tiros">Tiros</string>
     <string name="tiros_a_gol">Tiros a Gol</string>
     <string name="tiros_al_arco">Tiros a Puerta</string>

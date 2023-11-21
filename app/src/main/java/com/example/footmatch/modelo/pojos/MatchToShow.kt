@@ -1,9 +1,5 @@
 package com.example.footmatch.modelo.pojos
-
-
 import android.support.annotation.Nullable
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import org.jetbrains.annotations.NotNull
 import java.io.Serializable
@@ -19,11 +15,11 @@ data class MatchToShow(
     @SerializedName("awayTeam")
     val awayTeam: AwayTeamX,
     @SerializedName("bookings")
-    val bookings: List<Booking>,
+    val bookings: List<Booking> = mutableListOf(),
     @SerializedName("competition")
     val competition: Competition,
     @SerializedName("goals")
-    val goals: List<Goal>,
+    val goals: List<Goal> = mutableListOf(),
     @SerializedName("group")
     val group: String,
     @SerializedName("homeTeam")
@@ -43,9 +39,9 @@ data class MatchToShow(
     @SerializedName("odds")
     val odds: OddsX,
     @SerializedName("penalties")
-    val penalties: List<Penalty>,
+    val penalties: List<Penalty> = mutableListOf(),
     @SerializedName("referees")
-    val referees: List<Referee>,
+    val referees: List<Referee> = mutableListOf(),
     @SerializedName("score")
     val score: ScoreXX,
     @SerializedName("season")
@@ -55,7 +51,7 @@ data class MatchToShow(
     @SerializedName("status")
     val status: String,
     @SerializedName("substitutions")
-    val substitutions: List<Substitution>,
+    val substitutions: List<Substitution> = mutableListOf(),
     @SerializedName("utcDate")
     val utcDate: String,
     @SerializedName("venue")

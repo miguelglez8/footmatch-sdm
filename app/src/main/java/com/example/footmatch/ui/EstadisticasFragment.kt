@@ -82,8 +82,8 @@ class EstadisticasFragment : Fragment() {
             nderrotas2.setText(stats!!.awayTeam.losses.toString())
         }
 
-        if (equipo1!!.statistics == null && equipo2!!.statistics == null) {
-            /*corners1.text = equipo1!!.statistics.cornerKicks.toString()
+        if (equipo1!!.statistics != null && equipo2!!.statistics != null) {
+            corners1.text = equipo1!!.statistics.cornerKicks.toString()
             corners2.text = equipo2!!.statistics.cornerKicks.toString()
             goalKicks1.text = equipo1!!.statistics.goalKicks.toString()
             goalKicks2.text = equipo2!!.statistics.goalKicks.toString()
@@ -104,7 +104,7 @@ class EstadisticasFragment : Fragment() {
             yellowCards1.text = equipo1!!.statistics.yellowCards.toString()
             yellowCards2.text = equipo2!!.statistics.yellowCards.toString()
             redCards1.text = equipo1!!.statistics.redCards.toString()
-            redCards2.text = equipo2!!.statistics.redCards.toString()*/
+            redCards2.text = equipo2!!.statistics.redCards.toString()
         } else {
             val linearLayoutEstadisticas =
                 root.findViewById<LinearLayout>(R.id.linear_layout_estadisticas)

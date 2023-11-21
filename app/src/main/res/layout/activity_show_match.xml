@@ -35,81 +35,109 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="22dp"
+                android:textColor="@android:color/white"
                 android:text="@string/liga_ea_sports_jornada_10" />
 
         </LinearLayout>
 
+        <!-- Contenedor de la información del partido -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:orientation="horizontal">
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:weightSum="3">
 
-            <!-- Equipo 1 -->
-            <RelativeLayout
-                android:layout_width="wrap_content"
+            <!-- Logotipo y nombre del equipo local -->
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="60dp">
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
 
                 <ImageView
                     android:id="@+id/imagenEquipo1"
-                    android:layout_width="53dp"
-                    android:layout_height="28dp"
-                    android:src="@drawable/logo_barcelona" />
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/logo_barcelona"
+                    android:contentDescription="@string/escudo_equipo_local_image_description" />
 
                 <TextView
                     android:id="@+id/nombreEquipo1"
                     android:layout_width="wrap_content"
-                    android:layout_height="22dp"
-                    android:layout_below="@id/imagenEquipo1"
-                    android:text="@string/barcelona" />
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="@string/barcelona"
+                    android:textColor="@android:color/white"
+                    />
+            </LinearLayout>
 
-            </RelativeLayout>
-
-            <!-- Resultado y Fecha -->
-            <RelativeLayout
-                android:layout_width="wrap_content"
+            <!-- Estado, fecha y resultado -->
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp">
-
-                <TextView
-                    android:id="@+id/resultadoPartido"
-                    android:layout_width="wrap_content"
-                    android:layout_height="22dp"
-                    android:layout_marginStart="26dp"
-                    android:text="@string/resultado" />
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
 
                 <TextView
                     android:id="@+id/fechaPartido"
                     android:layout_width="wrap_content"
-                    android:layout_height="22dp"
-                    android:layout_below="@id/resultadoPartido"
-                    android:text="@string/fecha" />
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:textSize="12sp"
+                    android:text="@string/fecha"
+                    android:background="@color/colorPrimary"
+                    android:textColor="@android:color/white" />
 
-            </RelativeLayout>
+                <!-- Fecha -->
+                <TextView
+                    android:id="@+id/minutoPartido"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="@string/_90"
+                    android:textColor="@android:color/white"
+                    />
 
-            <!-- Equipo 2 -->
-            <RelativeLayout
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/resultadoPartido"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="@string/resultado"
+                    android:textColor="@android:color/white"
+                    />
+
+            </LinearLayout>
+
+            <!-- Logotipo y nombre del equipo visitante -->
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp">
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
 
                 <ImageView
                     android:id="@+id/imagenEquipo2"
-                    android:layout_width="53dp"
-                    android:layout_height="29dp"
-                    android:src="@drawable/logo_madrid" />
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/logo_madrid"
+                    android:contentDescription="@string/escudo_equipo_visitante_image_description" />
 
                 <TextView
                     android:id="@+id/nombreEquipo2"
                     android:layout_width="wrap_content"
-                    android:layout_height="22dp"
-                    android:layout_below="@id/imagenEquipo2"
-                    android:text="@string/madrid" />
-
-            </RelativeLayout>
-
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="@string/madrid"
+                    android:textColor="@android:color/white"
+                    />
+            </LinearLayout>
         </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -121,13 +149,14 @@
                 android:id="@+id/estadio"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
+                android:textColor="@android:color/white"
                 android:text="@string/camp_nou" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
@@ -136,21 +165,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="42dp"
                 android:text="@string/finalizado" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayoutMinutos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/minutoPartido"
-                android:layout_width="wrap_content"
-                android:layout_height="24dp"
-                android:text="@string/_90" />
 
         </LinearLayout>
 

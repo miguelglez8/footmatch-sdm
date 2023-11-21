@@ -6,10 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.footmatch.R;
@@ -20,7 +20,7 @@ import java.lang.String;
 
 public final class ActivityShowMatchBinding implements ViewBinding {
   @NonNull
-  private final ConstraintLayout rootView;
+  private final LinearLayout rootView;
 
   @NonNull
   public final AppBarLayout appBar;
@@ -58,7 +58,7 @@ public final class ActivityShowMatchBinding implements ViewBinding {
   @NonNull
   public final TextView resultadoPartido;
 
-  private ActivityShowMatchBinding(@NonNull ConstraintLayout rootView, @NonNull AppBarLayout appBar,
+  private ActivityShowMatchBinding(@NonNull LinearLayout rootView, @NonNull AppBarLayout appBar,
       @NonNull TextView estadio, @NonNull Button estadoPartido, @NonNull TextView fechaPartido,
       @NonNull ImageView imagenEquipo1, @NonNull ImageView imagenEquipo2,
       @NonNull ImageView imagenLiga, @NonNull TextView ligaJornada, @NonNull TextView minutoPartido,
@@ -81,7 +81,7 @@ public final class ActivityShowMatchBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public ConstraintLayout getRoot() {
+  public LinearLayout getRoot() {
     return rootView;
   }
 
@@ -178,9 +178,9 @@ public final class ActivityShowMatchBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityShowMatchBinding((ConstraintLayout) rootView, appBar, estadio,
-          estadoPartido, fechaPartido, imagenEquipo1, imagenEquipo2, imagenLiga, ligaJornada,
-          minutoPartido, nombreEquipo1, nombreEquipo2, resultadoPartido);
+      return new ActivityShowMatchBinding((LinearLayout) rootView, appBar, estadio, estadoPartido,
+          fechaPartido, imagenEquipo1, imagenEquipo2, imagenLiga, ligaJornada, minutoPartido,
+          nombreEquipo1, nombreEquipo2, resultadoPartido);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

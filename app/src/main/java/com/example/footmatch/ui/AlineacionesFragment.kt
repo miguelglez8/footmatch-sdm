@@ -12,11 +12,13 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.footmatch.ListaJugadoresAdapter
 import com.example.footmatch.R
 import com.example.footmatch.modelo.pojos.AwayTeamX
 import com.example.footmatch.modelo.pojos.HomeTeamX
 import com.example.footmatch.modelo.pojos.Lineup
+import com.example.footmatch.util.images.SvgLoader.Companion.loadUrl
 import com.squareup.picasso.Picasso
 
 class AlineacionesFragment : Fragment() {
@@ -115,15 +117,33 @@ class AlineacionesFragment : Fragment() {
         else
             formacionEquipo2!!.text = jugadoresEquipo2!!.formation
 
-        if (jugadoresEquipo1!!.crest.isEmpty()) {
-            Picasso.get().load(R.drawable.escudo_por_defecto).into(imagenEquipo1)
+        if (jugadoresEquipo1!!.crest == null) {
+            // cargar imagen local por defecto
+            imagenEquipo1?.load(R.string.teamDefaultLogo.toString())
         } else {
-            Picasso.get().load(jugadoresEquipo1!!.crest).into(imagenEquipo1)
+            // Comprobamos si se trata de un png o svg
+            val isSvg = jugadoresEquipo1!!.crest.endsWith("svg",ignoreCase = true)
+            // Si es svg procedemos a cargarlo con coil
+            if (isSvg){
+                imagenEquipo1?.loadUrl(jugadoresEquipo1!!.crest)
+            }else{
+                // cargamos la imagen png con coil
+                imagenEquipo1?.load(jugadoresEquipo1!!.crest)
+            }
         }
-        if (jugadoresEquipo2!!.crest.isEmpty()) {
-            Picasso.get().load(R.drawable.escudo_por_defecto).into(imagenEquipo2)
+        if (jugadoresEquipo2!!.crest == null) {
+            // cargar imagen local por defecto
+            imagenEquipo2?.load(R.string.teamDefaultLogo.toString())
         } else {
-            Picasso.get().load(jugadoresEquipo2!!.crest).into(imagenEquipo2)
+            // Comprobamos si se trata de un png o svg
+            val isSvg = jugadoresEquipo2!!.crest.endsWith("svg",ignoreCase = true)
+            // Si es svg procedemos a cargarlo con coil
+            if (isSvg){
+                imagenEquipo2?.loadUrl(jugadoresEquipo2!!.crest)
+            }else{
+                // cargamos la imagen png con coil
+                imagenEquipo2?.load(jugadoresEquipo2!!.crest)
+            }
         }
     }
 

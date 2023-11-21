@@ -18,7 +18,7 @@ data class AwayTeamX(
     @SerializedName("leagueRank")
     val leagueRank: Any,
     @SerializedName("lineup")
-    val lineup: List<Lineup>,
+    val lineup: List<Lineup> = mutableListOf(),
     @SerializedName("name")
     val name: String,
     @SerializedName("shortName")
