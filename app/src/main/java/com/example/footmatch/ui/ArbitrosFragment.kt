@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.footmatch.ListaArbitrosAdapter
 import com.example.footmatch.R
-import com.example.footmatch.modelo.pojos.Referee
+import com.example.footmatch.modelo.pojos.partido.Referee
 
 //Vamos a heredar de la clase Fragment
 class ArbitrosFragment : Fragment() {

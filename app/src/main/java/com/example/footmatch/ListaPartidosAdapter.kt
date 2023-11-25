@@ -3,6 +3,7 @@ package com.example.footmatch
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,12 +16,12 @@ import coil.load
 
 import com.example.footmatch.ListaPartidosAdapter.PartidoViewHolder
 import com.example.footmatch.modelo.BuscadorId
-import com.example.footmatch.modelo.pojos.Match
-import com.squareup.picasso.Picasso
+import com.example.footmatch.modelo.pojos.partido.Match
 // Importamos la clase SvgLoader
 import com.example.footmatch.util.images.SvgLoader.Companion.loadUrl
 import java.text.ParseException
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Locale
 
 class ListaPartidosAdapter(
@@ -89,8 +90,8 @@ class ListaPartidosAdapter(
             nombreVisitante.text = match.awayTeam.shortName
             // cargar resultado
             if (match.score.winner != null) {
-                resultadoLocal.text = match.score.fullTime.home.toString()
-                resultadoVisitante.text = match.score.fullTime.away.toString()
+                resultadoLocal.text = match.score.fullTime.home.toString() + " "
+                resultadoVisitante.text = " " + match.score.fullTime.away.toString()
             } else {
                 resultadoLocal.text = ""
                 resultadoVisitante.text = ""
@@ -103,10 +104,18 @@ class ListaPartidosAdapter(
             // si el estado es FINISHED, el partido ha finalizado
             // en cualquier otro caso el partido está programado
             when (match.status){
-                "IN_PLAY" -> estado.text = "EN JUEGO"
-                "FINISHED" -> estado.text = "FINALIZADO"
-                else -> estado.text = "PROGRAMADO"
-
+                "IN_PLAY" -> {
+                    estado.text = "EN JUEGO"
+                    estado.setBackgroundColor(Color.parseColor("#006400"))
+                }
+                "FINISHED" -> {
+                    estado.text = "FINALIZADO"
+                    estado.setBackgroundColor(Color.parseColor("#F80000"))
+                }
+                else -> {
+                    estado.text = "PROGRAMADO"
+                    estado.setBackgroundColor(Color.parseColor("#9B9B9B"))
+                }
             }
 
             itemView.setOnClickListener {
@@ -114,7 +123,7 @@ class ListaPartidosAdapter(
             }
 
         }
-        private fun mostrarPartido(match:Match) {
+        private fun mostrarPartido(match: Match) {
             // Verificar que el contexto sea el esperado
             val contexto: Context = itemView.context
 
@@ -175,7 +184,12 @@ class ListaPartidosAdapter(
 
             try {
                 val date = inputFormat.parse(utcDate)
-                return date?.let { outputFormat.format(it) }
+
+                val calendar = Calendar.getInstance()
+                date?.let { calendar.time = it }
+                calendar.add(Calendar.HOUR_OF_DAY, 1)
+
+                return date?.let { outputFormat.format(calendar.time) }
             } catch (e: ParseException) {
                 e.printStackTrace()
                 // Manejar la excepción según tus necesidades

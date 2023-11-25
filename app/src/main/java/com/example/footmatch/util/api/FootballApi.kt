@@ -1,18 +1,13 @@
 package com.example.footmatch.util.api
 
-import com.example.footmatch.modelo.pojos.AwayTeamX
-import com.example.footmatch.modelo.pojos.HomeTeamX
-import com.example.footmatch.modelo.pojos.Match
-import com.example.footmatch.modelo.pojos.MatchToShow
-import com.example.footmatch.modelo.pojos.MatchesBetweenDatesResult
+import com.example.footmatch.modelo.pojos.partido.MatchToShow
+import com.example.footmatch.modelo.pojos.partido.MatchesBetweenDatesResult
 import com.example.footmatch.modelo.pojos.clasificacion.StandingsResult
 import com.example.footmatch.modelo.pojos.plantilla.SquadResult
-import com.example.footmatch.modelo.pojos.Stats
-import com.example.footmatch.modelo.pojos.Team
-import com.example.footmatch.modelo.pojos.TeamX
+import com.example.footmatch.modelo.pojos.partido.Stats
+import com.example.footmatch.modelo.pojos.partido.TeamX
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET

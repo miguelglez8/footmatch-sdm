@@ -53,7 +53,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewJugadoresEquipo1"
             android:layout_width="match_parent"
-            android:layout_height="179dp"></androidx.recyclerview.widget.RecyclerView>
+            android:layout_height="167dp"></androidx.recyclerview.widget.RecyclerView>
         <!-- Otros atributos del RecyclerView según tus necesidades -->
         />
 

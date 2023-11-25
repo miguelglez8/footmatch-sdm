@@ -7,7 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.footmatch.ListaJugadoresAdapter.JugadorViewHolder
-import com.example.footmatch.modelo.pojos.Squad
+import com.example.footmatch.modelo.pojos.partido.Squad
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 
 class ListaJugadoresAdapter(
     private val listaJugadores: List<Squad>,
@@ -63,10 +67,33 @@ class ListaJugadoresAdapter(
             posicion.text = jugador.position
             // cargar resultado
             val pos = position + 1
-            this.jugador.text = pos.toString() + ". " + jugador.name + " (" + jugador.dateOfBirth + ")"
+            this.jugador.text = pos.toString() + ". " + jugador.name + " (" + calcularEdad(jugador.dateOfBirth) + ")"
             itemView.setOnClickListener {
                 // De momento no hacemos nada al pulsar sobre un partido
             }
         }
+
+        fun calcularEdad(fechaNacimiento: String): Int {
+            try {
+                val formato = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                val fechaNac: Date = formato.parse(fechaNacimiento)!!
+
+                val calendarNac = Calendar.getInstance()
+                val calendarHoy = Calendar.getInstance()
+
+                calendarNac.time = fechaNac
+                val edad = calendarHoy.get(Calendar.YEAR) - calendarNac.get(Calendar.YEAR)
+
+                if (calendarHoy.get(Calendar.DAY_OF_YEAR) < calendarNac.get(Calendar.DAY_OF_YEAR)) {
+                    return edad - 1
+                } else {
+                    return edad
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                return -1 // Manejar la excepción según tus necesidades
+            }
+        }
+
     }
 }

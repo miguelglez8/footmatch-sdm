@@ -1,6 +1,5 @@
 package com.example.footmatch
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -12,8 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.footmatch.modelo.Equipo
-import com.example.footmatch.modelo.Liga
-import com.example.footmatch.modelo.pojos.Match
+import com.example.footmatch.modelo.pojos.partido.Match
 import com.example.footmatch.util.api.RetrofitClient
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.lifecycle.lifecycleScope
@@ -33,7 +31,7 @@ class MainRecycler : AppCompatActivity() {
     var listaPartidosView: RecyclerView? = null
     private lateinit var listaPartidosAdapter: ListaPartidosAdapter
 
-    private fun mostrarPartido(match:Match){
+    private fun mostrarPartido(match: Match){
 
     }
 

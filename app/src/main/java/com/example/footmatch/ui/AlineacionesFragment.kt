@@ -13,12 +13,9 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.footmatch.ListaJugadoresAdapter
 import com.example.footmatch.R
-import com.example.footmatch.modelo.pojos.AwayTeamX
-import com.example.footmatch.modelo.pojos.HomeTeamX
-import com.example.footmatch.modelo.pojos.Lineup
-import com.example.footmatch.modelo.pojos.MatchToShow
-import com.example.footmatch.modelo.pojos.Squad
-import com.example.footmatch.modelo.pojos.TeamX
+import com.example.footmatch.modelo.pojos.partido.MatchToShow
+import com.example.footmatch.modelo.pojos.partido.Squad
+import com.example.footmatch.modelo.pojos.partido.TeamX
 import com.example.footmatch.util.images.SvgLoader.Companion.loadUrl
 
 class AlineacionesFragment : Fragment() {
@@ -62,28 +59,6 @@ class AlineacionesFragment : Fragment() {
         imagenEquipo2 = root.findViewById(R.id.imagenEquipo2)
         trainer1 = root.findViewById(R.id.trainer1)
         trainer2 = root.findViewById(R.id.trainer2)
-
-        // Configura los RecyclerViews con los adaptadores
-        if (jugadoresEquipo1!!.squad != null && jugadoresEquipo1!!.squad.isNotEmpty()) {
-            adapterEquipo1 = ListaJugadoresAdapter(
-                jugadoresEquipo1!!.squad,
-                object : ListaJugadoresAdapter.OnItemClickListener {
-                    override fun onItemClick(item: Squad?) {
-                        // Maneja el clic en un elemento de la lista si es necesario
-                    }
-                })
-            setUpRecyclerView(recyclerViewJugadoresEquipo1, adapterEquipo1!!)
-        }
-        if (jugadoresEquipo2!!.squad != null && jugadoresEquipo2!!.squad.isNotEmpty()) {
-            adapterEquipo2 = ListaJugadoresAdapter(
-                jugadoresEquipo2!!.squad,
-                object : ListaJugadoresAdapter.OnItemClickListener {
-                    override fun onItemClick(item: Squad?) {
-                        // Maneja el clic en un elemento de la lista si es necesario
-                    }
-                })
-            setUpRecyclerView(recyclerViewJugadoresEquipo2, adapterEquipo2!!)
-        }
         cargarDatos()
         return root
     }
@@ -133,6 +108,27 @@ class AlineacionesFragment : Fragment() {
                 // cargamos la imagen png con coil
                 imagenEquipo2?.load(jugadoresEquipo2!!.crest)
             }
+        }
+        // Configura los RecyclerViews con los adaptadores
+        if (jugadoresEquipo1!!.squad != null && jugadoresEquipo1!!.squad.isNotEmpty()) {
+            adapterEquipo1 = ListaJugadoresAdapter(
+                jugadoresEquipo1!!.squad,
+                object : ListaJugadoresAdapter.OnItemClickListener {
+                    override fun onItemClick(item: Squad?) {
+                        // Maneja el clic en un elemento de la lista si es necesario
+                    }
+                })
+            setUpRecyclerView(recyclerViewJugadoresEquipo1, adapterEquipo1!!)
+        }
+        if (jugadoresEquipo2!!.squad != null && jugadoresEquipo2!!.squad.isNotEmpty()) {
+            adapterEquipo2 = ListaJugadoresAdapter(
+                jugadoresEquipo2!!.squad,
+                object : ListaJugadoresAdapter.OnItemClickListener {
+                    override fun onItemClick(item: Squad?) {
+                        // Maneja el clic en un elemento de la lista si es necesario
+                    }
+                })
+            setUpRecyclerView(recyclerViewJugadoresEquipo2, adapterEquipo2!!)
         }
     }
 

@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.footmatch.ListaArbitrosAdapter.ArbitroViewHolder
-import com.example.footmatch.modelo.pojos.Referee
+import com.example.footmatch.modelo.pojos.partido.Referee
 
 class ListaArbitrosAdapter(
     private val listaArbitros: List<Referee>,

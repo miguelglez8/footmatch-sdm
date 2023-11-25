@@ -8,9 +8,9 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.footmatch.R
-import com.example.footmatch.modelo.pojos.Aggregates
-import com.example.footmatch.modelo.pojos.AwayTeamX
-import com.example.footmatch.modelo.pojos.HomeTeamX
+import com.example.footmatch.modelo.pojos.partido.Aggregates
+import com.example.footmatch.modelo.pojos.partido.AwayTeamX
+import com.example.footmatch.modelo.pojos.partido.HomeTeamX
 
 //Vamos a heredar de la clase Fragment
 class EstadisticasFragment : Fragment() {
