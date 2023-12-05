@@ -7,21 +7,15 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
-
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.footmatch.modelo.Equipo
 import com.example.footmatch.modelo.pojos.partido.Match
 import com.example.footmatch.util.api.RetrofitClient
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.io.BufferedReader
-import java.io.IOException
-import java.io.InputStream
-import java.io.InputStreamReader
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -29,11 +23,8 @@ class MainRecycler : AppCompatActivity() {
     // Modelo datos
     var matchList: List<Match> = ArrayList()
     var listaPartidosView: RecyclerView? = null
+    private lateinit var navView : BottomNavigationView
     private lateinit var listaPartidosAdapter: ListaPartidosAdapter
-
-    private fun mostrarPartido(match: Match){
-
-    }
 
     // Listener para la barra de navegacion de fechas
     private val mOnNavigationItemSelectedListener =
@@ -87,7 +78,7 @@ class MainRecycler : AppCompatActivity() {
         // Instanciamos el adapter con los datos de la petición y lo asignamos a RecyclerView
         // Generar el adaptador, le pasamos la lista de partidos
         // y el manejador para el evento click sobre un elemento
-        listaPartidosAdapter = ListaPartidosAdapter {mostrarPartido(it)}
+        listaPartidosAdapter = ListaPartidosAdapter {}
 
 
         // Recuperamos referencia y configuramos recyclerView con la lista de partidos
@@ -117,6 +108,7 @@ class MainRecycler : AppCompatActivity() {
         /*
         Añado a cada boton un onClick para llamar a la nueva activity con la clasificacion
          */
+        navView = findViewById(R.id.bottomNavigationView)
         val laLiga = findViewById<View>(R.id.ligaEASports) as ImageButton
         laLiga.setOnClickListener { cargarClasificacion("LL") }
         val premier = findViewById<View>(R.id.ligaPremier) as ImageButton
@@ -125,6 +117,18 @@ class MainRecycler : AppCompatActivity() {
         bundes.setOnClickListener { cargarClasificacion("LB") }
         val serieA = findViewById<View>(R.id.ligaSerieA) as ImageButton
         serieA.setOnClickListener { cargarClasificacion("LS") }
+        cargarMenu()
+    }
+
+    private fun cargarMenu() {
+        navView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    // no hacer nada, para eso hay botón de refrescar
+                }
+            }
+            true
+        }
     }
 
 
@@ -148,57 +152,6 @@ class MainRecycler : AppCompatActivity() {
             }
         }
 
-    }
-
-
-
-    fun cargarEquiposParaClasificacion(liga: String?): List<Equipo> {
-        var equipo: Equipo
-        val equiposLiga: MutableList<Equipo> = ArrayList()
-        var file: InputStream? = null
-        var reader: InputStreamReader? = null
-        var bufferedReader: BufferedReader? = null
-        try {
-            when (liga) {
-                "LL" -> {
-                    file = assets.open("lista_clasificacion_laliga_url_utf8.csv")
-                }
-
-                "LP" -> {
-                    file = assets.open("lista_clasificacion_premier_url_utf8.csv")
-                }
-
-                "LB" -> {
-                    file = assets.open("lista_clasificacion_bundes_url_utf8.csv")
-                }
-
-                "LS" -> {
-                    file = assets.open("lista_clasificacion_seriea_url_utf8.csv")
-                }
-            }
-            reader = InputStreamReader(file)
-            bufferedReader = BufferedReader(reader)
-            var line: String? = null
-            while (bufferedReader.readLine().also { line = it } != null) {
-                val data = line!!.split(";".toRegex()).dropLastWhile { it.isEmpty() }
-                    .toTypedArray()
-                if (data != null && data.size == 3) {
-                    equipo = Equipo(data[0], data[1], data[2].toInt())
-                    equiposLiga.add(equipo)
-                }
-            }
-        } catch (e: IOException) {
-            e.printStackTrace()
-        } finally {
-            if (bufferedReader != null) {
-                try {
-                    bufferedReader.close()
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                }
-            }
-        }
-        return equiposLiga
     }
 
     fun cargarClasificacion(liga: String?) {

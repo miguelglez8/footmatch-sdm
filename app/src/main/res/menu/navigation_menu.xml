@@ -1,22 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/nav_home"
-        android:title=""
+    <item
+        android:id="@+id/nav_home"
+        android:enabled="true"
         android:icon="@drawable/inicio_nav"
-        />
-
-    <item android:id="@+id/nav_noticias"
-        android:title=""
-        />
-
-    <item android:id="@+id/nav_notificaciones"
-        android:title=""
-        />
-
-    <item android:id="@+id/nav_cuenta"
-        android:title=""
-        android:icon="@drawable/cuenta_nav"
-        />
+        android:title="" />
 
 </menu>

@@ -5,4 +5,5 @@
     <color name="colorPrimary">#58BD54</color>
     <color name="colorPrimaryDark"></color>
     <color name="colorAccent"></color>
+    <color name="link_color">#FF000000</color>
 </resources>

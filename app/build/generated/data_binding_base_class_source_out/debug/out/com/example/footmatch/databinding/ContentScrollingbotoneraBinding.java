@@ -11,7 +11,6 @@ import androidx.core.widget.NestedScrollView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.footmatch.R;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -26,16 +25,11 @@ public final class ContentScrollingbotoneraBinding implements ViewBinding {
   @NonNull
   public final FrameLayout fragmentContainer;
 
-  @NonNull
-  public final BottomNavigationView navView;
-
   private ContentScrollingbotoneraBinding(@NonNull NestedScrollView rootView,
-      @NonNull NestedScrollView font, @NonNull FrameLayout fragmentContainer,
-      @NonNull BottomNavigationView navView) {
+      @NonNull NestedScrollView font, @NonNull FrameLayout fragmentContainer) {
     this.rootView = rootView;
     this.font = font;
     this.fragmentContainer = fragmentContainer;
-    this.navView = navView;
   }
 
   @Override
@@ -73,14 +67,8 @@ public final class ContentScrollingbotoneraBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.nav_view;
-      BottomNavigationView navView = ViewBindings.findChildViewById(rootView, id);
-      if (navView == null) {
-        break missingId;
-      }
-
       return new ContentScrollingbotoneraBinding((NestedScrollView) rootView, font,
-          fragmentContainer, navView);
+          fragmentContainer);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

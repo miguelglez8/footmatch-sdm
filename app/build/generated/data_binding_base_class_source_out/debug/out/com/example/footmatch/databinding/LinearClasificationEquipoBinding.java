@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,13 +18,10 @@ import java.lang.String;
 
 public final class LinearClasificationEquipoBinding implements ViewBinding {
   @NonNull
-  private final LinearLayout rootView;
+  private final TableLayout rootView;
 
   @NonNull
   public final TextView diferenciaGoles;
-
-  @NonNull
-  public final TextView equipoLiga;
 
   @NonNull
   public final TextView golesContra;
@@ -33,7 +30,16 @@ public final class LinearClasificationEquipoBinding implements ViewBinding {
   public final TextView golesFavor;
 
   @NonNull
-  public final ImageView imagenEquipo;
+  public final ImageView logoEquipo;
+
+  @NonNull
+  public final TextView partidosEmpatados;
+
+  @NonNull
+  public final TextView partidosGanados;
+
+  @NonNull
+  public final TextView partidosPerdidos;
 
   @NonNull
   public final TextView posClasificacion;
@@ -41,23 +47,31 @@ public final class LinearClasificationEquipoBinding implements ViewBinding {
   @NonNull
   public final TextView puntosEquipo;
 
-  private LinearClasificationEquipoBinding(@NonNull LinearLayout rootView,
-      @NonNull TextView diferenciaGoles, @NonNull TextView equipoLiga,
-      @NonNull TextView golesContra, @NonNull TextView golesFavor, @NonNull ImageView imagenEquipo,
-      @NonNull TextView posClasificacion, @NonNull TextView puntosEquipo) {
+  @NonNull
+  public final TableLayout tableLayout;
+
+  private LinearClasificationEquipoBinding(@NonNull TableLayout rootView,
+      @NonNull TextView diferenciaGoles, @NonNull TextView golesContra,
+      @NonNull TextView golesFavor, @NonNull ImageView logoEquipo,
+      @NonNull TextView partidosEmpatados, @NonNull TextView partidosGanados,
+      @NonNull TextView partidosPerdidos, @NonNull TextView posClasificacion,
+      @NonNull TextView puntosEquipo, @NonNull TableLayout tableLayout) {
     this.rootView = rootView;
     this.diferenciaGoles = diferenciaGoles;
-    this.equipoLiga = equipoLiga;
     this.golesContra = golesContra;
     this.golesFavor = golesFavor;
-    this.imagenEquipo = imagenEquipo;
+    this.logoEquipo = logoEquipo;
+    this.partidosEmpatados = partidosEmpatados;
+    this.partidosGanados = partidosGanados;
+    this.partidosPerdidos = partidosPerdidos;
     this.posClasificacion = posClasificacion;
     this.puntosEquipo = puntosEquipo;
+    this.tableLayout = tableLayout;
   }
 
   @Override
   @NonNull
-  public LinearLayout getRoot() {
+  public TableLayout getRoot() {
     return rootView;
   }
 
@@ -88,12 +102,6 @@ public final class LinearClasificationEquipoBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.equipoLiga;
-      TextView equipoLiga = ViewBindings.findChildViewById(rootView, id);
-      if (equipoLiga == null) {
-        break missingId;
-      }
-
       id = R.id.golesContra;
       TextView golesContra = ViewBindings.findChildViewById(rootView, id);
       if (golesContra == null) {
@@ -106,9 +114,27 @@ public final class LinearClasificationEquipoBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.imagenEquipo;
-      ImageView imagenEquipo = ViewBindings.findChildViewById(rootView, id);
-      if (imagenEquipo == null) {
+      id = R.id.logoEquipo;
+      ImageView logoEquipo = ViewBindings.findChildViewById(rootView, id);
+      if (logoEquipo == null) {
+        break missingId;
+      }
+
+      id = R.id.partidosEmpatados;
+      TextView partidosEmpatados = ViewBindings.findChildViewById(rootView, id);
+      if (partidosEmpatados == null) {
+        break missingId;
+      }
+
+      id = R.id.partidosGanados;
+      TextView partidosGanados = ViewBindings.findChildViewById(rootView, id);
+      if (partidosGanados == null) {
+        break missingId;
+      }
+
+      id = R.id.partidosPerdidos;
+      TextView partidosPerdidos = ViewBindings.findChildViewById(rootView, id);
+      if (partidosPerdidos == null) {
         break missingId;
       }
 
@@ -124,8 +150,15 @@ public final class LinearClasificationEquipoBinding implements ViewBinding {
         break missingId;
       }
 
-      return new LinearClasificationEquipoBinding((LinearLayout) rootView, diferenciaGoles,
-          equipoLiga, golesContra, golesFavor, imagenEquipo, posClasificacion, puntosEquipo);
+      id = R.id.tableLayout;
+      TableLayout tableLayout = ViewBindings.findChildViewById(rootView, id);
+      if (tableLayout == null) {
+        break missingId;
+      }
+
+      return new LinearClasificationEquipoBinding((TableLayout) rootView, diferenciaGoles,
+          golesContra, golesFavor, logoEquipo, partidosEmpatados, partidosGanados, partidosPerdidos,
+          posClasificacion, puntosEquipo, tableLayout);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -36,12 +36,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/trainer1"
-            android:textSize="13dp"
+            android:textSize="15dp"
             android:textColor="#000" />
 
         <!-- Formación del Equipo 1 -->
         <TextView
-            android:id="@+id/platilla1"
+            android:id="@+id/plantilla1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/plantilla1"
@@ -53,7 +53,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewJugadoresEquipo1"
             android:layout_width="match_parent"
-            android:layout_height="167dp"></androidx.recyclerview.widget.RecyclerView>
+            android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
         <!-- Otros atributos del RecyclerView según tus necesidades -->
         />
 
@@ -93,11 +93,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/trainer2"
-            android:textSize="13dp"
+            android:textSize="15dp"
             android:textColor="#000" />
 
         <TextView
-            android:id="@+id/platilla2"
+            android:id="@+id/plantilla2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/plantilla2"
@@ -109,7 +109,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewJugadoresEquipo2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
         </androidx.recyclerview.widget.RecyclerView>
         <!-- Otros atributos del RecyclerView según tus necesidades -->
         />

@@ -22,8 +22,6 @@ data class MatchToShow(
     @SerializedName("homeTeam")
     val homeTeam: HomeTeamX,
     @SerializedName("id")
-    //@PrimaryKey
-    //@NotNull
     val id: Int,
     @SerializedName("injuryTime")
     val injuryTime: Int,
