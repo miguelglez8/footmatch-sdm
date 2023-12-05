@@ -4,6 +4,7 @@
     <color name="colorAccent"/>
     <color name="colorPrimary">#58BD54</color>
     <color name="colorPrimaryDark"/>
+    <color name="link_color">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
@@ -200,11 +201,29 @@
         <item name="android:gravity">center</item>
         <item name="android:padding">8dp</item>
     </style>
+    <style name="CellStyle2">
+        <item name="android:background">#FFFFFF</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">8dp</item>
+    </style>
+    <style name="CellStyle3">
+        <item name="android:background">#FFFFFF</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">4dp</item>
+    </style>
     <style name="HeaderCellStyle">
         <item name="android:background">#59D67C</item>
         <item name="android:textColor">#000000</item>
         <item name="android:gravity">center</item>
         <item name="android:padding">8dp</item>
+    </style>
+    <style name="LinkTextView">
+        <item name="android:textColor">@color/link_color</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
     </style>
     <style name="Theme.FootMatch" parent="Base.Theme.FootMatch"/>
 </resources>

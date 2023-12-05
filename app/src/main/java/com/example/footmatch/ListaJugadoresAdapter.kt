@@ -69,7 +69,7 @@ class ListaJugadoresAdapter(
             val pos = position + 1
             this.jugador.text = pos.toString() + ". " + jugador.name + " (" + calcularEdad(jugador.dateOfBirth) + ")"
             itemView.setOnClickListener {
-                // De momento no hacemos nada al pulsar sobre un partido
+
             }
         }
 

@@ -1,5 +1,6 @@
 package com.example.footmatch
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -85,7 +86,24 @@ class MostrarPartido : AppCompatActivity() {
 
         // Cargar datos del partido en las vistas
         cargarMenu()
+        navView = findViewById(R.id.bottomNavigationView)
+        cargarMenu2()
         searchMatch(this.id!!)
+    }
+
+    private fun cargarMenu2() {
+        navView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    // TODO MARCOS
+                    val intent = Intent(this@MostrarPartido, MainRecycler::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent)
+                    finish() // Cierra la instancia actual de la actividad
+                }
+            }
+            true
+        }
     }
 
     private fun cargarMenu() {

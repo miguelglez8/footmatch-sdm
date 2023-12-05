@@ -8,11 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.footmatch.ClasificacionAdapter.ClasificacionViewHolder
-import com.example.footmatch.modelo.Equipo
 import com.example.footmatch.modelo.pojos.clasificacion.StandingsResult
 import com.example.footmatch.modelo.pojos.clasificacion.Table
 import com.example.footmatch.util.images.SvgLoader.Companion.loadUrl
-import com.squareup.picasso.Picasso
 
 class ClasificacionAdapter(
     var equipos: StandingsResult, //Se utilizará mas adelante para ir a la pantalla de equipos
@@ -25,17 +23,21 @@ class ClasificacionAdapter(
 
     class ClasificacionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private val escudo: ImageView
-        private val nombreEquipo: TextView
+        private val nombreEquipo: ImageView
         private val puntosEquipo: TextView
         private val posicion: TextView
         private val golesAFavor: TextView
         private val golesEnContra: TextView
         private val diferenciaGoles: TextView
+        private val ganados: TextView
+        private val empatados: TextView
+        private val perdidos: TextView
 
         init {
-            escudo = itemView.findViewById<View>(R.id.imagenEquipo) as ImageView
-            nombreEquipo = itemView.findViewById<View>(R.id.equipoLiga) as TextView
+            ganados = itemView.findViewById<View>(R.id.partidosGanados) as TextView
+            perdidos = itemView.findViewById<View>(R.id.partidosPerdidos) as TextView
+            empatados = itemView.findViewById<View>(R.id.partidosPerdidos) as TextView
+            nombreEquipo = itemView.findViewById<View>(R.id.logoEquipo) as ImageView
             puntosEquipo = itemView.findViewById<View>(R.id.puntosEquipo) as TextView
             posicion = itemView.findViewById<View>(R.id.posClasificacion) as TextView
             golesAFavor = itemView.findViewById<View>(R.id.golesFavor) as TextView
@@ -45,24 +47,26 @@ class ClasificacionAdapter(
 
         // asignar valores a los componentes
         fun bindUser(equipo: Table, onItemSelected: (String) -> Unit) {
-            nombreEquipo.text = equipo.team.shortName
+            if (equipo.team.crest == null) {
+                // cargar imagen visitante por defecto
+                nombreEquipo.load(R.string.teamDefaultLogo.toString())
+            }else{
+                val isSvg = equipo.team.crest.endsWith("svg",ignoreCase = true)
+                if (isSvg){
+                    nombreEquipo.loadUrl(equipo.team.crest)
+                }else{
+                    nombreEquipo.load(equipo.team.crest)
+                }
+            }
             puntosEquipo.text = equipo.points.toString()
             posicion.text = equipo.position.toString()
             golesAFavor.text = equipo.goalsFor.toString()
             golesEnContra.text = equipo.goalsAgainst.toString()
             diferenciaGoles.text= equipo.goalDifference.toString()
+            ganados.text = equipo.won.toString()
+            perdidos.text = equipo.lost.toString()
+            empatados.text = equipo.draw.toString()
 
-            if (equipo.team.crest == null) {
-                // cargar imagen visitante por defecto
-                escudo.load(R.string.teamDefaultLogo.toString())
-            }else{
-                val isSvg = equipo.team.crest.endsWith("svg",ignoreCase = true)
-                if (isSvg){
-                    escudo.loadUrl(equipo.team.crest)
-                }else{
-                    escudo.load(equipo.team.crest)
-                }
-            }
 
             itemView.setOnClickListener {
                 onItemSelected(equipo.team.id.toString())

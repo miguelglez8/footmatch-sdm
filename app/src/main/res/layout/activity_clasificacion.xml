@@ -6,119 +6,393 @@
     android:layout_height="match_parent"
     tools:context=".ClasificacionActivity">
 
+    <!-- Encabezado -->
     <TextView
         android:id="@+id/nombreLiga"
-        android:layout_width="259dp"
-        android:layout_height="77dp"
+        android:layout_width="222dp"
+        android:layout_height="51dp"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textStyle="bold"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.019"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.004" />
+        app:layout_constraintVertical_bias="0.003"
+        android:padding="16dp"/>
 
     <ImageView
         android:id="@+id/logoLiga"
-        android:layout_width="61dp"
-        android:layout_height="76dp"
+        android:layout_width="44dp"
+        android:layout_height="51dp"
         app:layout_constraintBottom_toTopOf="@+id/recyclerClasificacion"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.602"
+        app:layout_constraintHorizontal_bias="0.246"
         app:layout_constraintStart_toEndOf="@+id/nombreLiga"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.05"
+        app:layout_constraintVertical_bias="0.0"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/logoBandera"
+        android:layout_width="44dp"
+        android:layout_height="51dp"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerClasificacion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.76"
+        app:layout_constraintStart_toEndOf="@+id/nombreLiga"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <!-- Tabla de Clasificación -->
+
+    <!-- Aquí está tu LeyendaLayout -->
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:paddingLeft="18dp"
+        android:paddingTop="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/recyclerClasificacion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <!-- Encabezado de la Tabla -->
+        <TableRow>
+
+            <TextView
+                style="@style/HeaderCellStyle"
+                android:layout_width="44dp"
+                android:background="@drawable/cell_border1"
+                android:text="POS" />
+
+            <TextView
+                style="@style/HeaderCellStyle"
+                android:layout_width="70dp"
+                android:background="@drawable/cell_border1"
+                android:text="EQUIPO" />
+
+            <TextView
+                style="@style/HeaderCellStyle"
+                android:layout_width="37dp"
+                android:background="@drawable/cell_border1"
+                android:text="PG" />
+
+            <TextView
+                style="@style/HeaderCellStyle"
+                android:layout_width="37dp"
+                android:background="@drawable/cell_border1"
+                android:text="PE" />
+
+            <TextView
+                style="@style/HeaderCellStyle"
+                android:layout_width="37dp"
+                android:background="@drawable/cell_border1"
+                android:text="PP" />
+
+            <TextView
+                style="@style/HeaderCellStyle"
+                android:layout_width="37dp"
+                android:background="@drawable/cell_border1"
+                android:text="GF" />
+
+            <TextView
+                style="@style/HeaderCellStyle"
+                android:layout_width="37dp"
+                android:background="@drawable/cell_border1"
+                android:text="GC" />
+
+            <TextView
+                style="@style/HeaderCellStyle"
+                android:layout_width="37dp"
+                android:background="@drawable/cell_border1"
+                android:text="DG" />
+
+            <TextView
+                style="@style/HeaderCellStyle"
+                android:layout_width="37dp"
+                android:background="@drawable/cell_border1"
+                android:text="PT" />
+        </TableRow>
+    </TableLayout>
 
     <androidx.recyclerview.widget.RecyclerView
 
         android:id="@+id/recyclerClasificacion"
-        android:layout_width="409dp"
-        android:layout_height="486dp"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/leyendaLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.115" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.737" />
 
     <TextView
-        android:id="@+id/posInfo"
-        android:layout_width="46dp"
-        android:layout_height="32dp"
-        android:text="Pos"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.008"
+        android:id="@+id/tituloLeyenda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LEYENDA"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="@id/recyclerClasificacion"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nombreLiga"
-        app:layout_constraintVertical_bias="0.02" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.553" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="114dp"
-        android:layout_height="32dp"
-        android:text="Equipo"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+    <LinearLayout
+        android:id="@+id/leyendaLayout"
+        android:layout_width="match_parent"
+        android:layout_height="205dp"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tituloLeyenda">
+
+        <!-- Filas de la Leyenda -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/labelPos"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="POS"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/descripcionPos"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Posición del equipo en la tabla"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/labelEquipo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="EQUIPO"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/descripcionEquipo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Escudo del equipo de la fila"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <!-- Fila 3: PG (Partidos Ganados) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/labelPG"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="PG"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/descripcionPG"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Número de partidos ganados"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <!-- Fila 4: PE (Partidos Empatados) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/labelPE"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="PE"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/descripcionPE"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Número de partidos empatados"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <!-- Fila 5: PP (Partidos Perdidos) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/labelPP"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="PP"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/descripcionPP"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Número de partidos perdidos"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <!-- Fila 6: GF (Goles a Favor) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/labelGF"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="GF"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/descripcionGF"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Goles que el equipo ha marcado"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <!-- Fila 7: GC (Goles en Contra) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/labelGC"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="GC"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/descripcionGC"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Goles que el equipo ha recibido"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <!-- Fila 8: DG (Diferencia de Goles) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/labelDG"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="DG"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/descripcionDG"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Diferencia entre GF y GC"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <!-- Fila 9: PT (Puntos) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/labelPT"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="PT"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/descripcionPT"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Puntos acumulados por el equipo"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="@drawable/rounded_corners_navigation"
+        app:itemActiveIndicatorStyle="@style/Theme.Material3.DynamicColors.DayNight"
+        app:itemIconSize="70dp"
+        app:itemTextAppearanceActive="@style/Widget.Material3.TextInputLayout.FilledBox.Dense"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.094"
-        app:layout_constraintStart_toEndOf="@+id/posInfo"
-        app:layout_constraintTop_toBottomOf="@+id/nombreLiga"
-        app:layout_constraintVertical_bias="0.02" />
-
-    <TextView
-        android:id="@+id/golesAFavorInfo"
-        android:layout_width="42dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="12dp"
-        android:text="GF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.136"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/nombreLiga"
-        app:layout_constraintVertical_bias="0.001" />
-
-    <TextView
-        android:id="@+id/golesAContraInfo"
-        android:layout_width="42dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="12dp"
-        android:text="GC"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.061"
-        app:layout_constraintStart_toEndOf="@+id/golesAFavorInfo"
-        app:layout_constraintTop_toBottomOf="@+id/nombreLiga"
-        app:layout_constraintVertical_bias="0.001" />
-
-    <TextView
-        android:id="@+id/diferenciaGolesInfo"
-        android:layout_width="42dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="12dp"
-        android:text="DG"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.169"
-        app:layout_constraintStart_toEndOf="@+id/golesAContraInfo"
-        app:layout_constraintTop_toBottomOf="@+id/nombreLiga"
-        app:layout_constraintVertical_bias="0.001" />
-
-    <TextView
-        android:id="@+id/PuntosInfo"
-        android:layout_width="42dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="12dp"
-        android:text="PTS"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.953"
-        app:layout_constraintStart_toEndOf="@+id/golesAContraInfo"
-        app:layout_constraintTop_toBottomOf="@+id/nombreLiga"
-        app:layout_constraintVertical_bias="0.001" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:menu="@menu/navigation_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,28 +1,31 @@
 package com.example.footmatch
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.footmatch.R
 import com.example.footmatch.modelo.pojos.plantilla.SquadResult
 import com.example.footmatch.util.api.RetrofitClient
 import com.example.footmatch.util.images.SvgLoader.Companion.loadUrl
-import com.squareup.picasso.Picasso
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+
 
 class PlantillaActivity : AppCompatActivity() {
     var equipo : String = ""
     var plantilla : SquadResult? = null
     var plantillaView : RecyclerView? = null
     var pAdapter : PlantillaAdapter? = null
+    private lateinit var navView : BottomNavigationView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_plantilla)
@@ -36,9 +39,24 @@ class PlantillaActivity : AppCompatActivity() {
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(applicationContext)
         plantillaView!!.layoutManager = layoutManager
         cargarDatosClub(id)
-
+        navView = findViewById(R.id.bottomNavigationView)
+        cargarMenu()
     }
 
+    private fun cargarMenu() {
+        navView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    // TODO MARCOS
+                    val intent = Intent(this@PlantillaActivity, MainRecycler::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent)
+                    finish() // Cierra la instancia actual de la actividad
+                }
+            }
+            true
+        }
+    }
     private fun cargarDatosClub(id: String) {
         val apiService = RetrofitClient.makeClient()
         lifecycleScope.launch(Dispatchers.IO){
@@ -48,7 +66,13 @@ class PlantillaActivity : AppCompatActivity() {
                 //Datos del equipo
                 val nombreEquipo = findViewById<View>(R.id.nombreEquipo) as TextView
                 val fundadoEn = findViewById<View>(R.id.dataFundado) as TextView
+                val direccion = findViewById<View>(R.id.dataDireccion) as TextView
                 val escudoEquipo = findViewById<View>(R.id.escudoEquipo) as ImageView
+                val escudoBandera = findViewById<View>(R.id.escudoEquipo2) as ImageView
+                val escudoCompeticion = findViewById<View>(R.id.escudoCompeticion) as ImageView
+                val escudoCompeticion2 = findViewById<View>(R.id.escudoCompeticion2) as ImageView
+                val estadio = findViewById<View>(R.id.dataEstadioP) as TextView
+
                 if (plantilla!!.crest == null) {
                     // cargar imagen visitante por defecto
                     escudoEquipo.load(R.string.teamDefaultLogo.toString())
@@ -60,10 +84,54 @@ class PlantillaActivity : AppCompatActivity() {
                         escudoEquipo.load(plantilla!!.crest)
                     }
                 }
+                if (plantilla!!.area.flag == null) {
+                    // cargar imagen visitante por defecto
+                    escudoBandera.load(R.string.teamDefaultLogo.toString())
+                }else{
+                    val isSvg = plantilla!!.area.flag.endsWith("svg",ignoreCase = true)
+                    if (isSvg){
+                        escudoBandera.loadUrl(plantilla!!.area.flag)
+                    }else{
+                        escudoBandera.load(plantilla!!.area.flag)
+                    }
+                }
+                if (plantilla!!.runningCompetitions.isNotEmpty()) {
+                    val isSvg = plantilla!!.runningCompetitions[0].emblem.endsWith("svg",ignoreCase = true)
+                    if (isSvg){
+                        escudoCompeticion.loadUrl(plantilla!!.runningCompetitions[0].emblem)
+                    }else{
+                        escudoCompeticion.load(plantilla!!.runningCompetitions[0].emblem)
+                    }
+                }
+                if (plantilla!!.runningCompetitions.size >= 2) {
+                    val isSvg = plantilla!!.runningCompetitions[1].emblem.endsWith("svg",ignoreCase = true)
+                    if (isSvg){
+                        escudoCompeticion2.loadUrl(plantilla!!.runningCompetitions[1].emblem)
+                    }else{
+                        escudoCompeticion2.load(plantilla!!.runningCompetitions[1].emblem)
+                    }
+                }
+                if (plantilla!!.address==null)
+                    direccion.text = "No disponible"
+                else
+                    direccion.text = plantilla!!.address.split(",")[0]
 
-                nombreEquipo.text = plantilla!!.shortName
+                nombreEquipo.text = plantilla!!.name
+                estadio.text = plantilla!!.venue
+                // Establece un ClickListener al TextView
+                if (plantilla!!.website != null) {
+                    nombreEquipo.setOnClickListener { // Define la URL que deseas abrir
+                        val url = plantilla!!.website
+
+                        // Crea un Intent con la acción ACTION_VIEW y la URI correspondiente
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+
+                        // Inicia la actividad del navegador web
+                        startActivity(intent)
+                    }
+                }
+
                 fundadoEn.text = plantilla!!.founded.toString()
-
                 //Cargar el entrenador
                 val entrenadorNombre = findViewById<View>(R.id.dataEntrenador) as TextView
                 entrenadorNombre.text = plantilla!!.coach.name

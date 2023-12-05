@@ -14,6 +14,7 @@ import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.footmatch.R;
 import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -24,6 +25,9 @@ public final class ActivityShowMatchBinding implements ViewBinding {
 
   @NonNull
   public final AppBarLayout appBar;
+
+  @NonNull
+  public final BottomNavigationView bottomNavigationView;
 
   @NonNull
   public final TextView estadio;
@@ -50,6 +54,9 @@ public final class ActivityShowMatchBinding implements ViewBinding {
   public final TextView minutoPartido;
 
   @NonNull
+  public final BottomNavigationView navView;
+
+  @NonNull
   public final TextView nombreEquipo1;
 
   @NonNull
@@ -59,13 +66,15 @@ public final class ActivityShowMatchBinding implements ViewBinding {
   public final TextView resultadoPartido;
 
   private ActivityShowMatchBinding(@NonNull LinearLayout rootView, @NonNull AppBarLayout appBar,
-      @NonNull TextView estadio, @NonNull Button estadoPartido, @NonNull TextView fechaPartido,
+      @NonNull BottomNavigationView bottomNavigationView, @NonNull TextView estadio,
+      @NonNull Button estadoPartido, @NonNull TextView fechaPartido,
       @NonNull ImageView imagenEquipo1, @NonNull ImageView imagenEquipo2,
       @NonNull ImageView imagenLiga, @NonNull TextView ligaJornada, @NonNull TextView minutoPartido,
-      @NonNull TextView nombreEquipo1, @NonNull TextView nombreEquipo2,
-      @NonNull TextView resultadoPartido) {
+      @NonNull BottomNavigationView navView, @NonNull TextView nombreEquipo1,
+      @NonNull TextView nombreEquipo2, @NonNull TextView resultadoPartido) {
     this.rootView = rootView;
     this.appBar = appBar;
+    this.bottomNavigationView = bottomNavigationView;
     this.estadio = estadio;
     this.estadoPartido = estadoPartido;
     this.fechaPartido = fechaPartido;
@@ -74,6 +83,7 @@ public final class ActivityShowMatchBinding implements ViewBinding {
     this.imagenLiga = imagenLiga;
     this.ligaJornada = ligaJornada;
     this.minutoPartido = minutoPartido;
+    this.navView = navView;
     this.nombreEquipo1 = nombreEquipo1;
     this.nombreEquipo2 = nombreEquipo2;
     this.resultadoPartido = resultadoPartido;
@@ -109,6 +119,12 @@ public final class ActivityShowMatchBinding implements ViewBinding {
       id = R.id.app_bar;
       AppBarLayout appBar = ViewBindings.findChildViewById(rootView, id);
       if (appBar == null) {
+        break missingId;
+      }
+
+      id = R.id.bottomNavigationView;
+      BottomNavigationView bottomNavigationView = ViewBindings.findChildViewById(rootView, id);
+      if (bottomNavigationView == null) {
         break missingId;
       }
 
@@ -160,6 +176,12 @@ public final class ActivityShowMatchBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.nav_view;
+      BottomNavigationView navView = ViewBindings.findChildViewById(rootView, id);
+      if (navView == null) {
+        break missingId;
+      }
+
       id = R.id.nombreEquipo1;
       TextView nombreEquipo1 = ViewBindings.findChildViewById(rootView, id);
       if (nombreEquipo1 == null) {
@@ -178,9 +200,9 @@ public final class ActivityShowMatchBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityShowMatchBinding((LinearLayout) rootView, appBar, estadio, estadoPartido,
-          fechaPartido, imagenEquipo1, imagenEquipo2, imagenLiga, ligaJornada, minutoPartido,
-          nombreEquipo1, nombreEquipo2, resultadoPartido);
+      return new ActivityShowMatchBinding((LinearLayout) rootView, appBar, bottomNavigationView,
+          estadio, estadoPartido, fechaPartido, imagenEquipo1, imagenEquipo2, imagenLiga,
+          ligaJornada, minutoPartido, navView, nombreEquipo1, nombreEquipo2, resultadoPartido);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

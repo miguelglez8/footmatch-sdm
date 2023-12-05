@@ -9,8 +9,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.footmatch.modelo.pojos.clasificacion.StandingsResult
 import com.example.footmatch.util.api.RetrofitClient
+import com.example.footmatch.util.images.SvgLoader.Companion.loadUrl
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -21,6 +24,8 @@ class ClasificacionActivity : AppCompatActivity() {
     var clasificacion: StandingsResult? = null
     var clasificacionView: RecyclerView? = null
     var cAdapter : ClasificacionAdapter? = null
+    private lateinit var navView : BottomNavigationView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_clasificacion)
@@ -29,8 +34,6 @@ class ClasificacionActivity : AppCompatActivity() {
 
         liga = clasificacionIntent.getStringExtra(MainRecycler.LIGA_CREADA)
 
-
-
         clasificacionView = findViewById<View>(R.id.recyclerClasificacion) as RecyclerView
 
         clasificacionView!!.setHasFixedSize(true)
@@ -38,10 +41,25 @@ class ClasificacionActivity : AppCompatActivity() {
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(applicationContext)
 
         clasificacionView!!.layoutManager = layoutManager
-    //Hago una llamada a la API, con el codigo de la liga para recuperar los datos
+        //Hago una llamada a la API, con el codigo de la liga para recuperar los datos
         cargarClasificacion()
+        navView = findViewById(R.id.bottomNavigationView)
+        cargarMenu()
+    }
 
-
+    private fun cargarMenu() {
+        navView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    // TODO MARCOS
+                    val intent = Intent(this@ClasificacionActivity, MainRecycler::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent)
+                    finish() // Cierra la instancia actual de la actividad
+                }
+            }
+            true
+        }
     }
 
     private fun cargarClasificacion() {
@@ -51,11 +69,31 @@ class ClasificacionActivity : AppCompatActivity() {
             withContext(Dispatchers.Main)
             {
                 val logoLiga = findViewById<View>(R.id.logoLiga) as ImageView
-
+                val logoBandera = findViewById<View>(R.id.logoBandera) as ImageView
                 val nombreLiga = findViewById<View>(R.id.nombreLiga) as TextView
                 nombreLiga.text = clasificacion!!.competition.name
-                Picasso.get()
-                    .load(clasificacion!!.competition.emblem).into(logoLiga)
+                if (clasificacion!!.competition.emblem == null) {
+                    // cargar imagen visitante por defecto
+                    logoLiga.load(R.string.teamDefaultLogo.toString())
+                }else{
+                    val isSvg = clasificacion!!.competition.emblem.endsWith("svg",ignoreCase = true)
+                    if (isSvg){
+                        logoLiga.loadUrl(clasificacion!!.competition.emblem)
+                    }else{
+                        logoLiga.load(clasificacion!!.competition.emblem)
+                    }
+                }
+                if (clasificacion!!.area.flag == null) {
+                    // cargar imagen visitante por defecto
+                    logoBandera.load(R.string.teamDefaultLogo.toString())
+                }else{
+                    val isSvg = clasificacion!!.area.flag.endsWith("svg",ignoreCase = true)
+                    if (isSvg){
+                        logoBandera.loadUrl(clasificacion!!.area.flag)
+                    }else{
+                        logoBandera.load(clasificacion!!.area.flag)
+                    }
+                }
                 // Notificamos al adapter
                 cAdapter = ClasificacionAdapter(clasificacion!!) {
                    mostrarEquipo(it)

@@ -41,10 +41,10 @@ public final class FragmentAlineacionesBinding implements ViewBinding {
   public final TextView nombreEquipo2;
 
   @NonNull
-  public final TextView platilla1;
+  public final TextView plantilla1;
 
   @NonNull
-  public final TextView platilla2;
+  public final TextView plantilla2;
 
   @NonNull
   public final RecyclerView recyclerViewJugadoresEquipo1;
@@ -61,8 +61,9 @@ public final class FragmentAlineacionesBinding implements ViewBinding {
   private FragmentAlineacionesBinding(@NonNull RelativeLayout rootView,
       @NonNull LinearLayout equipo1Layout, @NonNull LinearLayout equipo2Layout,
       @NonNull ImageView imagenEquipo1, @NonNull ImageView imagenEquipo2,
-      @NonNull TextView nombreEquipo1, @NonNull TextView nombreEquipo2, @NonNull TextView platilla1,
-      @NonNull TextView platilla2, @NonNull RecyclerView recyclerViewJugadoresEquipo1,
+      @NonNull TextView nombreEquipo1, @NonNull TextView nombreEquipo2,
+      @NonNull TextView plantilla1, @NonNull TextView plantilla2,
+      @NonNull RecyclerView recyclerViewJugadoresEquipo1,
       @NonNull RecyclerView recyclerViewJugadoresEquipo2, @NonNull TextView trainer1,
       @NonNull TextView trainer2) {
     this.rootView = rootView;
@@ -72,8 +73,8 @@ public final class FragmentAlineacionesBinding implements ViewBinding {
     this.imagenEquipo2 = imagenEquipo2;
     this.nombreEquipo1 = nombreEquipo1;
     this.nombreEquipo2 = nombreEquipo2;
-    this.platilla1 = platilla1;
-    this.platilla2 = platilla2;
+    this.plantilla1 = plantilla1;
+    this.plantilla2 = plantilla2;
     this.recyclerViewJugadoresEquipo1 = recyclerViewJugadoresEquipo1;
     this.recyclerViewJugadoresEquipo2 = recyclerViewJugadoresEquipo2;
     this.trainer1 = trainer1;
@@ -143,15 +144,15 @@ public final class FragmentAlineacionesBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.platilla1;
-      TextView platilla1 = ViewBindings.findChildViewById(rootView, id);
-      if (platilla1 == null) {
+      id = R.id.plantilla1;
+      TextView plantilla1 = ViewBindings.findChildViewById(rootView, id);
+      if (plantilla1 == null) {
         break missingId;
       }
 
-      id = R.id.platilla2;
-      TextView platilla2 = ViewBindings.findChildViewById(rootView, id);
-      if (platilla2 == null) {
+      id = R.id.plantilla2;
+      TextView plantilla2 = ViewBindings.findChildViewById(rootView, id);
+      if (plantilla2 == null) {
         break missingId;
       }
 
@@ -180,8 +181,8 @@ public final class FragmentAlineacionesBinding implements ViewBinding {
       }
 
       return new FragmentAlineacionesBinding((RelativeLayout) rootView, equipo1Layout,
-          equipo2Layout, imagenEquipo1, imagenEquipo2, nombreEquipo1, nombreEquipo2, platilla1,
-          platilla2, recyclerViewJugadoresEquipo1, recyclerViewJugadoresEquipo2, trainer1,
+          equipo2Layout, imagenEquipo1, imagenEquipo2, nombreEquipo1, nombreEquipo2, plantilla1,
+          plantilla2, recyclerViewJugadoresEquipo1, recyclerViewJugadoresEquipo2, trainer1,
           trainer2);
     }
     String missingId = rootView.getResources().getResourceName(id);
