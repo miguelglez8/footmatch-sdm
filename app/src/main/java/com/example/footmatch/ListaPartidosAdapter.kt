@@ -113,8 +113,13 @@ class ListaPartidosAdapter(
                     estado.setBackgroundColor(Color.parseColor("#F80000"))
                 }
                 else -> {
-                    estado.text = "PROGRAMADO"
-                    estado.setBackgroundColor(Color.parseColor("#9B9B9B"))
+                    if (match.score.winner != null) {
+                        estado.text = "APLAZADO"
+                        estado.setBackgroundColor(Color.parseColor("#E2BA1F"))
+                    } else {
+                        estado.text = "PROGRAMADO"
+                        estado.setBackgroundColor(Color.parseColor("#9B9B9B"))
+                    }
                 }
             }
 

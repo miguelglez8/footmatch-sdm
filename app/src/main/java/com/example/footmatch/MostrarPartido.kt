@@ -180,7 +180,14 @@ class MostrarPartido : AppCompatActivity() {
     // Cargar los datos del partido en las vistas
     private fun mostrarDatos() {
         if (partido != null) {
-            if (partido?.status == "FINISHED") estadoPartido?.text="FINALIZADO" else if (partido?.status == "TIMED") estadoPartido?.text="PROGRAMADO" else  estadoPartido?.text="EN JUEGO"
+            if (partido?.status == "FINISHED")
+                estadoPartido?.text="FINALIZADO"
+            else if (partido?.status == "TIMED" && partido!!.score.winner != null)
+                estadoPartido?.text="APLAZADO"
+            else if (partido?.status == "IN_PLAY")
+                estadoPartido?.text="EN JUEGO"
+            else
+                estadoPartido?.text="PROGRAMADO"
             when (partido?.status){
                 "IN_PLAY" -> {
                     estadoPartido?.setBackgroundColor(Color.parseColor("#006400"))
@@ -189,7 +196,12 @@ class MostrarPartido : AppCompatActivity() {
                     estadoPartido?.setBackgroundColor(Color.parseColor("#F80000"))
                 }
                 else -> {
-                    estadoPartido?.setBackgroundColor(Color.parseColor("#9B9B9B"))
+                    if (partido!!.score.winner != null) {
+                        estadoPartido?.setBackgroundColor(Color.parseColor("#E2BA1F"))
+                    } else {
+                        estadoPartido?.setBackgroundColor(Color.parseColor("#9B9B9B"))
+                    }
+
                 }
             }
             jornada!!.text = partido!!.competition.name + ". Jornada Nº " + partido!!.season.currentMatchday
@@ -197,6 +209,8 @@ class MostrarPartido : AppCompatActivity() {
                 minute!!.text = "90'"
             else if (partido!!.status.equals("IN_PLAY"))
                 minute!!.text = "EN DIRECTO"
+            else if (partido?.status == "TIMED" && partido!!.score.winner != null)
+                minute!!.text = partido!!.minute.toString() + "'" + " (aplazado)"
             else
                 minute!!.text = partido!!.minute.toString() + "'"
             nombreEquipo1!!.text = partido!!.homeTeam.shortName
@@ -218,8 +232,11 @@ class MostrarPartido : AppCompatActivity() {
                     // Format the updated date
                     val updatedDateString = outputFormat.format(calendar.time)
 
-                    // Set the result to your TextView
                     resultadoPartido!!.text = updatedDateString
+                    // Set the result to your TextView
+                    if (partido?.status == "TIMED" && partido!!.score.winner != null) {
+                        resultadoPartido?.text = resultadoPartido?.text.toString() + " (" + partido!!.score.fullTime.home.toString() + " - " + partido!!.score.fullTime.away.toString() + ")"
+                    }
                 } catch (e: ParseException) {
                     e.printStackTrace()
                     resultadoPartido!!.text = "Formato de fecha no válido"
