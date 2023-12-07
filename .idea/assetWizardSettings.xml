@@ -79,7 +79,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="C:\Users\migue\AndroidStudioProjects\footmatch-sdm\app\src\main\res\drawable\logo.jpg" />
+                                                <entry key="imagePath" value="C:\Users\migue\AndroidStudioProjects\footmatch-sdm\app\src\main\res\drawable\logo.png" />
                                                 <entry key="scalingPercent" value="102" />
                                               </map>
                                             </option>
@@ -294,6 +294,11 @@
                 </map>
               </option>
             </PersistentState>
+          </value>
+        </entry>
+        <entry key="vectorWizard">
+          <value>
+            <PersistentState />
           </value>
         </entry>
       </map>

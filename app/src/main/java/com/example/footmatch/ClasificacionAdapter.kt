@@ -36,7 +36,7 @@ class ClasificacionAdapter(
         init {
             ganados = itemView.findViewById<View>(R.id.partidosGanados) as TextView
             perdidos = itemView.findViewById<View>(R.id.partidosPerdidos) as TextView
-            empatados = itemView.findViewById<View>(R.id.partidosPerdidos) as TextView
+            empatados = itemView.findViewById<View>(R.id.partidosEmpatados) as TextView
             nombreEquipo = itemView.findViewById<View>(R.id.logoEquipo) as ImageView
             puntosEquipo = itemView.findViewById<View>(R.id.puntosEquipo) as TextView
             posicion = itemView.findViewById<View>(R.id.posClasificacion) as TextView
@@ -66,7 +66,6 @@ class ClasificacionAdapter(
             ganados.text = equipo.won.toString()
             perdidos.text = equipo.lost.toString()
             empatados.text = equipo.draw.toString()
-
 
             itemView.setOnClickListener {
                 onItemSelected(equipo.team.id.toString())
