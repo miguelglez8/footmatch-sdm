@@ -33,7 +33,6 @@
                 android:id="@+id/equipoLocalImageView"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@mipmap/ic_launcher"
                 android:contentDescription="@string/escudo_equipo_local_image_description" />
 
 
@@ -124,7 +123,6 @@
                 android:id="@+id/equipoVisitanteImageView"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@mipmap/ic_launcher"
                 android:contentDescription="@string/escudo_equipo_visitante_image_description" />
 
             <TextView

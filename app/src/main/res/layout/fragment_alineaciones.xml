@@ -20,7 +20,6 @@
             android:id="@+id/nombreEquipo1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Barcelona"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -28,14 +27,12 @@
         <ImageView
             android:id="@+id/imagenEquipo1"
             android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/logo_barcelona" />
+            android:layout_height="100dp" />
 
         <TextView
             android:id="@+id/trainer1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/trainer1"
             android:textSize="15dp"
             android:textColor="#000" />
 
@@ -44,7 +41,6 @@
             android:id="@+id/plantilla1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/plantilla1"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="#000" />
@@ -77,7 +73,6 @@
             android:id="@+id/nombreEquipo2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Real Madrid"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -86,13 +81,12 @@
             android:id="@+id/imagenEquipo2"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/logo_madrid" />
+            />
 
         <TextView
             android:id="@+id/trainer2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/trainer2"
             android:textSize="15dp"
             android:textColor="#000" />
 
@@ -100,7 +94,6 @@
             android:id="@+id/plantilla2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/plantilla2"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="#000" />

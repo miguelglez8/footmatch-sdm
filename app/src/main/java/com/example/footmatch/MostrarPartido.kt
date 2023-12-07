@@ -251,7 +251,7 @@ class MostrarPartido : AppCompatActivity() {
 
             if (partido!!.competition.emblem == null) {
                 // cargar imagen local por defecto
-                imagenLiga?.load(R.drawable.escudo_por_defecto)
+                imagenLiga?.load(R.string.teamDefaultLogo.toString())
             } else {
                 // Comprobamos si se trata de un png o svg
                 val isSvg = partido!!.competition.emblem.endsWith("svg",ignoreCase = true)
