@@ -4,4 +4,4 @@
 BeSoccer is a comprehensive soccer application designed to provide users with extensive information and coverage of the world of football. 
 This app offers a wide range of features and functionalities that cater to the needs of soccer enthusiasts, whether they are fans, players, or coaches.
 
-<img src="https://github.com/miguelglez8/footmatch-sdm/assets/113930788/1d616731-3da6-41a5-aea5-7419c388af33" width="300">
+<img src="https://github.com/miguelglez8/footmatch-sdm/assets/113930788/653d68f1-745f-40f8-8313-5ec6d6ad8982" width="300">
