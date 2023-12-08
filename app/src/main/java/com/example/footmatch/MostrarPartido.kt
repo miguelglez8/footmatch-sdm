@@ -184,12 +184,13 @@ class MostrarPartido : AppCompatActivity() {
                 estadoPartido?.text="FINALIZADO"
             else if (partido?.status == "TIMED" && partido!!.score.winner != null)
                 estadoPartido?.text="APLAZADO"
-            else if (partido?.status == "IN_PLAY")
+            else if (partido?.status == "IN_PLAY" || partido?.status == "PAUSED"
+                || partido?.status == "LIVE")
                 estadoPartido?.text="EN JUEGO"
             else
                 estadoPartido?.text="PROGRAMADO"
             when (partido?.status){
-                "IN_PLAY" -> {
+                "IN_PLAY", "LIVE", "PAUSED" -> {
                     estadoPartido?.setBackgroundColor(Color.parseColor("#006400"))
                 }
                 "FINISHED" -> {
@@ -207,7 +208,8 @@ class MostrarPartido : AppCompatActivity() {
             jornada!!.text = partido!!.competition.name + ". Jornada Nº " + partido!!.season.currentMatchday
             if (partido!!.status.equals("FINISHED"))
                 minute!!.text = "90'"
-            else if (partido!!.status.equals("IN_PLAY"))
+            else if (partido?.status == "IN_PLAY" || partido?.status == "PAUSED"
+                || partido?.status == "LIVE")
                 minute!!.text = "EN DIRECTO"
             else if (partido?.status == "TIMED" && partido!!.score.winner != null)
                 minute!!.text = partido!!.minute.toString() + "'" + " (aplazado)"
