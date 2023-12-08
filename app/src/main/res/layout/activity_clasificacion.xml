@@ -55,7 +55,8 @@
         android:id="@+id/tableLayout"
         android:layout_width="match_parent"
         android:layout_height="57dp"
-        android:paddingLeft="18dp"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp"
         android:paddingTop="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintBottom_toTopOf="@id/recyclerClasificacion"
@@ -66,7 +67,9 @@
         app:layout_constraintVertical_bias="1.0">
 
         <!-- Encabezado de la Tabla -->
-        <TableRow>
+        <TableRow
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp">
 
             <TextView
                 style="@style/HeaderCellStyle"
@@ -76,49 +79,49 @@
 
             <TextView
                 style="@style/HeaderCellStyle"
-                android:layout_width="70dp"
+                android:layout_width="66dp"
                 android:background="@drawable/cell_border1"
                 android:text="EQUIPO" />
 
             <TextView
                 style="@style/HeaderCellStyle"
-                android:layout_width="37dp"
+                android:layout_width="35dp"
                 android:background="@drawable/cell_border1"
                 android:text="PG" />
 
             <TextView
                 style="@style/HeaderCellStyle"
-                android:layout_width="37dp"
+                android:layout_width="35dp"
                 android:background="@drawable/cell_border1"
                 android:text="PE" />
 
             <TextView
                 style="@style/HeaderCellStyle"
-                android:layout_width="37dp"
+                android:layout_width="35dp"
                 android:background="@drawable/cell_border1"
                 android:text="PP" />
 
             <TextView
                 style="@style/HeaderCellStyle"
-                android:layout_width="37dp"
+                android:layout_width="35dp"
                 android:background="@drawable/cell_border1"
                 android:text="GF" />
 
             <TextView
                 style="@style/HeaderCellStyle"
-                android:layout_width="37dp"
+                android:layout_width="35dp"
                 android:background="@drawable/cell_border1"
                 android:text="GC" />
 
             <TextView
                 style="@style/HeaderCellStyle"
-                android:layout_width="37dp"
+                android:layout_width="36dp"
                 android:background="@drawable/cell_border1"
                 android:text="DG" />
 
             <TextView
                 style="@style/HeaderCellStyle"
-                android:layout_width="37dp"
+                android:layout_width="35dp"
                 android:background="@drawable/cell_border1"
                 android:text="PT" />
         </TableRow>
@@ -128,14 +131,14 @@
 
         android:id="@+id/recyclerClasificacion"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="282dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintBottom_toTopOf="@id/leyendaLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.737" />
+        app:layout_constraintVertical_bias="0.647" />
 
     <TextView
         android:id="@+id/tituloLeyenda"
@@ -147,14 +150,16 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="@id/recyclerClasificacion"
+        app:layout_constraintHorizontal_bias="0.467"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.553" />
+        app:layout_constraintVertical_bias="0.612" />
 
     <LinearLayout
         android:id="@+id/leyendaLayout"
         android:layout_width="match_parent"
         android:layout_height="205dp"
+        android:layout_marginTop="0dp"
         android:orientation="vertical"
         android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"

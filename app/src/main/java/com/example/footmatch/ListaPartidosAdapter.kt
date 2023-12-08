@@ -104,7 +104,7 @@ class ListaPartidosAdapter(
             // si el estado es FINISHED, el partido ha finalizado
             // en cualquier otro caso el partido está programado
             when (match.status){
-                "IN_PLAY" -> {
+                "IN_PLAY", "LIVE", "PAUSED" -> {
                     estado.text = "EN JUEGO"
                     estado.setBackgroundColor(Color.parseColor("#006400"))
                 }
