@@ -43,6 +43,10 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation ("com.squareup.picasso:picasso:2.71828")
 
+    // Swipe Refresh Layout
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
+
+
     // Retrofit
     implementation ("com.squareup.retrofit2:retrofit:2.6.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.6.0")
