@@ -166,4 +166,5 @@
     <string name="trainer1">Entrenador: Xavi</string>
     <string name="trainer2">Entrenador: Ancelotti</string>
     <string name="argentina">Argentina</string>
+    <string name="menu_refresh">Actualiza</string>
 </resources>

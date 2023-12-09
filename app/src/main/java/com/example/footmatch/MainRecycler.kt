@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.footmatch.modelo.pojos.partido.Match
 import com.example.footmatch.util.api.RetrofitClient
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -19,12 +20,15 @@ import kotlinx.coroutines.withContext
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-class MainRecycler : AppCompatActivity() {
+class MainRecycler : AppCompatActivity()  {
     // Modelo datos
     var matchList: List<Match> = ArrayList()
     var listaPartidosView: RecyclerView? = null
     private lateinit var navView : BottomNavigationView
     private lateinit var listaPartidosAdapter: ListaPartidosAdapter
+
+    // Referencia al swipe refresh layout
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     // Listener para la barra de navegacion de fechas
     private val mOnNavigationItemSelectedListener =
@@ -95,6 +99,24 @@ class MainRecycler : AppCompatActivity() {
         )
         listaPartidosView!!.layoutManager = layoutManager
         listaPartidosView!!.adapter = listaPartidosAdapter
+
+        // Recuperamos el swipe refresh layout
+        swipeRefreshLayout = findViewById(R.id.swiperefresh)
+        // Configuramos el listener para el swipe refresh layout
+        swipeRefreshLayout.setOnRefreshListener {
+            // Actualizamos los partidos del dia de hoy
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                val today = LocalDate.now()
+                val dateFrom = today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+                val tomorrow = LocalDate.now().plusDays(1)
+                val dateTo = tomorrow.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+                cargarPartidos(dateFrom, dateTo)
+            } else {
+                throw IllegalStateException("Error al obtener la fecha de ayer por version API")
+            }
+            // Paramos la animacion del swipe refresh layout
+            swipeRefreshLayout.isRefreshing = false
+        }
 
         // Recuperamos la barra de navegacion de fechas
         val dateSelection = findViewById<View>(R.id.nav_view_matches_dates) as BottomNavigationView

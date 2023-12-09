@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/nav_home"
@@ -7,4 +8,10 @@
         android:icon="@drawable/inicio_nav"
         android:title="" />
 
+    <!--Añado un item para actualizar la pagina (accesibilidad usuarios no pueden deslizar) -->
+    <item
+        android:id="@+id/nav_refresh"
+        android:title=""
+        android:icon="@drawable/actualiza_nav"
+        app:showAsAction="never" />
 </menu>
