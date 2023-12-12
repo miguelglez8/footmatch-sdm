@@ -6,6 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.footmatch.modelo.pojos.plantilla.Squad
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class PlantillaAdapter (
     var jugadores : List<Squad>
@@ -28,7 +31,7 @@ class PlantillaAdapter (
             dataJugador.text = jugador.name
             dataPosicionJugador.text = jugador.position
             dataNacionalidadJugador.text = jugador.nationality
-            dataNacimientoJugador.text = jugador.dateOfBirth
+            dataNacimientoJugador.text = formatDate(jugador.dateOfBirth)
         }
     }
 
@@ -44,6 +47,27 @@ class PlantillaAdapter (
 
     override fun onBindViewHolder(holder: PlantillaViewHolder, position: Int) {
         holder.bindUser(jugadores[position])
+    }
+
+    companion object {
+        private fun formatDate(utcDate: String): String? {
+            // Formato de entrada: "yyyy-MM-ddTHH:mm:ss"
+            val inputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+
+            // Formato de salida: "dd-MM-yyyy"
+            val outputFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+
+            try {
+                // Parse the date string
+                val date = inputFormat.parse(utcDate)
+
+                // Format the updated date
+                return date?.let { outputFormat.format(it) }
+            } catch (e: ParseException) {
+                e.printStackTrace()
+            }
+            return "Problemas al parsear la fecha"
+        }
     }
 
 
