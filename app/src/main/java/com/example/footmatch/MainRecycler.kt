@@ -3,6 +3,7 @@ package com.example.footmatch
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.ImageButton
@@ -25,6 +26,7 @@ class MainRecycler : AppCompatActivity()  {
     var matchList: List<Match> = ArrayList()
     var listaPartidosView: RecyclerView? = null
     private lateinit var navView : BottomNavigationView
+    private lateinit var navViewDates : BottomNavigationView
     private lateinit var listaPartidosAdapter: ListaPartidosAdapter
 
     // Referencia al swipe refresh layout
@@ -102,15 +104,33 @@ class MainRecycler : AppCompatActivity()  {
 
         // Recuperamos el swipe refresh layout
         swipeRefreshLayout = findViewById(R.id.swiperefresh)
+        // Recuperamos la barra de navegacion de fechas
+        navViewDates = findViewById(R.id.nav_view_matches_dates)
         // Configuramos el listener para el swipe refresh layout
         swipeRefreshLayout.setOnRefreshListener {
             // Actualizamos los partidos del dia de hoy
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                val today = LocalDate.now()
-                val dateFrom = today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-                val tomorrow = LocalDate.now().plusDays(1)
-                val dateTo = tomorrow.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-                cargarPartidos(dateFrom, dateTo)
+                // Si la pestaña seleccionada de la navView es la de hoy, actualizamos los de hoy
+                when(navViewDates.selectedItemId) {
+                    R.id.navigation_today -> {
+                        val today = LocalDate.now()
+                        val dateFrom = today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+                        val tomorrow = LocalDate.now().plusDays(1)
+                        val dateTo = tomorrow.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+                        cargarPartidos(dateFrom, dateTo)
+                    }
+
+                    // Si la pestaña seleccionada de la navView es la de todos, actualizamos todos
+                    R.id.navigation_all -> {
+                        val today = LocalDate.now()
+                        val dateFrom = today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+                        // la fecha de fin seran 10 dias mas que es lo que admite la API
+                        val endPeriod = LocalDate.now().plusDays(10)
+                        val dateTo = endPeriod.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+                        cargarPartidos(dateFrom, dateTo)
+                    }
+                }
+
             } else {
                 throw IllegalStateException("Error al obtener la fecha de ayer por version API")
             }
@@ -118,19 +138,35 @@ class MainRecycler : AppCompatActivity()  {
             swipeRefreshLayout.isRefreshing = false
         }
 
-        // Recuperamos la barra de navegacion de fechas
-        val dateSelection = findViewById<View>(R.id.nav_view_matches_dates) as BottomNavigationView
         // Le establecemos el listener
-        dateSelection.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        navViewDates.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         // Seleccionamos la opcion de hoy por defecto
-        dateSelection.selectedItemId = R.id.navigation_today
+        navViewDates.selectedItemId = R.id.navigation_today
+
+        // Recuperamos la barra de navegacion inferior
+        navView = findViewById(R.id.bottomNavigationView)
+        // Dejamos seleccionado el boton de inicio
+        navView.menu.findItem(R.id.nav_home).isEnabled = true
+        // En esta pantalla no hacemos nada al pulsarlo
+        // Añadimos el listener al boton actualizar
+        navView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    // No hacemos nada
+                    return@setOnNavigationItemSelectedListener true
+                }
+
+            }
+
+            false
+        }
 
 
 
         /*
         Añado a cada boton un onClick para llamar a la nueva activity con la clasificacion
          */
-        navView = findViewById(R.id.bottomNavigationView)
+
         val laLiga = findViewById<View>(R.id.ligaEASports) as ImageButton
         laLiga.setOnClickListener { cargarClasificacion("LL") }
         val premier = findViewById<View>(R.id.ligaPremier) as ImageButton
@@ -139,19 +175,9 @@ class MainRecycler : AppCompatActivity()  {
         bundes.setOnClickListener { cargarClasificacion("LB") }
         val serieA = findViewById<View>(R.id.ligaSerieA) as ImageButton
         serieA.setOnClickListener { cargarClasificacion("LS") }
-        cargarMenu()
     }
 
-    private fun cargarMenu() {
-        navView.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_home -> {
-                    // no hacer nada, para eso hay botón de refrescar
-                }
-            }
-            true
-        }
-    }
+
 
 
     /*

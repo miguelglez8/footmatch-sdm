@@ -18,6 +18,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 
 class PlantillaActivity : AppCompatActivity() {
@@ -138,12 +141,31 @@ class PlantillaActivity : AppCompatActivity() {
                 val nacionalidadEntrenador = findViewById<View>(R.id.dataNacionalidadEntrenador) as TextView
                 nacionalidadEntrenador.text = plantilla!!.coach.nationality
                 val nacimientoEntrenador = findViewById<View>(R.id.dataNacimientoEntrenador)as TextView
-                nacimientoEntrenador.text = plantilla!!.coach.dateOfBirth
+                nacimientoEntrenador.text = formatDate(plantilla!!.coach.dateOfBirth)
                 val jugadores = plantilla!!.squad
                 //Cargar jugadores en el mainRecycler
                 pAdapter = PlantillaAdapter(jugadores)
                 plantillaView!!.adapter = pAdapter
             }
         }
+    }
+
+    private fun formatDate(utcDate: String): String? {
+        // Formato de entrada: "yyyy-MM-ddTHH:mm:ss"
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+
+        // Formato de salida: "dd-MM-yyyy"
+        val outputFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+
+        try {
+            // Parse the date string
+            val date = inputFormat.parse(utcDate)
+
+            // Format the updated date
+            return date?.let { outputFormat.format(it) }
+        } catch (e: ParseException) {
+            e.printStackTrace()
+        }
+        return "Problemas al parsear la fecha"
     }
 }

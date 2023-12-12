@@ -96,9 +96,11 @@ class MostrarPartido : AppCompatActivity() {
             when (item.itemId) {
                 R.id.nav_home -> {
                     // TODO MARCOS
-                    val intent = Intent(this@MostrarPartido, MainRecycler::class.java)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-                    startActivity(intent)
+                    //val intent = Intent(this@MostrarPartido, MainRecycler::class.java)
+                    //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    //startActivity(intent)
+                    // Al comentar lo de arriba me ahorro volver a hacer la llamada a la API
+                    // del mainrecycler
                     finish() // Cierra la instancia actual de la actividad
                 }
             }
@@ -244,7 +246,12 @@ class MostrarPartido : AppCompatActivity() {
                     resultadoPartido!!.text = "Formato de fecha no válido"
                 }
             }
-            fechaPartido!!.text = fecha?.get(0) ?: ""
+            if (fecha != null){
+                fechaPartido!!.text = formatDate(fecha?.get(0)!!)
+            }else{
+                fechaPartido!!.text = "Fecha no disponible"
+            }
+            //fechaPartido!!.text = fecha?.get(0) ?: ""
             nombreEquipo2!!.text = partido!!.awayTeam.shortName
             if (partido!!.venue == null)
                 estadio!!.text = "Estadio: No disponible"
@@ -303,5 +310,24 @@ class MostrarPartido : AppCompatActivity() {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, estadisticasFragment).commit()
         }
+    }
+
+    private fun formatDate(utcDate: String): String? {
+        // Formato de entrada: "yyyy-MM-ddTHH:mm:ss"
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+
+        // Formato de salida: "dd-MM-yyyy"
+        val outputFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+
+        try {
+            // Parse the date string
+            val date = inputFormat.parse(utcDate)
+
+            // Format the updated date
+            return date?.let { outputFormat.format(it) }
+        } catch (e: ParseException) {
+            e.printStackTrace()
+        }
+        return "Problemas al parsear la fecha"
     }
 }
