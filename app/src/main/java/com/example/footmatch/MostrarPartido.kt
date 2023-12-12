@@ -13,15 +13,10 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import coil.load
-import com.example.footmatch.modelo.BuscadorId
-import com.example.footmatch.modelo.pojos.partido.Aggregates
-import com.example.footmatch.modelo.pojos.partido.MatchToShow
-import com.example.footmatch.modelo.pojos.partido.Referee
-import com.example.footmatch.modelo.pojos.partido.TeamX
 import com.example.footmatch.ui.AlineacionesFragment
 import com.example.footmatch.ui.ArbitrosFragment
 import com.example.footmatch.ui.EstadisticasFragment
-import com.example.footmatch.util.api.RetrofitClient
+import com.example.footmatch.datos.api.RetrofitClient
 import com.example.footmatch.util.images.SvgLoader.Companion.loadUrl
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.Dispatchers
@@ -35,11 +30,11 @@ import java.util.Locale
 
 class MostrarPartido : AppCompatActivity() {
     private lateinit var navView : BottomNavigationView
-    private var partido: MatchToShow? = null
-    private var stats: Aggregates? = null
-    private var local: TeamX? = null
-    private var away: TeamX? = null
-    private var buscadorId: BuscadorId? = null
+    private var partido: com.example.footmatch.datos.modelo.pojos.partido.MatchToShow? = null
+    private var stats: com.example.footmatch.datos.modelo.pojos.partido.Aggregates? = null
+    private var local: com.example.footmatch.datos.modelo.pojos.partido.TeamX? = null
+    private var away: com.example.footmatch.datos.modelo.pojos.partido.TeamX? = null
+    private var buscadorId: com.example.footmatch.datos.modelo.BuscadorId? = null
     private var id: Int? = null
     private var localId: Int? = null
     private var awayId: Int? = null
@@ -130,7 +125,7 @@ class MostrarPartido : AppCompatActivity() {
                 R.id.navigation_referees -> {
                     if (partido!!.referees.isNotEmpty()) {
                         val arbitrosFragment =
-                            ArbitrosFragment.newInstance(partido!!.referees as ArrayList<Referee?>)
+                            ArbitrosFragment.newInstance(partido!!.referees as ArrayList<com.example.footmatch.datos.modelo.pojos.partido.Referee?>)
                         supportFragmentManager.beginTransaction()
                             .replace(R.id.fragment_container, arbitrosFragment).commit()
                     } else {

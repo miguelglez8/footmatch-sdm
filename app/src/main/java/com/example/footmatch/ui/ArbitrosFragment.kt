@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.footmatch.ListaArbitrosAdapter
 import com.example.footmatch.R
-import com.example.footmatch.modelo.pojos.partido.Referee
+import com.example.footmatch.datos.modelo.pojos.partido.Referee
 
 //Vamos a heredar de la clase Fragment
 class ArbitrosFragment : Fragment() {
@@ -19,7 +19,7 @@ class ArbitrosFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
-            lista = requireArguments().getSerializable(ARBITROS) as ArrayList<Referee>?
+            lista = requireArguments().getSerializable(ARBITROS) as ArrayList<com.example.footmatch.datos.modelo.pojos.partido.Referee>?
         }
     }
 
@@ -38,7 +38,7 @@ class ArbitrosFragment : Fragment() {
         // Crea una instancia del adaptador y pásale la lista de intérpretes y un listener si es necesario
         val adapter =
             ListaArbitrosAdapter(lista!!, object : ListaArbitrosAdapter.OnItemClickListener {
-                override fun onItemClick(item: Referee?) {
+                override fun onItemClick(item: com.example.footmatch.datos.modelo.pojos.partido.Referee?) {
                     // Maneja el clic en un elemento de la lista si es necesario
                 }
             })
@@ -51,7 +51,7 @@ class ArbitrosFragment : Fragment() {
     companion object {
         /* Las variables que utilizaremos */
         private const val ARBITROS = "Arbitros"
-        private var lista: ArrayList<Referee>? = null
+        private var lista: ArrayList<com.example.footmatch.datos.modelo.pojos.partido.Referee>? = null
 
         /*
 
@@ -59,7 +59,7 @@ class ArbitrosFragment : Fragment() {
         Los datos están siendo enviados ANTES del onCreate.
         El Bundle permanece cuando se tiene que recrear.
      */
-        fun newInstance(lista: ArrayList<Referee?>): ArbitrosFragment {
+        fun newInstance(lista: ArrayList<com.example.footmatch.datos.modelo.pojos.partido.Referee?>): ArbitrosFragment {
             val fragment = ArbitrosFragment()
             val args = Bundle()
             //Esto no tiene mucha ciencia -> Clave, valor.

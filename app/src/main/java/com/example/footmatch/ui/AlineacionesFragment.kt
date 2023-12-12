@@ -13,15 +13,15 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.footmatch.ListaJugadoresAdapter
 import com.example.footmatch.R
-import com.example.footmatch.modelo.pojos.partido.MatchToShow
-import com.example.footmatch.modelo.pojos.partido.Squad
-import com.example.footmatch.modelo.pojos.partido.TeamX
+import com.example.footmatch.datos.modelo.pojos.partido.MatchToShow
+import com.example.footmatch.datos.modelo.pojos.partido.Squad
+import com.example.footmatch.datos.modelo.pojos.partido.TeamX
 import com.example.footmatch.util.images.SvgLoader.Companion.loadUrl
 
 class AlineacionesFragment : Fragment() {
-    private var jugadoresEquipo1: TeamX? = null
-    private var jugadoresEquipo2: TeamX? = null
-    private var partido: MatchToShow? = null
+    private var jugadoresEquipo1: com.example.footmatch.datos.modelo.pojos.partido.TeamX? = null
+    private var jugadoresEquipo2: com.example.footmatch.datos.modelo.pojos.partido.TeamX? = null
+    private var partido: com.example.footmatch.datos.modelo.pojos.partido.MatchToShow? = null
     private var recyclerViewJugadoresEquipo1: RecyclerView? = null
     private var recyclerViewJugadoresEquipo2: RecyclerView? = null
     private var nombreEquipo1: TextView? = null
@@ -37,9 +37,9 @@ class AlineacionesFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
-            jugadoresEquipo1 = requireArguments().getSerializable(JUGADORES_EQUIPO1) as TeamX?
-            jugadoresEquipo2 = requireArguments().getSerializable(JUGADORES_EQUIPO2) as TeamX?
-            partido = requireArguments().getSerializable(PARTIDO) as MatchToShow
+            jugadoresEquipo1 = requireArguments().getSerializable(JUGADORES_EQUIPO1) as com.example.footmatch.datos.modelo.pojos.partido.TeamX?
+            jugadoresEquipo2 = requireArguments().getSerializable(JUGADORES_EQUIPO2) as com.example.footmatch.datos.modelo.pojos.partido.TeamX?
+            partido = requireArguments().getSerializable(PARTIDO) as com.example.footmatch.datos.modelo.pojos.partido.MatchToShow
         }
     }
 
@@ -114,7 +114,7 @@ class AlineacionesFragment : Fragment() {
             adapterEquipo1 = ListaJugadoresAdapter(
                 jugadoresEquipo1!!.squad,
                 object : ListaJugadoresAdapter.OnItemClickListener {
-                    override fun onItemClick(item: Squad?) {
+                    override fun onItemClick(item: com.example.footmatch.datos.modelo.pojos.partido.Squad?) {
                         // Maneja el clic en un elemento de la lista si es necesario
                     }
                 })
@@ -124,7 +124,7 @@ class AlineacionesFragment : Fragment() {
             adapterEquipo2 = ListaJugadoresAdapter(
                 jugadoresEquipo2!!.squad,
                 object : ListaJugadoresAdapter.OnItemClickListener {
-                    override fun onItemClick(item: Squad?) {
+                    override fun onItemClick(item: com.example.footmatch.datos.modelo.pojos.partido.Squad?) {
                         // Maneja el clic en un elemento de la lista si es necesario
                     }
                 })
@@ -138,9 +138,9 @@ class AlineacionesFragment : Fragment() {
         private const val PARTIDO = "local"
 
         fun newInstance(
-            e1: TeamX,
-            e2: TeamX,
-            match: MatchToShow,
+            e1: com.example.footmatch.datos.modelo.pojos.partido.TeamX,
+            e2: com.example.footmatch.datos.modelo.pojos.partido.TeamX,
+            match: com.example.footmatch.datos.modelo.pojos.partido.MatchToShow,
         ): AlineacionesFragment {
             val fragment = AlineacionesFragment()
             val args = Bundle()

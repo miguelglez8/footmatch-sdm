@@ -8,15 +8,15 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.footmatch.R
-import com.example.footmatch.modelo.pojos.partido.Aggregates
-import com.example.footmatch.modelo.pojos.partido.AwayTeamX
-import com.example.footmatch.modelo.pojos.partido.HomeTeamX
+import com.example.footmatch.datos.modelo.pojos.partido.Aggregates
+import com.example.footmatch.datos.modelo.pojos.partido.AwayTeamX
+import com.example.footmatch.datos.modelo.pojos.partido.HomeTeamX
 
 //Vamos a heredar de la clase Fragment
 class EstadisticasFragment : Fragment() {
-    private var equipo1: HomeTeamX? = null
-    private var equipo2: AwayTeamX? = null
-    private var stats: Aggregates? = null
+    private var equipo1: com.example.footmatch.datos.modelo.pojos.partido.HomeTeamX? = null
+    private var equipo2: com.example.footmatch.datos.modelo.pojos.partido.AwayTeamX? = null
+    private var stats: com.example.footmatch.datos.modelo.pojos.partido.Aggregates? = null
 
     /*
         Aquí están disponibles ya los datos necesarios.
@@ -24,9 +24,9 @@ class EstadisticasFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
-            equipo1 = requireArguments().getSerializable(EQUIPO1) as HomeTeamX?
-            equipo2 = requireArguments().getSerializable(EQUIPO2) as AwayTeamX
-            stats = requireArguments().getSerializable(STATS) as Aggregates
+            equipo1 = requireArguments().getSerializable(EQUIPO1) as com.example.footmatch.datos.modelo.pojos.partido.HomeTeamX?
+            equipo2 = requireArguments().getSerializable(EQUIPO2) as com.example.footmatch.datos.modelo.pojos.partido.AwayTeamX
+            stats = requireArguments().getSerializable(STATS) as com.example.footmatch.datos.modelo.pojos.partido.Aggregates
         }
     }
 
@@ -73,7 +73,7 @@ class EstadisticasFragment : Fragment() {
         El Bundle permanece cuando se tiene que recrear.
      */
         fun newInstance(
-            e1: HomeTeamX, e2: AwayTeamX, stats: Aggregates?
+            e1: com.example.footmatch.datos.modelo.pojos.partido.HomeTeamX, e2: com.example.footmatch.datos.modelo.pojos.partido.AwayTeamX, stats: com.example.footmatch.datos.modelo.pojos.partido.Aggregates?
         ): EstadisticasFragment {
             val fragment = EstadisticasFragment()
             val args = Bundle()

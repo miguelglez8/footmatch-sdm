@@ -6,13 +6,17 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageButton
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.example.footmatch.modelo.pojos.partido.Match
-import com.example.footmatch.util.api.RetrofitClient
+import com.example.footmatch.datos.modelo.pojos.partido.Match
+import com.example.footmatch.datos.api.RetrofitClient
+import com.example.footmatch.datos.database.MatchesDatabase
+import com.example.footmatch.datos.mappers.match.toMatch
+import com.example.footmatch.datos.modelo.MatchEntity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,7 +26,7 @@ import java.time.format.DateTimeFormatter
 
 class MainRecycler : AppCompatActivity()  {
     // Modelo datos
-    var matchList: List<Match> = ArrayList()
+    var matchList: List<com.example.footmatch.datos.modelo.pojos.partido.Match> = ArrayList()
     var listaPartidosView: RecyclerView? = null
     private lateinit var navView : BottomNavigationView
     private lateinit var listaPartidosAdapter: ListaPartidosAdapter
@@ -41,7 +45,8 @@ class MainRecycler : AppCompatActivity()  {
                     val dateFrom = yesterday.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
                     val today = LocalDate.now()
                     val dateTo = today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-                    cargarPartidos(dateFrom, dateTo)
+                   //cargarPartidos(dateFrom, dateTo)
+                    cargarPartidosCacheados()
                 } else {
                     throw IllegalStateException("Error al obtener la fecha de ayer por version API")
                 }
@@ -174,6 +179,37 @@ class MainRecycler : AppCompatActivity()  {
             }
         }
 
+    }
+
+    /**
+     * Carga los partidos del dia de ayer. Si ya estaban en bd no realiza peticion a la API
+     */
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun cargarPartidosCacheados(){
+        // Llamada a la bd empleando corrutinas de kotlin
+        val matchesDB: MatchesDatabase = MatchesDatabase.getDatabase(this)
+        lifecycleScope.launch(Dispatchers.IO){
+            val dateFrom = LocalDate.now().minusDays(1)
+            val dateTo = LocalDate.now().minusDays(1).atTime(23,59)
+            val matchesFromDatabase : List<MatchEntity> = matchesDB.matchesDao().
+                findByDateBetween(dateFrom.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+                    dateTo.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+            if (matchesFromDatabase.isEmpty()){
+                // No hay partidos en la bd, llamamos a la API
+                val dateToApi = LocalDate.now()
+                cargarPartidos(dateFrom.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+                    dateToApi.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+            } else {
+                // Hay partidos en la bd, los cargamos
+                withContext(Dispatchers.Main)
+                {
+                    // Actualizamos la lista de partidos
+                    matchList = matchesFromDatabase.map { it.toMatch() }
+                    // Notificamos al adapter
+                    listaPartidosAdapter.update(matchList)
+                }
+            }
+        }
     }
 
     fun cargarClasificacion(liga: String?) {

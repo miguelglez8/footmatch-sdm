@@ -5,10 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.footmatch.modelo.pojos.plantilla.Squad
+import com.example.footmatch.datos.modelo.pojos.plantilla.Squad
 
 class PlantillaAdapter (
-    var jugadores : List<Squad>
+    var jugadores : List<com.example.footmatch.datos.modelo.pojos.plantilla.Squad>
 ) : RecyclerView.Adapter<PlantillaAdapter.PlantillaViewHolder>() {
 
 
@@ -24,7 +24,7 @@ class PlantillaAdapter (
             dataNacimientoJugador = itemView.findViewById<View>(R.id.dataNacimientoJugador) as TextView
         }
 
-        fun bindUser(jugador: Squad) {
+        fun bindUser(jugador: com.example.footmatch.datos.modelo.pojos.plantilla.Squad) {
             dataJugador.text = jugador.name
             dataPosicionJugador.text = jugador.position
             dataNacionalidadJugador.text = jugador.nationality

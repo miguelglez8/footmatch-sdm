@@ -10,8 +10,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.footmatch.modelo.pojos.clasificacion.StandingsResult
-import com.example.footmatch.util.api.RetrofitClient
+import com.example.footmatch.datos.modelo.pojos.clasificacion.StandingsResult
+import com.example.footmatch.datos.api.RetrofitClient
 import com.example.footmatch.util.images.SvgLoader.Companion.loadUrl
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.squareup.picasso.Picasso
@@ -21,7 +21,7 @@ import kotlinx.coroutines.withContext
 
 class ClasificacionActivity : AppCompatActivity() {
     var liga: String? = null
-    var clasificacion: StandingsResult? = null
+    var clasificacion: com.example.footmatch.datos.modelo.pojos.clasificacion.StandingsResult? = null
     var clasificacionView: RecyclerView? = null
     var cAdapter : ClasificacionAdapter? = null
     private lateinit var navView : BottomNavigationView

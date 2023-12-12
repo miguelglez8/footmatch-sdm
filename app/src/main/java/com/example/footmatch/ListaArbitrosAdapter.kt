@@ -7,15 +7,15 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.footmatch.ListaArbitrosAdapter.ArbitroViewHolder
-import com.example.footmatch.modelo.pojos.partido.Referee
+import com.example.footmatch.datos.modelo.pojos.partido.Referee
 
 class ListaArbitrosAdapter(
-    private val listaArbitros: List<Referee>,
+    private val listaArbitros: List<com.example.footmatch.datos.modelo.pojos.partido.Referee>,
     private val listener: OnItemClickListener
 ) : RecyclerView.Adapter<ArbitroViewHolder>() {
     // Interfaz para manejar el evento click sobre un elemento
     interface OnItemClickListener {
-        fun onItemClick(item: Referee?)
+        fun onItemClick(item: com.example.footmatch.datos.modelo.pojos.partido.Referee?)
     }
 
     /* Indicamos el layout a "inflar" para usar en la vista
@@ -54,7 +54,7 @@ class ListaArbitrosAdapter(
         }
 
         // asignar valores a los componentes
-        fun bindUser(arbitro: Referee, listener: OnItemClickListener) {
+        fun bindUser(arbitro: com.example.footmatch.datos.modelo.pojos.partido.Referee, listener: OnItemClickListener) {
             this.funcion.text = arbitro.type
             this.arbitro.text = arbitro.name + " (" + arbitro.nationality + ")"
             itemView.setOnClickListener {

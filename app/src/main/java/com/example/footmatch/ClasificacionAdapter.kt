@@ -8,12 +8,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.footmatch.ClasificacionAdapter.ClasificacionViewHolder
-import com.example.footmatch.modelo.pojos.clasificacion.StandingsResult
-import com.example.footmatch.modelo.pojos.clasificacion.Table
+import com.example.footmatch.datos.modelo.pojos.clasificacion.StandingsResult
+import com.example.footmatch.datos.modelo.pojos.clasificacion.Table
 import com.example.footmatch.util.images.SvgLoader.Companion.loadUrl
 
 class ClasificacionAdapter(
-    var equipos: StandingsResult, //Se utilizará mas adelante para ir a la pantalla de equipos
+    var equipos: com.example.footmatch.datos.modelo.pojos.clasificacion.StandingsResult, //Se utilizará mas adelante para ir a la pantalla de equipos
     val onItemSelected: (String) -> Unit
 ) : RecyclerView.Adapter<ClasificacionViewHolder>() {
 
@@ -46,7 +46,7 @@ class ClasificacionAdapter(
         }
 
         // asignar valores a los componentes
-        fun bindUser(equipo: Table, onItemSelected: (String) -> Unit) {
+        fun bindUser(equipo: com.example.footmatch.datos.modelo.pojos.clasificacion.Table, onItemSelected: (String) -> Unit) {
             if (equipo.team.crest == null) {
                 // cargar imagen visitante por defecto
                 nombreEquipo.load(R.string.teamDefaultLogo.toString())
@@ -80,7 +80,7 @@ class ClasificacionAdapter(
     }
 
     override fun onBindViewHolder(holder: ClasificacionViewHolder, position: Int) {
-        val equipo: Table = equipos.standings[0].table[position]
+        val equipo: com.example.footmatch.datos.modelo.pojos.clasificacion.Table = equipos.standings[0].table[position]
         holder.bindUser(equipo, onItemSelected)
     }
 

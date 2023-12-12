@@ -7,19 +7,19 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.footmatch.ListaJugadoresAdapter.JugadorViewHolder
-import com.example.footmatch.modelo.pojos.partido.Squad
+import com.example.footmatch.datos.modelo.pojos.partido.Squad
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
 class ListaJugadoresAdapter(
-    private val listaJugadores: List<Squad>,
+    private val listaJugadores: List<com.example.footmatch.datos.modelo.pojos.partido.Squad>,
     private val listener: OnItemClickListener
 ) : RecyclerView.Adapter<JugadorViewHolder>() {
     // Interfaz para manejar el evento click sobre un elemento
     interface OnItemClickListener {
-        fun onItemClick(item: Squad?)
+        fun onItemClick(item: com.example.footmatch.datos.modelo.pojos.partido.Squad?)
     }
 
     /* Indicamos el layout a "inflar" para usar en la vista
@@ -60,7 +60,7 @@ class ListaJugadoresAdapter(
         }
 
         // asignar valores a los componentes
-        fun bindUser(jugador: Squad, position: Int, listener: OnItemClickListener?) {
+        fun bindUser(jugador: com.example.footmatch.datos.modelo.pojos.partido.Squad, position: Int, listener: OnItemClickListener?) {
             // cargar nombre equipo local
             pais.text = jugador.nationality
             // cargar nombre equipo visitante

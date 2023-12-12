@@ -15,8 +15,6 @@ import coil.load
 
 
 import com.example.footmatch.ListaPartidosAdapter.PartidoViewHolder
-import com.example.footmatch.modelo.BuscadorId
-import com.example.footmatch.modelo.pojos.partido.Match
 // Importamos la clase SvgLoader
 import com.example.footmatch.util.images.SvgLoader.Companion.loadUrl
 import java.text.ParseException
@@ -25,8 +23,8 @@ import java.util.Calendar
 import java.util.Locale
 
 class ListaPartidosAdapter(
-    private var matchList: List<Match> = emptyList(),
-    private val onItemSelected: (Match) -> Unit
+    private var matchList: List<com.example.footmatch.datos.modelo.pojos.partido.Match> = emptyList(),
+    private val onItemSelected: (com.example.footmatch.datos.modelo.pojos.partido.Match) -> Unit
 ) : RecyclerView.Adapter<PartidoViewHolder>() {
 
 
@@ -55,7 +53,7 @@ class ListaPartidosAdapter(
         }
 
         // asignar valores a los componentes
-        fun bindUser(match: Match, listener: (Match) -> Unit) {
+        fun bindUser(match: com.example.footmatch.datos.modelo.pojos.partido.Match, listener: (com.example.footmatch.datos.modelo.pojos.partido.Match) -> Unit) {
             // Si no encontramos el escudo del equipo local, ponemos uno por defecto
             if (match.homeTeam.crest == null) {
                 // cargar imagen local por defecto
@@ -128,7 +126,7 @@ class ListaPartidosAdapter(
             }
 
         }
-        private fun mostrarPartido(match: Match) {
+        private fun mostrarPartido(match: com.example.footmatch.datos.modelo.pojos.partido.Match) {
             // Verificar que el contexto sea el esperado
             val contexto: Context = itemView.context
 
@@ -136,8 +134,12 @@ class ListaPartidosAdapter(
             val partidoIntent = Intent(contexto, MostrarPartido::class.java)
 
             // Pasar los datos necesarios a través de Intent
-            partidoIntent.putExtra(MainRecycler.PARTIDO_SELECCIONADO, BuscadorId(match.id, match.utcDate,
-                match.homeTeam.id, match.awayTeam.id))
+            partidoIntent.putExtra(MainRecycler.PARTIDO_SELECCIONADO,
+                com.example.footmatch.datos.modelo.BuscadorId(
+                    match.id, match.utcDate,
+                    match.homeTeam.id, match.awayTeam.id
+                )
+            )
 
             // Iniciar la actividad
             contexto.startActivity(partidoIntent)
@@ -147,7 +149,7 @@ class ListaPartidosAdapter(
    * Notificamos un cambio en la lista de partidos
     */
    @SuppressLint("NotifyDataSetChanged")
-   fun update(listaPartidos:List<Match>){
+   fun update(listaPartidos:List<com.example.footmatch.datos.modelo.pojos.partido.Match>){
         this.matchList = listaPartidos
        // Cambiamos la totalidad de la lista
        notifyDataSetChanged()

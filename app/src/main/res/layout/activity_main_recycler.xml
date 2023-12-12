@@ -10,7 +10,7 @@
         android:id="@+id/linearLayoutLigas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerViewPartidos"
+        app:layout_constraintBottom_toTopOf="@+id/nav_view_matches_dates"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">

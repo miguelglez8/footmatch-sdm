@@ -11,8 +11,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.footmatch.modelo.pojos.plantilla.SquadResult
-import com.example.footmatch.util.api.RetrofitClient
+import com.example.footmatch.datos.modelo.pojos.plantilla.SquadResult
+import com.example.footmatch.datos.api.RetrofitClient
 import com.example.footmatch.util.images.SvgLoader.Companion.loadUrl
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.Dispatchers
@@ -22,7 +22,7 @@ import kotlinx.coroutines.withContext
 
 class PlantillaActivity : AppCompatActivity() {
     var equipo : String = ""
-    var plantilla : SquadResult? = null
+    var plantilla : com.example.footmatch.datos.modelo.pojos.plantilla.SquadResult? = null
     var plantillaView : RecyclerView? = null
     var pAdapter : PlantillaAdapter? = null
     private lateinit var navView : BottomNavigationView
