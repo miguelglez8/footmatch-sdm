@@ -51,7 +51,6 @@ class ClasificacionActivity : AppCompatActivity() {
         navView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
-                    // TODO MARCOS
                     //val intent = Intent(this@ClasificacionActivity, MainRecycler::class.java)
                     //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
                     //startActivity(intent)

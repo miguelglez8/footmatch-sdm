@@ -26,6 +26,7 @@
         <!-- Datos de la Clasificación -->
         <!-- Puedes repetir este bloque para cada equipo -->
         <TableRow
+            android:layout_width="match_parent"
             android:paddingLeft="0dp"
             android:paddingRight="0dp">
 
@@ -33,66 +34,58 @@
                 android:id="@+id/posClasificacion"
                 style="@style/CellStyle2"
                 android:layout_width="44dp"
-                android:background="@drawable/cell_border"
-                 />
+                android:background="@drawable/cell_border" />
 
             <!-- ImageView para el equipo -->
             <ImageView
                 android:id="@+id/logoEquipo"
-                android:background="@drawable/cell_border"
-                android:layout_width="66dp"
                 style="@style/CellStyle3"
+                android:layout_width="66dp"
                 android:layout_height="match_parent"
+                android:background="@drawable/cell_border"
                 android:contentDescription="Logo del equipo" />
 
             <TextView
                 android:id="@+id/partidosGanados"
-                android:layout_width="35dp"
                 style="@style/CellStyle2"
-                android:background="@drawable/cell_border"
-                 />
+                android:layout_width="35dp"
+                android:background="@drawable/cell_border" />
 
             <TextView
                 android:id="@+id/partidosEmpatados"
                 style="@style/CellStyle2"
                 android:layout_width="35dp"
-                android:background="@drawable/cell_border"
-                 />
+                android:background="@drawable/cell_border" />
 
             <TextView
                 android:id="@+id/partidosPerdidos"
                 style="@style/CellStyle2"
                 android:layout_width="35dp"
-                android:background="@drawable/cell_border"
-                />
+                android:background="@drawable/cell_border" />
 
             <TextView
                 android:id="@+id/golesFavor"
                 style="@style/CellStyle2"
                 android:layout_width="35dp"
-                android:background="@drawable/cell_border"
-                />
+                android:background="@drawable/cell_border" />
 
             <TextView
                 android:id="@+id/golesContra"
                 style="@style/CellStyle2"
                 android:layout_width="35dp"
-                android:background="@drawable/cell_border"
-                />
+                android:background="@drawable/cell_border" />
 
             <TextView
                 android:id="@+id/diferenciaGoles"
                 style="@style/CellStyle2"
                 android:layout_width="36dp"
-                android:background="@drawable/cell_border"
-                />
+                android:background="@drawable/cell_border" />
 
             <TextView
                 android:id="@+id/puntosEquipo"
                 style="@style/CellStyle2"
-                android:layout_width="35dp"
-                android:background="@drawable/cell_border"
-                />
+                android:layout_width="34dp"
+                android:background="@drawable/cell_border" />
         </TableRow>
 
 

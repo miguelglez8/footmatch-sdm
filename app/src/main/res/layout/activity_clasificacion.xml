@@ -121,7 +121,7 @@
 
             <TextView
                 style="@style/HeaderCellStyle"
-                android:layout_width="35dp"
+                android:layout_width="34dp"
                 android:background="@drawable/cell_border1"
                 android:text="PT" />
         </TableRow>

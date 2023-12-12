@@ -105,13 +105,15 @@ class PlantillaActivity : AppCompatActivity() {
                     }else{
                         escudoCompeticion.load(plantilla!!.runningCompetitions[0].emblem)
                     }
-                }
-                if (plantilla!!.runningCompetitions.size >= 2) {
-                    val isSvg = plantilla!!.runningCompetitions[1].emblem.endsWith("svg",ignoreCase = true)
-                    if (isSvg){
-                        escudoCompeticion2.loadUrl(plantilla!!.runningCompetitions[1].emblem)
-                    }else{
-                        escudoCompeticion2.load(plantilla!!.runningCompetitions[1].emblem)
+                    if (plantilla!!.runningCompetitions.size >= 2) {
+                        if (plantilla!!.runningCompetitions[1].emblem != null) {
+                            val isSvg = plantilla!!.runningCompetitions[1].emblem.endsWith("svg",ignoreCase = true)
+                            if (isSvg){
+                                escudoCompeticion2.loadUrl(plantilla!!.runningCompetitions[1].emblem)
+                            }else{
+                                escudoCompeticion2.load(plantilla!!.runningCompetitions[1].emblem)
+                            }
+                        }
                     }
                 }
                 if (plantilla!!.address==null)
@@ -149,7 +151,6 @@ class PlantillaActivity : AppCompatActivity() {
             }
         }
     }
-
     private fun formatDate(utcDate: String): String? {
         // Formato de entrada: "yyyy-MM-ddTHH:mm:ss"
         val inputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
