@@ -7,17 +7,21 @@ import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.footmatch.modelo.pojos.partido.Match
+import com.example.footmatch.util.api.ApiLimitExceededException
 import com.example.footmatch.util.api.RetrofitClient
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import okhttp3.Response
+import java.io.IOException
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -179,6 +183,41 @@ class MainRecycler : AppCompatActivity()  {
 
 
 
+    private fun deshabilitaElementos(){
+        // Deshabilitamos el swipe refresh layout
+        swipeRefreshLayout.isEnabled = false
+        // Deshabilitamos la barra de navegacion de fechas
+        navViewDates.isEnabled = false
+        // Deshabilitamos la barra de navegacion inferior
+        navView.menu.findItem(R.id.nav_home).isEnabled = false
+        // Deshabilitamos los botones de las ligas
+        val laLiga = findViewById<View>(R.id.ligaEASports) as ImageButton
+        laLiga.isEnabled = false
+        val premier = findViewById<View>(R.id.ligaPremier) as ImageButton
+        premier.isEnabled = false
+        val bundes = findViewById<View>(R.id.ligaBundesliga) as ImageButton
+        bundes.isEnabled = false
+        val serieA = findViewById<View>(R.id.ligaSerieA) as ImageButton
+        serieA.isEnabled = false
+    }
+
+    private fun habilitaElementos(){
+        // Habilitamos el swipe refresh layout
+        swipeRefreshLayout.isEnabled = true
+        // Habilitamos la barra de navegacion de fechas
+        navViewDates.isEnabled = true
+        // Habilitamos la barra de navegacion inferior
+        navView.menu.findItem(R.id.nav_home).isEnabled = true
+        // Habilitamos los botones de las ligas
+        val laLiga = findViewById<View>(R.id.ligaEASports) as ImageButton
+        laLiga.isEnabled = true
+        val premier = findViewById<View>(R.id.ligaPremier) as ImageButton
+        premier.isEnabled = true
+        val bundes = findViewById<View>(R.id.ligaBundesliga) as ImageButton
+        bundes.isEnabled = true
+        val serieA = findViewById<View>(R.id.ligaSerieA) as ImageButton
+        serieA.isEnabled = true
+    }
 
     /*
     Carga todos los partidos entre las dos fechas que se le pasan por parametro
@@ -186,21 +225,45 @@ class MainRecycler : AppCompatActivity()  {
     private fun cargarPartidos(dateFrom: String, dateTo: String) {
         // Llamada a la API empleando corrutinas de kotlin
         val apiService = RetrofitClient.makeClient()
-        lifecycleScope.launch(Dispatchers.IO){
-           val newMatchList = apiService.getMatchesBetweenDates(dateFrom, dateTo).matches
-            Log.d("Carga partidos", "primero cargamos partidos")
-            // Cambiamos al hilo principal para actualizar los datos
-            withContext(Dispatchers.Main)
-            {
-                // Actualizamos la lista de partidos
-                matchList = newMatchList.toMutableList()
-                Log.d("Actualizamos partidos", "despues actualizamos partidos " + matchList.size)
-                // Notificamos al adapter
-                listaPartidosAdapter.update(matchList)
-            }
-        }
 
+        lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                val newMatchList = apiService.getMatchesBetweenDates(dateFrom, dateTo).matches
+
+                // Cambiamos al hilo principal para actualizar los datos
+                withContext(Dispatchers.Main)
+                {
+                    // Actualizamos la lista de partidos
+                    matchList = newMatchList.toMutableList()
+                    // Notificamos al adapter
+                    listaPartidosAdapter.update(matchList)
+                }
+            } catch (e: ApiLimitExceededException) {
+                Log.e("API Request", "ApiLimitExceededException: ${e.message}", e)
+                // Si se supera el limite de peticiones, mostramos un toast con el mensaje de error
+                // y deshabilitamos los elementos de la pantalla
+                withContext(Dispatchers.Main){
+                    Toast.makeText(
+                        this@MainRecycler,
+                        "Demasiadas requests a la API, espere " + e.timeToWait,
+                        Toast.LENGTH_LONG
+                    ).show()
+                    deshabilitaElementos()
+                    // Creamos un handler para habilitar los elementos de la pantalla cuando pase el tiempo
+                    val handler = Handler()
+                    handler.postDelayed({
+                        habilitaElementos()
+                    }, e.timeToWait)
+                }
+            } catch (e:Exception){
+                Log.e("API Request", "Exception: ${e.message}", e)
+            }
+
+        }
     }
+
+
+
 
     fun cargarClasificacion(liga: String?) {
         var idLogo = R.drawable.liga_easports

@@ -42,12 +42,15 @@ object RetrofitClient {
         fun makeClient(): FootballApi {
             // Creamos el interceptor que añade el API key
             val keyInterceptor = ApiKeyInterceptor()
+            // Creamos el interceptor que limita las peticiones
+            val requestsLimiterInterceptor = RequestsLimiterInterceptor()
             val logging = HttpLoggingInterceptor()
             logging.setLevel(HttpLoggingInterceptor.Level.BODY)
             val httpClient: OkHttpClient.Builder = OkHttpClient.Builder()
             // Establecemos los interceptores en el cliente HTTP
             httpClient.addInterceptor(keyInterceptor)
             httpClient.addInterceptor(logging)
+            httpClient.addInterceptor(requestsLimiterInterceptor)
 
             return Retrofit.Builder()
                 .baseUrl("https://api.football-data.org/v4/")
