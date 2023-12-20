@@ -183,42 +183,6 @@ class MainRecycler : AppCompatActivity()  {
 
 
 
-    private fun deshabilitaElementos(){
-        // Deshabilitamos el swipe refresh layout
-        swipeRefreshLayout.isEnabled = false
-        // Deshabilitamos la barra de navegacion de fechas
-        navViewDates.isEnabled = false
-        // Deshabilitamos la barra de navegacion inferior
-        navView.menu.findItem(R.id.nav_home).isEnabled = false
-        // Deshabilitamos los botones de las ligas
-        val laLiga = findViewById<View>(R.id.ligaEASports) as ImageButton
-        laLiga.isEnabled = false
-        val premier = findViewById<View>(R.id.ligaPremier) as ImageButton
-        premier.isEnabled = false
-        val bundes = findViewById<View>(R.id.ligaBundesliga) as ImageButton
-        bundes.isEnabled = false
-        val serieA = findViewById<View>(R.id.ligaSerieA) as ImageButton
-        serieA.isEnabled = false
-    }
-
-    private fun habilitaElementos(){
-        // Habilitamos el swipe refresh layout
-        swipeRefreshLayout.isEnabled = true
-        // Habilitamos la barra de navegacion de fechas
-        navViewDates.isEnabled = true
-        // Habilitamos la barra de navegacion inferior
-        navView.menu.findItem(R.id.nav_home).isEnabled = true
-        // Habilitamos los botones de las ligas
-        val laLiga = findViewById<View>(R.id.ligaEASports) as ImageButton
-        laLiga.isEnabled = true
-        val premier = findViewById<View>(R.id.ligaPremier) as ImageButton
-        premier.isEnabled = true
-        val bundes = findViewById<View>(R.id.ligaBundesliga) as ImageButton
-        bundes.isEnabled = true
-        val serieA = findViewById<View>(R.id.ligaSerieA) as ImageButton
-        serieA.isEnabled = true
-    }
-
     /*
     Carga todos los partidos entre las dos fechas que se le pasan por parametro
      */
@@ -239,21 +203,15 @@ class MainRecycler : AppCompatActivity()  {
                     listaPartidosAdapter.update(matchList)
                 }
             } catch (e: ApiLimitExceededException) {
-                Log.e("API Request", "ApiLimitExceededException: ${e.message}", e)
+                //Log.e("API Request", "ApiLimitExceededException: ${e.message}", e)
                 // Si se supera el limite de peticiones, mostramos un toast con el mensaje de error
                 // y deshabilitamos los elementos de la pantalla
                 withContext(Dispatchers.Main){
                     Toast.makeText(
                         this@MainRecycler,
-                        "Demasiadas requests a la API, espere " + e.timeToWait,
+                        "Demasiadas requests a la API, espere " + e.timeToWait + " segundos",
                         Toast.LENGTH_LONG
                     ).show()
-                    deshabilitaElementos()
-                    // Creamos un handler para habilitar los elementos de la pantalla cuando pase el tiempo
-                    val handler = Handler()
-                    handler.postDelayed({
-                        habilitaElementos()
-                    }, e.timeToWait)
                 }
             } catch (e:Exception){
                 Log.e("API Request", "Exception: ${e.message}", e)
