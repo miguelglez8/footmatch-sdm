@@ -3,15 +3,18 @@ package com.example.footmatch
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.footmatch.modelo.pojos.plantilla.SquadResult
+import com.example.footmatch.util.api.ApiLimitExceededException
 import com.example.footmatch.util.api.RetrofitClient
 import com.example.footmatch.util.images.SvgLoader.Companion.loadUrl
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -63,91 +66,115 @@ class PlantillaActivity : AppCompatActivity() {
     private fun cargarDatosClub(id: String) {
         val apiService = RetrofitClient.makeClient()
         lifecycleScope.launch(Dispatchers.IO){
-            plantilla = apiService.getSquadFromId(id)
-            withContext(Dispatchers.Main)
-            {
-                //Datos del equipo
-                val nombreEquipo = findViewById<View>(R.id.nombreEquipo) as TextView
-                val fundadoEn = findViewById<View>(R.id.dataFundado) as TextView
-                val direccion = findViewById<View>(R.id.dataDireccion) as TextView
-                val escudoEquipo = findViewById<View>(R.id.escudoEquipo) as ImageView
-                val escudoBandera = findViewById<View>(R.id.escudoEquipo2) as ImageView
-                val escudoCompeticion = findViewById<View>(R.id.escudoCompeticion) as ImageView
-                val escudoCompeticion2 = findViewById<View>(R.id.escudoCompeticion2) as ImageView
-                val estadio = findViewById<View>(R.id.dataEstadioP) as TextView
+            try {
+                plantilla = apiService.getSquadFromId(id)
+                withContext(Dispatchers.Main)
+                {
+                    //Datos del equipo
+                    val nombreEquipo = findViewById<View>(R.id.nombreEquipo) as TextView
+                    val fundadoEn = findViewById<View>(R.id.dataFundado) as TextView
+                    val direccion = findViewById<View>(R.id.dataDireccion) as TextView
+                    val escudoEquipo = findViewById<View>(R.id.escudoEquipo) as ImageView
+                    val escudoBandera = findViewById<View>(R.id.escudoEquipo2) as ImageView
+                    val escudoCompeticion = findViewById<View>(R.id.escudoCompeticion) as ImageView
+                    val escudoCompeticion2 =
+                        findViewById<View>(R.id.escudoCompeticion2) as ImageView
+                    val estadio = findViewById<View>(R.id.dataEstadioP) as TextView
 
-                if (plantilla!!.crest == null) {
-                    // cargar imagen visitante por defecto
-                    escudoEquipo.load(R.string.teamDefaultLogo.toString())
-                }else{
-                    val isSvg = plantilla!!.crest.endsWith("svg",ignoreCase = true)
-                    if (isSvg){
-                        escudoEquipo.loadUrl(plantilla!!.crest)
-                    }else{
-                        escudoEquipo.load(plantilla!!.crest)
+                    if (plantilla!!.crest == null) {
+                        // cargar imagen visitante por defecto
+                        escudoEquipo.load(R.string.teamDefaultLogo.toString())
+                    } else {
+                        val isSvg = plantilla!!.crest.endsWith("svg", ignoreCase = true)
+                        if (isSvg) {
+                            escudoEquipo.loadUrl(plantilla!!.crest)
+                        } else {
+                            escudoEquipo.load(plantilla!!.crest)
+                        }
                     }
-                }
-                if (plantilla!!.area.flag == null) {
-                    // cargar imagen visitante por defecto
-                    escudoBandera.load(R.string.teamDefaultLogo.toString())
-                }else{
-                    val isSvg = plantilla!!.area.flag.endsWith("svg",ignoreCase = true)
-                    if (isSvg){
-                        escudoBandera.loadUrl(plantilla!!.area.flag)
-                    }else{
-                        escudoBandera.load(plantilla!!.area.flag)
+                    if (plantilla!!.area.flag == null) {
+                        // cargar imagen visitante por defecto
+                        escudoBandera.load(R.string.teamDefaultLogo.toString())
+                    } else {
+                        val isSvg = plantilla!!.area.flag.endsWith("svg", ignoreCase = true)
+                        if (isSvg) {
+                            escudoBandera.loadUrl(plantilla!!.area.flag)
+                        } else {
+                            escudoBandera.load(plantilla!!.area.flag)
+                        }
                     }
-                }
-                if (plantilla!!.runningCompetitions.isNotEmpty()) {
-                    val isSvg = plantilla!!.runningCompetitions[0].emblem.endsWith("svg",ignoreCase = true)
-                    if (isSvg){
-                        escudoCompeticion.loadUrl(plantilla!!.runningCompetitions[0].emblem)
-                    }else{
-                        escudoCompeticion.load(plantilla!!.runningCompetitions[0].emblem)
-                    }
-                    if (plantilla!!.runningCompetitions.size >= 2) {
-                        if (plantilla!!.runningCompetitions[1].emblem != null) {
-                            val isSvg = plantilla!!.runningCompetitions[1].emblem.endsWith("svg",ignoreCase = true)
-                            if (isSvg){
-                                escudoCompeticion2.loadUrl(plantilla!!.runningCompetitions[1].emblem)
-                            }else{
-                                escudoCompeticion2.load(plantilla!!.runningCompetitions[1].emblem)
+                    if (plantilla!!.runningCompetitions.isNotEmpty()) {
+                        val isSvg = plantilla!!.runningCompetitions[0].emblem.endsWith(
+                            "svg",
+                            ignoreCase = true
+                        )
+                        if (isSvg) {
+                            escudoCompeticion.loadUrl(plantilla!!.runningCompetitions[0].emblem)
+                        } else {
+                            escudoCompeticion.load(plantilla!!.runningCompetitions[0].emblem)
+                        }
+                        if (plantilla!!.runningCompetitions.size >= 2) {
+                            if (plantilla!!.runningCompetitions[1].emblem != null) {
+                                val isSvg = plantilla!!.runningCompetitions[1].emblem.endsWith(
+                                    "svg",
+                                    ignoreCase = true
+                                )
+                                if (isSvg) {
+                                    escudoCompeticion2.loadUrl(plantilla!!.runningCompetitions[1].emblem)
+                                } else {
+                                    escudoCompeticion2.load(plantilla!!.runningCompetitions[1].emblem)
+                                }
                             }
                         }
                     }
-                }
-                if (plantilla!!.address==null)
-                    direccion.text = "No disponible"
-                else
-                    direccion.text = plantilla!!.address.split(",")[0]
+                    if (plantilla!!.address == null)
+                        direccion.text = "No disponible"
+                    else
+                        direccion.text = plantilla!!.address.split(",")[0]
 
-                nombreEquipo.text = plantilla!!.name
-                estadio.text = plantilla!!.venue
-                // Establece un ClickListener al TextView
-                if (plantilla!!.website != null) {
-                    nombreEquipo.setOnClickListener { // Define la URL que deseas abrir
-                        val url = plantilla!!.website
+                    nombreEquipo.text = plantilla!!.name
+                    estadio.text = plantilla!!.venue
+                    // Establece un ClickListener al TextView
+                    if (plantilla!!.website != null) {
+                        nombreEquipo.setOnClickListener { // Define la URL que deseas abrir
+                            val url = plantilla!!.website
 
-                        // Crea un Intent con la acción ACTION_VIEW y la URI correspondiente
-                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                            // Crea un Intent con la acción ACTION_VIEW y la URI correspondiente
+                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
 
-                        // Inicia la actividad del navegador web
-                        startActivity(intent)
+                            // Inicia la actividad del navegador web
+                            startActivity(intent)
+                        }
                     }
-                }
 
-                fundadoEn.text = plantilla!!.founded.toString()
-                //Cargar el entrenador
-                val entrenadorNombre = findViewById<View>(R.id.dataEntrenador) as TextView
-                entrenadorNombre.text = plantilla!!.coach.name
-                val nacionalidadEntrenador = findViewById<View>(R.id.dataNacionalidadEntrenador) as TextView
-                nacionalidadEntrenador.text = plantilla!!.coach.nationality
-                val nacimientoEntrenador = findViewById<View>(R.id.dataNacimientoEntrenador)as TextView
-                nacimientoEntrenador.text = formatDate(plantilla!!.coach.dateOfBirth)
-                val jugadores = plantilla!!.squad
-                //Cargar jugadores en el mainRecycler
-                pAdapter = PlantillaAdapter(jugadores)
-                plantillaView!!.adapter = pAdapter
+                    fundadoEn.text = plantilla!!.founded.toString()
+                    //Cargar el entrenador
+                    val entrenadorNombre = findViewById<View>(R.id.dataEntrenador) as TextView
+                    entrenadorNombre.text = plantilla!!.coach.name
+                    val nacionalidadEntrenador =
+                        findViewById<View>(R.id.dataNacionalidadEntrenador) as TextView
+                    nacionalidadEntrenador.text = plantilla!!.coach.nationality
+                    val nacimientoEntrenador =
+                        findViewById<View>(R.id.dataNacimientoEntrenador) as TextView
+                    nacimientoEntrenador.text = formatDate(plantilla!!.coach.dateOfBirth)
+                    val jugadores = plantilla!!.squad
+                    //Cargar jugadores en el mainRecycler
+                    pAdapter = PlantillaAdapter(jugadores)
+                    plantillaView!!.adapter = pAdapter
+                }
+            } catch (e: ApiLimitExceededException) {
+                //Log.e("API Request", "ApiLimitExceededException: ${e.message}", e)
+                // Si se supera el limite de peticiones, mostramos un toast con el mensaje de error
+                // y deshabilitamos los elementos de la pantalla
+                withContext(Dispatchers.Main){
+                    Toast.makeText(
+                        this@PlantillaActivity,
+                        "Demasiadas requests a la API, espere " + e.timeToWait + " segundos",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            } catch (e:Exception){
+                Log.e("API Request", "Exception: ${e.message}", e)
             }
         }
     }

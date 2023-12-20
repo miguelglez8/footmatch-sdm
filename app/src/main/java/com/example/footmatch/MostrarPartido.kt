@@ -10,6 +10,7 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import coil.load
@@ -21,13 +22,17 @@ import com.example.footmatch.modelo.pojos.partido.TeamX
 import com.example.footmatch.ui.AlineacionesFragment
 import com.example.footmatch.ui.ArbitrosFragment
 import com.example.footmatch.ui.EstadisticasFragment
+import com.example.footmatch.util.api.ApiLimitExceededException
 import com.example.footmatch.util.api.RetrofitClient
 import com.example.footmatch.util.images.SvgLoader.Companion.loadUrl
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import okhttp3.internal.http2.StreamResetException
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -158,23 +163,55 @@ class MostrarPartido : AppCompatActivity() {
         // Iniciar ambas llamadas a la API de manera simultánea
         Log.d("Busca el partido", "Inicio de la búsqueda del partido por ID: $id")
         lifecycleScope.launch (Dispatchers.IO) {
-            val  tarea1 = async(Dispatchers.IO){ partido = apiService.getMatch(id)}
-            val  tarea2 = async(Dispatchers.IO){ stats = apiService.getMatchStats(id).aggregates }
-            val  tarea3 = async(Dispatchers.IO){ local = apiService.getTeam(localId!!) }
-            val  tarea4 = async(Dispatchers.IO){ away = apiService.getTeam(awayId!!) }
 
-            tarea1.await()
-            tarea2.await()
-            tarea3.await()
-            tarea4.await()
+                try {
+                    coroutineScope {
+                        val tarea1 = async(Dispatchers.IO) { partido = apiService.getMatch(id) }
+                        val tarea2 =
+                            async(Dispatchers.IO) { stats = apiService.getMatchStats(id).aggregates }
+                        val tarea3 = async(Dispatchers.IO) { local = apiService.getTeam(localId!!) }
+                        val tarea4 = async(Dispatchers.IO) { away = apiService.getTeam(awayId!!) }
 
-            partido?.aggregates = stats!!
-            partido?.homeTeam?.trainer = local?.coach!!.name
-            partido?.awayTeam?.trainer = away?.coach!!.name
+                        tarea1.await()
+                        tarea2.await()
+                        tarea3.await()
+                        tarea4.await()
 
-            withContext(Dispatchers.Main) {
-                mostrarDatos()
-            }
+                        partido?.aggregates = stats!!
+                        partido?.homeTeam?.trainer = local?.coach!!.name
+                        partido?.awayTeam?.trainer = away?.coach!!.name
+
+                        withContext(Dispatchers.Main) {
+                            mostrarDatos()
+                        }
+                    }
+
+
+                } catch (e: Exception) {
+                    when (e) {
+                        is ApiLimitExceededException -> {
+
+                            Log.e("API Request", "API limit exception: ${e.message}", e)
+                            // Si se supera el limite de peticiones, mostramos un toast con el mensaje de error
+                            // y deshabilitamos los elementos de la pantalla
+
+                            withContext(Dispatchers.Main){
+                                Toast.makeText(
+                                    this@MostrarPartido,
+                                    "Demasiadas requests a la API, espere " + e.timeToWait + " segundos",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+                        }
+                        else -> {
+
+                            Log.e("API Request", "Exception: ${e.message}", e)
+                        }
+
+
+                    }
+                }
+
         }
     }
 
@@ -301,7 +338,7 @@ class MostrarPartido : AppCompatActivity() {
             }
 
             /* Haciendo uso del FactoryMethod pasándole todos los parámetros necesarios */
-            /* Argumento solamente necesita.... El argumento de la película */
+
             val estadisticasFragment = EstadisticasFragment.newInstance(
                 partido!!.homeTeam, partido!!.awayTeam, stats
             )
