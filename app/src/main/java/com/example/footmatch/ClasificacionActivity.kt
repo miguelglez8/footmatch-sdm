@@ -2,15 +2,18 @@ package com.example.footmatch
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.footmatch.modelo.pojos.clasificacion.StandingsResult
+import com.example.footmatch.util.api.ApiLimitExceededException
 import com.example.footmatch.util.api.RetrofitClient
 import com.example.footmatch.util.images.SvgLoader.Companion.loadUrl
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -66,40 +69,56 @@ class ClasificacionActivity : AppCompatActivity() {
     private fun cargarClasificacion() {
         val apiService = RetrofitClient.makeClient()
         lifecycleScope.launch(Dispatchers.IO){
-            clasificacion = apiService.getStandingsFromLeague(liga!!)
-            withContext(Dispatchers.Main)
-            {
-                val logoLiga = findViewById<View>(R.id.logoLiga) as ImageView
-                val logoBandera = findViewById<View>(R.id.logoBandera) as ImageView
-                val nombreLiga = findViewById<View>(R.id.nombreLiga) as TextView
-                nombreLiga.text = clasificacion!!.competition.name
-                if (clasificacion!!.competition.emblem == null) {
-                    // cargar imagen visitante por defecto
-                    logoLiga.load(R.string.teamDefaultLogo.toString())
-                }else{
-                    val isSvg = clasificacion!!.competition.emblem.endsWith("svg",ignoreCase = true)
-                    if (isSvg){
-                        logoLiga.loadUrl(clasificacion!!.competition.emblem)
-                    }else{
-                        logoLiga.load(clasificacion!!.competition.emblem)
+            try {
+                clasificacion = apiService.getStandingsFromLeague(liga!!)
+                withContext(Dispatchers.Main)
+                {
+                    val logoLiga = findViewById<View>(R.id.logoLiga) as ImageView
+                    val logoBandera = findViewById<View>(R.id.logoBandera) as ImageView
+                    val nombreLiga = findViewById<View>(R.id.nombreLiga) as TextView
+                    nombreLiga.text = clasificacion!!.competition.name
+                    if (clasificacion!!.competition.emblem == null) {
+                        // cargar imagen visitante por defecto
+                        logoLiga.load(R.string.teamDefaultLogo.toString())
+                    } else {
+                        val isSvg =
+                            clasificacion!!.competition.emblem.endsWith("svg", ignoreCase = true)
+                        if (isSvg) {
+                            logoLiga.loadUrl(clasificacion!!.competition.emblem)
+                        } else {
+                            logoLiga.load(clasificacion!!.competition.emblem)
+                        }
                     }
-                }
-                if (clasificacion!!.area.flag == null) {
-                    // cargar imagen visitante por defecto
-                    logoBandera.load(R.string.teamDefaultLogo.toString())
-                }else{
-                    val isSvg = clasificacion!!.area.flag.endsWith("svg",ignoreCase = true)
-                    if (isSvg){
-                        logoBandera.loadUrl(clasificacion!!.area.flag)
-                    }else{
-                        logoBandera.load(clasificacion!!.area.flag)
+                    if (clasificacion!!.area.flag == null) {
+                        // cargar imagen visitante por defecto
+                        logoBandera.load(R.string.teamDefaultLogo.toString())
+                    } else {
+                        val isSvg = clasificacion!!.area.flag.endsWith("svg", ignoreCase = true)
+                        if (isSvg) {
+                            logoBandera.loadUrl(clasificacion!!.area.flag)
+                        } else {
+                            logoBandera.load(clasificacion!!.area.flag)
+                        }
                     }
+                    // Notificamos al adapter
+                    cAdapter = ClasificacionAdapter(clasificacion!!) {
+                        mostrarEquipo(it)
+                    }
+                    clasificacionView!!.adapter = cAdapter
                 }
-                // Notificamos al adapter
-                cAdapter = ClasificacionAdapter(clasificacion!!) {
-                   mostrarEquipo(it)
+            } catch (e: ApiLimitExceededException) {
+                //Log.e("API Request", "ApiLimitExceededException: ${e.message}", e)
+                // Si se supera el limite de peticiones, mostramos un toast con el mensaje de error
+                // y deshabilitamos los elementos de la pantalla
+                withContext(Dispatchers.Main){
+                    Toast.makeText(
+                        this@ClasificacionActivity,
+                        "Demasiadas requests a la API, espere " + e.timeToWait + " segundos",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
-                clasificacionView!!.adapter = cAdapter
+            } catch (e:Exception){
+                Log.e("API Request", "Exception: ${e.message}", e)
             }
         }
     }
