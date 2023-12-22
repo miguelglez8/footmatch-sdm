@@ -1,9 +1,12 @@
 package com.example.footmatch
 
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TableRow
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -22,7 +25,6 @@ class ClasificacionAdapter(
     }
 
     class ClasificacionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
         private val nombreEquipo: ImageView
         private val puntosEquipo: TextView
         private val posicion: TextView
@@ -82,7 +84,65 @@ class ClasificacionAdapter(
     override fun onBindViewHolder(holder: ClasificacionViewHolder, position: Int) {
         val equipo: Table = equipos.standings[0].table[position]
         holder.bindUser(equipo, onItemSelected)
+
+        val tableRow = holder.itemView.findViewById<TextView>(R.id.posClasificacion)
+
+        // Cambiar el color de fondo del TableRow según la posición
+        when {
+            position <= 3 -> {
+                // Crear un objeto GradientDrawable programáticamente
+                val drawable = GradientDrawable().apply {
+                    shape = GradientDrawable.RECTANGLE
+                    setColor(Color.CYAN)
+                    setStroke(1, Color.BLACK) // Borde negro
+                }
+                // Aplicar el drawable al fondo del TextView
+                tableRow.background = drawable
+            }
+            position == 4 || position == 5 -> {
+                // Crear un objeto GradientDrawable programáticamente
+                val drawable = GradientDrawable().apply {
+                    shape = GradientDrawable.RECTANGLE
+                    setColor(Color.YELLOW)
+                    setStroke(1, Color.BLACK) // Borde negro
+                }
+                // Aplicar el drawable al fondo del TextView
+                tableRow.background = drawable
+            }
+            position >= itemCount - 4 -> {
+                // Crear un objeto GradientDrawable programáticamente
+                val drawable = GradientDrawable().apply {
+                    shape = GradientDrawable.RECTANGLE
+                    setColor(Color.GRAY)
+                    setStroke(1, Color.BLACK) // Borde negro
+                }
+                // Aplicar el drawable al fondo del TextView
+                tableRow.background = drawable
+            }
+            position == 6 -> {
+                // Crear un objeto GradientDrawable programáticamente
+                val drawable = GradientDrawable().apply {
+                    shape = GradientDrawable.RECTANGLE
+                    setColor(Color.RED)
+                    setStroke(1, Color.BLACK) // Borde negro
+                }
+                // Aplicar el drawable al fondo del TextView
+                tableRow.background = drawable
+            }
+            else -> {
+                // Crear un objeto GradientDrawable programáticamente
+                val drawable = GradientDrawable().apply {
+                    shape = GradientDrawable.RECTANGLE
+                    setColor(Color.TRANSPARENT)
+                    setStroke(1, Color.BLACK) // Borde negro
+                }
+                // Aplicar el drawable al fondo del TextView
+                tableRow.background = drawable
+            }
+        }
     }
+
+
 
 
 }

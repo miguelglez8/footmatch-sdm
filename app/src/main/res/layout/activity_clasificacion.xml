@@ -6,383 +6,440 @@
     android:layout_height="match_parent"
     tools:context=".ClasificacionActivity">
 
-    <!-- Encabezado -->
-    <TextView
-        android:id="@+id/nombreLiga"
-        android:layout_width="222dp"
-        android:layout_height="51dp"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.019"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.003"
-        android:padding="16dp"/>
+    <LinearLayout
+        android:id="@+id/linear2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/logoLiga"
-        android:layout_width="44dp"
-        android:layout_height="51dp"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerClasificacion"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.246"
-        app:layout_constraintStart_toEndOf="@+id/nombreLiga"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:srcCompat="@tools:sample/avatars" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.3"
+            android:orientation="horizontal">
 
-    <ImageView
-        android:id="@+id/logoBandera"
-        android:layout_width="44dp"
-        android:layout_height="51dp"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerClasificacion"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.76"
-        app:layout_constraintStart_toEndOf="@+id/nombreLiga"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:srcCompat="@tools:sample/avatars" />
+            <!-- Primer TextView que ocupa la mitad del contenido -->
+            <TextView
+                android:id="@+id/nombreLiga"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-    <!-- Tabla de Clasificación -->
+            <ImageView
+                android:id="@+id/goleadores"
+                android:layout_marginLeft="10dp"
+                style="@style/BlueButtonStyle2" />
+        </LinearLayout>
+        <!-- Primer ImageView que ocupa 1/4 de la pantalla -->
+        <ImageView
+            android:id="@+id/logoLiga"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5" />
 
-    <!-- Aquí está tu LeyendaLayout -->
+        <!-- Segundo ImageView que ocupa 1/4 de la pantalla -->
+        <ImageView
+            android:id="@+id/logoBandera"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5" />
+
+    </LinearLayout>
 
     <TableLayout
         android:id="@+id/tableLayout"
-        android:layout_width="match_parent"
-        android:layout_height="57dp"
-        android:paddingLeft="14dp"
-        android:paddingRight="14dp"
-        android:paddingTop="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="0dp"
         app:layout_constraintBottom_toTopOf="@id/recyclerClasificacion"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toBottomOf="@id/linear2"
+        tools:ignore="NotSibling">
 
         <!-- Encabezado de la Tabla -->
         <TableRow
-            android:paddingLeft="0dp"
-            android:paddingRight="0dp">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp">
 
             <TextView
                 style="@style/HeaderCellStyle"
-                android:layout_width="44dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.3"
                 android:background="@drawable/cell_border1"
                 android:text="POS" />
 
             <TextView
                 style="@style/HeaderCellStyle"
-                android:layout_width="66dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.9"
                 android:background="@drawable/cell_border1"
                 android:text="EQUIPO" />
 
             <TextView
                 style="@style/HeaderCellStyle"
-                android:layout_width="35dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="@drawable/cell_border1"
                 android:text="PG" />
 
             <TextView
                 style="@style/HeaderCellStyle"
-                android:layout_width="35dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="@drawable/cell_border1"
                 android:text="PE" />
 
             <TextView
                 style="@style/HeaderCellStyle"
-                android:layout_width="35dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="@drawable/cell_border1"
                 android:text="PP" />
 
             <TextView
                 style="@style/HeaderCellStyle"
-                android:layout_width="35dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="@drawable/cell_border1"
                 android:text="GF" />
 
             <TextView
                 style="@style/HeaderCellStyle"
-                android:layout_width="35dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="@drawable/cell_border1"
                 android:text="GC" />
 
             <TextView
                 style="@style/HeaderCellStyle"
-                android:layout_width="36dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="@drawable/cell_border1"
                 android:text="DG" />
 
             <TextView
                 style="@style/HeaderCellStyle"
-                android:layout_width="34dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="@drawable/cell_border1"
                 android:text="PT" />
         </TableRow>
     </TableLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <!-- Paleta de colores con rectángulo y texto -->
 
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerClasificacion"
         android:layout_width="match_parent"
-        android:layout_height="282dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/leyendaLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.647" />
-
-    <TextView
-        android:id="@+id/tituloLeyenda"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="LEYENDA"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/bottomNavigationView"
-        app:layout_constraintEnd_toEndOf="@id/recyclerClasificacion"
-        app:layout_constraintHorizontal_bias="0.467"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.612" />
+        android:layout_height="279dp"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintBottom_toTopOf="@id/recyclerClasificacion"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="126dp" />
 
     <LinearLayout
+        android:id="@+id/paletaLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recyclerClasificacion">
+
+        <!-- Champions -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="20dp"
+                android:background="@color/colorCyan" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Champions"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Europa League -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="20dp"
+                android:background="@color/colorAmarillo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Europa"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Conference League -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="20dp"
+                android:background="@color/colorRojo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Conference"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Descenso -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="20dp"
+                android:background="@color/colorGris" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Descenso"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TableLayout
         android:id="@+id/leyendaLayout"
         android:layout_width="match_parent"
-        android:layout_height="205dp"
-        android:layout_marginTop="0dp"
-        android:orientation="vertical"
-        android:padding="16dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tituloLeyenda">
+        app:layout_constraintTop_toBottomOf="@id/paletaLayout">
 
         <!-- Filas de la Leyenda -->
-        <LinearLayout
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:background="@drawable/border"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp">
 
             <TextView
                 android:id="@+id/labelPos"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="POS"
-                android:textAlignment="center"
-                android:textStyle="bold" />
+                style="@style/LeyendaCellStyle"
+                android:text="POS" />
 
             <TextView
                 android:id="@+id/descripcionPos"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="Posición del equipo en la tabla"
-                android:textAlignment="center" />
-        </LinearLayout>
+                style="@style/LeyendaCellStyleWide"
+                android:text="Posición del equipo en la tabla" />
+        </TableRow>
 
-        <LinearLayout
+        <!-- Fila 2: EQUIPO -->
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:background="@drawable/border"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp">
 
             <TextView
                 android:id="@+id/labelEquipo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="EQUIPO"
-                android:textAlignment="center"
-                android:textStyle="bold" />
+                style="@style/LeyendaCellStyle"
+                android:text="EQUIPO" />
 
             <TextView
                 android:id="@+id/descripcionEquipo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="Escudo del equipo de la fila"
-                android:textAlignment="center" />
-        </LinearLayout>
+                style="@style/LeyendaCellStyleWide"
+                android:text="Escudo del equipo de la fila" />
+        </TableRow>
+
 
         <!-- Fila 3: PG (Partidos Ganados) -->
-        <LinearLayout
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:background="@drawable/border"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp">
 
             <TextView
                 android:id="@+id/labelPG"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="PG"
-                android:textAlignment="center"
-                android:textStyle="bold" />
+                style="@style/LeyendaCellStyle"
+                android:text="PG" />
 
             <TextView
                 android:id="@+id/descripcionPG"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="Número de partidos ganados"
-                android:textAlignment="center" />
-        </LinearLayout>
+                style="@style/LeyendaCellStyleWide"
+                android:text="Número de partidos ganados" />
+        </TableRow>
 
         <!-- Fila 4: PE (Partidos Empatados) -->
-        <LinearLayout
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:background="@drawable/border"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp">
 
             <TextView
                 android:id="@+id/labelPE"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="PE"
-                android:textAlignment="center"
-                android:textStyle="bold" />
+                style="@style/LeyendaCellStyle"
+                android:text="PE" />
 
             <TextView
                 android:id="@+id/descripcionPE"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="Número de partidos empatados"
-                android:textAlignment="center" />
-        </LinearLayout>
+                style="@style/LeyendaCellStyleWide"
+                android:text="Número de partidos empatados" />
+        </TableRow>
 
         <!-- Fila 5: PP (Partidos Perdidos) -->
-        <LinearLayout
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:background="@drawable/border"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp">
 
             <TextView
                 android:id="@+id/labelPP"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="PP"
-                android:textAlignment="center"
-                android:textStyle="bold" />
+                style="@style/LeyendaCellStyle"
+                android:text="PP" />
 
             <TextView
                 android:id="@+id/descripcionPP"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="Número de partidos perdidos"
-                android:textAlignment="center" />
-        </LinearLayout>
+                style="@style/LeyendaCellStyleWide"
+                android:text="Número de partidos perdidos" />
+        </TableRow>
 
         <!-- Fila 6: GF (Goles a Favor) -->
-        <LinearLayout
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:background="@drawable/border"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp">
 
             <TextView
                 android:id="@+id/labelGF"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="GF"
-                android:textAlignment="center"
-                android:textStyle="bold" />
+                style="@style/LeyendaCellStyle"
+                android:text="GF" />
 
             <TextView
                 android:id="@+id/descripcionGF"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="Goles que el equipo ha marcado"
-                android:textAlignment="center" />
-        </LinearLayout>
+                style="@style/LeyendaCellStyleWide"
+                android:text="Goles que el equipo ha marcado" />
+        </TableRow>
 
         <!-- Fila 7: GC (Goles en Contra) -->
-        <LinearLayout
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:background="@drawable/border"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp">
 
             <TextView
                 android:id="@+id/labelGC"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="GC"
-                android:textAlignment="center"
-                android:textStyle="bold" />
+                style="@style/LeyendaCellStyle"
+                android:text="GC" />
 
             <TextView
                 android:id="@+id/descripcionGC"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="Goles que el equipo ha recibido"
-                android:textAlignment="center" />
-        </LinearLayout>
+                style="@style/LeyendaCellStyleWide"
+                android:text="Goles que el equipo ha recibido" />
+        </TableRow>
 
         <!-- Fila 8: DG (Diferencia de Goles) -->
-        <LinearLayout
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:background="@drawable/border"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp">
 
             <TextView
                 android:id="@+id/labelDG"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="DG"
-                android:textAlignment="center"
-                android:textStyle="bold" />
+                style="@style/LeyendaCellStyle"
+                android:text="DG" />
 
             <TextView
                 android:id="@+id/descripcionDG"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="Diferencia entre GF y GC"
-                android:textAlignment="center" />
-        </LinearLayout>
+                style="@style/LeyendaCellStyleWide"
+                android:text="Diferencia entre GF y GC" />
+        </TableRow>
 
         <!-- Fila 9: PT (Puntos) -->
-        <LinearLayout
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:background="@drawable/border"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp">
 
             <TextView
                 android:id="@+id/labelPT"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="PT"
-                android:textAlignment="center"
-                android:textStyle="bold" />
+                style="@style/LeyendaCellStyle"
+                android:text="PT" />
 
             <TextView
                 android:id="@+id/descripcionPT"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="Puntos acumulados por el equipo"
-                android:textAlignment="center" />
-        </LinearLayout>
+                style="@style/LeyendaCellStyleWide"
+                android:text="Puntos acumulados por el equipo" />
+        </TableRow>
 
-    </LinearLayout>
+
+    </TableLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"

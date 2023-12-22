@@ -3,6 +3,7 @@ package com.example.footmatch.util.api
 import com.example.footmatch.modelo.pojos.partido.MatchToShow
 import com.example.footmatch.modelo.pojos.partido.MatchesBetweenDatesResult
 import com.example.footmatch.modelo.pojos.clasificacion.StandingsResult
+import com.example.footmatch.modelo.pojos.goleadores.Scorers
 import com.example.footmatch.modelo.pojos.plantilla.SquadResult
 import com.example.footmatch.modelo.pojos.partido.Stats
 import com.example.footmatch.modelo.pojos.partido.TeamX
@@ -35,6 +36,9 @@ interface FootballApi {
     suspend fun getMatchStats(@Path("matchId") matchId: Int): Stats
     @GET("teams/{teamId}")
     suspend fun getTeam(@Path("teamId") matchId: Int): TeamX
+
+    @GET("competitions/{code}/scorers")
+    suspend fun getScorers(@Path("code") competitionId: String): Scorers
 
 }
 

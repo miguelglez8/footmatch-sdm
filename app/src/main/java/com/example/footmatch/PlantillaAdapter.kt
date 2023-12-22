@@ -21,8 +21,8 @@ class PlantillaAdapter (
         private val dataNacionalidadJugador : TextView
         private val dataNacimientoJugador : TextView
         init {
-            dataJugador = itemView.findViewById<View>(R.id.dataJugador) as TextView
-            dataPosicionJugador = itemView.findViewById<View>(R.id.dataPosicionJugador) as TextView
+            dataJugador = itemView.findViewById<View>(R.id.nombreJugador) as TextView
+            dataPosicionJugador = itemView.findViewById<View>(R.id.posicionJugador) as TextView
             dataNacionalidadJugador = itemView.findViewById<View>(R.id.dataNacionalidadJugador) as TextView
             dataNacimientoJugador = itemView.findViewById<View>(R.id.dataNacimientoJugador) as TextView
         }
@@ -38,6 +38,7 @@ class PlantillaAdapter (
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlantillaViewHolder {
         val itemView = LayoutInflater.from(parent.context)
                 .inflate(R.layout.linear_jugador_equipo, parent,false)
+        itemView.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         return PlantillaViewHolder(itemView)
     }
 

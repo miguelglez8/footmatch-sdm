@@ -2,10 +2,33 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="colorAccent"/>
+    <color name="colorAmarillo">#FFFF00</color>
+    <color name="colorCyan">#00FFFF</color>
+    <color name="colorGris">#808080</color>
     <color name="colorPrimary">#58BD54</color>
     <color name="colorPrimaryDark"/>
+    <color name="colorRojo">#FF0000</color>
+    <color name="error">#DB0F00</color>
+    <color name="icon_disabled">#D1D1D1</color>
     <color name="link_color">#FF000000</color>
+    <color name="primary">#58BD54</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="recording">#D91221</color>
+    <color name="recording_light">#E48990</color>
+    <color name="secondary">#FFEFD3</color>
+    <color name="success">#8AC926</color>
+    <color name="table_row_background">#DDDDDD</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="tertiary">#FCFCFC</color>
+    <color name="tertiary_light">#EFEFEF</color>
+    <color name="text_color_hint">#343C40</color>
+    <color name="text_gray">#828181</color>
+    <color name="transparent">#00000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="white_dark">#FAFAFA</color>
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
@@ -177,7 +200,7 @@
     <string name="trainer2">Entrenador: Ancelotti</string>
     <string name="var">VAR</string>
     <string name="yesterdayMatches">Ayer</string>
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -192,9 +215,23 @@
         <item name="windowNoTitle">true</item>
     </style>
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
-    <style name="Base.Theme.FootMatch" parent="Theme.Material3.DayNight.NoActionBar">
-        
-        
+    <style name="BlueButtonStyle">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/button_background</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">0.001</item>
+        <item name="android:text">VISITAR WEB</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">false</item>
+
+    </style>
+    <style name="BlueButtonStyle2">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_weight">3</item>
+        <item name="android:textAllCaps">false</item>
     </style>
     <style name="CellStyle">
         <item name="android:background">#90E3A7</item>
@@ -220,11 +257,44 @@
         <item name="android:gravity">center</item>
         <item name="android:padding">8dp</item>
     </style>
+    <style name="LeyendaCellStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="LeyendaCellStyleWide">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">3</item>
+        <item name="android:textAlignment">center</item>
+    </style>
     <style name="LinkTextView">
         <item name="android:textColor">@color/link_color</item>
         <item name="android:textStyle">bold</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
     </style>
-    <style name="Theme.FootMatch" parent="Base.Theme.FootMatch"/>
+    <style name="RobotoTextViewStyle" parent="android:Widget.TextView">
+    <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+    <style name="Theme.FootMatch" parent="Base.Theme.FootMatch">
+        
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/secondary</item>
+        <item name="colorOnPrimary">@color/primary</item>
+        
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        
+        <item name="android:statusBarColor">@color/primary</item>
+        <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
+        
+        
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowEnterTransition">@android:transition/slide_right</item>
+        <item name="android:windowExitTransition">@android:transition/slide_left</item>
+    </style>
 </resources>

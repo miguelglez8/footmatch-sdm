@@ -7,12 +7,4 @@
         android:enabled="true"
         android:icon="@drawable/inicio_nav"
         android:title="" />
-
-    <!--Añado un item para actualizar la pagina (accesibilidad usuarios no pueden deslizar)
-    <item
-        android:id="@+id/nav_refresh"
-        android:title=""
-        android:icon="@drawable/actualiza_nav"
-        app:showAsAction="never" />
-        -->
 </menu>

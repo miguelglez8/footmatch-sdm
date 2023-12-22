@@ -2,6 +2,7 @@ package com.example.footmatch.modelo.pojos.partido
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class AwayTeam(
     @SerializedName("crest")
@@ -14,4 +15,4 @@ data class AwayTeam(
     val shortName: String,
     @SerializedName("tla")
     val tla: String
-)
+): Serializable

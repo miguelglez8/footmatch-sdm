@@ -5,8 +5,10 @@ import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Button
 import android.widget.FrameLayout
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -27,12 +29,10 @@ import com.example.footmatch.util.api.RetrofitClient
 import com.example.footmatch.util.images.SvgLoader.Companion.loadUrl
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import okhttp3.internal.http2.StreamResetException
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -337,6 +337,17 @@ class MostrarPartido : AppCompatActivity() {
                 }
             }
 
+            // llama a las activities oportunas
+            imagenEquipo1!!.setOnClickListener { // Lógica o método que deseas ejecutar al hacer clic en la imagen
+                mostrarEquipo(partido!!.homeTeam.id.toString())
+            }
+            imagenEquipo2!!.setOnClickListener { // Lógica o método que deseas ejecutar al hacer clic en la imagen
+                mostrarEquipo(partido!!.awayTeam.id.toString())
+            }
+            imagenLiga!!.setOnClickListener {
+                cargarClasificacion(partido!!.competition.code)
+            }
+
             /* Haciendo uso del FactoryMethod pasándole todos los parámetros necesarios */
 
             val estadisticasFragment = EstadisticasFragment.newInstance(
@@ -346,6 +357,18 @@ class MostrarPartido : AppCompatActivity() {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, estadisticasFragment).commit()
         }
+    }
+
+    private fun mostrarEquipo(id:String){
+        val intent = Intent(this,PlantillaActivity::class.java)
+        intent.putExtra(ClasificacionActivity.EQUIPO_SELECCIONADO,id)
+        startActivity(intent)
+    }
+
+    fun cargarClasificacion(code: String?) {
+        val ligaIntent = Intent(this@MostrarPartido, ClasificacionActivity::class.java)
+        ligaIntent.putExtra(MainRecycler.LIGA_CREADA, code)
+        startActivity(ligaIntent)
     }
 
     private fun formatDate(utcDate: String): String? {

@@ -3,18 +3,16 @@ package com.example.footmatch
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.footmatch.modelo.pojos.plantilla.SquadResult
-import com.example.footmatch.util.api.ApiLimitExceededException
 import com.example.footmatch.util.api.RetrofitClient
 import com.example.footmatch.util.images.SvgLoader.Companion.loadUrl
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -24,12 +22,13 @@ import kotlinx.coroutines.withContext
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Locale
-
+import androidx.viewpager2.widget.ViewPager2
+import java.lang.Integer.min
 
 class PlantillaActivity : AppCompatActivity() {
+    private lateinit var dots: Array<ImageView?>
     var equipo : String = ""
     var plantilla : SquadResult? = null
-    var plantillaView : RecyclerView? = null
     var pAdapter : PlantillaAdapter? = null
     private lateinit var navView : BottomNavigationView
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,11 +38,6 @@ class PlantillaActivity : AppCompatActivity() {
         val equipoIntent = intent
         val id = equipoIntent.getStringExtra(ClasificacionActivity.EQUIPO_SELECCIONADO).toString()
 
-        plantillaView = findViewById<View>(R.id.recyclerPlantilla) as RecyclerView
-        plantillaView!!.setHasFixedSize(true)
-
-        val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(applicationContext)
-        plantillaView!!.layoutManager = layoutManager
         cargarDatosClub(id)
         navView = findViewById(R.id.bottomNavigationView)
         cargarMenu()
@@ -66,118 +60,145 @@ class PlantillaActivity : AppCompatActivity() {
     private fun cargarDatosClub(id: String) {
         val apiService = RetrofitClient.makeClient()
         lifecycleScope.launch(Dispatchers.IO){
-            try {
-                plantilla = apiService.getSquadFromId(id)
-                withContext(Dispatchers.Main)
-                {
-                    //Datos del equipo
-                    val nombreEquipo = findViewById<View>(R.id.nombreEquipo) as TextView
-                    val fundadoEn = findViewById<View>(R.id.dataFundado) as TextView
-                    val direccion = findViewById<View>(R.id.dataDireccion) as TextView
-                    val escudoEquipo = findViewById<View>(R.id.escudoEquipo) as ImageView
-                    val escudoBandera = findViewById<View>(R.id.escudoEquipo2) as ImageView
-                    val escudoCompeticion = findViewById<View>(R.id.escudoCompeticion) as ImageView
-                    val escudoCompeticion2 =
-                        findViewById<View>(R.id.escudoCompeticion2) as ImageView
-                    val estadio = findViewById<View>(R.id.dataEstadioP) as TextView
+            plantilla = apiService.getSquadFromId(id)
+            withContext(Dispatchers.Main)
+            {
+                //Datos del equipo
+                val nombreEquipo = findViewById<View>(R.id.nombreEquipo) as TextView
+                val fundadoEn = findViewById<View>(R.id.dataFundado) as TextView
+                val direccion = findViewById<View>(R.id.dataDireccion) as TextView
+                val escudoEquipo = findViewById<View>(R.id.escudoEquipo) as ImageView
+                val escudoBandera = findViewById<View>(R.id.escudoEquipo2) as ImageView
+                val escudoCompeticion = findViewById<View>(R.id.escudoCompeticion) as ImageView
+                val escudoCompeticion2 = findViewById<View>(R.id.escudoCompeticion2) as ImageView
+                val estadio = findViewById<View>(R.id.dataEstadioP) as TextView
+                val boton = findViewById<View>(R.id.button) as Button
 
-                    if (plantilla!!.crest == null) {
-                        // cargar imagen visitante por defecto
-                        escudoEquipo.load(R.string.teamDefaultLogo.toString())
-                    } else {
-                        val isSvg = plantilla!!.crest.endsWith("svg", ignoreCase = true)
-                        if (isSvg) {
-                            escudoEquipo.loadUrl(plantilla!!.crest)
-                        } else {
-                            escudoEquipo.load(plantilla!!.crest)
-                        }
+                if (plantilla!!.crest == null) {
+                    // cargar imagen visitante por defecto
+                    escudoEquipo.load(R.string.teamDefaultLogo.toString())
+                }else{
+                    val isSvg = plantilla!!.crest.endsWith("svg",ignoreCase = true)
+                    if (isSvg){
+                        escudoEquipo.loadUrl(plantilla!!.crest)
+                    }else{
+                        escudoEquipo.load(plantilla!!.crest)
                     }
-                    if (plantilla!!.area.flag == null) {
-                        // cargar imagen visitante por defecto
-                        escudoBandera.load(R.string.teamDefaultLogo.toString())
-                    } else {
-                        val isSvg = plantilla!!.area.flag.endsWith("svg", ignoreCase = true)
-                        if (isSvg) {
-                            escudoBandera.loadUrl(plantilla!!.area.flag)
-                        } else {
-                            escudoBandera.load(plantilla!!.area.flag)
-                        }
+                }
+                if (plantilla!!.area.flag == null) {
+                    // cargar imagen visitante por defecto
+                    escudoBandera.load(R.string.teamDefaultLogo.toString())
+                }else{
+                    val isSvg = plantilla!!.area.flag.endsWith("svg",ignoreCase = true)
+                    if (isSvg){
+                        escudoBandera.loadUrl(plantilla!!.area.flag)
+                    }else{
+                        escudoBandera.load(plantilla!!.area.flag)
                     }
-                    if (plantilla!!.runningCompetitions.isNotEmpty()) {
-                        val isSvg = plantilla!!.runningCompetitions[0].emblem.endsWith(
-                            "svg",
-                            ignoreCase = true
-                        )
-                        if (isSvg) {
-                            escudoCompeticion.loadUrl(plantilla!!.runningCompetitions[0].emblem)
-                        } else {
-                            escudoCompeticion.load(plantilla!!.runningCompetitions[0].emblem)
-                        }
-                        if (plantilla!!.runningCompetitions.size >= 2) {
-                            if (plantilla!!.runningCompetitions[1].emblem != null) {
-                                val isSvg = plantilla!!.runningCompetitions[1].emblem.endsWith(
-                                    "svg",
-                                    ignoreCase = true
-                                )
-                                if (isSvg) {
-                                    escudoCompeticion2.loadUrl(plantilla!!.runningCompetitions[1].emblem)
-                                } else {
-                                    escudoCompeticion2.load(plantilla!!.runningCompetitions[1].emblem)
-                                }
+                }
+                if (plantilla!!.runningCompetitions.isNotEmpty()) {
+                    val isSvg = plantilla!!.runningCompetitions[0].emblem.endsWith("svg",ignoreCase = true)
+                    if (isSvg){
+                        escudoCompeticion.loadUrl(plantilla!!.runningCompetitions[0].emblem)
+                    }else{
+                        escudoCompeticion.load(plantilla!!.runningCompetitions[0].emblem)
+                    }
+                    if (plantilla!!.runningCompetitions.size >= 2) {
+                        if (plantilla!!.runningCompetitions[1].emblem != null) {
+                            val isSvg = plantilla!!.runningCompetitions[1].emblem.endsWith("svg",ignoreCase = true)
+                            if (isSvg){
+                                escudoCompeticion2.loadUrl(plantilla!!.runningCompetitions[1].emblem)
+                            }else{
+                                escudoCompeticion2.load(plantilla!!.runningCompetitions[1].emblem)
                             }
+                        } else {
+                            escudoCompeticion2.load(R.drawable.copa)
                         }
                     }
-                    if (plantilla!!.address == null)
-                        direccion.text = "No disponible"
-                    else
-                        direccion.text = plantilla!!.address.split(",")[0]
+                }
+                if (plantilla!!.address==null)
+                    direccion.text = "No disponible"
+                else
+                    direccion.text = plantilla!!.address.split(",")[0]
 
-                    nombreEquipo.text = plantilla!!.name
-                    estadio.text = plantilla!!.venue
-                    // Establece un ClickListener al TextView
-                    if (plantilla!!.website != null) {
-                        nombreEquipo.setOnClickListener { // Define la URL que deseas abrir
-                            val url = plantilla!!.website
+                nombreEquipo.text = plantilla!!.name
+                estadio.text = plantilla!!.venue
+                if (plantilla!!.website != null) {
+                    boton.setOnClickListener { // Define la URL que deseas abrir
+                        val url = plantilla!!.website
 
-                            // Crea un Intent con la acción ACTION_VIEW y la URI correspondiente
-                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                        // Crea un Intent con la acción ACTION_VIEW y la URI correspondiente
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
 
-                            // Inicia la actividad del navegador web
-                            startActivity(intent)
-                        }
+                        // Inicia la actividad del navegador web
+                        startActivity(intent)
                     }
+                }
 
-                    fundadoEn.text = plantilla!!.founded.toString()
-                    //Cargar el entrenador
-                    val entrenadorNombre = findViewById<View>(R.id.dataEntrenador) as TextView
-                    entrenadorNombre.text = plantilla!!.coach.name
-                    val nacionalidadEntrenador =
-                        findViewById<View>(R.id.dataNacionalidadEntrenador) as TextView
-                    nacionalidadEntrenador.text = plantilla!!.coach.nationality
-                    val nacimientoEntrenador =
-                        findViewById<View>(R.id.dataNacimientoEntrenador) as TextView
-                    nacimientoEntrenador.text = formatDate(plantilla!!.coach.dateOfBirth)
-                    val jugadores = plantilla!!.squad
-                    //Cargar jugadores en el mainRecycler
-                    pAdapter = PlantillaAdapter(jugadores)
-                    plantillaView!!.adapter = pAdapter
+                fundadoEn.text = plantilla!!.founded.toString()
+                //Cargar el entrenador
+                val entrenadorNombre = findViewById<View>(R.id.dataEntrenador) as TextView
+                entrenadorNombre.text = plantilla!!.coach.name
+                val nacionalidadEntrenador = findViewById<View>(R.id.dataNacionalidadEntrenador) as TextView
+                nacionalidadEntrenador.text = plantilla!!.coach.nationality
+                val nacimientoEntrenador = findViewById<View>(R.id.dataNacimientoEntrenador)as TextView
+                nacimientoEntrenador.text = formatDate(plantilla!!.coach.dateOfBirth)
+
+                // carousel
+                val viewPager: ViewPager2 = findViewById(R.id.viewPager)
+                val dotsLayout: LinearLayout = findViewById(R.id.dotsLayout)
+                val playerAdapter = PlantillaAdapter(plantilla!!.squad)
+                viewPager.adapter = playerAdapter
+
+                // Add dots dynamically
+                val dotsCount = playerAdapter.itemCount
+                val maxVisibleDots = 5 // Set the maximum number of visible dots
+
+                val displayDotsCount = min(dotsCount, maxVisibleDots)
+                dots = arrayOfNulls<ImageView>(displayDotsCount)
+
+                for (i in 0 until displayDotsCount) {
+                    dots[i] = ImageView(this@PlantillaActivity)
+                    dots[i]?.setImageDrawable(ContextCompat.getDrawable(this@PlantillaActivity, R.drawable.dot_indicator))
+
+                    val params = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                    ).apply {
+                        setMargins(8, 0, 8, 0)
+                    }
+                    dotsLayout.addView(dots[i], params)
                 }
-            } catch (e: ApiLimitExceededException) {
-                //Log.e("API Request", "ApiLimitExceededException: ${e.message}", e)
-                // Si se supera el limite de peticiones, mostramos un toast con el mensaje de error
-                // y deshabilitamos los elementos de la pantalla
-                withContext(Dispatchers.Main){
-                    Toast.makeText(
-                        this@PlantillaActivity,
-                        "Demasiadas requests a la API, espere " + e.timeToWait + " segundos",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-            } catch (e:Exception){
-                Log.e("API Request", "Exception: ${e.message}", e)
+
+                // ViewPager2 Page Change Callback
+                viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                    override fun onPageSelected(position: Int) {
+                        super.onPageSelected(position)
+                        updateDots(position, maxVisibleDots, dotsCount)
+                    }
+                })
             }
         }
     }
+
+    private fun updateDots(currentPosition: Int, maxVisibleDots: Int, dotsCount: Int) {
+        for (i in dots.indices) {
+            val isLastItem = currentPosition > dotsCount - maxVisibleDots
+            if (i != currentPosition % maxVisibleDots) {
+                dots[i]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_inactive))
+            } else if (isLastItem) {
+                dots[i]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_active))
+                dots[maxVisibleDots-1]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_transparent))
+                break
+            } else {
+                dots[i]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_active))
+            }
+        }
+    }
+
+
+
+
     private fun formatDate(utcDate: String): String? {
         // Formato de entrada: "yyyy-MM-ddTHH:mm:ss"
         val inputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())

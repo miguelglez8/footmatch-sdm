@@ -2,6 +2,7 @@ package com.example.footmatch.modelo.pojos.clasificacion
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Competition(
     @SerializedName("code")
@@ -14,4 +15,4 @@ data class Competition(
     val name: String,
     @SerializedName("type")
     val type: String
-)
+): Serializable

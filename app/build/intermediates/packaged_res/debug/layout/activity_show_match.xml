@@ -166,8 +166,8 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="41dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
         android:background="?android:attr/windowBackground"
@@ -176,27 +176,29 @@
     <include
         layout="@layout/content_scrollingbotonera"
         android:layout_width="match_parent"
-        android:layout_height="405dp"
-        android:layout_marginTop="0dp" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@+id/nav_view"
+        tools:ignore="MissingConstraints"/>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigationView"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:background="@drawable/rounded_corners_navigation"
-            app:itemActiveIndicatorStyle="@style/Theme.Material3.DynamicColors.DayNight"
-            app:itemIconSize="70dp"
-            app:itemTextAppearanceActive="@style/Widget.Material3.TextInputLayout.FilledBox.Dense"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0"
-            app:menu="@menu/navigation_menu" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="60dp"
+        android:background="@drawable/rounded_corners_navigation"
+        app:itemActiveIndicatorStyle="@style/Theme.Material3.DynamicColors.DayNight"
+        app:itemIconSize="70dp"
+        app:itemTextAppearanceActive="@style/Widget.Material3.TextInputLayout.FilledBox.Dense"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:menu="@menu/navigation_menu" />
 
 </LinearLayout>

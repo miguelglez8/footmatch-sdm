@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -50,12 +51,16 @@ public final class LinearClasificationEquipoBinding implements ViewBinding {
   @NonNull
   public final TableLayout tableLayout;
 
+  @NonNull
+  public final TableRow tuTableRow;
+
   private LinearClasificationEquipoBinding(@NonNull TableLayout rootView,
       @NonNull TextView diferenciaGoles, @NonNull TextView golesContra,
       @NonNull TextView golesFavor, @NonNull ImageView logoEquipo,
       @NonNull TextView partidosEmpatados, @NonNull TextView partidosGanados,
       @NonNull TextView partidosPerdidos, @NonNull TextView posClasificacion,
-      @NonNull TextView puntosEquipo, @NonNull TableLayout tableLayout) {
+      @NonNull TextView puntosEquipo, @NonNull TableLayout tableLayout,
+      @NonNull TableRow tuTableRow) {
     this.rootView = rootView;
     this.diferenciaGoles = diferenciaGoles;
     this.golesContra = golesContra;
@@ -67,6 +72,7 @@ public final class LinearClasificationEquipoBinding implements ViewBinding {
     this.posClasificacion = posClasificacion;
     this.puntosEquipo = puntosEquipo;
     this.tableLayout = tableLayout;
+    this.tuTableRow = tuTableRow;
   }
 
   @Override
@@ -156,9 +162,15 @@ public final class LinearClasificationEquipoBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tuTableRow;
+      TableRow tuTableRow = ViewBindings.findChildViewById(rootView, id);
+      if (tuTableRow == null) {
+        break missingId;
+      }
+
       return new LinearClasificationEquipoBinding((TableLayout) rootView, diferenciaGoles,
           golesContra, golesFavor, logoEquipo, partidosEmpatados, partidosGanados, partidosPerdidos,
-          posClasificacion, puntosEquipo, tableLayout);
+          posClasificacion, puntosEquipo, tableLayout, tuTableRow);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

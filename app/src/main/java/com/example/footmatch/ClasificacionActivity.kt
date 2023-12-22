@@ -76,6 +76,10 @@ class ClasificacionActivity : AppCompatActivity() {
                     val logoLiga = findViewById<View>(R.id.logoLiga) as ImageView
                     val logoBandera = findViewById<View>(R.id.logoBandera) as ImageView
                     val nombreLiga = findViewById<View>(R.id.nombreLiga) as TextView
+                    val goleadores = findViewById<ImageView>(R.id.goleadores) as ImageView
+                    goleadores.setOnClickListener {
+                        cargaMaximosGoleadores(clasificacion!!.competition.code)
+                    }
                     nombreLiga.text = clasificacion!!.competition.name
                     if (clasificacion!!.competition.emblem == null) {
                         // cargar imagen visitante por defecto
@@ -100,6 +104,7 @@ class ClasificacionActivity : AppCompatActivity() {
                             logoBandera.load(clasificacion!!.area.flag)
                         }
                     }
+                    goleadores.load(R.drawable.scorers)
                     // Notificamos al adapter
                     cAdapter = ClasificacionAdapter(clasificacion!!) {
                         mostrarEquipo(it)
@@ -123,6 +128,12 @@ class ClasificacionActivity : AppCompatActivity() {
         }
     }
 
+    private fun cargaMaximosGoleadores(code:String){
+        val intent = Intent(this,MostrarGoleadores::class.java)
+        intent.putExtra(LIGA_SELCCIONADA,code)
+        startActivity(intent)
+    }
+
     private fun mostrarEquipo(id:String){
         val intent = Intent(this,PlantillaActivity::class.java)
         intent.putExtra(EQUIPO_SELECCIONADO,id)
@@ -132,6 +143,7 @@ class ClasificacionActivity : AppCompatActivity() {
     companion object {
         // identificador de intent
         const val EQUIPO_SELECCIONADO = "equipo_seleccionado"
+        const val LIGA_SELCCIONADA = "liga_seleccionado"
 
     }
 }

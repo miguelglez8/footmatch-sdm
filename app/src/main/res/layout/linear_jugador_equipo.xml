@@ -17,7 +17,8 @@
         <TableRow>
             <TextView
                 android:id="@+id/infoNombreJugador"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1.2"
                 android:layout_height="wrap_content"
                 style="@style/HeaderCellStyle"
                 android:text="Nombre"
@@ -25,11 +26,11 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
-                android:id="@+id/dataJugador"
+                android:id="@+id/nombreJugador"
                 android:layout_width="0dp"
+                android:layout_weight="2"
                 style="@style/CellStyle"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:background="@drawable/cell_border"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
         </TableRow>
@@ -37,7 +38,8 @@
         <TableRow>
             <TextView
                 android:id="@+id/infoPosicionJugador"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1.2"
                 style="@style/HeaderCellStyle"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_border1"
@@ -45,10 +47,10 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <TextView
-                android:id="@+id/dataPosicionJugador"
+                android:id="@+id/posicionJugador"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 style="@style/CellStyle"
                 android:background="@drawable/cell_border"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -57,7 +59,8 @@
         <TableRow>
             <TextView
                 android:id="@+id/infoNacionalidadJugador"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1.2"
                 android:layout_height="wrap_content"
                 style="@style/HeaderCellStyle"
                 android:text="Nacionalidad"
@@ -70,15 +73,15 @@
                 android:layout_height="wrap_content"
                 style="@style/CellStyle"
                 android:background="@drawable/cell_border"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
         </TableRow>
 
         <TableRow>
             <TextView
                 android:id="@+id/infoNacimientoJugador"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1.2"
                 style="@style/HeaderCellStyle"
                 android:text="Nacimiento"
                 android:background="@drawable/cell_border1"
@@ -89,7 +92,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 style="@style/CellStyle"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:background="@drawable/cell_border"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
         </TableRow>

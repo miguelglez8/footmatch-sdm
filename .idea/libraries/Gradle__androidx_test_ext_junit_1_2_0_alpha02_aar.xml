@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: androidx.test.ext:junit:1.2.0-alpha02@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/80f60c218c1b357c46d13a1a0a497e6b/transformed/jetified-junit-1.2.0-alpha02/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/80f60c218c1b357c46d13a1a0a497e6b/transformed/jetified-junit-1.2.0-alpha02/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.test.ext/junit/1.2.0-alpha02/5544e66d8952e5fe70d0178a5795e5a1de399ce/junit-1.2.0-alpha02-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

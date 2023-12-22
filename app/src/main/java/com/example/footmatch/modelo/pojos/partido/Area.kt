@@ -1,7 +1,5 @@
 package com.example.footmatch.modelo.pojos.partido
 
-
-import android.support.annotation.Nullable
 import com.google.gson.annotations.SerializedName
 
 data class Area(

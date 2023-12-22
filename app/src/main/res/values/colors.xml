@@ -3,7 +3,32 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="colorPrimary">#58BD54</color>
+    <color name="primary">#58BD54</color>
     <color name="colorPrimaryDark"></color>
     <color name="colorAccent"></color>
     <color name="link_color">#FF000000</color>
+    <color name="table_row_background">#DDDDDD</color>
+    <color name="colorCyan">#00FFFF</color> <!-- Para Champions -->
+    <color name="colorAmarillo">#FFFF00</color> <!-- Para Europa League -->
+    <color name="colorRojo">#FF0000</color> <!-- Para Conference League -->
+    <color name="colorGris">#808080</color> <!-- Para Descenso -->
+    <!--  COLOR PALETTE -->
+    <color name="secondary">#FFEFD3</color>
+    <color name="tertiary">#FCFCFC</color>
+    <color name="tertiary_light">#EFEFEF</color>
+    <color name="text_gray">#828181</color>
+    <color name="text_color_hint">#343C40</color>
+    <color name="icon_disabled">#D1D1D1</color>
+    <color name="success">#8AC926</color>
+    <color name="error">#DB0F00</color>
+    <!-- Colores exclusivos para el botón de grabación -->
+    <color name="recording">#D91221</color>
+    <color name="recording_light">#E48990</color>
+    <color name="transparent">#00000000</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="white_dark">#FAFAFA</color>
 </resources>

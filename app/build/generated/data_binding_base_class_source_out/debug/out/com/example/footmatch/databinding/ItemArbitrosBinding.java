@@ -4,7 +4,7 @@ package com.example.footmatch.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,7 +17,7 @@ import java.lang.String;
 
 public final class ItemArbitrosBinding implements ViewBinding {
   @NonNull
-  private final RelativeLayout rootView;
+  private final LinearLayout rootView;
 
   @NonNull
   public final TextView tvArbitroName;
@@ -25,7 +25,7 @@ public final class ItemArbitrosBinding implements ViewBinding {
   @NonNull
   public final TextView tvFunction;
 
-  private ItemArbitrosBinding(@NonNull RelativeLayout rootView, @NonNull TextView tvArbitroName,
+  private ItemArbitrosBinding(@NonNull LinearLayout rootView, @NonNull TextView tvArbitroName,
       @NonNull TextView tvFunction) {
     this.rootView = rootView;
     this.tvArbitroName = tvArbitroName;
@@ -34,7 +34,7 @@ public final class ItemArbitrosBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public RelativeLayout getRoot() {
+  public LinearLayout getRoot() {
     return rootView;
   }
 
@@ -71,7 +71,7 @@ public final class ItemArbitrosBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemArbitrosBinding((RelativeLayout) rootView, tvArbitroName, tvFunction);
+      return new ItemArbitrosBinding((LinearLayout) rootView, tvArbitroName, tvFunction);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

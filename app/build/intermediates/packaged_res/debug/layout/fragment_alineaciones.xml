@@ -26,8 +26,8 @@
         <!-- Imagen del Equipo 1 -->
         <ImageView
             android:id="@+id/imagenEquipo1"
-            android:layout_width="100dp"
-            android:layout_height="100dp" />
+            android:layout_width="200dp"
+            android:layout_height="120dp" />
 
         <TextView
             android:id="@+id/trainer1"
@@ -79,8 +79,8 @@
         <!-- Imagen del Equipo 2 -->
         <ImageView
             android:id="@+id/imagenEquipo2"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="200dp"
+            android:layout_height="120dp"
             />
 
         <TextView
