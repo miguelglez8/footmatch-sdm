@@ -18,9 +18,11 @@
         <!-- Título centrado en la parte superior -->
         <TextView
             android:id="@+id/nombreEquipo"
-            style="@style/LinkTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/style"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:layout_weight="2"
             android:gravity="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -28,6 +30,7 @@
 
         <Button
             android:id="@+id/button"
+            android:layout_marginRight="5dp"
             style="@style/BlueButtonStyle" />
 
     </LinearLayout>
@@ -38,6 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="5dp"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <ImageView

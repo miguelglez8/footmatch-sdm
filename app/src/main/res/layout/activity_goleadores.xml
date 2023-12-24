@@ -26,6 +26,7 @@
         <TextView
             android:id="@+id/titleTextView"
             android:layout_width="0dp"
+            style="@style/style"
             android:layout_height="match_parent"
             android:layout_marginLeft="6dp"
             android:layout_marginRight="6dp"
@@ -94,12 +95,14 @@
 
                             <!-- TextView a la derecha -->
                             <TextView
+                                style="@style/style2"
                                 android:id="@+id/textView1_1"
                                 android:layout_width="0dp"
+                                android:gravity="center"
+                                android:layout_gravity="center"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="6"
                                 android:text="GOLEADORES"
-                                android:textColor="#333"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
@@ -142,12 +145,14 @@
 
                             <!-- TextView a la derecha -->
                             <TextView
+                                style="@style/style2"
                                 android:id="@+id/textView2_1"
                                 android:layout_width="0dp"
+                                android:gravity="center"
+                                android:layout_gravity="center"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="6"
                                 android:text="ASISTENTES"
-                                android:textColor="#333"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
@@ -190,12 +195,14 @@
 
                             <!-- TextView a la derecha -->
                             <TextView
+                                style="@style/style2"
                                 android:id="@+id/textView3_1"
                                 android:layout_width="0dp"
+                                android:gravity="center"
+                                android:layout_gravity="center"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="6"
                                 android:text="GOLES DE PENALTI"
-                                android:textColor="#333"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
