@@ -36,8 +36,8 @@
 
             <ImageView
                 android:id="@+id/goleadores"
-                android:layout_marginLeft="10dp"
-                style="@style/BlueButtonStyle2" />
+                style="@style/BlueButtonStyle2"
+                android:layout_marginLeft="10dp" />
         </LinearLayout>
         <!-- Primer ImageView que ocupa 1/4 de la pantalla -->
         <ImageView
@@ -72,8 +72,9 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingLeft="2dp"
-            android:paddingRight="2dp">
+            android:layout_marginTop="2dp"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp">
 
             <TextView
                 style="@style/HeaderCellStyle"
@@ -262,6 +263,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/paletaLayout">

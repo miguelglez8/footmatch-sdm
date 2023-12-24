@@ -23,8 +23,8 @@
             android:id="@+id/tuTableRow"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingLeft="2dp"
-            android:paddingRight="2dp">
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp">
 
             <TextView
                 android:id="@+id/posClasificacion"

@@ -54,11 +54,9 @@ class ClasificacionActivity : AppCompatActivity() {
         navView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
-                    //val intent = Intent(this@ClasificacionActivity, MainRecycler::class.java)
-                    //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-                    //startActivity(intent)
-                    // De igual forma al pulsa el boton de inicio, volvemos a la activity previa
-                    // sin tener que hacer todas las llamadas a la API de nuevo
+                    val intent = Intent(this@ClasificacionActivity, MainRecycler::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent)
                     finish() // Cierra la instancia actual de la actividad
                 }
             }

@@ -82,8 +82,6 @@ class ListaPartidosAdapter(
                     logoVisitante.load(match.awayTeam.crest)
                 }
             }
-
-
             // cargar nombre equipo local
             nombreLocal.text = match.homeTeam.shortName
             // cargar nombre equipo visitante
@@ -111,6 +109,12 @@ class ListaPartidosAdapter(
                 "FINISHED" -> {
                     estado.text = "FINALIZADO"
                     estado.setBackgroundColor(Color.parseColor("#F80000"))
+                }
+                "POSTPONED" -> {
+                    if (match.score.winner == null) {
+                        estado.text = "CANCELADO"
+                        estado.setBackgroundColor(Color.parseColor("#E2BA1F"))
+                    }
                 }
                 else -> {
                     if (match.score.winner != null) {

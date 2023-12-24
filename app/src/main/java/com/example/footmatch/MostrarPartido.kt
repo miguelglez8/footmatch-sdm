@@ -222,6 +222,8 @@ class MostrarPartido : AppCompatActivity() {
                 estadoPartido?.text="FINALIZADO"
             else if (partido?.status == "TIMED" && partido!!.score.winner != null)
                 estadoPartido?.text="APLAZADO"
+            else if (partido?.status == "POSTPONED" && partido!!.score.winner == null)
+                estadoPartido?.text="CANCELADO"
             else if (partido?.status == "IN_PLAY" || partido?.status == "PAUSED"
                 || partido?.status == "LIVE")
                 estadoPartido?.text="EN JUEGO"
@@ -233,6 +235,11 @@ class MostrarPartido : AppCompatActivity() {
                 }
                 "FINISHED" -> {
                     estadoPartido?.setBackgroundColor(Color.parseColor("#F80000"))
+                }
+                "POSTPONED" -> {
+                    if (partido!!.score.winner == null) {
+                        estadoPartido?.setBackgroundColor(Color.parseColor("#E2BA1F"))
+                    }
                 }
                 else -> {
                     if (partido!!.score.winner != null) {
@@ -251,6 +258,8 @@ class MostrarPartido : AppCompatActivity() {
                 minute!!.text = "EN DIRECTO"
             else if (partido?.status == "TIMED" && partido!!.score.winner != null)
                 minute!!.text = partido!!.minute.toString() + "'" + " (aplazado)"
+            else if (partido?.status == "POSTPONED" && partido!!.score.winner == null)
+                minute!!.text = partido!!.minute.toString() + "'" + " (cancelado)"
             else
                 minute!!.text = partido!!.minute.toString() + "'"
             nombreEquipo1!!.text = partido!!.homeTeam.shortName

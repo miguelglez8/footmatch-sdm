@@ -64,10 +64,16 @@ class ListaJugadoresAdapter(
             // cargar nombre equipo local
             pais.text = jugador.nationality
             // cargar nombre equipo visitante
-            posicion.text = jugador.position
+            if (jugador.position==null || jugador.position=="")
+                posicion.text = "Other"
+            else
+                posicion.text = jugador.position
             // cargar resultado
             val pos = position + 1
-            this.jugador.text = pos.toString() + ". " + jugador.name + " (" + calcularEdad(jugador.dateOfBirth) + ")"
+            if (jugador.dateOfBirth==null)
+                this.jugador.text = pos.toString() + ". " + jugador.name
+            else
+                this.jugador.text = pos.toString() + ". " + jugador.name + " (" + calcularEdad(jugador.dateOfBirth) + ")"
             itemView.setOnClickListener {
 
             }

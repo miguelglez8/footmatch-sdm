@@ -182,22 +182,85 @@ class PlantillaActivity : AppCompatActivity() {
     }
 
     private fun updateDots(currentPosition: Int, maxVisibleDots: Int, dotsCount: Int) {
+        val dif = dotsCount % maxVisibleDots
         for (i in dots.indices) {
             val isLastItem = currentPosition > dotsCount - maxVisibleDots
             if (i != currentPosition % maxVisibleDots) {
                 dots[i]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_inactive))
             } else if (isLastItem) {
-                dots[i]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_active))
-                dots[maxVisibleDots-1]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_transparent))
+                if (dif==4) {
+                    dots[4]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_transparent))
+                    dots[i]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_active))
+                    if (i<=2) {
+                        dots[i+1]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_inactive))                    } else if (i==1) {
+                    }
+                } else if (dif==3) {
+                    if (i>=3) {
+                        dots[i]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_active))
+                    } else {
+                        if (i==1) {
+                            dots[1]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_active))
+                            dots[2]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_inactive))
+                        } else if (i==0) {
+                            dots[0]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_active))
+                            dots[1]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_inactive))
+                        } else {
+                            dots[2]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_active))
+                        }
+                        dots[3]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_transparent))
+                        dots[4]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_transparent))
+                    }
+                } else if (dif==2) {
+                    if (i>=2) {
+                        if (i == 3) {
+                            dots[i]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_active))
+                            dots[i+1]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_inactive))
+                        } else if (i==4) {
+                            dots[i]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_active))
+                            dots[i-1]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_inactive))
+                        }
+                    } else {
+                        dots[i]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_active))
+                        dots[2]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_transparent))
+                        dots[3]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_transparent))
+                        dots[4]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_transparent))
+                        if (i==0) {
+                            dots[1]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_inactive))
+                        } else {
+                            dots[0]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_inactive))
+                        }
+                    }
+                } else if (dif==1) {
+                    if (i>=1) {
+                        if (i==2) {
+                            dots[3]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_inactive))
+                        } else if (i==3) {
+                            dots[4]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_inactive))
+                        }
+                        dots[i]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_active))
+                    } else {
+                        dots[i]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_active))
+                        dots[1]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_transparent))
+                        dots[2]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_transparent))
+                        dots[3]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_transparent))
+                        dots[4]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_transparent))
+                    }
+                } else if (dif==0) {
+                    if (i==3) {
+                        dots[4]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_inactive))
+                    } else if (i==2) {
+                        dots[3]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_inactive))
+                    } else if (i==1) {
+                        dots[2]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_inactive))
+                    }
+                    dots[i]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_active))
+                }
                 break
             } else {
                 dots[i]?.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_active))
             }
         }
     }
-
-
-
 
     private fun formatDate(utcDate: String): String? {
         // Formato de entrada: "yyyy-MM-ddTHH:mm:ss"

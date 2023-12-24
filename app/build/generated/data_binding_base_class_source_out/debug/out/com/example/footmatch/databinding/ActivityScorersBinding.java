@@ -24,9 +24,6 @@ public final class ActivityScorersBinding implements ViewBinding {
   private final NestedScrollView rootView;
 
   @NonNull
-  public final ImageView atras;
-
-  @NonNull
   public final LinearLayout equipo1Layout;
 
   @NonNull
@@ -42,9 +39,6 @@ public final class ActivityScorersBinding implements ViewBinding {
   public final FrameLayout fragmentContainer;
 
   @NonNull
-  public final ImageView headerImageView;
-
-  @NonNull
   public final ImageView imageView11;
 
   @NonNull
@@ -52,9 +46,6 @@ public final class ActivityScorersBinding implements ViewBinding {
 
   @NonNull
   public final ImageView imageView31;
-
-  @NonNull
-  public final LinearLayout layout1;
 
   @NonNull
   public final RecyclerView recyclerViewPartidos1;
@@ -74,37 +65,29 @@ public final class ActivityScorersBinding implements ViewBinding {
   @NonNull
   public final TextView textView31;
 
-  @NonNull
-  public final TextView titleTextView;
-
-  private ActivityScorersBinding(@NonNull NestedScrollView rootView, @NonNull ImageView atras,
+  private ActivityScorersBinding(@NonNull NestedScrollView rootView,
       @NonNull LinearLayout equipo1Layout, @NonNull LinearLayout equipo2Layout,
       @NonNull LinearLayout equipo3Layout, @NonNull NestedScrollView font,
-      @NonNull FrameLayout fragmentContainer, @NonNull ImageView headerImageView,
-      @NonNull ImageView imageView11, @NonNull ImageView imageView21,
-      @NonNull ImageView imageView31, @NonNull LinearLayout layout1,
+      @NonNull FrameLayout fragmentContainer, @NonNull ImageView imageView11,
+      @NonNull ImageView imageView21, @NonNull ImageView imageView31,
       @NonNull RecyclerView recyclerViewPartidos1, @NonNull RecyclerView recyclerViewPartidos2,
       @NonNull RecyclerView recyclerViewPartidos3, @NonNull TextView textView11,
-      @NonNull TextView textView21, @NonNull TextView textView31, @NonNull TextView titleTextView) {
+      @NonNull TextView textView21, @NonNull TextView textView31) {
     this.rootView = rootView;
-    this.atras = atras;
     this.equipo1Layout = equipo1Layout;
     this.equipo2Layout = equipo2Layout;
     this.equipo3Layout = equipo3Layout;
     this.font = font;
     this.fragmentContainer = fragmentContainer;
-    this.headerImageView = headerImageView;
     this.imageView11 = imageView11;
     this.imageView21 = imageView21;
     this.imageView31 = imageView31;
-    this.layout1 = layout1;
     this.recyclerViewPartidos1 = recyclerViewPartidos1;
     this.recyclerViewPartidos2 = recyclerViewPartidos2;
     this.recyclerViewPartidos3 = recyclerViewPartidos3;
     this.textView11 = textView11;
     this.textView21 = textView21;
     this.textView31 = textView31;
-    this.titleTextView = titleTextView;
   }
 
   @Override
@@ -134,12 +117,6 @@ public final class ActivityScorersBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.atras;
-      ImageView atras = ViewBindings.findChildViewById(rootView, id);
-      if (atras == null) {
-        break missingId;
-      }
-
       id = R.id.equipo1Layout;
       LinearLayout equipo1Layout = ViewBindings.findChildViewById(rootView, id);
       if (equipo1Layout == null) {
@@ -166,12 +143,6 @@ public final class ActivityScorersBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.headerImageView;
-      ImageView headerImageView = ViewBindings.findChildViewById(rootView, id);
-      if (headerImageView == null) {
-        break missingId;
-      }
-
       id = R.id.imageView1_1;
       ImageView imageView11 = ViewBindings.findChildViewById(rootView, id);
       if (imageView11 == null) {
@@ -187,12 +158,6 @@ public final class ActivityScorersBinding implements ViewBinding {
       id = R.id.imageView3_1;
       ImageView imageView31 = ViewBindings.findChildViewById(rootView, id);
       if (imageView31 == null) {
-        break missingId;
-      }
-
-      id = R.id.layout1;
-      LinearLayout layout1 = ViewBindings.findChildViewById(rootView, id);
-      if (layout1 == null) {
         break missingId;
       }
 
@@ -232,16 +197,10 @@ public final class ActivityScorersBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.titleTextView;
-      TextView titleTextView = ViewBindings.findChildViewById(rootView, id);
-      if (titleTextView == null) {
-        break missingId;
-      }
-
-      return new ActivityScorersBinding((NestedScrollView) rootView, atras, equipo1Layout,
-          equipo2Layout, equipo3Layout, font, fragmentContainer, headerImageView, imageView11,
-          imageView21, imageView31, layout1, recyclerViewPartidos1, recyclerViewPartidos2,
-          recyclerViewPartidos3, textView11, textView21, textView31, titleTextView);
+      return new ActivityScorersBinding((NestedScrollView) rootView, equipo1Layout, equipo2Layout,
+          equipo3Layout, font, fragmentContainer, imageView11, imageView21, imageView31,
+          recyclerViewPartidos1, recyclerViewPartidos2, recyclerViewPartidos3, textView11,
+          textView21, textView31);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

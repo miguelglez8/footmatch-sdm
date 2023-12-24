@@ -31,7 +31,10 @@ class PlantillaAdapter (
             dataJugador.text = jugador.name
             dataPosicionJugador.text = jugador.position
             dataNacionalidadJugador.text = jugador.nationality
-            dataNacimientoJugador.text = formatDate(jugador.dateOfBirth)
+            if (jugador.dateOfBirth==null)
+                dataNacimientoJugador.text = "-"
+            else
+                dataNacimientoJugador.text = formatDate(jugador.dateOfBirth)
         }
     }
 

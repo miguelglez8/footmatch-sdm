@@ -38,7 +38,7 @@ class MostrarGoleadores : AppCompatActivity()  {
     private var imageView3_1: ImageView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_scorers)
+        setContentView(R.layout.activity_goleadores)
 
         // Obtener datos del intent
         val intentMatch = intent
