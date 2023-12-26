@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
@@ -63,6 +64,9 @@ public final class ActivityGoleadoresBinding implements ViewBinding {
   public final RecyclerView recyclerViewPartidos3;
 
   @NonNull
+  public final NestedScrollView scrollView;
+
+  @NonNull
   public final TextView textView11;
 
   @NonNull
@@ -80,8 +84,9 @@ public final class ActivityGoleadoresBinding implements ViewBinding {
       @NonNull ImageView headerImageView, @NonNull ImageView imageView11,
       @NonNull ImageView imageView21, @NonNull ImageView imageView31, @NonNull LinearLayout layout1,
       @NonNull RecyclerView recyclerViewPartidos1, @NonNull RecyclerView recyclerViewPartidos2,
-      @NonNull RecyclerView recyclerViewPartidos3, @NonNull TextView textView11,
-      @NonNull TextView textView21, @NonNull TextView textView31, @NonNull TextView titleTextView) {
+      @NonNull RecyclerView recyclerViewPartidos3, @NonNull NestedScrollView scrollView,
+      @NonNull TextView textView11, @NonNull TextView textView21, @NonNull TextView textView31,
+      @NonNull TextView titleTextView) {
     this.rootView = rootView;
     this.atras = atras;
     this.equipo1Layout = equipo1Layout;
@@ -96,6 +101,7 @@ public final class ActivityGoleadoresBinding implements ViewBinding {
     this.recyclerViewPartidos1 = recyclerViewPartidos1;
     this.recyclerViewPartidos2 = recyclerViewPartidos2;
     this.recyclerViewPartidos3 = recyclerViewPartidos3;
+    this.scrollView = scrollView;
     this.textView11 = textView11;
     this.textView21 = textView21;
     this.textView31 = textView31;
@@ -207,6 +213,12 @@ public final class ActivityGoleadoresBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.scrollView;
+      NestedScrollView scrollView = ViewBindings.findChildViewById(rootView, id);
+      if (scrollView == null) {
+        break missingId;
+      }
+
       id = R.id.textView1_1;
       TextView textView11 = ViewBindings.findChildViewById(rootView, id);
       if (textView11 == null) {
@@ -234,7 +246,7 @@ public final class ActivityGoleadoresBinding implements ViewBinding {
       return new ActivityGoleadoresBinding((ConstraintLayout) rootView, atras, equipo1Layout,
           equipo2Layout, equipo3Layout, fragmentContainer, headerImageView, imageView11,
           imageView21, imageView31, layout1, recyclerViewPartidos1, recyclerViewPartidos2,
-          recyclerViewPartidos3, textView11, textView21, textView31, titleTextView);
+          recyclerViewPartidos3, scrollView, textView11, textView21, textView31, titleTextView);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

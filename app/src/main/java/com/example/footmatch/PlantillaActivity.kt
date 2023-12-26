@@ -3,11 +3,13 @@ package com.example.footmatch
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
@@ -23,6 +25,7 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Locale
 import androidx.viewpager2.widget.ViewPager2
+import com.example.footmatch.util.api.ApiLimitExceededException
 import java.lang.Integer.min
 
 class PlantillaActivity : AppCompatActivity() {
@@ -59,124 +62,154 @@ class PlantillaActivity : AppCompatActivity() {
     }
     private fun cargarDatosClub(id: String) {
         val apiService = RetrofitClient.makeClient()
-        lifecycleScope.launch(Dispatchers.IO){
-            plantilla = apiService.getSquadFromId(id)
-            withContext(Dispatchers.Main)
-            {
-                //Datos del equipo
-                val nombreEquipo = findViewById<View>(R.id.nombreEquipo) as TextView
-                val fundadoEn = findViewById<View>(R.id.dataFundado) as TextView
-                val direccion = findViewById<View>(R.id.dataDireccion) as TextView
-                val escudoEquipo = findViewById<View>(R.id.escudoEquipo) as ImageView
-                val escudoBandera = findViewById<View>(R.id.escudoEquipo2) as ImageView
-                val escudoCompeticion = findViewById<View>(R.id.escudoCompeticion) as ImageView
-                val escudoCompeticion2 = findViewById<View>(R.id.escudoCompeticion2) as ImageView
-                val estadio = findViewById<View>(R.id.dataEstadioP) as TextView
-                val boton = findViewById<View>(R.id.button) as Button
+        lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                plantilla = apiService.getSquadFromId(id)
+                withContext(Dispatchers.Main)
+                {
+                    //Datos del equipo
+                    val nombreEquipo = findViewById<View>(R.id.nombreEquipo) as TextView
+                    val fundadoEn = findViewById<View>(R.id.dataFundado) as TextView
+                    val direccion = findViewById<View>(R.id.dataDireccion) as TextView
+                    val escudoEquipo = findViewById<View>(R.id.escudoEquipo) as ImageView
+                    val escudoBandera = findViewById<View>(R.id.escudoEquipo2) as ImageView
+                    val escudoCompeticion = findViewById<View>(R.id.escudoCompeticion) as ImageView
+                    val escudoCompeticion2 =
+                        findViewById<View>(R.id.escudoCompeticion2) as ImageView
+                    val estadio = findViewById<View>(R.id.dataEstadioP) as TextView
+                    val boton = findViewById<View>(R.id.button) as Button
 
-                if (plantilla!!.crest == null) {
-                    // cargar imagen visitante por defecto
-                    escudoEquipo.load(R.string.teamDefaultLogo.toString())
-                }else{
-                    val isSvg = plantilla!!.crest.endsWith("svg",ignoreCase = true)
-                    if (isSvg){
-                        escudoEquipo.loadUrl(plantilla!!.crest)
-                    }else{
-                        escudoEquipo.load(plantilla!!.crest)
-                    }
-                }
-                if (plantilla!!.area.flag == null) {
-                    // cargar imagen visitante por defecto
-                    escudoBandera.load(R.string.teamDefaultLogo.toString())
-                }else{
-                    val isSvg = plantilla!!.area.flag.endsWith("svg",ignoreCase = true)
-                    if (isSvg){
-                        escudoBandera.loadUrl(plantilla!!.area.flag)
-                    }else{
-                        escudoBandera.load(plantilla!!.area.flag)
-                    }
-                }
-                if (plantilla!!.runningCompetitions.isNotEmpty()) {
-                    val isSvg = plantilla!!.runningCompetitions[0].emblem.endsWith("svg",ignoreCase = true)
-                    if (isSvg){
-                        escudoCompeticion.loadUrl(plantilla!!.runningCompetitions[0].emblem)
-                    }else{
-                        escudoCompeticion.load(plantilla!!.runningCompetitions[0].emblem)
-                    }
-                    if (plantilla!!.runningCompetitions.size >= 2) {
-                        if (plantilla!!.runningCompetitions[1].emblem != null) {
-                            val isSvg = plantilla!!.runningCompetitions[1].emblem.endsWith("svg",ignoreCase = true)
-                            if (isSvg){
-                                escudoCompeticion2.loadUrl(plantilla!!.runningCompetitions[1].emblem)
-                            }else{
-                                escudoCompeticion2.load(plantilla!!.runningCompetitions[1].emblem)
-                            }
+                    if (plantilla!!.crest == null) {
+                        // cargar imagen visitante por defecto
+                        escudoEquipo.load(R.string.teamDefaultLogo.toString())
+                    } else {
+                        val isSvg = plantilla!!.crest.endsWith("svg", ignoreCase = true)
+                        if (isSvg) {
+                            escudoEquipo.loadUrl(plantilla!!.crest)
                         } else {
-                            escudoCompeticion2.load(R.drawable.copa)
+                            escudoEquipo.load(plantilla!!.crest)
                         }
                     }
-                }
-                if (plantilla!!.address==null)
-                    direccion.text = "No disponible"
-                else
-                    direccion.text = plantilla!!.address.split(",")[0]
-
-                nombreEquipo.text = plantilla!!.name
-                estadio.text = plantilla!!.venue
-                if (plantilla!!.website != null) {
-                    boton.setOnClickListener { // Define la URL que deseas abrir
-                        val url = plantilla!!.website
-
-                        // Crea un Intent con la acción ACTION_VIEW y la URI correspondiente
-                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-
-                        // Inicia la actividad del navegador web
-                        startActivity(intent)
+                    if (plantilla!!.area.flag == null) {
+                        // cargar imagen visitante por defecto
+                        escudoBandera.load(R.string.teamDefaultLogo.toString())
+                    } else {
+                        val isSvg = plantilla!!.area.flag.endsWith("svg", ignoreCase = true)
+                        if (isSvg) {
+                            escudoBandera.loadUrl(plantilla!!.area.flag)
+                        } else {
+                            escudoBandera.load(plantilla!!.area.flag)
+                        }
                     }
-                }
-
-                fundadoEn.text = plantilla!!.founded.toString()
-                //Cargar el entrenador
-                val entrenadorNombre = findViewById<View>(R.id.dataEntrenador) as TextView
-                entrenadorNombre.text = plantilla!!.coach.name
-                val nacionalidadEntrenador = findViewById<View>(R.id.dataNacionalidadEntrenador) as TextView
-                nacionalidadEntrenador.text = plantilla!!.coach.nationality
-                val nacimientoEntrenador = findViewById<View>(R.id.dataNacimientoEntrenador)as TextView
-                nacimientoEntrenador.text = formatDate(plantilla!!.coach.dateOfBirth)
-
-                // carousel
-                val viewPager: ViewPager2 = findViewById(R.id.viewPager)
-                val dotsLayout: LinearLayout = findViewById(R.id.dotsLayout)
-                val playerAdapter = PlantillaAdapter(plantilla!!.squad)
-                viewPager.adapter = playerAdapter
-
-                // Add dots dynamically
-                val dotsCount = playerAdapter.itemCount
-                val maxVisibleDots = 5 // Set the maximum number of visible dots
-
-                val displayDotsCount = min(dotsCount, maxVisibleDots)
-                dots = arrayOfNulls<ImageView>(displayDotsCount)
-
-                for (i in 0 until displayDotsCount) {
-                    dots[i] = ImageView(this@PlantillaActivity)
-                    dots[i]?.setImageDrawable(ContextCompat.getDrawable(this@PlantillaActivity, R.drawable.dot_indicator))
-
-                    val params = LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.WRAP_CONTENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT
-                    ).apply {
-                        setMargins(8, 0, 8, 0)
+                    if (plantilla!!.runningCompetitions.isNotEmpty()) {
+                        val isSvg = plantilla!!.runningCompetitions[0].emblem.endsWith(
+                            "svg",
+                            ignoreCase = true
+                        )
+                        if (isSvg) {
+                            escudoCompeticion.loadUrl(plantilla!!.runningCompetitions[0].emblem)
+                        } else {
+                            escudoCompeticion.load(plantilla!!.runningCompetitions[0].emblem)
+                        }
+                        if (plantilla!!.runningCompetitions.size >= 2) {
+                            if (plantilla!!.runningCompetitions[1].emblem != null) {
+                                val isSvg = plantilla!!.runningCompetitions[1].emblem.endsWith(
+                                    "svg",
+                                    ignoreCase = true
+                                )
+                                if (isSvg) {
+                                    escudoCompeticion2.loadUrl(plantilla!!.runningCompetitions[1].emblem)
+                                } else {
+                                    escudoCompeticion2.load(plantilla!!.runningCompetitions[1].emblem)
+                                }
+                            } else {
+                                escudoCompeticion2.load(R.drawable.copa)
+                            }
+                        }
                     }
-                    dotsLayout.addView(dots[i], params)
-                }
+                    if (plantilla!!.address == null)
+                        direccion.text = "No disponible"
+                    else
+                        direccion.text = plantilla!!.address.split(",")[0]
 
-                // ViewPager2 Page Change Callback
-                viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-                    override fun onPageSelected(position: Int) {
-                        super.onPageSelected(position)
-                        updateDots(position, maxVisibleDots, dotsCount)
+                    nombreEquipo.text = plantilla!!.name
+                    estadio.text = plantilla!!.venue
+                    if (plantilla!!.website != null) {
+                        boton.setOnClickListener { // Define la URL que deseas abrir
+                            val url = plantilla!!.website
+
+                            // Crea un Intent con la acción ACTION_VIEW y la URI correspondiente
+                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+
+                            // Inicia la actividad del navegador web
+                            startActivity(intent)
+                        }
                     }
-                })
+
+                    fundadoEn.text = plantilla!!.founded.toString()
+                    //Cargar el entrenador
+                    val entrenadorNombre = findViewById<View>(R.id.dataEntrenador) as TextView
+                    entrenadorNombre.text = plantilla!!.coach.name
+                    val nacionalidadEntrenador =
+                        findViewById<View>(R.id.dataNacionalidadEntrenador) as TextView
+                    nacionalidadEntrenador.text = plantilla!!.coach.nationality
+                    val nacimientoEntrenador =
+                        findViewById<View>(R.id.dataNacimientoEntrenador) as TextView
+                    nacimientoEntrenador.text = formatDate(plantilla!!.coach.dateOfBirth)
+
+                    // carousel
+                    val viewPager: ViewPager2 = findViewById(R.id.viewPager)
+                    val dotsLayout: LinearLayout = findViewById(R.id.dotsLayout)
+                    val playerAdapter = PlantillaAdapter(plantilla!!.squad)
+                    viewPager.adapter = playerAdapter
+
+                    // Add dots dynamically
+                    val dotsCount = playerAdapter.itemCount
+                    val maxVisibleDots = 5 // Set the maximum number of visible dots
+
+                    val displayDotsCount = min(dotsCount, maxVisibleDots)
+                    dots = arrayOfNulls<ImageView>(displayDotsCount)
+
+                    for (i in 0 until displayDotsCount) {
+                        dots[i] = ImageView(this@PlantillaActivity)
+                        dots[i]?.setImageDrawable(
+                            ContextCompat.getDrawable(
+                                this@PlantillaActivity,
+                                R.drawable.dot_indicator
+                            )
+                        )
+
+                        val params = LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.WRAP_CONTENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT
+                        ).apply {
+                            setMargins(8, 0, 8, 0)
+                        }
+                        dotsLayout.addView(dots[i], params)
+                    }
+
+                    // ViewPager2 Page Change Callback
+                    viewPager.registerOnPageChangeCallback(object :
+                        ViewPager2.OnPageChangeCallback() {
+                        override fun onPageSelected(position: Int) {
+                            super.onPageSelected(position)
+                            updateDots(position, maxVisibleDots, dotsCount)
+                        }
+                    })
+                }
+            } catch (e: ApiLimitExceededException) {
+                //Log.e("API Request", "ApiLimitExceededException: ${e.message}", e)
+                // Si se supera el limite de peticiones, mostramos un toast con el mensaje de error
+                // y deshabilitamos los elementos de la pantalla
+                withContext(Dispatchers.Main){
+                    Toast.makeText(
+                        this@PlantillaActivity,
+                        "Demasiadas requests a la API, espere " + e.timeToWait + " segundos",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            } catch (e:Exception){
+                Log.e("API Request", "Exception: ${e.message}", e)
             }
         }
     }

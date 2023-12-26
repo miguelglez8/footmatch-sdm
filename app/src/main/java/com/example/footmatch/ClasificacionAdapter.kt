@@ -17,6 +17,7 @@ import com.example.footmatch.util.images.SvgLoader.Companion.loadUrl
 
 class ClasificacionAdapter(
     var equipos: StandingsResult, //Se utilizará mas adelante para ir a la pantalla de equipos
+    var idTeam: String,
     val onItemSelected: (String) -> Unit
 ) : RecyclerView.Adapter<ClasificacionViewHolder>() {
 
@@ -48,7 +49,7 @@ class ClasificacionAdapter(
         }
 
         // asignar valores a los componentes
-        fun bindUser(equipo: Table, onItemSelected: (String) -> Unit) {
+        fun bindUser(equipo: Table, idTeam: String, onItemSelected: (String) -> Unit) {
             if (equipo.team.crest == null) {
                 // cargar imagen visitante por defecto
                 nombreEquipo.load(R.string.teamDefaultLogo.toString())
@@ -82,8 +83,17 @@ class ClasificacionAdapter(
     }
 
     override fun onBindViewHolder(holder: ClasificacionViewHolder, position: Int) {
-        val equipo: Table = equipos.standings[0].table[position]
-        holder.bindUser(equipo, onItemSelected)
+        val idTeam: String = idTeam
+        var equipo: Table?
+        if (idTeam != null && idTeam != "") {
+            val standingConEquipo = equipos.standings.find { standing ->
+                standing.table.any { equipoEnTabla -> equipoEnTabla.team.id == Integer.parseInt(idTeam) }
+            }
+            equipo = standingConEquipo!!.table[position]
+        } else {
+            equipo = equipos.standings[0].table[position]
+        }
+        holder.bindUser(equipo!!, idTeam, onItemSelected)
 
         val tableRow = holder.itemView.findViewById<TextView>(R.id.posClasificacion)
 

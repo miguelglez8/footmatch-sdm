@@ -24,6 +24,7 @@ import kotlinx.coroutines.withContext
 
 class ClasificacionActivity : AppCompatActivity() {
     var liga: String? = null
+    var idTeam: String? = null
     var clasificacion: StandingsResult? = null
     var clasificacionView: RecyclerView? = null
     var cAdapter : ClasificacionAdapter? = null
@@ -36,6 +37,7 @@ class ClasificacionActivity : AppCompatActivity() {
         val clasificacionIntent = intent
 
         liga = clasificacionIntent.getStringExtra(MainRecycler.LIGA_CREADA)
+        idTeam = clasificacionIntent.getStringExtra(MainRecycler.PARTIDO_SELECCIONADO)
 
         clasificacionView = findViewById<View>(R.id.recyclerClasificacion) as RecyclerView
 
@@ -104,7 +106,11 @@ class ClasificacionActivity : AppCompatActivity() {
                     }
                     goleadores.load(R.drawable.scorers)
                     // Notificamos al adapter
-                    cAdapter = ClasificacionAdapter(clasificacion!!) {
+
+                    if (idTeam==null) {
+                        idTeam = ""
+                    }
+                    cAdapter = ClasificacionAdapter(clasificacion!!, idTeam!!) {
                         mostrarEquipo(it)
                     }
                     clasificacionView!!.adapter = cAdapter

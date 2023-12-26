@@ -2,6 +2,7 @@ package com.example.footmatch.modelo.pojos.clasificacion
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Area(
     @SerializedName("code")
@@ -12,4 +13,4 @@ data class Area(
     val id: Int,
     @SerializedName("name")
     val name: String
-)
+) : Serializable

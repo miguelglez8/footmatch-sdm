@@ -28,8 +28,9 @@
             <TextView
                 android:id="@+id/nombreLiga"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_gravity="center"
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -61,7 +62,7 @@
         android:id="@+id/tableLayout"
         android:layout_width="0dp"
         android:layout_height="35dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="13dp"
         android:layout_marginBottom="0dp"
         app:layout_constraintBottom_toTopOf="@id/recyclerClasificacion"
         app:layout_constraintEnd_toEndOf="parent"
@@ -158,10 +159,10 @@
         android:id="@+id/recyclerClasificacion"
         android:layout_width="match_parent"
         android:layout_height="279dp"
-        tools:ignore="MissingConstraints"
         app:layout_constraintBottom_toTopOf="@id/recyclerClasificacion"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="126dp" />
+        app:layout_constraintTop_toBottomOf="@+id/linear2"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp" />
 
     <LinearLayout
         android:id="@+id/paletaLayout"
@@ -263,13 +264,13 @@
         android:id="@+id/leyendaLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginLeft="7dp"
         android:layout_marginRight="7dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/paletaLayout">
+        app:layout_constraintTop_toBottomOf="@+id/paletaLayout">
 
         <!-- Filas de la Leyenda -->
         <TableRow

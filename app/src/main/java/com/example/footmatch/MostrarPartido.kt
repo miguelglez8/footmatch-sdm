@@ -116,40 +116,52 @@ class MostrarPartido : AppCompatActivity() {
         navView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_stats -> {
-                    /* Haciendo uso del FactoryMethod pasándole todos los parámetros necesarios */
-                    /* Argumento solamente necesita.... El argumento de la película */
-                    val estadisticasFragment = EstadisticasFragment.newInstance(
-                        partido!!.homeTeam, partido!!.awayTeam, stats
-                    )
-
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, estadisticasFragment).commit()
+                    if (partido != null && stats != null) {
+                        val estadisticasFragment = EstadisticasFragment.newInstance(
+                            partido!!.homeTeam, partido!!.awayTeam, stats
+                        )
+                        supportFragmentManager.beginTransaction()
+                            .replace(R.id.fragment_container, estadisticasFragment).commit()
+                    } else {
+                        // Handle the case when partido or stats is null
+                        Log.e("MostrarPartido", "partido or stats is null")
+                    }
                 }
                 R.id.navigation_alineations -> {
-                    val alineacionesFragment = AlineacionesFragment.newInstance(
-                        local!!, away!!, partido!!
-                    )
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, alineacionesFragment).commit()
-                }
-
-                R.id.navigation_referees -> {
-                    if (partido!!.referees.isNotEmpty()) {
-                        val arbitrosFragment =
-                            ArbitrosFragment.newInstance(partido!!.referees as ArrayList<Referee?>)
+                    if (local != null && away != null && partido != null) {
+                        val alineacionesFragment = AlineacionesFragment.newInstance(
+                            local!!, away!!, partido!!
+                        )
                         supportFragmentManager.beginTransaction()
-                            .replace(R.id.fragment_container, arbitrosFragment).commit()
+                            .replace(R.id.fragment_container, alineacionesFragment).commit()
                     } else {
-                        // Inflar el layout y agregarlo al contenedor
-                        val inflater = LayoutInflater.from(applicationContext)
-                        val miLayout = inflater.inflate(R.layout.item_no_disponible, null) as RelativeLayout
+                        // Handle the case when local, away, or partido is null
+                        Log.e("MostrarPartido", "local, away, or partido is null")
+                    }
+                }
+                R.id.navigation_referees -> {
+                    if (partido != null) {
+                        if (partido!!.referees.isNotEmpty()) {
+                            val arbitrosFragment =
+                                ArbitrosFragment.newInstance(partido!!.referees as ArrayList<Referee?>)
+                            supportFragmentManager.beginTransaction()
+                                .replace(R.id.fragment_container, arbitrosFragment).commit()
+                        } else {
+                            // Inflar el layout y agregarlo al contenedor
+                            val inflater = LayoutInflater.from(applicationContext)
+                            val miLayout =
+                                inflater.inflate(R.layout.item_no_disponible, null) as RelativeLayout
 
-                        // Obtener el contenedor por su ID
-                        val contenedor = findViewById<FrameLayout>(R.id.fragment_container)
-                        contenedor.removeAllViews()
+                            // Obtener el contenedor por su ID
+                            val contenedor = findViewById<FrameLayout>(R.id.fragment_container)
+                            contenedor.removeAllViews()
 
-                        // Agregar el layout inflado al contenedor
-                        contenedor.addView(miLayout)
+                            // Agregar el layout inflado al contenedor
+                            contenedor.addView(miLayout)
+                        }
+                    } else {
+                        // Handle the case when partido is null
+                        Log.e("MostrarPartido", "partido is null")
                     }
                 }
             }
@@ -163,7 +175,6 @@ class MostrarPartido : AppCompatActivity() {
         // Iniciar ambas llamadas a la API de manera simultánea
         Log.d("Busca el partido", "Inicio de la búsqueda del partido por ID: $id")
         lifecycleScope.launch (Dispatchers.IO) {
-
                 try {
                     coroutineScope {
                         val tarea1 = async(Dispatchers.IO) { partido = apiService.getMatch(id) }
@@ -185,33 +196,19 @@ class MostrarPartido : AppCompatActivity() {
                             mostrarDatos()
                         }
                     }
-
-
-                } catch (e: Exception) {
-                    when (e) {
-                        is ApiLimitExceededException -> {
-
-                            Log.e("API Request", "API limit exception: ${e.message}", e)
-                            // Si se supera el limite de peticiones, mostramos un toast con el mensaje de error
-                            // y deshabilitamos los elementos de la pantalla
-
-                            withContext(Dispatchers.Main){
-                                Toast.makeText(
-                                    this@MostrarPartido,
-                                    "Demasiadas requests a la API, espere " + e.timeToWait + " segundos",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            }
-                        }
-                        else -> {
-
-                            Log.e("API Request", "Exception: ${e.message}", e)
-                        }
-
-
+                } catch (e: ApiLimitExceededException) {
+                    // Si se supera el límite de peticiones, mostramos un toast con el mensaje de error
+                    // y deshabilitamos los elementos de la pantalla
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(
+                            this@MostrarPartido,
+                            "Demasiadas requests a la API, espere " + e.timeToWait + " segundos",
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
+                } catch (e: Exception) {
+                    Log.e("API Request", "Exception: ${e.message}", e)
                 }
-
         }
     }
 
@@ -377,6 +374,8 @@ class MostrarPartido : AppCompatActivity() {
     fun cargarClasificacion(code: String?) {
         val ligaIntent = Intent(this@MostrarPartido, ClasificacionActivity::class.java)
         ligaIntent.putExtra(MainRecycler.LIGA_CREADA, code)
+        if (code=="CL")
+            ligaIntent.putExtra(MainRecycler.PARTIDO_SELECCIONADO, partido!!.homeTeam.id.toString())
         startActivity(ligaIntent)
     }
 

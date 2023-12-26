@@ -39,40 +39,45 @@
                 style="@style/HeaderCellStyle"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:autoSizeMaxTextSize="12sp"
+                android:layout_height="match_parent"
+                android:autoSizeMaxTextSize="14sp"
                 android:autoSizeMinTextSize="8sp"
                 android:autoSizeTextType="uniform"
                 android:gravity="center"
                 android:text="@string/equipos"
                 android:textSize="12sp"
+                android:layout_gravity="center"
                 android:ellipsize="end"
-                android:singleLine="true" />
+                />
 
             <TextView
                 android:id="@+id/team1"
                 style="@style/HeaderCellStyle"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:autoSizeMaxTextSize="10sp"
+                android:layout_height="match_parent"
+                android:autoSizeMaxTextSize="14sp"
                 android:autoSizeMinTextSize="8sp"
                 android:autoSizeTextType="uniform"
                 android:gravity="center"
                 android:textSize="12sp"
                 android:ellipsize="end"
-                android:singleLine="true" />
+                android:layout_gravity="center"
+                 />
 
             <TextView
                 android:id="@+id/team2"
                 style="@style/HeaderCellStyle"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:autoSizeMaxTextSize="10sp"
+                android:layout_height="match_parent"
+                android:autoSizeMaxTextSize="14sp"
                 android:autoSizeMinTextSize="8sp"
                 android:autoSizeTextType="uniform"
                 android:gravity="center"
+                android:layout_gravity="center"
                 android:textSize="12sp"
-                android:ellipsize="end"
-                android:singleLine="true" />
+                android:ellipsize="end" />
         </TableRow>
 
 
@@ -87,7 +92,7 @@
                 style="@style/CellStyle"
                 android:text="@string/n_mero_de_victorias"
                 android:layout_width="0dp"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:layout_weight="1"
                 android:gravity="center_horizontal" />
 
@@ -121,7 +126,7 @@
                 style="@style/CellStyle"
                 android:text="@string/n_mero_de_empates"
                 android:layout_width="0dp"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:layout_weight="1"
                 android:gravity="center_horizontal"/>
 
@@ -154,7 +159,7 @@
                 android:text="@string/n_mero_de_derrotas"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:gravity="center_horizontal"/>
 
             <TextView

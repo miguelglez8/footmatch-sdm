@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 
@@ -19,6 +20,7 @@ import com.example.footmatch.modelo.BuscadorId
 import com.example.footmatch.modelo.pojos.partido.Match
 // Importamos la clase SvgLoader
 import com.example.footmatch.util.images.SvgLoader.Companion.loadUrl
+import retrofit2.HttpException
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -132,20 +134,37 @@ class ListaPartidosAdapter(
             }
 
         }
+
         private fun mostrarPartido(match: Match) {
-            // Verificar que el contexto sea el esperado
-            val contexto: Context = itemView.context
+            try {
+                // Verificar que el contexto sea el esperado
+                val contexto: Context = itemView.context
 
-            // Crear el intent para iniciar la actividad MostrarPartido
-            val partidoIntent = Intent(contexto, MostrarPartido::class.java)
+                // Crear el intent para iniciar la actividad MostrarPartido
+                val partidoIntent = Intent(contexto, MostrarPartido::class.java)
 
-            // Pasar los datos necesarios a través de Intent
-            partidoIntent.putExtra(MainRecycler.PARTIDO_SELECCIONADO, BuscadorId(match.id, match.utcDate,
-                match.homeTeam.id, match.awayTeam.id))
+                // Pasar los datos necesarios a través de Intent
+                partidoIntent.putExtra(
+                    MainRecycler.PARTIDO_SELECCIONADO,
+                    BuscadorId(match.id, match.utcDate, match.homeTeam.id, match.awayTeam.id)
+                )
 
-            // Iniciar la actividad
-            contexto.startActivity(partidoIntent)
+                // Iniciar la actividad
+                contexto.startActivity(partidoIntent)
+            } catch (e: HttpException) {
+                // Manejar la excepción HTTP 403 (Forbidden) y mostrar un mensaje.
+                if (e.code() == 403) {
+                    Toast.makeText(itemView.context, "Partido no permitido", Toast.LENGTH_SHORT).show()
+                }
+            } catch (e: Exception) {
+                // Manejar otras excepciones generales si es necesario.
+                e.printStackTrace()
+                Toast.makeText(itemView.context, "Error al mostrar el partido", Toast.LENGTH_SHORT).show()
+            }
         }
+
+
+
     }
    /*
    * Notificamos un cambio en la lista de partidos
