@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="5dp"
-    tools:context="com.example.footmatch.MainRecycler">
+    tools:context="com.example.footmatch.presentacion.MainRecycler">
 
     <LinearLayout
         android:id="@+id/linearLayoutLigas"

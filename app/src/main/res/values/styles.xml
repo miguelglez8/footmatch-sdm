@@ -54,7 +54,7 @@
 
     <style name="BlueButtonStyle">
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:background">@drawable/button_background3</item>
+        <item name="android:background">@drawable/button_background2</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">0.001</item>
@@ -86,7 +86,7 @@
 
     <style name="style2">
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:background">@drawable/button_background2</item>
+        <item name="android:background">@drawable/button_background1</item>
     </style>
 
 

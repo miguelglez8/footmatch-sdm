@@ -16,19 +16,19 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
-            android:name=".PlantillaActivity"
+            android:name=".presentacion.PlantillaActivity"
             android:exported="false" />
         <activity
-            android:name=".MostrarGoleadores"
+            android:name=".presentacion.MostrarGoleadores"
             android:exported="false" />
         <activity
-            android:name=".ClasificacionActivity"
+            android:name=".presentacion.ClasificacionActivity"
             android:exported="false" />
         <activity
-            android:name=".MostrarPartido"
+            android:name=".presentacion.MostrarPartido"
             android:exported="false" />
         <activity
-            android:name=".MainRecycler"
+            android:name=".presentacion.MainRecycler"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

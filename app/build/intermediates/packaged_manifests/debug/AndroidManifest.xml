@@ -31,19 +31,19 @@
         android:testOnly="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.footmatch.PlantillaActivity"
+            android:name="com.example.footmatch.presentacion.PlantillaActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.footmatch.MostrarGoleadores"
+            android:name="com.example.footmatch.presentacion.MostrarGoleadores"
             android:exported="false" />
         <activity
-            android:name="com.example.footmatch.ClasificacionActivity"
+            android:name="com.example.footmatch.presentacion.ClasificacionActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.footmatch.MostrarPartido"
+            android:name="com.example.footmatch.presentacion.MostrarPartido"
             android:exported="false" />
         <activity
-            android:name="com.example.footmatch.MainRecycler"
+            android:name="com.example.footmatch.presentacion.MainRecycler"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
