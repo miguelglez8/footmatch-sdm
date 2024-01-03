@@ -2,6 +2,7 @@ package com.example.footmatch.datos.modelos.partido
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Squad(
     @SerializedName("dateOfBirth")
@@ -14,4 +15,4 @@ data class Squad(
     val nationality: String,
     @SerializedName("position")
     val position: String
-)
+) : Serializable

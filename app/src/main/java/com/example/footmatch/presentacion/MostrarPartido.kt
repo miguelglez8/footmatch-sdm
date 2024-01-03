@@ -261,7 +261,8 @@ class MostrarPartido : AppCompatActivity() {
             else
                 minute!!.text = partido!!.minute.toString() + "'"
             nombreEquipo1!!.text = partido!!.homeTeam.shortName
-            if (partido!!.status.equals("FINISHED") || partido!!.status.equals("IN_PLAY")) {
+            if (partido!!.status.equals("FINISHED") || partido!!.status.equals("IN_PLAY") || partido!!.status.equals("LIVE")
+                || partido!!.status.equals("PAUSED")) {
                 resultadoPartido!!.text = partido!!.score.fullTime.home.toString() + " - " + partido!!.score.fullTime.away.toString()
             } else {
                 val fechaString = fecha?.get(1)?.substring(0, fecha?.get(1)!!.length - 4) ?: ""

@@ -2,6 +2,7 @@ package com.example.footmatch.datos.modelos.partido
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class CoachX(
     @SerializedName("contract")
@@ -18,4 +19,4 @@ data class CoachX(
     val name: String,
     @SerializedName("nationality")
     val nationality: String
-)
+) : Serializable

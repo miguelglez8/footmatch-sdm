@@ -2,6 +2,7 @@ package com.example.footmatch.datos.modelos.partido
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class OddsX(
     @SerializedName("awayWin")
@@ -10,4 +11,4 @@ data class OddsX(
     val draw: Double,
     @SerializedName("homeWin")
     val homeWin: Double
-)
+) : Serializable

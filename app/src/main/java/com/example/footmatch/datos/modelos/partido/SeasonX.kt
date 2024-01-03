@@ -2,6 +2,7 @@ package com.example.footmatch.datos.modelos.partido
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class SeasonX(
     @SerializedName("currentMatchday")
@@ -16,4 +17,4 @@ data class SeasonX(
     val startDate: String,
     @SerializedName("winner")
     val winner: Any
-)
+) : Serializable
