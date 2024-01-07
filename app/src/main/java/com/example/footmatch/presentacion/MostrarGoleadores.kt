@@ -15,6 +15,7 @@ import com.example.footmatch.datos.modelos.goleadores.Scorer
 import com.example.footmatch.datos.api.ApiLimitExceededException
 import com.example.footmatch.datos.api.RetrofitClient
 import com.example.footmatch.datos.images.SvgLoader.Companion.loadUrl
+import com.example.footmatch.presentacion.adapters.ListaTopAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

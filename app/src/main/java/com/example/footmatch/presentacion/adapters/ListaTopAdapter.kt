@@ -1,4 +1,4 @@
-package com.example.footmatch.presentacion
+package com.example.footmatch.presentacion.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
