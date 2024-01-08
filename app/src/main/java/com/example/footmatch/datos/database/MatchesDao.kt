@@ -12,7 +12,12 @@ interface MatchesDao {
     fun add(match: MatchEntity)
     @Delete
     fun delete(match: MatchEntity)
+
+    @Query("DELETE FROM matches")
+    fun deleteAll()
     @Query("SELECT * FROM matches WHERE SUBSTR(utc_date, 1, 10) = :date")
     fun findByDate(date: String): List<MatchEntity>
+    @Query("SELECT * FROM matches WHERE SUBSTR(utc_date, 1, 10) >= :date")
+    fun findAfterDate(date:String): List<MatchEntity>
 
 }

@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -40,21 +41,13 @@ class MainRecycler : AppCompatActivity()  {
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     // Listener para la barra de navegacion de fechas
+    @RequiresApi(Build.VERSION_CODES.O)
     private val mOnNavigationItemSelectedListener =
         BottomNavigationView.OnNavigationItemSelectedListener { item ->
             val itemId = item.itemId
             // Segun el caso realizaremos una u otra llamada a la API
             if (itemId == R.id.navigation_yesterday) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    //val yesterday = LocalDate.now().minusDays(1)
-                    //val dateFrom = yesterday.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-                    //val today = LocalDate.now()
-                    //val dateTo = today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-                    //cargarPartidos(dateFrom, dateTo)
-                    cargarPartidosAyerBD()
-                } else {
-                    throw IllegalStateException("Error al obtener la fecha de ayer por version API")
-                }
+                cargarPartidosAyerBD()
                 return@OnNavigationItemSelectedListener true
             } else if (itemId == R.id.navigation_today) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -62,19 +55,14 @@ class MainRecycler : AppCompatActivity()  {
                     val dateFrom = today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
                     val tomorrow = LocalDate.now().plusDays(1)
                     val dateTo = tomorrow.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-                    cargarPartidos(dateFrom, dateTo)
+                    cargarPartidosHoy(dateFrom, dateTo)
                 } else {
                     throw IllegalStateException("Error al obtener la fecha de ayer por version API")
                 }
                 return@OnNavigationItemSelectedListener true
             } else if (itemId == R.id.navigation_all) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    val today = LocalDate.now()
-                    val dateFrom = today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-                    // la fecha de fin seran 10 dias mas que es lo que admite la API
-                    val endPeriod = LocalDate.now().plusDays(10)
-                    val dateTo = endPeriod.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-                    cargarPartidos(dateFrom, dateTo)
+                    cargarPartidosTodosBD()
                 } else {
                     throw IllegalStateException("Error al obtener la fecha de ayer por version API")
                 }
@@ -125,17 +113,7 @@ class MainRecycler : AppCompatActivity()  {
                         val dateFrom = today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
                         val tomorrow = LocalDate.now().plusDays(1)
                         val dateTo = tomorrow.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-                        cargarPartidos(dateFrom, dateTo)
-                    }
-
-                    // Si la pestaña seleccionada de la navView es la de todos, actualizamos todos
-                    R.id.navigation_all -> {
-                        val today = LocalDate.now()
-                        val dateFrom = today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-                        // la fecha de fin seran 10 dias mas que es lo que admite la API
-                        val endPeriod = LocalDate.now().plusDays(10)
-                        val dateTo = endPeriod.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-                        cargarPartidos(dateFrom, dateTo)
+                        cargarPartidosHoy(dateFrom, dateTo)
                     }
                 }
 
@@ -190,7 +168,7 @@ class MainRecycler : AppCompatActivity()  {
     /*
     Carga todos los partidos entre las dos fechas que se le pasan por parametro
      */
-    private fun cargarPartidos(dateFrom: String, dateTo: String) {
+    private fun cargarPartidosHoy(dateFrom: String, dateTo: String) {
         // Llamada a la API empleando corrutinas de kotlin
         val apiService = RetrofitClient.makeClient()
 
@@ -227,6 +205,7 @@ class MainRecycler : AppCompatActivity()  {
     /*
     Carga todos los partidos del dia anterior al actual
      */
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun cargarPartidosAyer() {
         // Llamada a la API empleando corrutinas de kotlin
         val apiService = RetrofitClient.makeClient()
@@ -275,6 +254,60 @@ class MainRecycler : AppCompatActivity()  {
         }
     }
 
+    /*
+    Carga todos los partidos a partir del dia siguiente al actual
+     */
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun cargarPartidosTodos() {
+        // Llamada a la API empleando corrutinas de kotlin
+        val apiService = RetrofitClient.makeClient()
+
+        lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                val dateFrom = LocalDate.now().plusDays(1)
+                val endPeriod = LocalDate.now().plusDays(10)
+                val dateTo = endPeriod.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+                val newMatchList = apiService.getMatchesBetweenDates(
+                    dateFrom.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+                    dateTo.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))).matches
+
+                lifecycleScope.launch(Dispatchers.IO){
+                    Log.d("BD", "Añadiendo partidos a la bd")
+                    // Los guardamos en bd
+                    val matchesDB: MatchesDatabase = MatchesDatabase.getDatabase(this@MainRecycler)
+                    newMatchList.forEach {
+                        matchesDB.matchesDao().add(it.toMatchEntity())
+                    }
+                }
+
+
+                // Cambiamos al hilo principal para actualizar los datos
+                withContext(Dispatchers.Main)
+                {
+                    // Actualizamos la lista de partidos
+                    matchList = newMatchList.toMutableList()
+                    // Notificamos al adapter
+                    listaPartidosAdapter.update(matchList)
+                }
+            } catch (e: ApiLimitExceededException) {
+                //Log.e("API Request", "ApiLimitExceededException: ${e.message}", e)
+                // Si se supera el limite de peticiones, mostramos un toast con el mensaje de error
+                // y deshabilitamos los elementos de la pantalla
+                withContext(Dispatchers.Main){
+                    Toast.makeText(
+                        this@MainRecycler,
+                        "Demasiadas requests a la API, espere " + e.timeToWait + " segundos",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            } catch (e:Exception){
+                Log.e("API Request", "Exception: ${e.message}", e)
+            }
+
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun cargarPartidosAyerBD(){
         // Llamada a la bd empleando corrutinas de kotlin
         val matchesDB: MatchesDatabase = MatchesDatabase.getDatabase(this)
@@ -288,6 +321,37 @@ class MainRecycler : AppCompatActivity()  {
                 Log.d("BD", "No hay partidos en la bd")
                 // No hay partidos en la bd, los cargamos de la API
                 cargarPartidosAyer()
+
+
+            } else {
+                Log.d("BD", "Hay partidos en la bd")
+                // Hay partidos en la bd, los cargamos
+                withContext(Dispatchers.Main)
+                {
+                    // Actualizamos la lista de partidos
+                    matchList = matchesFromDatabase.map { it.toMatch() }
+                    // Notificamos al adapter
+                    listaPartidosAdapter.update(matchList)
+                }
+            }
+        }
+
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun cargarPartidosTodosBD(){
+        // Llamada a la bd empleando corrutinas de kotlin
+        val matchesDB: MatchesDatabase = MatchesDatabase.getDatabase(this)
+        lifecycleScope.launch(Dispatchers.IO){
+
+            val date = LocalDate.now().plusDays(1)
+            val matchesFromDatabase : List<MatchEntity> = matchesDB.matchesDao().
+            findAfterDate(date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+
+            if (matchesFromDatabase.isEmpty()){
+                Log.d("BD", "No hay partidos en la bd")
+                // No hay partidos en la bd, los cargamos de la API
+                cargarPartidosTodos()
 
 
             } else {

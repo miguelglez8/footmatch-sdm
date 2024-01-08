@@ -1,5 +1,6 @@
 package com.example.footmatch.datos.database
 
+import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey

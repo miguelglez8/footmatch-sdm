@@ -9,12 +9,22 @@ import com.example.footmatch.datos.modelos.partido.Score
 
 // Funciones de extensión para mapeo Score -> ScoreEntity
 fun Score.toScoreEntity(): ScoreEntity {
-    return ScoreEntity(
-        duration = this.duration,
-        fullTime = this.fullTime.toFullTimeEntity(),
-        halfTime = this.halfTime.toHalfTimeEntity(),
-        winner = this.winner
-    )
+    if (this.winner == null) {
+        return ScoreEntity(
+            duration = this.duration,
+            fullTime = this.fullTime.toFullTimeEntity(),
+            halfTime = this.halfTime.toHalfTimeEntity(),
+            winner = ""
+        )
+    }else{
+        return ScoreEntity(
+            duration = this.duration,
+            fullTime = this.fullTime.toFullTimeEntity(),
+            halfTime = this.halfTime.toHalfTimeEntity(),
+            winner = this.winner
+        )
+    }
+
 }
 
 // Funciones de extensión para mapeo FullTime -> FullTimeEntity
