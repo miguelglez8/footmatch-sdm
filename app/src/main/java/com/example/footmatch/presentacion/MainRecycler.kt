@@ -1,6 +1,7 @@
 package com.example.footmatch.presentacion
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -74,6 +75,9 @@ class MainRecycler : AppCompatActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_recycler)
+
+        // Vaciamos la base de datos
+        vaciarBD()
 
 
         // Pasamos la lista de partidos al RecyclerView con el ListaPartidosAdapter
@@ -163,6 +167,16 @@ class MainRecycler : AppCompatActivity()  {
         serieA.setOnClickListener { cargarClasificacion("LS") }
     }
 
+
+    /*
+    Vacía la base de datos
+     */
+    private fun vaciarBD(){
+        lifecycleScope.launch(Dispatchers.IO){
+            val matchesDB: MatchesDatabase = MatchesDatabase.getDatabase(this@MainRecycler)
+            matchesDB.matchesDao().deleteAll()
+        }
+    }
 
 
     /*
