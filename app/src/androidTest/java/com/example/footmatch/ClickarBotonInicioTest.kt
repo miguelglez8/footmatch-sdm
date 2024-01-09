@@ -80,8 +80,6 @@ class ClickarBotonInicioTest {
         )
         textView.check(matches(withText("FootMatch")))
 
-        Thread.sleep(2000)
-
         val imageButton = onView(
             allOf(
                 withId(R.id.ligaEASports),
@@ -95,8 +93,6 @@ class ClickarBotonInicioTest {
             )
         )
         imageButton.check(matches(isDisplayed()))
-
-        Thread.sleep(2000)
 
         val imageButton2 = onView(
             allOf(
@@ -112,8 +108,6 @@ class ClickarBotonInicioTest {
         )
         imageButton2.check(matches(isDisplayed()))
 
-        Thread.sleep(2000)
-
         val imageButton3 = onView(
             allOf(
                 withId(R.id.ligaSerieA),
@@ -127,8 +121,6 @@ class ClickarBotonInicioTest {
             )
         )
         imageButton3.check(matches(isDisplayed()))
-
-        Thread.sleep(2000)
 
         val imageButton4 = onView(
             allOf(
@@ -144,8 +136,6 @@ class ClickarBotonInicioTest {
         )
         imageButton4.check(matches(isDisplayed()))
 
-        Thread.sleep(2000)
-
         val frameLayout = onView(
             allOf(
                 withId(R.id.navigation_today), withContentDescription("Hoy"),
@@ -154,8 +144,6 @@ class ClickarBotonInicioTest {
             )
         )
         frameLayout.check(matches(isDisplayed()))
-
-        Thread.sleep(2000)
 
         val frameLayout2 = onView(
             allOf(
@@ -166,8 +154,6 @@ class ClickarBotonInicioTest {
         )
         frameLayout2.check(matches(isDisplayed()))
 
-        Thread.sleep(2000)
-
         val frameLayout3 = onView(
             allOf(
                 withId(R.id.navigation_all), withContentDescription("Todos"),
@@ -176,17 +162,6 @@ class ClickarBotonInicioTest {
             )
         )
         frameLayout3.check(matches(isDisplayed()))
-
-        Thread.sleep(2000)
-
-        val frameLayout4 = onView(
-            allOf(
-                withId(R.id.navigation_all), withContentDescription("Todos"),
-                withParent(withParent(withId(R.id.nav_view_matches_dates))),
-                isDisplayed()
-            )
-        )
-        frameLayout4.check(matches(isDisplayed()))
     }
 
     private fun childAtPosition(
