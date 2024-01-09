@@ -32,19 +32,24 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.example.footmatch.presentacion.PlantillaActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.footmatch.presentacion.MostrarGoleadores"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.footmatch.presentacion.ClasificacionActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.footmatch.presentacion.MostrarPartido"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.footmatch.presentacion.MainRecycler"
-            android:exported="true" >
+            android:exported="true"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

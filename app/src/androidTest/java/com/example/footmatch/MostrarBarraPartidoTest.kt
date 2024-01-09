@@ -30,7 +30,7 @@ class MostrarBarraPartidoTest {
     var mActivityScenarioRule = ActivityScenarioRule(MainRecycler::class.java)
 
     @Test
-    fun mostrarBarraPartidoTest() {
+    fun mostrarBarraPartido() {
         val bottomNavigationItemView = onView(
             allOf(
                 withId(R.id.navigation_all), withContentDescription("Todos"),
@@ -46,6 +46,8 @@ class MostrarBarraPartidoTest {
         )
         bottomNavigationItemView.perform(click())
 
+        Thread.sleep(2000)
+
         val recyclerView = onView(
             allOf(
                 withId(R.id.recyclerViewPartidos),
@@ -56,6 +58,28 @@ class MostrarBarraPartidoTest {
             )
         )
         recyclerView.perform(actionOnItemAtPosition<ViewHolder>(0, click()))
+
+        Thread.sleep(2000)
+
+        val textView = onView(
+            allOf(
+                withId(com.google.android.material.R.id.navigation_bar_item_large_label_view),
+                withText("ESTADISTICAS"),
+                withParent(
+                    allOf(
+                        withId(com.google.android.material.R.id.navigation_bar_item_labels_group),
+                        withParent(
+                            allOf(
+                                withId(R.id.navigation_stats),
+                                withContentDescription("ESTADISTICAS")
+                            )
+                        )
+                    )
+                ),
+                isDisplayed()
+            )
+        )
+        textView.check(matches(withText("ESTADISTICAS")))
 
         val textView2 = onView(
             allOf(
@@ -80,14 +104,14 @@ class MostrarBarraPartidoTest {
         val textView3 = onView(
             allOf(
                 withId(com.google.android.material.R.id.navigation_bar_item_small_label_view),
-                withText("�RBITROS"),
+                withText("ARBITROS"),
                 withParent(
                     allOf(
                         withId(com.google.android.material.R.id.navigation_bar_item_labels_group),
                         withParent(
                             allOf(
                                 withId(R.id.navigation_referees),
-                                withContentDescription("�RBITROS")
+                                withContentDescription("ARBITROS")
                             )
                         )
                     )
@@ -95,7 +119,7 @@ class MostrarBarraPartidoTest {
                 isDisplayed()
             )
         )
-        textView3.check(matches(withText("�RBITROS")))
+        textView3.check(matches(withText("ARBITROS")))
     }
 
     private fun childAtPosition(

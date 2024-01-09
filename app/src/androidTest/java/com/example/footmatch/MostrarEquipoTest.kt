@@ -51,6 +51,8 @@ class MostrarEquipoTest {
         )
         appCompatImageButton.perform(click())
 
+        Thread.sleep(2000)
+
         val recyclerView = onView(
             allOf(
                 withId(R.id.recyclerClasificacion),
@@ -62,6 +64,7 @@ class MostrarEquipoTest {
         )
         recyclerView.perform(actionOnItemAtPosition<ViewHolder>(0, click()))
 
+        Thread.sleep(2000)
 
         val textView3 = onView(
             allOf(
@@ -71,6 +74,7 @@ class MostrarEquipoTest {
             )
         )
         textView3.check(matches(withText("Estadio:")))
+
 
         val button = onView(
             allOf(
@@ -86,6 +90,8 @@ class MostrarEquipoTest {
         )
         button.check(matches(isDisplayed()))
 
+
+
         val textView4 = onView(
             allOf(
                 withId(R.id.nombre), withText("Entrenador"),
@@ -100,6 +106,7 @@ class MostrarEquipoTest {
         )
         textView4.check(matches(withText("Entrenador")))
 
+
         val textView5 = onView(
             allOf(
                 withId(R.id.nombre2), withText("Plantilla"),
@@ -113,6 +120,7 @@ class MostrarEquipoTest {
             )
         )
         textView5.check(matches(withText("Plantilla")))
+
     }
 
     private fun childAtPosition(

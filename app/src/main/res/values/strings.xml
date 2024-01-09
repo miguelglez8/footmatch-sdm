@@ -91,9 +91,9 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
-    <string name="stats">ESTADÍSTICAS</string>
+    <string name="stats">ESTADISTICAS</string>
     <string name="events">EVENTOS</string>
-    <string name="referees">ÁRBITROS</string>
+    <string name="referees">ARBITROS</string>
     <string name="alineations">ALINEACIÓN</string>
     <string name="clasification">CLASIFICACIÓN</string>
     <string name="premier_league_jornada_10">PREMIER LEAGUE JORNADA 10</string>
@@ -122,12 +122,12 @@
     <string name="mbapp">Mbappé</string>
     <string name="di_mar_a">Di María</string>
     <string name="penalti">Penalti</string>
-    <string name="estad_sticas_del_partido">ESTADÍSTICAS DEL PARTIDO</string>
+    <string name="estad_sticas_del_partido">ESTADISTICAS DEL PARTIDO</string>
     <string name="goles">Goles</string>
     <string name="tiros_a_gol">Tiros a Gol</string>
     <string name="posesi_n">Posesión</string>
     <string name="equipos">EQUIPOS</string>
-    <string name="racha_de_los_ltimos_partidos">ÚLTIMOS ENFRENTAMIENTOS</string>
+    <string name="racha_de_los_ltimos_partidos">ULTIMOS ENFRENTAMIENTOS</string>
     <string name="titulo_goles">GOLES</string>
     <string name="titulo_tarjetas">TARJETAS</string>
     <string name="titulo_otros">OTROS</string>
