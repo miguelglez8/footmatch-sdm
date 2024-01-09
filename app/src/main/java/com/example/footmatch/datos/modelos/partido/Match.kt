@@ -34,4 +34,24 @@ data class Match(
     val status: String,
     @SerializedName("utcDate")
     val utcDate: String
-)
+){
+    // Definimos constructor con menos parametros para poder crear objetos de esta clase
+    // sin necesidad de pasar todos los parametros
+    constructor(awayTeam: AwayTeam, homeTeam: HomeTeam, id: Int, status: String,score:Score, utcDate: String) : this(
+        Area("", "",0,""),
+        awayTeam,
+        Competition("", "",0,"",""),
+        "",
+        homeTeam,
+        id,
+        "",
+        0,
+        Odds(""),
+        listOf(""),
+        score,
+        Season(0, "",0,"",""),
+        "",
+        status,
+        utcDate)
+
+}

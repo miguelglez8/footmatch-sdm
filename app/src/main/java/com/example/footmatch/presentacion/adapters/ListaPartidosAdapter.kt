@@ -92,7 +92,7 @@ class ListaPartidosAdapter(
             // cargar nombre equipo visitante
             nombreVisitante.text = match.awayTeam.shortName
             // cargar resultado
-            if (match.score.winner != null) {
+            if (match.score.winner != null && match.score.winner != "") {
                 resultadoLocal.text = match.score.fullTime.home.toString() + " "
                 resultadoVisitante.text = " " + match.score.fullTime.away.toString()
             } else {
@@ -116,13 +116,12 @@ class ListaPartidosAdapter(
                     estado.setBackgroundColor(Color.parseColor("#F80000"))
                 }
                 "POSTPONED" -> {
-                    if (match.score.winner == null) {
-                        estado.text = "CANCELADO"
-                        estado.setBackgroundColor(Color.parseColor("#E2BA1F"))
-                    }
+                    estado.text = "CANCELADO"
+                    estado.setBackgroundColor(Color.parseColor("#E2BA1F"))
+
                 }
                 else -> {
-                    if (match.score.winner != null) {
+                    if (match.score.winner != null && match.score.winner != "") {
                         estado.text = "APLAZADO"
                         estado.setBackgroundColor(Color.parseColor("#E2BA1F"))
                     } else {
