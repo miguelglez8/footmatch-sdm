@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Equipo 1 -->
+    <LinearLayout
+        android:id="@+id/equipo1Layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <!-- Nombre del Equipo 1 -->
+        <TextView
+            android:id="@+id/nombreEquipo1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <!-- Imagen del Equipo 1 -->
+        <ImageView
+            android:id="@+id/imagenEquipo1"
+            android:layout_width="200dp"
+            android:layout_height="120dp" />
+
+        <TextView
+            android:id="@+id/trainer1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:textColor="#000" />
+
+        <!-- Formación del Equipo 1 -->
+        <TextView
+            android:id="@+id/plantilla1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textColor="#000" />
+
+        <!-- Lista de Jugadores del Equipo 1 -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewJugadoresEquipo1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+        <!-- Otros atributos del RecyclerView según tus necesidades -->
+        />
+
+    </LinearLayout>
+
+    <!-- Equipo 2 -->
+    <LinearLayout
+        android:id="@+id/equipo2Layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/equipo1Layout"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <!-- Nombre del Equipo 2 -->
+        <TextView
+            android:id="@+id/nombreEquipo2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <!-- Imagen del Equipo 2 -->
+        <ImageView
+            android:id="@+id/imagenEquipo2"
+            android:layout_width="200dp"
+            android:layout_height="120dp"
+            />
+
+        <TextView
+            android:id="@+id/trainer2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:textColor="#000" />
+
+        <TextView
+            android:id="@+id/plantilla2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#000" />
+
+        <!-- Lista de Jugadores del Equipo 2 -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewJugadoresEquipo2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </androidx.recyclerview.widget.RecyclerView>
+        <!-- Otros atributos del RecyclerView según tus necesidades -->
+        />
+
+    </LinearLayout>
+
+</RelativeLayout>

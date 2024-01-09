@@ -49,6 +49,7 @@ class ClickarBotonInicioTest {
         )
         appCompatImageButton.perform(click())
 
+        Thread.sleep(2000)
         val bottomNavigationItemView = onView(
             allOf(
                 withId(R.id.nav_home),
@@ -64,6 +65,7 @@ class ClickarBotonInicioTest {
         )
         bottomNavigationItemView.perform(click())
 
+        Thread.sleep(2000)
         val textView = onView(
             allOf(
                 withText("FootMatch"),
@@ -77,6 +79,8 @@ class ClickarBotonInicioTest {
             )
         )
         textView.check(matches(withText("FootMatch")))
+
+        Thread.sleep(2000)
 
         val imageButton = onView(
             allOf(
@@ -92,6 +96,8 @@ class ClickarBotonInicioTest {
         )
         imageButton.check(matches(isDisplayed()))
 
+        Thread.sleep(2000)
+
         val imageButton2 = onView(
             allOf(
                 withId(R.id.ligaPremier),
@@ -105,6 +111,8 @@ class ClickarBotonInicioTest {
             )
         )
         imageButton2.check(matches(isDisplayed()))
+
+        Thread.sleep(2000)
 
         val imageButton3 = onView(
             allOf(
@@ -120,6 +128,8 @@ class ClickarBotonInicioTest {
         )
         imageButton3.check(matches(isDisplayed()))
 
+        Thread.sleep(2000)
+
         val imageButton4 = onView(
             allOf(
                 withId(R.id.ligaBundesliga),
@@ -134,6 +144,8 @@ class ClickarBotonInicioTest {
         )
         imageButton4.check(matches(isDisplayed()))
 
+        Thread.sleep(2000)
+
         val frameLayout = onView(
             allOf(
                 withId(R.id.navigation_today), withContentDescription("Hoy"),
@@ -142,6 +154,8 @@ class ClickarBotonInicioTest {
             )
         )
         frameLayout.check(matches(isDisplayed()))
+
+        Thread.sleep(2000)
 
         val frameLayout2 = onView(
             allOf(
@@ -152,6 +166,8 @@ class ClickarBotonInicioTest {
         )
         frameLayout2.check(matches(isDisplayed()))
 
+        Thread.sleep(2000)
+
         val frameLayout3 = onView(
             allOf(
                 withId(R.id.navigation_all), withContentDescription("Todos"),
@@ -160,6 +176,8 @@ class ClickarBotonInicioTest {
             )
         )
         frameLayout3.check(matches(isDisplayed()))
+
+        Thread.sleep(2000)
 
         val frameLayout4 = onView(
             allOf(
