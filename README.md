@@ -1,4 +1,3 @@
-![Android Studio](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
 # FootMatch · Android App
 
 BeSoccer is a comprehensive soccer application designed to provide users with extensive information and coverage of the world of football. 
